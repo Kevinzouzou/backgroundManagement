@@ -1,0 +1,634 @@
+<!--房屋设置-->
+<div class="tablist_third">
+    <ul class="nav clearfix">
+        <li class="period_set active"><a href="#tab_period_set" role="tab" data-toggle="tab">期</a></li>
+        <li class="zone_set"><a href="#tab_zone_set" role="tab" data-toggle="tab">区</a></li>
+        <li class="building_set"><a href="#tab_building_set" role="tab" data-toggle="tab">栋</a></li>
+        <li class="unit_set"><a href="#tab_unit_set" role="tab" data-toggle="tab">单元</a></li>
+        <li class="layer_set"><a href="#tab_layer_set" role="tab" data-toggle="tab">层</a></li>
+        <li class="room_set"><a href="#tab_room_set" role="tab" data-toggle="tab">室</a></li>
+    </ul>
+</div>
+<div class="tab-content">
+    <!--期-->
+    <div class="tab-pane active" id="tab_period_set">
+        <div class="btns">
+            <button class='btn btn-warning adding text-center' data-toggle="modal"  data-target="#addPeriod"><i></i>添加</button>
+            <button class='btn btn-primary lead_in text-center'><i></i>导入</button>
+            <button class='btn btn-primary lead_out text-center'><i></i>导出<a download="社区管理》房屋设置》期.xlsx" id="periodSetDowExl" style="display: none"></a></button>
+        </div>
+        <div class="tab-pane tables">
+            <table class="table table-striped table-hover table-responsive">
+                <thead>
+                <tr>
+                    <th style="width: 70%;">期</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>一期</td>
+                    <td>
+                        <a class="delete" data-toggle="modal" data-target="#deletePeriodSet">删除</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--添加-->
+        <div class="modal fade houseSet" id="addPeriod" >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">添加</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-unstyled clearfix large-half">
+                            <li class="totalLength">
+                                <span>小区编号</span>
+                                <input type="text" class="unCode" placeholder="如：100006"/>
+                            </li>
+                            <li class="totalLength">
+                                <span>选&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;择</span>
+                                <div class="dropdown areaZone cellCode">
+                                    <a class="dropdown-toggle areaZoneList cellCodeList text-center" data-toggle="dropdown" ids="1"><span>有</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu areaZoneList-menu cellCodeList-menu" role="menu">
+                                        <li><a ids="1">有</a></li>
+                                        <li><a ids="2">无</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="totalLength">
+                                <span>期</span><input type="text" class="adds"/><a class="add">添加</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg determine" data-dismiss="modal">确定</button>
+                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--删除 -->
+        <div class="modal fade" id="deletePeriodSet" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">提示</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-inline mBody_title text-center">
+                            确定删除该消息?
+                            <input type="text" class="deleteInfo" style="display: none;"/>
+                        </form>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg to_delete" data-dismiss="modal">删除</button>
+                        <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--区-->
+    <div class="tab-pane" id="tab_zone_set">
+        <div class="btns">
+            <button class='btn btn-warning adding text-center' data-toggle="modal"  data-target="#addZone"><i></i>添加</button>
+            <button class='btn btn-primary lead_in text-center'><i></i>导入</button>
+            <button class='btn btn-primary lead_out text-center'><i></i>导出<a href="" download="社区管理》房屋设置》区.xlsx" id="zoneSetDowExl" style="display: none"></a></button>
+        </div>
+        <div class="tab-pane tables">
+            <table class="table table-striped table-hover table-responsive">
+                <thead>
+                <tr>
+                    <th style="width: 70%;">区</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>一区</td>
+                    <td>
+                        <a class="delete" data-toggle="modal" data-target="#deleteZoneSet">删除</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--添加-->
+        <div class="modal fade houseSet" id="addZone" >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">添加</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-unstyled clearfix large-half">
+                            <li class="totalLength">
+                                <span>选&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;择</span>
+                                <div class="dropdown areaZone cellCode">
+                                    <a class="dropdown-toggle areaZoneList cellCodeList text-center" data-toggle="dropdown" ids="1"><span>有</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu areaZoneList-menu cellCodeList-menu" role="menu">
+                                        <li><a ids="1">有</a></li>
+                                        <li><a ids="2">无</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="totalLength">
+                                <span>区</span><input type="text" class="adds"/><a class="add">添加</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg determine" data-dismiss="modal">确定</button>
+                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--删除 -->
+        <div class="modal fade" id="deleteZoneSet" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">提示</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-inline mBody_title text-center">
+                            确定删除该消息?
+                            <input type="text" class="deleteInfo" style="display: none;"/>
+                        </form>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg to_delete" data-dismiss="modal">删除</button>
+                        <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--栋-->
+    <div class="tab-pane" id="tab_building_set">
+        <div class="btns">
+            <button class='btn btn-warning adding text-center' data-toggle="modal"  data-target="#addBuilding"><i></i>添加</button>
+            <button class='btn btn-primary lead_in text-center'><i></i>导入</button>
+            <button class='btn btn-primary lead_out text-center'><i></i>导出<a href="" download="社区管理》房屋设置》栋.xlsx" id="buildingSetDowExl" style="display: none"></a></button>
+        </div>
+        <div class="tab-pane tables">
+            <table class="table table-striped table-hover table-responsive">
+                <thead>
+                <tr>
+                    <th style="width: 70%;">栋</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>一栋</td>
+                    <td>
+                        <a class="delete" data-toggle="modal" data-target="#deleteBuildingSet">删除</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--添加-->
+        <div class="modal fade houseSet" id="addBuilding" >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">添加</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-unstyled clearfix large-half">
+                            <li class="totalLength">
+                                <span>栋</span><input type="text" class="adds"/><a class="add">添加</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg determine" data-dismiss="modal">确定</button>
+                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--删除 -->
+        <div class="modal fade" id="deleteBuildingSet" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">提示</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-inline mBody_title text-center">
+                            确定删除该消息?
+                            <input type="text" class="deleteInfo" style="display: none;"/>
+                        </form>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg to_delete" data-dismiss="modal">删除</button>
+                        <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--单元-->
+    <div class="tab-pane" id="tab_unit_set">
+        <div class="btns">
+            <button class='btn btn-warning adding text-center' data-toggle="modal"  data-target="#addUnit"><i></i>添加</button>
+            <button class='btn btn-primary lead_in text-center'><i></i>导入</button>
+            <button class='btn btn-primary lead_out text-center'><i></i>导出<a href="" download="社区管理》房屋设置》单元.xlsx" id="unitSetDowExl" style="display: none"></a></button>
+        </div>
+        <div class="tab-pane tables">
+            <table class="table table-striped table-hover table-responsive">
+                <thead>
+                <tr>
+                    <th style="width: 70%;">单元</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>一单元</td>
+                    <td>
+                        <a class="delete" data-toggle="modal" data-target="#deleteUnitSet">删除</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--添加-->
+        <div class="modal fade houseSet" id="addUnit" >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">添加</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-unstyled clearfix large-half">
+                            <li class="totalLength">
+                                <span>选&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;择</span>
+                                <div class="dropdown areaZone cellCode">
+                                    <a class="dropdown-toggle areaZoneList cellCodeList text-center" data-toggle="dropdown" ids="1"><span>有</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu areaZoneList-menu cellCodeList-menu" role="menu">
+                                        <li><a ids="1">有</a></li>
+                                        <li><a ids="2">无</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="totalLength">
+                                <span>单元</span><input type="text" class="adds"/><a class="add">添加</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg determine" data-dismiss="modal">确定</button>
+                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--删除 -->
+        <div class="modal fade" id="deleteUnitSet" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">提示</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-inline mBody_title text-center">
+                            确定删除该消息?
+                            <input type="text" class="deleteInfo" style="display: none;"/>
+                        </form>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg to_delete" data-dismiss="modal">删除</button>
+                        <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--层-->
+    <div class="tab-pane" id="tab_layer_set">
+        <div class="btns">
+            <button class='btn btn-warning adding text-center' data-toggle="modal"  data-target="#addLayer"><i></i>添加</button>
+            <button class='btn btn-primary lead_in text-center'><i></i>导入</button>
+            <button class='btn btn-primary lead_out text-center'><i></i>导出<a href="" download="社区管理》房屋设置》层.xlsx" id="layerSetDowExl" style="display: none"></a></button>
+            <button class='btn btn-primary batch_delete text-center'><i></i>批量删除</button>
+        </div>
+        <div class="tab-pane tables">
+            <table class="table table-striped table-hover table-responsive">
+                <thead>
+                <tr>
+                    <th style="width: 70%;">层</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>一层</td>
+                    <td>
+                        <a class="delete" data-toggle="modal" data-target="#deleteLayerSet">删除</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--添加-->
+        <div class="modal fade houseSet" id="addLayer" >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">添加</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-unstyled clearfix large-half">
+                            <li class="totalLength">
+                                <span>层</span><input type="text" class="adds"/><a class="add">添加</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg determine" data-dismiss="modal">确定</button>
+                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--删除 -->
+        <div class="modal fade" id="deleteLayerSet" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">提示</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-inline mBody_title text-center">
+                            确定删除该消息?
+                            <input type="text" class="deleteInfo" style="display: none;"/>
+                        </form>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg to_delete" data-dismiss="modal">删除</button>
+                        <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--室-->
+    <div class="tab-pane" id="tab_room_set">
+        <div class="btns">
+            <button class='btn btn-warning adding text-center' data-toggle="modal"  data-target="#addRoom"><i></i>添加</button>
+            <button class='btn btn-primary lead_in text-center'><i></i>导入</button>
+            <button class='btn btn-primary lead_out text-center'><i></i>导出<a href="" download="社区管理》房屋设置》室.xlsx" id="roomSetDowExl" style="display: none"></a></button>
+            <button class='btn btn-primary batch_delete text-center'><i></i>批量删除</button>
+        </div>
+        <div class="tab-pane tables">
+            <table class="table table-striped table-hover table-responsive">
+                <thead>
+                <tr>
+                    <th><input type="checkbox"/> 选择</th>
+                    <th>房屋名称</th>
+                    <th>房屋地址</th>
+                    <th>建筑面积</th>
+                    <th>公摊面积</th>
+                    <th>使用面积</th>
+                    <th>房型</th>
+                    <th>房屋编码</th>
+                    <th>房产证号</th>
+                    <th>产权人</th>
+                    <th>联系电话</th>
+                    <th>入住时间</th>
+                    <th>房屋状态</th>
+                    <th>使用用途</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><input type="checkbox"/></td>
+                    <td>天下一阁</td>
+                    <td>重庆路1号</td>
+                    <td>120</td>
+                    <td>121</td>
+                    <td>110</td>
+                    <td>三室一厅</td>
+                    <td>100005</td>
+                    <td>123123123</td>
+                    <td>张三丰</td>
+                    <td>13512341234</td>
+                    <td>2017-12-12</td>
+                    <td>良好</td>
+                    <td>民用</td>
+                    <td>
+                        <a class="modify" data-toggle="modal" data-target="#ModifyRoom">修改</a>|
+                        <a class="delete" data-toggle="modal" data-target="#deleteHouse">删除</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--添加-->
+        <div class="modal fade houseSet" id="addRoom" >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">添加</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-unstyled clearfix large-half">
+                            <li class="totalLength">
+                                <span>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址</span>
+                                <div class="address">
+                                    <div class="dropdown areaZone periodType">
+                                        <a class="dropdown-toggle areaZoneList periodTypeList text-center" data-toggle="dropdown"><span>请选择期</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu periodTypeList-menu" role="menu">
+                                            <li><a ids="0">无</a></li>
+                                            <li><a ids="1">1期</a></li>
+                                            <li><a ids="2">2期</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="dropdown areaZone zoneType">
+                                        <a class="dropdown-toggle areaZoneList zoneTypeList text-center" data-toggle="dropdown"><span>请选择区</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu zoneTypeList-menu" role="menu">
+                                            <li><a ids="0">无</a></li>
+                                            <li><a ids="1">1区</a></li>
+                                            <li><a ids="2">2区</a></li>
+                                            <li><a ids="3">3区</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="dropdown areaZone buildingType">
+                                        <a class="dropdown-toggle areaZoneList buildingTypeList text-center" data-toggle="dropdown"><span>请选择栋</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu buildingTypeList-menu" role="menu">
+                                            <li><a ids="0">无</a></li>
+                                            <li><a ids="1">1栋</a></li>
+                                            <li><a ids="2">2栋</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="dropdown areaZone unitType">
+                                        <a class="dropdown-toggle areaZoneList unitTypeList text-center" data-toggle="dropdown"><span>请选择单元</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu unitTypeList-menu" role="menu">
+                                            <li><a ids="0">无</a></li>
+                                            <li><a ids="1">1单元</a></li>
+                                            <li><a ids="2">2单元</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="dropdown areaZone layer">
+                                        <a class="dropdown-toggle areaZoneList roomNumList text-center" data-toggle="dropdown"><span>请选择层</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu roomNumList-menu" role="menu">
+                                            <li><a ids="0">无</a></li>
+                                            <li><a ids="1">1层</a></li>
+                                            <li><a ids="2">2层</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="totalLength">
+                                <span>室</span><input type="text" class="adds"/><a class="add">添加</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg determine" data-dismiss="modal">确定</button>
+                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--修改-->
+        <div class="modal fade modifyRoom" id="ModifyRoom" >
+            <div class="modal-dialog" style="margin-top:8rem;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">修改</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-unstyled clearfix large-half">
+                            <li>
+                                <span>房屋名称</span>
+                                <input type="text" placeholder="输入如：201"/>
+                            </li>
+                            <li>
+                                <span>房屋地址</span>
+                                <input type="text" placeholder="输入房屋地址"/>
+                            </li>
+                            <li>
+                                <span>建筑面积</span>
+                                <input type="text" placeholder="单位：m2"/>
+                            </li>
+                            <li>
+                                <span>公摊面积</span>
+                                <input type="text" placeholder="单位：m2"/>
+                            </li>
+                            <li>
+                                <span>使用面积</span>
+                                <input type="text" placeholder="单位：m2"/>
+                            </li>
+                            <li>
+                                <span>房&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型</span>
+                                <input type="text" placeholder="如：一厅一卧一卫"/>
+                            </li>
+                            <li>
+                                <span>房屋编码</span>
+                                <input type="text" placeholder="输入房屋编码"/>
+                            </li>
+                            <li>
+                                <span>房产证号</span>
+                                <input type="text" placeholder="输入房产证号"/>
+                            </li>
+                            <li>
+                                <span>产&nbsp;&nbsp;权&nbsp;&nbsp;人</span>
+                                <input type="text" placeholder="输入产权人姓名"/>
+                            </li>
+                            <li>
+                                <span>联系电话</span>
+                                <input type="text" placeholder="输入联系电话"/>
+                            </li>
+                            <li>
+                                <span>入住时间</span>
+                                <input type="text" class="calendar"/>
+                            </li>
+                            <li>
+                                <span>房屋状态</span>
+                                <div class="dropdown areaZone houseStatus">
+                                    <a class="dropdown-toggle areaZoneList houseStatusList text-center" data-toggle="dropdown"><span>未售</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu areaZoneList-menu houseStatusList-menu" role="menu">
+                                        <li><a>未售</a></li>
+                                        <li><a>自住</a></li>
+                                        <li><a>出租</a></li>
+                                        <li><a>部分出租</a></li>
+                                        <li><a>空置</a></li>
+                                        <li><a>招租</a></li>
+                                        <li><a>待售</a></li>
+                                        <li><a>待装修</a></li>
+                                        <li><a>重装修</a></li>
+                                        <li><a>其他</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <span>使用用途</span>
+                                <div class="dropdown areaZone useType">
+                                    <a class="dropdown-toggle areaZoneList useTypeList text-center" data-toggle="dropdown"><span>住宅</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu areaZoneList-menu useTypeList-menu" role="menu">
+                                        <li><a>住宅</a></li>
+                                        <li><a>综合</a></li>
+                                        <li><a>商业</a></li>
+                                        <li><a>商住</a></li>
+                                        <li><a>物业</a></li>
+                                        <li><a>厂房</a></li>
+                                        <li><a>办公</a></li>
+                                        <li><a>其他</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg determine" data-dismiss="modal">确定</button>
+                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--删除 -->
+    <div class="modal fade" id="deleteHouse" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                    <h4 class="modal-title text-center">提示</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-inline mBody_title text-center">
+                        确定删除该消息?
+                        <input type="text" class="deleteInfo" style="display: none;"/>
+                    </form>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-warning btn-lg to_delete" data-dismiss="modal">删除</button>
+                    <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

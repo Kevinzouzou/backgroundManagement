@@ -1,0 +1,110 @@
+<!--接口设置-->
+<div class="tablist_third">
+    <ul class="nav clearfix">
+        <li class="video_monitoring active"><a href="#tab_video_monitoring" role="tab" data-toggle="tab">视频监控</a></li>
+        <li class="car_parkMg"><a href="#tab_car_parkMg" role="tab" data-toggle="tab">停车场管理</a></li>
+        <li class="auto_reading"><a href="#tab_auto_reading" role="tab" data-toggle="tab">自动抄表</a></li>
+    </ul>
+</div>
+<div class="tab-content">
+    <!--视频监控-->
+    <div class="tab-pane active" id="tab_video_monitoring">
+        <div class="btns">
+            <span>品牌</span>
+        </div>
+        <div class="tables b_set sys_info">
+            <h4></h4>
+            <div class="box">
+                <div class="b_contain sys_contain">
+                    <ul class="list-unstyled large-half text-center" style="margin-top: 10rem;">
+                        <li>
+                            <span>品牌选择：</span>
+                            <div class="dropdown areaZone brandChoice">
+                                <a class="dropdown-toggle areaZoneList text-center" data-toggle="dropdown" ids="1"><span>海康</span><b class="caret"></b></a>
+                                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                    <li><a ids="1">海康</a></li>
+                                    <li><a ids="2">大华</a></li>
+                                </ul>
+                            </div>
+                            <b class="brandChoiceInfo" ids="0"></b>
+                        </li>
+                    </ul>
+                </div>
+                <div class="text-center b_footer">
+                    <button class="btn btn-warning btn-lg determine">确认</button>
+                    <button class="btn btn-default btn-lg cancel">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--停车场管理-->
+    <div class="tab-pane" id="tab_car_parkMg">
+        <div class="btns">
+            <span>品牌</span>
+        </div>
+        <div class="tables b_set sys_info">
+            <h4></h4>
+            <div class="box">
+                <div class="b_contain sys_contain">
+                    <ul class="list-unstyled large-half text-center" style="margin-top: 10rem;">
+                        <li>
+                            <span>品牌选择：</span>
+                            <div class="dropdown areaZone brandChoice">
+                                <a class="dropdown-toggle areaZoneList text-center" data-toggle="dropdown" ids="1"><span>西沃</span><b class="caret"></b></a>
+                                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                    <li><a ids="1">西沃</a></li>
+                                    <li><a ids="2">科拓</a></li>
+                                    <li><a ids="3">富士</a></li>
+                                    <li><a ids="4">海康</a></li>
+                                    <li><a ids="5">大华</a></li>
+                                </ul>
+                            </div>
+                            <b class="brandChoiceInfo" ids="0"></b>
+                        </li>
+                    </ul>
+                </div>
+                <div class="text-center b_footer">
+                    <button class="btn btn-warning btn-lg determine">确认</button>
+                    <button class="btn btn-default btn-lg cancel">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--自动抄表-->
+    <div class="tab-pane" id="tab_auto_reading">
+        <div class="btns">
+            <span>接口设置</span>
+        </div>
+        <div class="tables b_set sys_info">
+            <h4></h4>
+            <div class="box">
+                <div class="b_contain sys_contain">
+                    <ul class="list-unstyled large-half text-center" style="margin-top: 10rem;">
+                        <li>
+                            <span>接口选择：</span>
+                            <div class="dropdown areaZone interSelect">
+                                <a class="dropdown-toggle areaZoneList text-center" data-toggle="dropdown" ids="1"><span>MySQL</span><b class="caret"></b></a>
+                                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                    <li><a ids="1">MySQL</a></li>
+                                    <li><a ids="2">SQLServer</a></li>
+                                    <li><a ids="3">Oracle</a></li>
+                                    <li><a ids="4">OPC</a></li>
+                                    <li><a ids="5">http</a></li>
+                                    <li><a ids="6">MODEBUS</a></li>
+                                    <li><a ids="7">BACNET</a></li>
+                                    <li><a ids="8">RS485</a></li>
+                                    <li><a ids="9">Other</a></li>
+                                </ul>
+                            </div>
+                            <b class="interSelectInfo" ids="0"></b>
+                        </li>
+                    </ul>
+                </div>
+                <div class="text-center b_footer">
+                    <button class="btn btn-warning btn-lg determine">确认</button>
+                    <button class="btn btn-default btn-lg cancel">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

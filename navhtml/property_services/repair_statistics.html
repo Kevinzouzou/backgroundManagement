@@ -1,0 +1,120 @@
+<!--报事报修统计-->
+<div class="tablist_third">
+    <ul class="nav clearfix" role="tablist_third">
+        <li class="reportRepair active"><a href="#tab_reportRepair" role="tab" data-toggle="tab" onclick="repairStaticsInitialize('tasks')">报事报修统计</a></li>
+    </ul>
+</div>
+<div class="tab-content">
+    <!--报事报修统计-->
+    <div class="tab-pane active" id="tab_reportRepair">
+        <div class="btns">
+            <button class="btn btn-primary lead_out text-center" onclick="repairExportData()"><i></i>导出</button>
+            <button class="btn btn-primary print text-center" onclick="repairPrint()"><i></i>打印</button>
+        </div>
+        <div class="menuBox btns repair_statistics_search" id="repair_static_tics_followP" onclick="repairStatisticsSearch()">
+            <div class="repair_static_tics_type dropdown areaZone" ids="repair_static_tics_type" optionid="" modename="全部类型">
+                <a class="dropdown-toggle areaZoneList reactive_height text-center" data-toggle="dropdown"><span class="option_type">全部类型</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                    <li><a codelist="" modename="全部类型">全部类型</a></li>
+                    <li><a codelist="1" modename="建议投诉">建议投诉</a></li>
+                    <li><a codelist="2" modename="物业维修">物业维修</a></li>
+                </ul>
+            </div>
+            <div class="repair_static_tics_status dropdown areaZone" ids="repair_static_tics_status" optionid="" modename="全部任务">
+                <a class="dropdown-toggle areaZoneList allStateList reactive_height text-center" data-toggle="dropdown"><span class="option_type">全部任务</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu allStateList-menu" role="menu">
+                    <li><a codelist="" modename="全部类型">全部类型</a></li>
+                    <li><a codelist="1" modename="未处理">未处理</a></li>
+                    <li><a codelist="2" modename="处理中">处理中</a></li>
+                    <li><a codelist="3" modename="再处理">再处理</a></li>
+                    <li><a codelist="4" modename="已完成">已完成</a></li>
+                    <li><a codelist="5" modename="已回访">已回访</a></li>
+                </ul>
+            </div>
+            <div class="repair_static_tics_followP dropdown areaZone" ids="repair_static_tics_followP" optionid="" modename="全部跟进人">
+                <a class="dropdown-toggle areaZoneList allFollowList reactive_height text-center" data-toggle="dropdown"><span class="option_type">全部跟进人</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+
+                </ul>
+            </div>
+            <div class="startToEnd pull-right">
+                从
+                <input type="text" class="reactive_height calendar startTime" placeholder="起止时间"/>
+                到
+                <input type="text" class="reactive_height calendar endTime" placeholder="结束时间"/>
+            </div>
+        </div>
+        <div class="tab-pane tables repairStaticPrint" id="repair_list_static_tics">
+            <table class="table table-striped text-center">
+                <thead>
+                    <tr>
+                        <!--<th>已选择</th>-->
+                        <th>工单编号</th>
+                        <th>类型</th>
+                        <th>创建时间</th>
+                        <th>内容</th>
+                        <th>跟进人信息</th>
+                        <th>紧急程度</th>
+                        <th>完成详情</th>
+                        <th>客户满意度</th>
+                        <th>附件</th>
+                    </tr>
+                </thead>
+                <tbody id="repair_body_static_tics"></tbody>
+            </table>
+            <div class="inner clearfix">
+                <div id="repair_paging_static_tics" class="pull-right pageList"></div>
+                <div id="repair_tips_static_tics" class="pull-right pageTips"></div>
+            </div>
+            <!--内容 详细 模态框-->
+            <div class="modal fade" id="repair_content" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                            <h4 class="modal-title text-center">服务内容</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div style="text-indent: 1.8rem;" id="divContentId"></div>
+                        </div>
+                        <div class="modal-footer text-center">
+                            <button type="button" class="btn btn-warning btn-lg toResure" data-dismiss="modal">确认</button>
+                            <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--查看 模态框-->
+            <div class="modal fade" id="repair_view" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                            <h4 class="modal-title text-center">查看信息</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div style="text-indent: 1.8rem;" id="divCmFileId">查看的内容</div>
+                        </div>
+                        <div class="modal-footer text-center">
+                            <button type="button" class="btn btn-warning btn-lg toResure" data-dismiss="modal">确认</button>
+                            <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function selectChoiceRight(class1,class2){
+        $(class1+">li>a").on('click',function(){
+            var  html="<span>"+$(this).html()+"</span><b class='caret'></b>";
+            $(class2).html(html);
+        });
+    }
+    selectChoiceRight(".allTypeList-menu",".allTypeList");
+    selectChoiceRight(".allStateList-menu",".allStateList");
+    selectChoiceRight(".allFollowList-menu",".allFollowList");
+</script>
+<script type="text/javascript" src="js/property_services/repair_statistics_view.js"></script>
+<script type="text/javascript" src="js/property_services/repair_statistics.js"></script>

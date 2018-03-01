@@ -1,0 +1,277 @@
+<!--Created by along on 2018/1/24 安防报警-->
+<!--报警设置-->
+<div class="tablist_third">
+    <ul class="nav clearfix" role="tablist_third">
+        <li class="setAlarm_rank active"><a href="#tab_setAlarm_rank" role="tab" data-toggle="tab" onclick="setAlarmInitialize('alarmRank')">报警级别设置</a></li>
+        <li class="setAlarm_area"><a href="#tab_setAlarm_area" role="tab" data-toggle="tab" onclick="setAlarmInitialize('alarmArea')">小区报警区域</a></li>
+        <li class="setAlarm_number"><a href="#tab_setAlarm_number" role="tab" data-toggle="tab" onclick="setAlarmInitialize('alarmNumber')">绑定物管账号</a></li>
+        <li class="setAlarm_time"><a href="#tab_setAlarm_time" role="tab" data-toggle="tab" onclick="setAlarmInitialize('alarmTime')">保存时间设置</a></li>
+    </ul>
+</div>
+<div class="tab-content">
+    <!--报警级别设置-->
+    <div class="tab-pane active" id="tab_setAlarm_rank">
+        <div class="btns">
+            <button class="btn btn-warning SetAlarmBut" ids="alarmRank"><i></i>添加</button>
+        </div>
+        <!--table-->
+        <div class="tables">
+            <table class="table table-striped text-center">
+                <thead>
+                <tr>
+                    <th>报警类型</th>
+                    <th>报警级别</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="setAlarmRankList">
+                    <tr>
+                        <td>防盗报警</td>
+                        <td>一般</td>
+                        <td>
+                            <a class="modifyBut" ids="6" type="alarmRank">修改</a>|
+                            <a class="deleteBut" ids="6" type="alarmRank">删除</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--分页-->
+            <div class="pagingImplement tab-pane inner clearfix">
+                <div class="pageList pull-right"></div>
+                <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
+            </div>
+            <!--end homeList-paging-->
+        </div>
+    </div>
+    <!--小区报警区域-->
+    <div class="tab-pane" id="tab_setAlarm_area">
+        <div class="btns">
+            <button class="btn btn-warning SetAlarmBut" ids="alarmArea"><i></i>添加</button>
+        </div>
+        <!--table-->
+        <div class="tables">
+            <table class="table table-striped text-center">
+                <thead>
+                <tr>
+                    <th>区域名称</th>
+                    <th>区域位置</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="setAlarmAreaList">
+                <tr>
+                    <td>防盗报警</td>
+                    <td>楼道</td>
+                    <td>
+                        <a class="modifyBut" ids="6" type="alarmArea">修改</a>|
+                        <a class="deleteBut" ids="6" type="alarmArea">删除</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <!--分页-->
+            <div class="pagingImplement tab-pane inner clearfix">
+                <div class="pageList pull-right"></div>
+                <div class="pageTips pull-right">当前页面共1条数据 总共1条数据</div>
+            </div>
+            <!--end homeList-paging-->
+        </div>
+    </div>
+    <!--绑定物管账号-->
+    <div class="tab-pane" id="tab_setAlarm_number">
+        <div class="btns menuBox" id="logoutAddress">
+            <button class="btn btn-warning SetAlarmBut" ids="alarmNumber"><i></i>添加</button>
+        </div>
+        <!--table-->
+        <div class="tables">
+            <table class="table table-striped text-center">
+                <thead>
+                <tr>
+                    <th>房屋地址</th>
+                    <th>物业人员姓名</th>
+                    <th>物业人员电话</th>
+                    <th>物业人员APP</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="setAlarmNumberList">
+                <tr>
+                    <td>1期1区1栋1单元1层001室</td>
+                    <td>张三</td><td>15888888888</td>
+                    <td>app001</td>
+                    <td>
+                        <a class="modifyBut" ids="6" type="alarmNumber">修改</a>|
+                        <a class="deleteBut" ids="6" type="alarmNumber">删除</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <!--分页-->
+            <div class="pagingImplement tab-pane inner clearfix">
+                <div class="pageList pull-right"></div>
+                <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
+            </div>
+            <!--end homeList-paging-->
+        </div>
+    </div>
+    <!--保存时间设置-->
+    <div class="tab-pane" id="tab_setAlarm_time">
+        <div class="btns"></div>
+        <!--table-->
+        <div class="tables">
+            <table class="table table-striped text-center">
+                <thead>
+                <tr>
+                    <th>***</th>
+                    <th>***</th>
+                    <th>***</th>
+                    <th>***</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="setAlarmTimeList">
+                <tr>
+                    <td>***</td>
+                    <td>***</td>
+                    <td>***</td>
+                    <td>***</td>
+                    <td>
+                        <a class="modifyBut" ids="6">***</a>
+                        <!--| <a class="deleteBut" ids="6">删除</a>|-->
+                        <!--<a class="pushBut" ids="6" type="costItem">推送</a>-->
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <!--分页-->
+            <div class="pagingImplement tab-pane inner clearfix">
+                <div class="pageList pull-right"></div>
+                <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
+            </div>
+            <!--end homeList-paging-->
+        </div>
+    </div>
+</div>
+<!--modal-->
+<!--添加报警级别-->
+<div class="modal fade" id="addSetAlarmRankModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">添加报警级别</h4>
+            </div>
+            <div class="modal-body" id="setAlarmRankForm">
+                <ul class="list-unstyled clearfix large-half">
+                    <li style="margin-top:1.875rem">
+                        <span>报警类型</span>
+                        <input type="text">
+                    </li>
+                    <li class="menuBox" id="alarmRank" style="margin-top:1.875rem">
+                        <span>报警级别</span>
+                        <div class="alarmRank dropdown areaZone" ids="alarmRank" optionid="">
+                            <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                            <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                <li><a codelist="0" modename="一般">一般</a></li>
+                                <li><a codelist="1" modename="紧急">紧急</a></li>
+                                <li><a codelist="2" modename="严重">严重</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg to_delete" id="setAlarmRankModalBut">确认</button>
+                <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--添加物管账号-->
+<div class="modal fade" id="addAlarmNumberModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">添加物管账号</h4>
+            </div>
+            <div class="modal-body" id="alarmNumberForm">
+                <ul class="list-unstyled clearfix large-half">
+                    <li class="menuBox totalLength modalAddress" id="chargingSetModalAddress" ids="modalAddress" type="charge">
+                        <span class="pull-left">房屋地址</span>
+                        <div class="chargingAds dropdown areaZone" ids="chargingAds" optionid="" style="margin-left: 0.2rem;">
+                            <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                            <ul class="dropdown-menu areaZoneList-menu" role="menu"><li><a codelist="200005d1p1z1b" modename="1期1区1栋">1期1区1栋</a></li><li><a codelist="200005d1p1z2b" modename="1期1区2栋">1期1区2栋</a></li></ul>
+                        </div>
+                        <div class="unitAds dropdown areaZone" ids="unitAds" optionid="" style="display: block;">
+                            <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                            <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+                        </div>
+                        <div class="doorplateAds dropdown areaZone" ids="doorplateAds" optionid="" style="display: block;">
+                            <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                            <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+                        </div>
+                    </li>
+                    <li class="" style="width:100%;">
+                        <span>物业人员</span>
+                        <div class="pitch-on" id="staffOn"></div><span class="blue SetAlarmBut" ids="staffChoice">选择人员</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg to_delete" id="addAlarmNumberModalBut">确认</button>
+                <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--选择物业管理人员-->
+<div class="modal fade housePush" id="propertyAdminModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">请选择需要添加的员工</h4>
+            </div>
+            <div class="modal-body tables">
+                <table class="table text-center">
+                    <thead>
+                    <tr>
+                        <th><input type="checkbox" class="checkboxsBut" typeids="insStaffModalList"></th>
+                        <th>姓名</th>
+                        <th>电话</th>
+                        <th>***</th>
+                        <th>***</th>
+                    </tr>
+                    </thead>
+                    <tbody id="insStaffModalList"><tr><td><input ids="12" name="551" type="checkbox"></td><td>张三</td><td>1588888888</td><td>***</td><td>***</td></tr></tbody>
+                </table>
+                <!--分页-->
+                <div class="pagingImplement tab-pane inner clearfix">
+                    <div class="pageList pull-right" style="display: none;"><ul id="insStaffModalPaging" class="homelist_pagination pagination"><li class="first disabled" data-page="1"><a href="javascript:void(0);">&lt;&lt;</a></li><li class="prev disabled" data-page="1"><a href="javascript:void(0);">&lt;</a></li><li class="page page-active" data-page="1"><a href="javascript:void(0);">1</a></li><li class="next disabled" data-page="2"><a href="javascript:void(0);">&gt;</a></li><li class="last disabled" data-page="1"><a href="javascript:void(0);">&gt;&gt;</a></li></ul></div>
+                    <div class="pageTips pull-right">当前页面共1条数据 总共1条数据</div>
+                </div>
+                <!--end homeList-paging-->
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg toResure" id="insStaffModalBut">确认</button>
+                <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--家电状态详情-->
+<div class="modal fade" id="equDetailsModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">状态详情</h4>
+            </div>
+            <div class="modal-body" id="equDetailsForm">
+                <p class="form-inline mBody_title text-center">暂无数据...</p>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/security_alarm/set_alarm.js"></script>

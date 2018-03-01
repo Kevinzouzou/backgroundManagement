@@ -1,0 +1,418 @@
+<!--排班管理-->
+<div class="tablist_third">
+    <ul id="schedulingType" class="nav clearfix" role="tablist_third">
+        <li class="scheduling_set active"><a href="#tab_scheduling_set" role="tab" data-toggle="tab" onclick="schedulingManagementInitialize('set')">排班设置</a></li>
+        <li class="scheduling_schedule"><a href="#tab_scheduling_schedule" role="tab" data-toggle="tab" onclick="schedulingManagementInitialize('schedule')">排班日程</a></li>
+        <li class="scheduling_inquire"><a href="#tab_scheduling_inquire" role="tab" data-toggle="tab" onclick="schedulingManagementInitialize('inquire')">排班查询</a></li>
+    </ul>
+</div>
+<div class="tab-content">
+    <!--排班设置-->
+    <div class="tab-pane active" id="tab_scheduling_set">
+        <div class="btns">
+            <button class="btn btn-warning text-center" id="addSchedulingSetBut"><i></i>添加</button>
+        </div>
+        <!--table-->
+        <div class="tab-content">
+            <div class="tables">
+                <table class="table table-striped text-center">
+                    <thead>
+                    <tr>
+                        <th>排班编号</th>
+                        <th>排班名称</th>
+                        <th>排班区域</th>
+                        <th>排班内容</th>
+                        <th>开始时间</th>
+                        <th>结束时间</th>
+                        <th>状态</th>
+                        <th>备注</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody id="schedulingSetList"></tbody>
+                </table>
+                <!--分页-->
+                <div class="pagingImplement tab-pane inner clearfix">
+                    <div class="pageList pull-right"></div>
+                    <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
+                </div>
+                <!--end homeList-paging-->
+            </div>
+        </div>
+    </div>
+    <!--排班日程-->
+    <div class="tab-pane" id="tab_scheduling_schedule">
+        <div class="btns menuBox" id="schedulingMenu">
+            <button class="btn btn-warning text-center" id="addSchedulingScheduleBut"><i></i>添加</button>
+            <div class="schedulingMenu dropdown areaZone pull-right" ids="schedulingMenu" optionid="">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部部门</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+            </div>
+            <input type="text" class="calendar pull-right workMonth" id="ScheduleTime" onchange="cutoutmonth('schedulingMenu')">
+        </div>
+        <div class="btns" id="dateButBox">
+            <button class="btn btn-warning pull-right" id="dateCreatelBut">生成</button>
+            <button class="btn btn-primary pull-right" id="dateCancelBut">取消</button>
+        </div>
+        <!--table-->
+        <div class="tab-content" id="scheduleBox">
+            <div class="tables">
+                <table class="table table-striped text-center">
+                    <thead>
+                    <tr>
+                        <th>部门</th>
+                        <th>人员</th>
+                        <th>排班月份</th>
+                        <th>排班周期</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody id="schedulingScheduleList"></tbody>
+                </table>
+                <!--分页-->
+                <div class="pagingImplement tab-pane inner clearfix">
+                    <div class="pageList pull-right"></div>
+                    <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
+                </div>
+                <!--end homeList-paging-->
+            </div>
+            <div class="date">
+                <div class="title" id="datatitbox"></div>
+                <div class="weekbox" id="weekbox">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th id="criterionsize">一Mon<span class="blue" line="1">编辑</span></th>
+                                <th>二Tue<span class="blue" line="2">编辑</span></th>
+                                <th>三Wed<span class="blue" line="3">编辑</span></th>
+                                <th>四Thu<span class="blue" line="4">编辑</span></th>
+                                <th>五Fri<span class="blue" line="5">编辑</span></th>
+                                <th>六Sat<span class="blue" line="6">编辑</span></th>
+                                <th>日Sun<span class="blue" line="7">编辑</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>00:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td>01:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td>02:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td>03:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td>04:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td>05:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td>06:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td>07:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td>08:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td>09:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td>10:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td>11:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td>12:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td>13:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td>14:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td>15:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td>16:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td>17:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td>18:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td>19:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td>20:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td>21:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td>22:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td>23:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="monthbox" id="monthbox">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th id="monthsize">日Sun</th>
+                            <th>一Mon</th>
+                            <th>二Tue</th>
+                            <th>三Wed</th>
+                            <th>四Thu</th>
+                            <th>五Fri</th>
+                            <th>六Sat</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--排班查询-->
+    <div class="tab-pane" id="tab_scheduling_inquire">
+        <div class="btns visible">
+            <div class="menuBox  pull-left" id="inquireDepartmentMenu">
+                <div class="inquireDepartmentMenu dropdown areaZone" ids="inquireDepartmentMenu" optionid="">
+                    <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部部门</span><b class="caret"></b></a>
+                    <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+                </div>
+            </div>
+            <div class="menuBox  pull-left" id="inquireStaffMenu">
+                <div class="inquireStaffMenu dropdown areaZone" ids="inquireStaffMenu" optionid="">
+                    <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部员工</span><b class="caret"></b></a>
+                    <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+                </div>
+            </div>
+            <button class="btn btn-warning btn_search" id="schedulingSearch" type="button"><i></i>查询</button>
+            <div class="pull-right">
+                <!--<button class="btn btn-primary pushing" id="pushScheduling"><i></i>推送</button>-->
+                <button class="btn btn-primary print" id="printScheduling"><i></i>打印</button>
+            </div>
+        </div>
+        <!--table-->
+        <div class="tab-content" id="inquireBox">
+            <div class="date">
+                <div class="title" id="inquiretitBox"><div class="date"><span class="arrowsleft"></span><span class="content" id="dateTimes"></span><span class="arrowsright"></span></div></div>
+                <div class="monthbox" id="inquireMonthbox">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th id="inquiremonthsize">日Sun</th>
+                            <th>一Mon</th>
+                            <th>二Tue</th>
+                            <th>三Wed</th>
+                            <th>四Thu</th>
+                            <th>五Fri</th>
+                            <th>六Sat</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--排班设置 添加/修改-->
+<div class="modal fade" id="addSchedulingSetModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">添加排班设置</h4>
+            </div>
+            <div class="modal-body" id="schedulingSetForm">
+                <ul class="list-unstyled clearfix large-half">
+                    <li class="totalLength">
+                        <span>排班编号</span>
+                        <input type="text" id="scheduling_code" required="required"/>
+                    </li>
+                    <li class="totalLength">
+                        <span>排班名称</span>
+                        <input type="text" id="scheduling_name"/>
+                    </li>
+                    <li class="totalLength">
+                        <span>排班区域</span>
+                        <input type="text" id="scheduling_workarea"/>
+                    </li>
+                    <li class="totalLength">
+                        <span>排班内容</span>
+                        <input type="text" id="scheduling_content"/>
+                    </li>
+                    <li class="totalLength" id="scheduling_time">
+                        <span>排班时间</span>
+                        <input type="time" class="starttime"/><em>&nbsp;&nbsp;--&nbsp;&nbsp;</em><input type="time" class="endtime"/>
+                    </li>
+                    <li class="menuBox"  id="scheduling_status">
+                        <span>状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态</span>
+                        <div class="dropdown areaZone scheduling_status" ids="scheduling_status" optionid="1">
+                            <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                            <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                <li><a codelist="0" modename="不生效">不生效</a></li>
+                                <li><a codelist="1" modename="生效">生效</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="totalLength">
+                        <span>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</span>
+                        <textarea placeholder="" maxlength="500" class="reactive_height" id="scheduling_mark"></textarea>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg to_add" id="submitSchedulingSetBut">添加</button>
+                <button type="button" class="btn btn-default btn-lg to_reset" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--排班日程 添加/修改-->
+<div class="modal fade" id="addSchedulingScheduleModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">添加排班日程 </h4>
+            </div>
+            <div class="modal-body" id="SchedulingScheduleForm">
+                <ul class="list-unstyled clearfix large-half">
+                    <li>
+                        <span>排班月份</span>
+                        <input type="text" class="calendar workMonth" onchange="cutoutmonth('SchedulingScheduleForm')">
+                    </li>
+                    <li class="menuBox" id="deptnameMenu">
+                        <span>部门名称</span>
+                        <div class="dropdown areaZone deptnameMenu" ids="deptnameMenu" optionid="" modename="">
+                            <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                            <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+                        </div>
+                    </li>
+                    <li class="" style="width:100%;">
+                        <span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</span>
+                        <div class="pitch-on" id="pitchOn"></div><span id="emploModal" class="blue">选择人员</span>
+                    </li>
+                    <li class="menuBox" id="workCycle">
+                        <span>排班周期</span>
+                        <div class="dropdown areaZone workCycle" ids="workCycle" optionid="" modename="">
+                            <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                            <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                <li><a codelist="0" modename="复制上月">复制上月</a></li>
+                                <li><a codelist="1" modename="按周">按周</a></li>
+                                <li><a codelist="2" modename="按月">按月</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg to_add" id="submitSchedulingScheduleBut">添加</button>
+                <button type="button" class="btn btn-default btn-lg to_reset" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--员工-->
+<div class="modal fade housePush" id="schedulingStaffModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">请选择需要添加的员工</h4>
+            </div>
+            <div class="modal-body tables">
+                <table class="table text-center">
+                    <thead>
+                    <tr>
+                        <th><input type="checkbox" class="checkboxsBut" typeids="staffModalList"></th>
+                        <th>工号</th>
+                        <th>姓名</th>
+                        <th>电话</th>
+                    </tr>
+                    </thead>
+                    <tbody id="staffModalList"></tbody>
+                </table>
+                <!--分页-->
+                <div class="pagingImplement tab-pane inner clearfix">
+                    <div class="pageList pull-right"></div>
+                    <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
+                </div>
+                <!--end homeList-paging-->
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg toResure" id="staffModalBut">确认</button>
+                <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--选择添加排班-->
+<div class="modal fade housePush" id="selectSchedulingModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">请选择需要添加的排班</h4>
+            </div>
+            <div class="modal-body tables" id="selectSchedulingForm">
+                <table class="table text-center">
+                    <thead>
+                    <tr>
+                        <th><input type="checkbox" class="checkboxsBut" typeids="selectSchedulingList"></th>
+                        <th>排班编号</th>
+                        <th>排班名称</th>
+                        <th>排班区域</th>
+                        <th>排班内容</th>
+                        <th>开始时间</th>
+                        <th>结束时间</th>
+                        <th>备注</th>
+                    </tr>
+                    </thead>
+                    <tbody id="selectSchedulingList"></tbody>
+                </table>
+                <!--分页-->
+                <div class="pagingImplement tab-pane inner clearfix">
+                    <div class="pageList pull-right"></div>
+                    <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
+                </div>
+                <!--end homeList-paging-->
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg toResure" id="selectSchedulingModalBut" line="1">确认</button>
+                <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--添加排班日程-->
+<div class="modal fade housePush" id="showInqDepPerModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">添加排班日程</h4>
+            </div>
+            <div class="modal-body tables" id="showInqDepPerForm">
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning" data-dismiss="modal" id="showInqDepPerModalBut">确认</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--编辑排班日程-->
+<div class="modal fade housePush" id="modifyInquireSchModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center"></h4>
+            </div>
+            <div class="modal-body tables" id="modifyInquireSchForm">
+                <div id="inquireTimeBox">
+                    <span id="modInqBut" class="blue">编辑</span>
+                    <table class="table text-center">
+                        <tbody id="modifyInquireSchList" class="timerShaftBox">
+                            <tr><td><span class="timerShaft">00:00</span></td><td><span class="timerShaft">01:00</span></td><td><span class="timerShaft">02:00</span></td><td><span class="timerShaft">03:00</span></td><td><span class="timerShaft">04:00</span></td><td><span class="timerShaft">05:00</span></td><td><span class="timerShaft">06:00</span></td><td><span class="timerShaft">07:00</span></td><td><span class="timerShaft">08:00</span></td><td><span class="timerShaft">09:00</span></td><td><span class="timerShaft">10:00</span></td><td><span class="timerShaft">11:00</span></td><td><span class="timerShaft">12:00</span></td><td><span class="timerShaft">13:00</span></td><td><span class="timerShaft">14:00</span></td><td><span class="timerShaft">15:00</span></td><td><span class="timerShaft">16:00</span></td><td><span class="timerShaft">17:00</span></td><td><span class="timerShaft">18:00</span></td><td><span class="timerShaft">19:00</span></td><td><span class="timerShaft">20:00</span></td><td><span class="timerShaft">21:00</span></td><td><span class="timerShaft">22:00</span></td><td><span class="timerShaft">23:00</span></td></tr>
+                            <tr><td id="timershaftsize"><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg toResure" id="modifyInquireSchModalBut" line="1">确认</button>
+                <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/property_management/scheduling_management.js"></script>

@@ -1,0 +1,1000 @@
+<!--Created by along on 2018/1/3 费用管理-->
+<!--三级菜单-->
+<div class="tablist_third">
+    <ul id="inquireType" class="nav clearfix" role="tablist_third">
+        <li class="cost active"><a href="#tab_cost_item" role="tab" data-toggle="tab" onclick="costManagementInitialize('costItem')">费项设置</a></li>
+        <li class="charging_set"><a href="#tab_charging_set" role="tab" data-toggle="tab" onclick="costManagementInitialize('chargingSet')">收费设置</a></li>
+        <li class="bill_set"><a href="#tab_bill_set" role="tab" data-toggle="tab" onclick="costManagementInitialize('billSet')">账单设置</a></li>
+        <li class="bill_details"><a href="#tab_bill_details" role="tab" data-toggle="tab" onclick="costManagementInitialize('billDetails')">账单详情</a></li>
+        <li class="manual_push"><a href="#tab_manual_push" role="tab" data-toggle="tab" onclick="costManagementInitialize('manualPush')">手动推送</a></li>
+        <li class="user_pay"><a href="#tab_user_pay" role="tab" data-toggle="tab" onclick="costManagementInitialize('userPay')">用户缴费</a></li>
+        <li class="arrearage_notice"><a href="#tab_arrearage_notice" role="tab" data-toggle="tab" onclick="costManagementInitialize('arrearageNotice')">欠费通知</a><span class="status_details" style="display: none;"></span></li>
+    </ul>
+</div>
+<div class="tab-content">
+    <!--费项设置-->
+    <div class="tab-pane active" id="tab_cost_item">
+        <div class="btns">
+            <button class="addBut btn btn-warning" id="addCostItemBut" type="add"><i></i>添加</button>
+        </div>
+        <div class="tables">
+            <table class="table table-striped table-hover text-center table-responsive">
+                <thead>
+                <tr>
+                    <th>费项编号</th>
+                    <th>收费名称</th>
+                    <th>收费类别</th>
+                    <th>计费方式</th>
+                    <th>计算公式</th>
+                    <th>计费周期</th>
+                    <!--<th>单价（元）</th>-->
+                    <th>金额（元）</th>
+                    <th>备注</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="costItemList">
+                </tbody>
+            </table>
+            <!--分页-->
+            <div class="pagingImplement tab-pane inner clearfix">
+                <div class="pageList pull-right"></div>
+                <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
+            </div>
+            <!--end homeList-paging-->
+        </div>
+    </div>
+    <!--收费设置-->
+    <div class="tab-pane" id="tab_charging_set">
+        <div class="btns">
+            <button class="addBut btn btn-warning" id="chargingSetBut" type="add"><i></i>添加</button>
+            <!--<button class="btn btn-primary lead_in text-center" data-toggle="modal" data-target="#"><i></i>导入</button>-->
+            <button class="btn btn-primary lead_out educeBut" ids="chargingDowExl"><i></i>导出</button>
+            <a href="" download="收费信息.xlsx" id="chargingDowExl" style="display: none"></a>
+        </div>
+        <div class="btns menuBox" id="chargingSetAddress" type="charge">
+            <span>地址筛选：</span>
+            <div class="chargingAds dropdown areaZone" ids="chargingAds" optionId="">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                    <li><a>全部</a></li>
+                </ul>
+            </div>
+            <div class="unitAds dropdown areaZone" ids="unitAds" optionId="">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部 单元</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                    <li><a>全部 单元</a></li>
+                    <li><a>1单元</a></li>
+                    <li><a>2单元</a></li>
+                </ul>
+            </div>
+            <div class="doorplateAds dropdown areaZone" ids="doorplateAds">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部 房间号</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                    <li><a>全部 房间号</a></li>
+                    <li><a>101</a></li>
+                    <li><a>201</a></li>
+                </ul>
+            </div>
+            <button class="btn btn-warning btn_search btnSearch" ids="chargingSetAddress" type="button"><i></i>查询</button>
+        </div>
+        <div class="tables">
+            <table class="table table-striped table-hover text-center table-responsive">
+                <thead>
+                <tr>
+                    <th>房屋地址</th>
+                    <th>业主姓名</th>
+                    <th>业主电话</th>
+                    <th>计费起始时间</th>
+                    <th>计费结束时间</th>
+                    <th>收费项目</th>
+                    <th>备注</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="chargingSetList">
+                </tbody>
+            </table>
+            <!--分页-->
+            <div class="pagingImplement tab-pane inner clearfix">
+                <div class="pageList pull-right"></div>
+                <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
+            </div>
+            <!--end homeList-paging-->
+        </div>
+    </div>
+    <!--账单设置-->
+    <div class="tab-pane" id="tab_bill_set">
+        <div class="btns">
+            <span>请进行账单设置</span>
+        </div>
+        <div class="tables b_set">
+            <h4 class="text-center">账单设置</h4>
+            <div class="box">
+                <div class="b_contain">
+                    <ul class="list-unstyled large-half">
+                        <li class="title"><span>账单推送</span></li>
+                        <li>
+                            <span>自动生成账单</span>
+                            <div class="dropdown areaZone">
+                                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown" id="createtime" time=""><span>无</span><b class="caret"></b></a>
+                                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                    <li><a class="notTime">无</a></li>
+                                    <li><a class="setTime" prefixId="createtime">————请设定时间————</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <span>自动推送账单</span>
+                            <div class="dropdown areaZone autoPush">
+                                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown" id="pushtime" time=""><span>无</span><b class="caret"></b></a>
+                                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                    <li><a class="notTime">无</a></li>
+                                    <li><a class="setTime" prefixId="pushtime">————请设定时间————</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="menuBox" id="pushtype">
+                            <span>账单推送方式</span>
+                            <div class="pushtype dropdown areaZone" ids="pushtype" optionId="1">
+                                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">APP推送</span><b class="caret"></b></a>
+                                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                    <li><a codelist="1">APP推送</a></li>
+                                    <li><a codelist="2">室内机</a></li>
+                                    <li><a codelist="3">微信</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <span>缴费截止日期</span>
+                            <input id="closetime" type="tel" class="text-center" min="1" max="31" maxlength="2" placeholder="自动推送账单日之后的第几天"/>
+                        </li>
+                        <li class="title"><span>滞纳金设置</span></li>
+                        <li class="lateFees">
+                            <span>滞&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;纳&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;金</span>
+                            <input id="latefeeratio" type="text" class="text-center" value=""/>
+                            <span class="perCent">%</span>
+                        <li class="menuBox" id="isopen">
+                            <span>是&nbsp;&nbsp;否&nbsp;&nbsp;启&nbsp;&nbsp;用</span>
+                            <div class="isopen dropdown areaZone" ids="isopen" optionId="1">
+                                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">启用</span><b class="caret"></b></a>
+                                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                    <li><a codelist="1">启用</a></li>
+                                    <li><a codelist="2">不启用</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="b_footer text-center">
+                    <button type="button" class="addBut btn btn-warning btn-lg toResure" id="submitBillBut">确认</button>
+                    <button type="button" class="reset btn btn-default btn-lg to_reset">重置</button>
+                </div>
+            </div>
+        </div>
+        <!--设定滞纳金-->
+        <div class="modal fade addComplaints" id="set_lateFees" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">设定滞纳金</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="timer text-center">
+                            <span>滞纳金</span>
+                            <input type="text"/>
+                            <span class="later">%</span>
+                            <span>计算时间</span>
+                            <input type="text"/>
+                            <span>日</span>
+                        </div>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg toResure" data-dismiss="modal">确定</button>
+                        <button type="button" class="btn btn-default btn-lg to_reset">重置</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--账单详情-->
+    <div class="tab-pane" id="tab_bill_details">
+        <div class="menuBox" id="billDetailsAddress" type="charge">
+            <div class="btns">
+                <span>地址筛选：</span>
+                <div class="chargingAds dropdown areaZone" ids="chargingAds" optionId="">
+                    <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部</span><b class="caret"></b></a>
+                    <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                    </ul>
+                </div>
+                <div class="unitAds dropdown areaZone" ids="unitAds" optionId="">
+                    <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部 单元</span><b class="caret"></b></a>
+                    <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                    </ul>
+                </div>
+                <div class="doorplateAds dropdown areaZone" ids="doorplateAds" optionId="">
+                    <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部 房间号</span><b class="caret"></b></a>
+                    <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                    </ul>
+                </div>
+            </div>
+            <div class="btns">
+                <span>收费名称：</span>
+                <div class="chargeName dropdown areaZone" ids="chargeName" optionId="">
+                    <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部</span><b class="caret"></b></a>
+                    <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                    </ul>
+                </div>
+                <!--<span>开始时间：</span>-->
+                <input type="text" class="calendar reactive_height beginTime" value="" placeholder="开始时间"/>
+                <!--<span>结束时间：</span>-->
+                <input type="text" class="calendar reactive_height endtime" value="" placeholder="结束时间"/>
+                <button class="btn btn-warning btn_search btnSearch" ids="billDetailsAddress" type="button"><i></i>查询</button>
+            </div>
+        </div>
+        <div class="tables">
+            <table class="table table-striped text-center table-responsive">
+                <thead>
+                <tr>
+                    <th>房屋地址</th>
+                    <th>业主姓名</th>
+                    <th>业主电话</th>
+                    <th>收费名称</th>
+                    <th>上次读数</th>
+                    <th>本次读数</th>
+                    <th>本次用量</th>
+                    <!--<th>单价</th>-->
+                    <th>金额</th>
+                </tr>
+                </thead>
+                <tbody id="billDetailsList">
+                </tbody>
+            </table>
+            <!--分页-->
+            <div class="pagingImplement tab-pane inner clearfix">
+                <div class="pageList pull-right"></div>
+                <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
+            </div>
+            <!--end homeList-paging-->
+        </div>
+    </div>
+    <!--手动推送-->
+    <div class="tab-pane" id="tab_manual_push">
+        <div class="btns">
+            <button class="btn btn-primary lead_out educeBut" ids="manualDowExl"><i></i>导出</button>
+            <a href="" download="手动推送.xlsx" id="manualDowExl" style="display: none"></a>
+            <button class="btn btn-primary print text-center" id="manualPushPrint"><i></i>打印</button>
+            <button class="btn btn-primary pushBill text-center pushing" typeIds="manualPushBatch"><i></i>批量推送</button>
+        </div>
+        <div class="btns menuBox" id="manualPushAddress" type="charge">
+            <span>地址筛选：</span>
+            <div class="chargingAds dropdown areaZone" ids="chargingAds" optionId="">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                    <!--<li><a>全部</a></li>-->
+                </ul>
+            </div>
+            <div class="unitAds dropdown areaZone" ids="unitAds" optionId="">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部 单元</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                </ul>
+            </div>
+            <div class="doorplateAds dropdown areaZone" ids="doorplateAds">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部 房间号</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                </ul>
+            </div>
+            <!--<span>开始时间：</span>-->
+            <input type="text" class="calendar reactive_height beginTime" value="" placeholder="开始时间"/>
+            <!--<span>结束时间：</span>-->
+            <input type="text" class="calendar reactive_height endtime" value="" placeholder="结束时间"/>
+            <button class="btn btn-warning btn_search btnSearch" ids="manualPushAddress" type="button"><i></i>查询</button>
+        </div>
+        <div class="tables" id="manualPrint">
+            <table class="table table-striped text-center table-responsive" id="manualPushWed">
+                <thead>
+                <tr>
+                    <th class="notPrint"><input type="checkbox" class="checkboxsBut" typeIds="manualPushList"/></th>
+                    <th>房屋地址</th>
+                    <th>业主姓名</th>
+                    <th>业主电话</th>
+                    <th>应交金额</th>
+                    <th>实收金额</th>
+                    <th>欠费金额</th>
+                    <th class="notPrint">操作</th>
+                </tr>
+                </thead>
+                <tbody id="manualPushList">
+                </tbody>
+            </table>
+            <!--分页-->
+            <div class="pagingImplement tab-pane inner clearfix">
+                <div class="pageList pull-right"></div>
+                <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
+            </div>
+            <!--end homeList-paging-->
+        </div>
+    </div>
+    <!--用户缴费-->
+    <div class="tab-pane" id="tab_user_pay">
+        <div class="btns menuBox" id="userPayAddress" type="charge">
+            <span>地址筛选：</span>
+            <div class="chargingAds dropdown areaZone" ids="chargingAds" optionId="">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                    <!--<li><a>全部</a></li>-->
+                </ul>
+            </div>
+            <div class="unitAds dropdown areaZone" ids="unitAds" optionId="">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部 单元</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                </ul>
+            </div>
+            <div class="doorplateAds dropdown areaZone" ids="doorplateAds">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部 房间号</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                </ul>
+            </div>
+            <!--<span>开始时间：</span>-->
+            <input type="text" class="calendar reactive_height beginTime" value="" placeholder="开始时间"/>
+            <!--<span>结束时间：</span>-->
+            <input type="text" class="calendar reactive_height endtime" value="" placeholder="结束时间"/>
+            <button class="btn btn-warning btn_search btnSearch" ids="userPayAddress" type="button"><i></i>查询</button>
+        </div>
+        <div class="tables">
+            <table class="table table-striped text-center table-responsive">
+                <thead>
+                <tr>
+                    <th>房屋地址</th>
+                    <th>业主姓名</th>
+                    <th>业主电话</th>
+                    <th>应交金额</th>
+                    <th>实收金额</th>
+                    <th>欠费金额</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="userPayList">
+                </tbody>
+            </table>
+            <!--分页-->
+            <div class="pagingImplement tab-pane inner clearfix">
+                <div class="pageList pull-right"></div>
+                <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
+            </div>
+            <!--end homeList-paging-->
+        </div>
+    </div>
+    <!--欠费通知-->
+    <div class="tab-pane" id="tab_arrearage_notice">
+        <div class="btns">
+            <button class="btn btn-primary pushing text-center pushBill" typeIds="manualPusHarrearage"><i></i>批量推送</button>
+        </div>
+        <div class="btns menuBox" id="arrearageNoticeAddress" type="charge">
+            <span>地址筛选：</span>
+            <div class="chargingAds dropdown areaZone" ids="chargingAds" optionId="">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                    <!--<li><a>全部</a></li>-->
+                </ul>
+            </div>
+            <div class="unitAds dropdown areaZone" ids="unitAds" optionId="">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部 单元</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                </ul>
+            </div>
+            <div class="doorplateAds dropdown areaZone" ids="doorplateAds">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部 房间号</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                </ul>
+            </div>
+            <!--<span>开始时间：</span>-->
+            <input type="text" class="calendar reactive_height beginTime" value="" placeholder="开始时间"/>
+            <!--<span>结束时间：</span>-->
+            <input type="text" class="calendar reactive_height endtime" value="" placeholder="结束时间"/>
+            <button class="btn btn-warning btn_search btnSearch" ids="arrearageNoticeAddress" type="button"><i></i>查询</button>
+        </div>
+        <div class="tables">
+            <table class="table table-striped text-center table-responsive">
+                <thead>
+                <tr>
+                    <th><input type="checkbox" class="checkboxsBut" typeIds="arrearageNoticeList"/></th>
+                    <th>房屋地址</th>
+                    <th>业主姓名</th>
+                    <th>业主电话</th>
+                    <th>应交金额</th>
+                    <th>实收金额</th>
+                    <th>欠费金额</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="arrearageNoticeList">
+                </tbody>
+            </table>
+            <!--分页-->
+            <div class="pagingImplement tab-pane inner clearfix">
+                <div class="pageList pull-right"></div>
+                <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
+            </div>
+            <!--end homeList-paging-->
+        </div>
+    </div>
+</div>
+<!----------------模态框---------------->
+<!--费项设置（添加/修改）-->
+<div class="modal fade" style="overflow: auto;" id="addCostItemModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+    <div class="modal-dialog" style="margin-top: 4rem;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center" id="myModalLabel1">添加费项</h4>
+            </div>
+            <div class="modal-body" id="costItemAddForm">
+                <ul class="list-unstyled clearfix large-half">
+                    <li class="totalLength">
+                        <span>费项编号</span>
+                        <input type="text" id="itemcode" required="required"/>
+                    </li>
+                    <li class="totalLength">
+                        <span>收费名称</span>
+                        <input type="text" id="itemname"/>
+                    </li>
+                    <li class="menuBox" id="chargetype">
+                        <span>收费类别</span>
+                        <div class="chargetype dropdown areaZone" ids="chargetype" optionid="">
+                            <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                            <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                <li><a codelist="1" modename="周期性收费">周期性收费</a></li>
+                                <li><a codelist="2" modename="临时性收费">临时性收费</a></li>
+                                <li><a codelist="3" modename="押金类收费">押金类收费</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="menuBox text-right" id="chargecycle">
+                        <span>计费周期</span>
+                        <div class="chargecycle dropdown areaZone" ids="chargecycle" optionid="">
+                            <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                            <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                <li><a codelist="1" modename="日">日</a></li>
+                                <li><a codelist="2" modename="月">月</a></li>
+                                <li><a codelist="3" modename="季">季</a></li>
+                                <li><a codelist="4" modename="年">年</a></li>
+                                <li><a codelist="5" modename="一次性">一次性</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="menuBox" id="modeid">
+                        <span>计费方式</span>
+                        <div class="modeid dropdown areaZone" ids="modeid" optionid="">
+                            <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                            <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+                        </div>
+                    </li>
+                    <li style="border:1px solid #ffffff;" name="null">
+                        <span></span>
+                    </li>
+                    <li class="menuBox" id="chargeformula">
+                        <span>计费公式</span>
+                        <div class="chargeformula dropdown areaZone" ids="chargeformula" optionid="">
+                            <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                            <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                <li><a codelist="1" modename="固定金额">固定金额</a></li>
+                                <li><a codelist="2" modename="单价*数量">单价*数量</a></li>
+                                <li><a codelist="3" modename="阶梯性收费">阶梯性收费</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class=" text-right" id="cost_item_sum_money_li">
+                        <span>金&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;额</span>
+                        <input type="text" id="cost_item_sum_money"/>
+                    </li>
+                    <li class=" text-right" id="cost_item_price_li">
+                        <span>单&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价</span>
+                        <input type="text" id="cost_item_price"/>
+                    </li>
+                    <li id="cost_item_scope_edit">
+                        <a href="#" onclick="cost_item_edit()" style="margin-left:-0.68rem;">编辑</a>
+                    </li>
+                    <li class="text-right totalLength" id="cost_item_scope_handle" style="margin-top: -1.55rem;">
+                        <a href="#" onclick="add_cost_item_scope()">添加一行</a>
+                        <a href="#" onclick="del_cost_item_scope()">删除一行</a>
+                        <a href="#" onclick="finish_cost_item_scope()" style="color: #f19149">完成</a>
+                    </li>
+                </ul>
+                <ul class="list-unstyled in-right" id="cost_item_ladder">
+                    <li class="ipt" id="costItemFirst">
+                        <span>范围</span><input class="input1" type="text" disabled="disabled" value="0" style="color:#cccccc"/>~<input class="input2" type="text"/>
+                        <div class="pull-right">
+                            <span>单价</span>
+                            <input class="input3" type="text"/>
+                        </div>
+                    </li>
+                    <li class="ipt" id="costItemLast">
+                        <span>范围</span><input class="input1" type="text" value="" disabled="disabled" style="color:#cccccc"/>~<input class="input2" type="text" disabled="disabled"/>
+                        <div class="pull-right">
+                            <span>单价</span>
+                            <input class="input3" type="text"/>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="list-unstyled clearfix large-half">
+                    <li class="totalLength">
+                        <span>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</span>
+                        <textarea placeholder="请输入内容" maxlength="500" class="reactive_height" id="remark"></textarea>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg to_add" id="submitCostItemBut">添加</button>
+                <button type="button" class="btn btn-default btn-lg to_reset" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--收费设置（添加/修改）-->
+<div class="modal fade" id="addChargingSetModal" aria-hidden="true">
+    <div class="modal-dialog" style="margin-top: 4rem;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">添加收费</h4>
+            </div>
+            <div class="modal-body" id="chargingSetForm">
+                <ul class="list-unstyled clearfix large-half">
+                    <li class="menuBox totalLength modalAddress"  id="chargingSetModalAddress" ids="modalAddress" type="charge">
+                        <span class="pull-left">房屋地址</span>
+                        <div class="chargingAds dropdown areaZone" ids="chargingAds" optionId="" style="margin-left: 0.2rem;">
+                            <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type">全部</span><b class="caret"></b></a>
+                            <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                            </ul>
+                        </div>
+                        <div class="unitAds dropdown areaZone" ids="unitAds" optionId="">
+                            <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type">全部 单元</span><b class="caret"></b></a>
+                            <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                            </ul>
+                        </div>
+                        <div class="doorplateAds dropdown areaZone" ids="doorplateAds" optionId="">
+                            <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type">全部 房间号</span><b class="caret"></b></a>
+                            <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="totalLength">
+                        <span>业主姓名</span>
+                        <input type="text" id="chargingName" disabled="disabled"/>
+                    </li>
+                    <li class="totalLength">
+                        <span>业主电话</span>
+                        <input type="text" id="chargingPhone" disabled="disabled"/>
+                    </li>
+                    <li>
+                        <span>起始时间</span>
+                        <input type="text" class="calendar" id="chargingBeginTime"/>
+                    </li>
+                    <li class="text-right" style="padding-right: 0.26rem;">
+                        <span>结束时间</span>
+                        <input type="text" class="calendar" id="chargingOverTime"/>
+                    </li>
+                    <li class="totalLength">
+                        <span>收费项目</span>
+                        <a id="newProject">新增项目</a>
+                    </li>
+                </ul>
+                <ul class="list-unstyled in-right addPro">
+                    <li>
+                        <span class="title">收费名称</span>
+                        <span class="title">设备编号</span>
+                    </li>
+                </ul>
+                <ul class="list-unstyled in-right large-half addPro" id="addPro"></ul>
+                <ul class="list-unstyled clearfix large-half">
+                    <li class="totalLength">
+                        <span>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</span>
+                        <textarea placeholder="请输入内容" maxlength="500" class="reactive_height" id="chargingRemark"></textarea>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg to_add" id="submitChargingSetBut">添加</button>
+                <button type="button" class="btn btn-default btn-lg to_reset" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--收费设置 查看收费项目-->
+<div class="modal fade housePush" id="view_charging_set" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">收费项目</h4>
+            </div>
+            <div class="modal-body tables">
+                <table class="modal-table table text-center">
+                    <thead>
+                    <tr>
+                        <th>费项编号</th>
+                        <th>收费名称</th>
+                        <th>收费类别</th>
+                        <th>计费方式</th>
+                        <th>计算公式</th>
+                        <th>计费周期</th>
+                        <th>金额</th>
+                        <th>备注</th>
+                        <th>设备编号</th>
+                    </tr>
+                    </thead>
+                    <tbody id="viewChargingSetPushList">
+                    </tbody>
+                </table>
+                <!--分页-->
+                <div class="pagingImplement tab-pane inner clearfix">
+                    <div class="pageList pull-right"></div>
+                    <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
+                </div>
+                <!--end homeList-paging-->
+            </div>
+        </div>
+    </div>
+</div>
+<!--账单设置 设定时间-->
+<div class="modal fade addComplaints" id="setTimeModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">设定时间</h4>
+            </div>
+            <div class="modal-body">
+                <div class="timer text-center">
+                    <span>每月</span>
+                    <input id="setDay" type="number" min="1" max="31" maxlength="2" oninput="if(value.length>2)value=value.slice(0,2)"/>
+                    <span>日</span>
+                    <input id="setHour" type="number" min="0" max="23" maxlength="2" oninput="if(value.length>2)value=value.slice(0,2)"/>
+                    <span>时</span>
+                    <input id="setMinute" type="number" min="0" max="59" maxlength="2" oninput="if(value.length>2)value=value.slice(0,2)"/>
+                    <span>分</span>
+                    <span>自动生成用户账单</span>
+                </div>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg toResure" data-dismiss="modal" id="submitTimeBut">确定</button>
+                <button type="button" class="btn btn-default btn-lg to_reset" id="resetTimeModalBut">重置</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--手动推送修改-->
+<div class="modal fade" id="modifyManualPushModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">修改</h4>
+            </div>
+            <div class="modal-body" id="modifyUserForm">
+                <ul class="list-unstyled large text-center lateFee">
+                    <li>
+                        <span>滞纳金</span>
+                        <input id="overdueFine" type="text"/>
+                    </li>
+                    <li>
+                        <span>优惠折扣</span>
+                        <input id="discount" type="text"/>
+                    </li>
+                    <li>
+                        <span>冲销</span>
+                        <input id="eliminate" type="text"/>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg toResure" id="submitModifyUserBut">确定</button>
+                <button type="button" class="btn btn-default btn-lg toReset">重置</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--手动推送 推送账单-->
+<div class="modal fade billListModal" id="manualPushModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">推送账单</h4>
+            </div>
+            <div class="modal-body" id="manualPushForm">
+                <ul class="owner list">
+                    <li class="title">业主信息</li>
+                    <li class="half"><span>业主姓名：</span><span class="ownername"></span></li>
+                    <li class="half"><span>业主电话：</span><span class="ownerphone"></span></li>
+                    <li class="half"><span>房屋地址：</span><span class="owneraddress"></span></li>
+                    <li class="half"><span>计费时间：</span><span class="createtime"></span></li>
+                </ul>
+                <ul class="cost-detail list">
+                    <li class="title">收费明细</li>
+                    <li class="thead">
+                        <span class="left">收费名称</span>
+                        <span>上次读数</span>
+                        <span>本次读数</span>
+                        <span>本次用量</span>
+                        <span>单价</span>
+                        <span>金额</span>
+                    </li>
+                </ul>
+                <ul class="cost-detail list chargeList">
+                </ul>
+                <ul class="pay list">
+                    <li><span class="left">欠费</span><span class="right arrearpay"></span></li>
+                    <li><span class="left">滞纳金</span><span class="right latefee"></span></li>
+                    <li><span class="left">冲销</span><span class="right writeoff"></span></li>
+                    <li><span class="left">优惠折扣</span><span class="right discount"></span></li>
+                </ul>
+                <ul class="paytotal list">
+                    <li><span class="left">合计</span><span class="right totalpay"></span></li>
+                </ul>
+                <ul class="remark">
+                    <li><span class="title left">备注</span></li>
+                    <li class="totalLength textarea">
+                        <textarea placeholder="请输入内容" maxlength="500" class="reactive_height" id="chargingRemark"></textarea>
+                    </li>
+                </ul>
+                <ul class="list-unstyled clearfix large-half selectbox">
+                    <li  class="menuBox lis" id="manualPushType">
+                        <span class="title bull-left">推&nbsp;&nbsp;送&nbsp;&nbsp;&nbsp;方&nbsp;&nbsp;式</span>
+                        <div class="manualPushType dropdown areaZone bull-left" ids="manualPushType" optionid="1">
+                            <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">APP推送</span><b class="caret"></b></a>
+                            <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                <li><a codelist="1">APP推送</a></li>
+                                <li><a codelist="2">室内机</a></li>
+                                <li><a codelist="3">微信</a></li>
+                            </ul>
+                        </div>
+                        <br>
+                        <span class="title bull-left">缴费截止日期</span>
+                        <input type="text" class="calendar text-center bull-left" value="" id="manualPushTime">
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg toResure" id="submitManualPushBut">确定</button>
+                <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--欠费推送-->
+<div class="modal fade" id="pushingRearage" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">推送设置</h4>
+            </div>
+            <div class="modal-body" id="pushingRearageForm">
+                <ul class="list-unstyled large text-center lateFee">
+                    <li>
+                        <span>缴费截止日期</span>
+                        <input type="text" class="calendar text-center" value="" id="pushingTime" style="margin-right: -1.5rem;"/>
+                    </li>
+                    <li class="menuBox" id="rearagePushType">
+                        <span>推送方式</span>
+                        <div class="rearagePushType dropdown areaZone" ids="rearagePushType" optionid="1">
+                            <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">APP推送</span><b class="caret"></b></a>
+                            <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                <li><a codelist="1">APP推送</a></li>
+                                <li><a codelist="2">室内机</a></li>
+                                <li><a codelist="3">微信</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg toResure" id="submitPushingRearage">确定</button>
+                <button type="button" class="btn btn-default btn-lg toReset" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--用户缴费 缴费详情-->
+<div class="modal fade billListModal" id="userPayModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">缴费详情</h4>
+            </div>
+            <div class="modal-body" id="userPayForm">
+                <ul class="owner list">
+                    <li class="title">业主信息</li>
+                    <li class="half"><span>业主姓名：</span><span class="ownername"></span></li>
+                    <li class="half"><span>业主电话：</span><span class="ownerphone"></span></li>
+                    <li class="half"><span>房屋地址：</span><span class="owneraddress"></span></li>
+                    <li class="half"><span>计费时间：</span><span class="createtime"></span></li>
+                </ul>
+                <ul class="cost-detail list">
+                    <li class="title">收费明细</li>
+                    <li class="thead">
+                        <span class="left">收费名称</span>
+                        <span>上次读数</span>
+                        <span>本次读数</span>
+                        <span>本次用量</span>
+                        <span>单价</span>
+                        <span>金额</span>
+                    </li>
+                </ul>
+                <ul class="cost-detail list chargeList">
+                </ul>
+                <ul class="pay list">
+                    <li><span class="left">欠费</span><span class="right arrearpay"></span></li>
+                    <li><span class="left">滞纳金</span><span class="right latefee"></span></li>
+                    <li><span class="left">冲销</span><span class="right writeoff"></span></li>
+                    <li><span class="left">优惠折扣</span><span class="right discount"></span></li>
+                </ul>
+                <ul class="paytotal list">
+                    <li><span class="left">合计</span><span class="right totalpay"></span></li>
+                </ul>
+                <ul class="remark">
+                    <li><span class="title left">备注</span></li>
+                    <li class="totalLength textarea">
+                        <textarea placeholder="请输入内容" maxlength="500" class="reactive_height"></textarea>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg toResure" id="submitUserPayBut">确定</button>
+                <button type="button" class="btn btn-default btn-lg toReset" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--用户缴费 支付-->
+<div class="modal fade" id="payModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">支付</h4>
+            </div>
+            <div class="modal-body" id="payForm">
+                <ul class="list-unstyled payul">
+                    <li class="totalLength">
+                        <span class="title">需要支付的金额：</span>
+                        <span class="totalpay"></span>&nbsp;元
+                    </li>
+                    <li class="totalLength">
+                        <span class="title">实&nbsp;&nbsp;&nbsp;&nbsp;收&nbsp;&nbsp;&nbsp;&nbsp;金&nbsp;&nbsp;&nbsp;&nbsp;额：</span>
+                        <input type="text" id="actuallyPaid">&nbsp;元
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg toResure" id="submitPayBut">确定</button>
+                <button type="button" class="btn btn-default btn-lg toReset" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--用户缴费 支付完成-->
+<div class="modal fade" id="payAccomplishModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">支付</h4>
+            </div>
+            <div class="modal-body" id="payAccomplishForm">
+                <ul class="list-unstyled payul">
+                    <li class="icon">
+                        <img src="img/icon_cash.png">
+                    </li>
+                    <li class="totalLength">
+                        <p><span class="title">应收金额：</span><span class="totalpay"></span>&nbsp;&nbsp;元</p>
+                        <p><span class="title">实收金额：</span><span class="pays"></span>&nbsp;&nbsp;元</p>
+                        <p><span class="title">找&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;零：</span><span class="looseChange"></span>&nbsp;&nbsp;元</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg toResure" id="submitAccomplishPayBut">确定</button>
+                <button type="button" class="btn btn-default btn-lg toReset" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--新增收费项目-->
+<div class="modal fade housePush" id="feeItemModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">请选择收费项目</h4>
+            </div>
+            <div class="modal-body tables">
+                <table class="table text-center">
+                    <thead>
+                    <tr>
+                        <th>费项编号</th>
+                        <th>收费名称</th>
+                        <th>收费类别</th>
+                        <th>计费方式</th>
+                        <th>计算公式</th>
+                        <th>计费周期</th>
+                        <!--<th>单价</th>-->
+                        <th>金额</th>
+                        <th>备注</th>
+                        <th>操作&nbsp;&nbsp;<input type="checkbox" class="checkboxsBut" typeIds="feeItem"></th>
+                    </tr>
+                    </thead>
+                    <tbody id="feeItem"></tbody>
+                </table>
+                <!--分页-->
+                <div class="pagingImplement tab-pane inner clearfix">
+                    <div class="pageList pull-right"></div>
+                    <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
+                </div>
+                <!--end homeList-paging-->
+            </div>
+            <div class="modal-footer text-center">
+                <button id="feeItemBut" type="button" class="btn btn-warning btn-lg toResure">确认</button>
+                <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--添加测试用量-->
+<div class="modal fade housePush" id="dosagemodal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">用量设置</h4>
+            </div>
+            <div class="modal-body tables">
+                <table class="table text-center">
+                    <thead>
+                    <tr>
+                        <th>费项编号</th>
+                        <th>收费名称</th>
+                        <th>收费类别</th>
+                        <th>计费方式</th>
+                        <th>计算公式</th>
+                        <th>计费周期</th>
+                        <th>金额</th>
+                        <th>备注</th>
+                        <th>上次用量</th>
+                        <th>本次用量</th>
+
+                    </tr>
+                    </thead>
+                    <tbody id="dosageList">
+                        <tr>
+                            <td>1</td>
+                            <td>水费</td>
+                            <td>周期性收费</td>
+                            <td>水费</td>
+                            <td>单价*数量</td>
+                            <td>月</td>
+                            <td>1.0</td>
+                            <td>备注</td>
+                            <th><input type="text" style="width:60px;margin-top: 10px;"></th>
+                            <th><input type="text" style="width:60px;margin-top: 10px;"></th>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg toResure" id="dosagemodalBut">确认</button>
+                <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/property_services/cost_management.js"></script>
+
+
+
+

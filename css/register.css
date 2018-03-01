@@ -1,0 +1,117 @@
+.register{
+    width: 18.23rem;
+    margin: 0 auto;
+    font-size: 0.94rem;
+}
+.register .header{
+    height: 2.4rem;
+    line-height: 2.4rem;
+    margin: 4rem 0 1.6rem;
+}
+.register .header i{
+    display: inline-block;
+    width: 0.78rem;
+    height: 2.4rem;
+    background: #579892;
+    margin-right: 0.5rem;
+}
+.register .header .title{
+    font-size: 1.875rem;
+    color: #333;
+    display: inline-block;
+    vertical-align: text-bottom;
+}
+.register li{
+    position: relative;
+}
+.register li label{
+    color: #666;
+    width: 100%;
+    margin: 0.26rem 0;
+    padding-left: 0.6rem;
+}
+.register li input{
+    height: 2.86rem;
+    padding: 1px 0.52rem;
+    width: 100%;
+}
+.register .vCode input{
+    height: 2.86rem;
+    padding: 1px 0.52rem;
+    width: 57%;
+    margin-right: 5%;
+    box-sizing: border-box;
+}
+.register .vCode #send{
+    width: 35%;
+    height: 1.88rem;
+    box-sizing: border-box;
+    margin-right: 0;
+    color: #fff;
+    border: 0;
+    background: #F0AD4E;
+    border-radius: 5px;
+}
+.register li>div{
+    width: 43%;
+    box-sizing: border-box;
+    display: inline-block;
+}
+.register li>div:first-child{
+    margin-right: 12%;
+}
+.register li div select{
+    height: 2.86rem;
+    padding: 1px 0.32rem;
+    width: 100%;
+}
+.register li input[type=checkbox]{
+    width: 0.73rem;
+    height: 0.73rem;
+    display: inline-block;
+    margin: 0.26rem 0;
+    vertical-align: text-top;
+}
+.register .accepted label{
+    font-size: 14px;
+    width: 17rem;
+    padding-left: 0;
+    color: #999;
+    margin: 1.14rem 0;
+}
+.register .accepted label b{
+    color: #69c;
+}
+.register li .toRegister{
+    height: 2.86rem;
+    width: 100%;
+    border: 0;
+    background: #558C8F;
+    color: #fff;
+    font-size: 1.2rem;
+}
+.register .toLogin{
+    margin-top: 1.16rem;
+    color: #666;
+}
+.register .toLogin a{
+    text-decoration: underline;
+    color: #666;
+}
+.register .toLogin a:hover{
+    color: #548c8f;
+}
+.register li p{
+    display: none;
+    color: #e92525;
+    position: absolute;
+    right: -11.8rem;
+    top: 2.55rem;
+    background: url(../img/icon_prompt.png) no-repeat left center;
+    background-size: 0.94rem 0.94rem;
+    padding-left: 1.3rem;
+}
+.register li .vCode_info{right: -9.9rem;}
+.register li .pwd_info{right: -20.5rem;}
+.register li .emil_info{right: -9.1rem;}
+

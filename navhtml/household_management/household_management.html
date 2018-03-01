@@ -1,0 +1,890 @@
+<!--住户管理-->
+<style>
+    .modal-body .large-half>li>a, .modal-body .in-right li>a,.modal-body .addHouseHold{
+        color: #69c;
+        display: inline-block;
+        height: 1.56rem;
+        line-height: 1.56rem;
+        padding: 1px 0.2rem;
+    }
+    #owner_telephone_box_ul{width:100%;overflow: hidden}
+    #owner_telephone_box_ul li{margin-bottom:0;float: left}
+    #owner_telephone_box_ul_add{width:100%;overflow: hidden}
+    #owner_telephone_box_ul_add li{margin-bottom:0;float: left}
+    #tenant_telephone_box_ul_add{width:100%;overflow: hidden}
+    #tenant_telephone_box_ul_add li{margin-bottom:0;float: left}
+    #tenant_telephone_box_ul_update{width:100%;overflow: hidden}
+    #tenant_telephone_box_ul_update li{margin-bottom:0;float: left}
+</style>
+<!--住户管理-->
+<div class="tablist_third">
+    <ul class="nav clearfix" id="household_management_menu">
+        <li class="owner_info active"><a role="tab" data-toggle="tab" href="#tab_owner_info" onclick="houseHoldManagementInitialize('owner')"><b></b>业主信息</a></li>
+        <li class="tenant_info"><a role="tab" data-toggle="tab" href="#tab_tenant_info" onclick="houseHoldManagementInitialize('tenant')"><b></b>租户信息</a></li>
+    </ul>
+</div>
+<div class="tab-content tab-department">
+    <!--业主信息-->
+    <div class="tab-pane active" id="tab_owner_info">
+        <div class="btns">
+            <button class='btn btn-warning adding text-center' data-toggle="modal" onclick="ownerInsert()" data-target="#addOwnerInfo"><i></i>添加</button>
+            <button class='btn btn-primary lead_in text-center' data-toggle="modal"  data-target="#importOwnerInfo"><i></i>导入</button>
+            <button class='btn btn-primary lead_out text-center' ids="ownerInfoExport" id="ownerInfoExport" onclick="ownerInfoExport()"><i></i>导出</button>
+            <!--<button class="btn btn-danger batch_delete text-center" id="house_hold_fetch_delete_id" onclick="ownerInfoDeleteFetchData('')"><i></i>批量删除</button>
+            <button class="btn btn-warning" id="house_hold_select_all" onclick="selectOwnerInfo()">选择所有</button>-->
+        </div>
+        <div class="menuBox btns search_owner" id="ownerInfoSelect">
+            <span>地址筛选：</span>
+            <div class="ownerSelectChargingAds dropdown areaZone" ids="ownerSelectChargingAds" optionid="" style="width: 9.31rem">
+                <a class="dropdown-toggle areaZoneList reactive_height text-center" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu" style="width: 9.31rem">
+                    <li><a>全部</a></li>
+                </ul>
+            </div>
+            <div class="ownerSelectUnitAds dropdown areaZone" ids="ownerSelectUnitAds" optionid="" style="width: 9.31rem">
+                <a class="dropdown-toggle areaZoneList reactive_height text-center" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu" style="width: 9.31rem">
+                    <li><a>全部 单元</a></li>
+                    <li><a>1单元</a></li>
+                    <li><a>2单元</a></li>
+                </ul>
+            </div>
+            <div class="ownerSelectDoorplateAds dropdown areaZone" ids="ownerSelectDoorplateAds" style="width: 9.31rem">
+                <a class="dropdown-toggle areaZoneList reactive_height text-center" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu" style="width: 9.31rem;height: 10rem;overflow: auto">
+                    <li><a>全部 房间号</a></li>
+                    <li><a>101</a></li>
+                    <li><a>201</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--添加 模态框-->
+        <div class="modal fade ownerInfo-m" id="addOwnerInfo" aria-hidden="true">
+            <div class="modal-dialog" style="width: 44.94rem;margin-top: 3rem;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center" id="complaintsModalLabel">添加业主信息</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" role="form" id="houseHoldAddFormId">
+                            <span class="title">房屋地址</span>
+                            <ul class="list-unstyled clearfix large-half">
+                                <li class="menuBox totalLength" id="owner_toDoModalAddress">
+                                    <span>房屋地址</span>
+                                    <div class="ownerChargingAds dropdown areaZone" ids="ownerChargingAds" optionid="" style="width: 9.31rem">
+                                        <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu" role="menu" style="width: 9.31rem"></ul>
+                                    </div>
+                                    <div class="ownerUnitAds dropdown areaZone" ids="ownerUnitAds" optionid="" style="width: 9.31rem">
+                                        <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu" role="menu" style="width: 9.31rem"></ul>
+                                    </div>
+                                    <div class="ownerDoorplateAds dropdown areaZone" ids="ownerDoorplateAds" optionid="" style="width: 9.31rem">
+                                        <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu" role="menu" style="width: 9.31rem;height: 10rem;overflow: auto"></ul>
+                                    </div>
+                                </li>
+                            </ul>
+                            <span class="title">业主信息</span>
+                            <ul class="list-unstyled clearfix large-half">
+                                <li class="menuBox totalLength" id="unitType-gender">
+                                    <span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</span>
+                                    <input type="text" class="text-center" id="name" name="owner.name" style="width: 9.31rem"/>
+                                    <span>身&nbsp;&nbsp;份&nbsp;&nbsp;证</span>
+                                    <input type="text" class="text-center" id="identity" name="owner.identity" style="width: 9.31rem" maxlength="18"/>
+                                    <span>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</span>
+                                    <div class="dropdown areaZone unitType-gender" ids="unitType-gender" optionid="1" modename="男" style="width: 9.31rem">
+                                        <a class="dropdown-toggle areaZoneList unitTypeList-gender text-center" data-toggle="dropdown"><span class="option_type">男</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu unitTypeList-menu-gender" role="menu" style="width: 9.31rem">
+                                            <li><a codelist="1" modename="男">男</a></li>
+                                            <li><a codelist="2" modename="女">女</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li id="owner_cellphone_add">
+                                    <span>手机号码</span>
+                                    <input type="text" class="text-center" id="cellphone" name="owner.cellphone" style="width: 9.31rem;margin-bottom: 0.856rem;"/><span class="add telephoneAdd" style="text-align: left;padding-left: 10px;color: #69c;">添加</span>
+                                    <div id="owner_telephone_box_add">
+                                        <ul class="list-unstyled" id="owner_telephone_box_ul_add">
+
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                            <span class="title" style="display: inline-block;">家庭成员</span><a class="addHouseHold ownerAddFamMem">添加</a>
+                            <ul class="list-unstyled clearfix large-half familyMembers">
+
+                            </ul>
+                            <span class="title" style="display: inline-block;">房屋信息</span>
+                            <ul class="list-unstyled clearfix large-half houseInformation">
+                                <li>
+                                    <span>建筑面积</span>
+                                    <input type="text" class="text-center" id="coveredArea" disabled="disabled" name="home.coveredarea" style='width: 9.31rem'/>
+                                </li>
+                                <li>
+                                    <span>套内面积</span>
+                                    <input type="text" class="text-center" id="useArea" disabled="disabled" name="home.usearea" style='width: 9.31rem'/>
+                                </li>
+                                <li>
+                                    <span>公摊面积</span>
+                                    <input type="text" class="text-center" id="publicArea" disabled="disabled" name="home.publicarea" style='width: 9.31rem'/>
+                                </li>
+                                <li>
+                                    <span>入住状态</span>
+                                    <input type="text" class="text-center" id="status" disabled="disabled" name="home.checkinstatus" style='width: 9.31rem'>
+                                </li>
+                                <li>
+                                    <span>房产编号</span>
+                                    <input type="text" class="text-center" id="propertyNum" disabled="disabled" name="home.propertynum" style='width: 9.31rem'/>
+                                </li>
+                                <li class="totalLength">
+                                    <span>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</span>
+                                    <textarea id="remark" name="home.mark" style='width: 36.2rem'></textarea>
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning btn-lg toResure" onclick="addHouseHold()" data-dismiss="modal">确定</button>
+                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--导入信息-->
+        <div class="modal fade" id="importOwnerInfo" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">导入数据</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" role="form" enctype="multipart/form-data" id="houseHoldOwnerFormId">
+                            <div class="file text-center form-group report-file">
+                                <label for="file_OwnerInfo">选择文件：</label>
+                                <div class="defined_file">
+                                    <input type="text" name="defined_OwnerInfo" id="defined_OwnerInfo" value="未选择任何文件">
+                                    <button type="button" class="btn-primary">请选择</button>
+                                </div>
+                                <input type="file" name="upFile" id="file_OwnerInfo" onchange="document.getElementById('defined_OwnerInfo').value = document.getElementById('file_OwnerInfo').value;">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="form-control btn btn-warning btn-lg bSubmit" onclick="houseHoldExportData()" data-dismiss="modal">导入</button>
+                        <button type="button" class="form-control btn btn-primary btn-lg to_reset" onclick="houseHoldResetData()">重置</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--列表-->
+        <div class="tables">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <!--<th>已选择</th>-->
+                    <th>房号</th>
+                    <th>业主姓名</th>
+                    <th>业主身份证</th>
+                    <th>业主性别</th>
+                    <th>业主手机号</th>
+                    <th>家庭成员</th>
+                    <th>建筑面积</th>
+                    <th>套内面积</th>
+                    <th>房屋状态</th>
+                    <th>收费项目</th>
+                    <th>缴费情况</th>
+                    <th>备注</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="house_hold_body_house_hold"></tbody>
+            </table>
+            <div class="inner clearfix">
+                <div id="house_hold_paging_house_hold" class="pull-right pageList"></div>
+                <div id="house_hold_tips_house_hold" class="pull-right pageTips"></div>
+            </div>
+        </div>
+        <!--添加收费项 模态框-->
+        <div class="modal fade" id="ownerInfo_addCharges" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">添加收费项</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal ids" role="form" enctype="multipart/form-data" id="ownerInfoAddChargesFormId">
+                            <ul class="list-unstyled clearfix large-half">
+                                <li>
+                                    <span>起始时间</span>
+                                    <input type="text" id="startTime" class="calendar" name="csetting.starttime"/>
+                                </li>
+                                <li class="text-right" style="padding-right: 0.26rem;">
+                                    <span>结束时间</span>
+                                    <input type="text" id="endTime" class="calendar" name="csetting.endtime"/>
+                                </li>
+                                <li class="totalLength">
+                                    <span>收费项目</span>
+                                    <a id="houseOwnerNewProject" data-toggle="modal" data-target="#chargeable_item">新增项目</a>
+                                </li>
+                            </ul>
+                            <ul class="list-unstyled in-right addPro">
+                                <li>
+                                    <span class="title">收费名称</span>
+                                    <span class="title">设备编号</span>
+                                </li>
+                            </ul>
+                            <ul class="list-unstyled in-right addPro" id="ownerAddPro">
+
+                            </ul>
+                        </form>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg to_delete" onclick="houseHoldAddCharges()" data-dismiss="modal">确定</button>
+                        <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--收费项目-->
+        <div class="modal fade housePush" id="chargeable_item" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">请选择收费项目</h4>
+                    </div>
+                    <div class="modal-body tables">
+                        <table class="table text-center">
+                            <thead>
+                            <tr>
+                                <th>费项编号</th>
+                                <th>收费名称</th>
+                                <th>收费类别</th>
+                                <th>计费方式</th>
+                                <th>计算公式</th>
+                                <th>计费周期</th>
+                                <th>金额</th>
+                                <th>备注</th>
+                                <th>操作<input type="checkbox" id="chargeItemCheckBox"></th>
+                            </tr>
+                            </thead>
+                            <tbody id="charge_item_new_vo_body"></tbody>
+                        </table>
+                        <div class="inner clearfix">
+                            <div id="charge_item_paging_house_hold" class="pull-right pageList"></div>
+                            <div id="charge_item_tips_house_hold" class="pull-right pageTips"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button id="chargeItemPushBut" type="button" class="btn btn-warning btn-lg toResure">确认</button>
+                        <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--修改 模态框-->
+        <div class="modal fade ownerInfo-m" id="ownerInfo_modify" aria-hidden="true">
+            <div class="modal-dialog" style="width: 44.94rem;margin-top: 3rem;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">修改业主信息</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" role="form" id="houseHoldUpdateFormId">
+                            <span class="title">房屋地址</span>
+                            <ul class="list-unstyled clearfix large-half">
+                                <li class="menuBox totalLength" id="owner_update_toDoModalAddress">
+                                    <span>房屋地址</span>
+                                    <div class="ownerUpdateChargingAds dropdown areaZone" ids="ownerUpdateChargingAds" optionid="" style="width: 9.31rem">
+                                        <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu" role="menu" style="width: 9.31rem;height: 0px;"></ul>
+                                    </div>
+                                    <div class="ownerUpdateUnitAds dropdown areaZone" ids="ownerUpdateUnitAds" optionid="" style="width: 9.31rem">
+                                        <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu" role="menu" style="width: 9.31rem"></ul>
+                                    </div>
+                                    <div class="ownerUpdateDoorplateAds dropdown areaZone" ids="ownerUpdateDoorplateAds" optionid="" style="width: 9.31rem">
+                                        <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu" role="menu" style="width: 9.31rem"></ul>
+                                    </div>
+                                </li>
+                            </ul>
+                            <span class="title">业主信息</span>
+                            <ul class="list-unstyled clearfix large-half">
+                                <li class="menuBox totalLength" id="unitType_update_gender">
+                                    <span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</span>
+                                    <input type="text" class="text-center" id="owner_update_name" name="owner.name" style="width: 9.31rem"/>
+                                    <span>身&nbsp;&nbsp;份&nbsp;&nbsp;证</span>
+                                    <input type="text" class="text-center" id="owner_update_identity" name="owner.identity" style="width: 9.31rem" maxlength="18"/>
+                                    <span>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</span>
+                                    <div class="dropdown areaZone unitType_update_gender" ids="unitType_update_gender" optionid="1" modename="男" style="width: 9.31rem">
+                                        <a class="dropdown-toggle areaZoneList unitTypeList-gender text-center" data-toggle="dropdown"><span class="option_type">男</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu unitTypeList-menu-gender" role="menu" style="width: 9.31rem">
+                                            <li><a codelist="1" modename="男">男</a></li>
+                                            <li><a codelist="2" modename="女">女</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <!--<li id="owner_update_cellphone_add">
+                                    <span>手机号码</span>
+                                    &lt;!&ndash;<span class="add telephoneUpdate" style="text-align: left;padding-left: 10px;color: #69c;">添加</span>
+                                    <div class="update_telephone_delete">
+                                        <span class="update_cellphone_delete" style="text-align: left;padding-left: 10px;color: #69c;">删除</span>
+                                    </div>&ndash;&gt;
+                                    <input type="text" id="updateCellphone" class="text-center" style="width: 9.31rem;margin-bottom: 0.856rem;"/>
+                                    <span class="add" style="text-align: left;padding-left: 10px;color: #69c;">添加</span>
+                                </li>-->
+                                <li class="totalLength" id="owner_update_cellphone_add">
+                                    <span>手机号码</span>
+                                    <input type="text" id="updateCellphone" class="text-center" style="width: 9.31rem;margin-bottom: 0.856rem;"/><span class="add telephoneUpdate" style="text-align: left;padding-left: 10px;color: #69c;">添加</span>
+                                    <div id="owner_telephone_box">
+                                        <ul class="list-unstyled" id="owner_telephone_box_ul">
+
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                            <span class="title" style="display: inline-block;">家庭成员</span><a class="addHouseHold ownerUpdateFamMem">添加</a>
+                            <ul class="list-unstyled clearfix large-half familyMembers">
+
+                            </ul>
+                            <span class="title">房屋信息</span>
+                            <ul class="list-unstyled clearfix large-half houseInformation">
+                                <li>
+                                    <span>建筑面积</span>
+                                    <input type="text" id="updateCoveredArea" disabled="disabled" name="home.coveredarea" style='width: 9.31rem'/>
+                                </li>
+                                <li>
+                                    <span>套内面积</span>
+                                    <input type="text" id="updateUseArea" disabled="disabled" name="home.usearea" style='width: 9.31rem'/>
+                                </li>
+                                <li>
+                                    <span>公摊面积</span>
+                                    <input type="text" id="updatePublicArea" disabled="disabled" name="home.publicarea" style='width: 9.31rem'/>
+                                </li>
+                                <li>
+                                    <span>入住状态</span>
+                                    <input type="text" id="updateStatus" disabled="disabled" style='width: 9.31rem'>
+                                </li>
+                                <li>
+                                    <span>房产编号</span>
+                                    <input type="text" id="updatePropertyNum" disabled="disabled" name="home.propertynum" style='width: 9.31rem'/>
+                                </li>
+                                <li class="totalLength">
+                                    <span>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</span>
+                                    <textarea id="updateRemark" name="home.mark" style='width: 36.2rem'></textarea>
+                                </li>
+                            </ul>
+                            <span class="title">收费项目</span>
+                            <ul class="list-unstyled in-right addPro">
+                                <li>
+                                    <span class="title">收费名称</span>
+                                    <span class="title">设备编号</span>
+                                </li>
+                            </ul>
+                            <ul class="list-unstyled in-right addPro" id="ownerUpdatePro">
+
+                            </ul>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning btn-lg toResure" onclick="ownerInfoUpdate()" data-dismiss="modal">确定</button>
+                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--删除 模态框-->
+        <div class="modal fade" id="ownerInfo_delete" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">删除信息</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-inline mBody_title text-center">是否确定删除?</form>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg to_delete" onclick="ownerInfoDelete('')" data-dismiss="modal">删除</button>
+                        <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--备注详情-->
+        <div class="modal fade" id="ownerInfo_remark" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">业主详情</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text">
+                            <div><span id="ownerInfo_details_mark"></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--收费项目详情-->
+        <div class="modal fade" id="ownerInfo_charge_item" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">收费项目详情</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text">
+                            <div><span id="ownerInfo_details_charge_item"></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--租户信息-->
+    <div class="tab-pane" id="tab_tenant_info">
+        <div class="btns">
+            <button class='btn btn-warning adding text-center' data-toggle="modal" onclick="tenantInfoSelect()"  data-target="#addTenantInfo"><i></i>添加</button>
+            <button class='btn btn-primary lead_in text-center' data-toggle="modal"  data-target="#importTenantInfo"><i></i>导入</button>
+            <button class='btn btn-primary lead_out text-center' data-toggle="modal" onclick="tenantInfoExport()"><i></i>导出</button>
+            <!--<button class="btn btn-danger batch_delete text-center" id="tenant_info_fetch_delete_id" onclick="tenantInfoDeleteFetchData('')"><i></i>批量删除</button>-->
+            <!--<button class="btn btn-warning" id="tenant_info_select_all" onclick="selectTenantInfo()">选择所有</button>-->
+        </div>
+        <div class="btns menuBox tenant_search" id="tenantInfoSelect">
+            <span>地址筛选：</span>
+            <div class="tenantSelectChargingAds dropdown areaZone" ids="tenantSelectChargingAds" optionid="" style="width: 9.31rem">
+                <a class="dropdown-toggle areaZoneList reactive_height text-center" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu" style="width: 9.31rem">
+                    <li><a>全部</a></li>
+                </ul>
+            </div>
+            <div class="tenantSelectUnitAds dropdown areaZone" ids="tenantSelectUnitAds" optionid="" style="width: 9.31rem">
+                <a class="dropdown-toggle areaZoneList reactive_height text-center" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu" style="width: 9.31rem">
+                    <li><a>全部 单元</a></li>
+                    <li><a>1单元</a></li>
+                    <li><a>2单元</a></li>
+                </ul>
+            </div>
+            <div class="tenantSelectDoorplateAds dropdown areaZone" ids="tenantSelectDoorplateAds" optionid="" style="width: 9.31rem">
+                <a class="dropdown-toggle areaZoneList reactive_height text-center" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu" style="width: 9.31rem;height: 10rem;overflow: auto">
+                    <li><a>全部 房间号</a></li>
+                    <li><a>101</a></li>
+                    <li><a>201</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--添加 模态框-->
+        <div class="modal fade tenantInfo-m" id="addTenantInfo" aria-hidden="true">
+            <div class="modal-dialog" style="width: 44.45rem;margin-top: 2rem;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">添加租户信息</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" role="form" id="tenantInfoAddFormId">
+                            <span class="title">房屋地址</span>
+                            <ul class="list-unstyled clearfix large-half">
+                                <li class="menuBox totalLength" id="tenant_toDoModalAddress">
+                                    <span>房屋地址</span>
+                                    <div class="tenantChargingAds dropdown areaZone" ids="tenantChargingAds" optionid="" style="width: 9.31rem">
+                                        <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu" role="menu" style="width: 9.31rem"></ul>
+                                    </div>
+                                    <div class="tenantUnitAds dropdown areaZone" ids="tenantUnitAds" optionid="" style="width: 9.31rem">
+                                        <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu" role="menu" style="width: 9.31rem"></ul>
+                                    </div>
+                                    <div class="tenantDoorplateAds dropdown areaZone" ids="tenantDoorplateAds" optionid="" style="width: 9.31rem">
+                                        <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu" role="menu" style="width: 9.31rem"></ul>
+                                    </div>
+                                </li>
+                            </ul>
+                            <span class="title">租户信息</span>
+                            <ul class="list-unstyled clearfix large-half">
+                                <li>
+                                    <span>姓名</span>
+                                    <input type="text" id="tenant_name" class="text-center" name="t.name"/>
+                                </li>
+                                <li>
+                                    <span>身份证</span>
+                                    <input type="text" id="tenant_identity" class="text-center" name="t.identity"/>
+                                </li>
+                                <li class="menuBox" id="unitType-tenant-gender">
+                                    <span>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</span>
+                                    <div class="unitType-tenant-gender dropdown areaZone" ids="unitType-tenant-gender" optionid="1" modename="男">
+                                        <a class="dropdown-toggle areaZoneList unitTypeList-gender text-center" data-toggle="dropdown"><span class="option_type">男</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu unitTypeList-menu-gender" role="menu">
+                                            <li><a codelist="1" modename="男">男</a></li>
+                                            <li><a codelist="2" modename="女">女</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span>成员数量</span>
+                                    <input type="text" id="tenant_memberNum" class="text-center" name="t.membernum"/>
+                                </li>
+                                <li id="tenant_telephone_add">
+                                    <span>手机号码</span>
+                                    <input type="text" id="tenant_telephone" class="text-center" name="t.telephone" style="width: 11.38rem;margin-bottom: 0.856rem;"/><span class="add" style="text-align: left;padding-left: 10px;color: #69c;">添加</span>
+                                    <div id="tenant_telephone_box_add">
+                                        <ul class="list-unstyled" id="tenant_telephone_box_ul_add">
+
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                            <span class="title">起租时间</span>
+                            <ul class="list-unstyled clearfix large-half ofTheTime">
+                                <li>
+                                    <span>起始时间</span>
+                                    <input type="text" class="calendar" id="tenant_start_time" class="text-center" name="t.starttime"/>
+                                </li>
+                                <li>
+                                    <span>结束时间</span>
+                                    <input type="text" class="calendar" id="tenant_end_time" class="text-center" name="t.endtime"/>
+                                </li>
+                                <li>
+                                    <span style="color: #69c;">合同编号</span>
+                                    <input type="text" id="tenant_contract" class="text-center" name="t.contract"/>
+                                </li>
+                                <li class="totalLength">
+                                    <span>备注</span>
+                                    <textarea id="tenant_mark" name="t.mark"></textarea>
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning btn-lg toResure" onclick="AddTenant()" data-dismiss="modal">确定</button>
+                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--列表-->
+        <div class="tables">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <!--<th>已选择</th>-->
+                        <th>房号</th>
+                        <th>业主姓名</th>
+                        <th>业主手机号</th>
+                        <th>租户姓名</th>
+                        <th>租户身份证</th>
+                        <th>租户性别</th>
+                        <th>租户手机号</th>
+                        <th>起租时间</th>
+                        <th>结束时间</th>
+                        <th>收费项目</th>
+                        <th>缴费情况</th>
+                        <th>租房合同编号</th>
+                        <th>备注</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="tenant_info_body_tenant_info"></tbody>
+            </table>
+            <div class="inner clearfix">
+                <div id="tenant_info_paging_tenant_info" class="pull-right pageList"></div>
+                <div id="tenant_info_tips_tenant_info" class="pull-right pageTips"></div>
+            </div>
+        </div>
+        <!--导入信息-->
+        <!--<div class="modal fade" id="importTenantInfo" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">导入数据</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" role="form" enctype="multipart/form-data" id="upload_personnel">
+                            <div class="file text-center form-group report-file">
+                                <label for="file_tenantInfo">选择文件：</label>
+                                <div class="defined_file">
+                                    <input type="text" name="defined_tenantInfo" id="defined_tenantInfo" value="未选择任何文件">
+                                    <button type="button" class="btn-primary">请选择</button>
+                                </div>
+                                <input type="file" name="upFile" id="file_tenantInfo" onchange="document.getElementById('defined_tenantInfo').value = document.getElementById('file_tenantInfo').value;">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="form-control btn btn-warning btn-lg bSubmit" onclick="importTenantInfoData();" data-dismiss="modal">导入</button>
+                        <button type="button" class="form-control btn btn-primary btn-lg to_reset" onclick="resetTenantInfoData();">重置</button>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+        <!--添加收费项 模态框-->
+        <div class="modal fade" id="tenantInfo_addCharges" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">添加收费项</h4>
+                    </div>
+                    <div class="modal-body idList">
+                        <form class="form-horizontal ids" role="form" enctype="multipart/form-data" id="tenantInfoAddChargesFormId">
+                            <ul class="list-unstyled clearfix large-half">
+                                <li>
+                                    <span>起始时间</span>
+                                    <input type="text" class="calendar" id="start_time" name="csetting.starttime"/>
+                                </li>
+                                <li class="text-right" style="padding-right: 0.26rem;">
+                                    <span>结束时间</span>
+                                    <input type="text" class="calendar" id="end_time" name="csetting.endtime"/>
+                                </li>
+                                <li class="totalLength">
+                                    <span>收费项目</span>
+                                    <a id="tenantNewProject" data-toggle="modal" data-target="#tenantInfo_addItem">新增项目</a>
+                                </li>
+                            </ul>
+                            <ul class="list-unstyled in-right addPro">
+                                <li>
+                                    <span class="title">收费名称</span>
+                                    <span class="title">设备编号</span>
+                                </li>
+                            </ul>
+                            <ul class="list-unstyled in-right addPro" id="tenantAddPro">
+
+                            </ul>
+                        </form>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg to_delete" onclick="tenantInfoAddCharges()" data-dismiss="modal">确认</button>
+                        <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--收费项目-->
+        <div class="modal fade housePush" id="tenantInfo_addItem" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">请选择收费项目</h4>
+                    </div>
+                    <div class="modal-body tables">
+                        <table class="table text-center">
+                            <thead>
+                            <tr>
+                                <th>费项编号</th>
+                                <th>收费名称</th>
+                                <th>收费类别</th>
+                                <th>计费方式</th>
+                                <th>计算公式</th>
+                                <th>计费周期</th>
+                                <th>金额</th>
+                                <th>备注</th>
+                                <th>操作<input type="checkbox" id="tenantInfoCheckBox"></th>
+                            </tr>
+                            </thead>
+                            <tbody id="tenant_info_new_vo_body"></tbody>
+                        </table>
+                        <div class="inner clearfix">
+                            <div id="charge_item_paging_tenant_info" class="pull-right pageList"></div>
+                            <div id="charge_item_tips_tenant_info" class="pull-right pageTips"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button id="tenantItemPushBut" type="button" class="btn btn-warning btn-lg toResure">确认</button>
+                        <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--修改 模态框-->
+        <div class="modal fade tenantInfo-m" id="tenantInfo_modify" aria-hidden="true">
+            <div class="modal-dialog" style="width: 44.45rem;margin-top: 2rem;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">修改租户信息</h4>
+                    </div>
+                    <div class="modal-body tenantId">
+                        <form class="form-horizontal" role="form" id="tenantInfoUpdateFormId">
+                            <span class="title">房屋地址</span>
+                            <ul class="list-unstyled clearfix large-half">
+                                <li class="menuBox totalLength" id="tenant_update_toDoModalAddress">
+                                    <span>房屋地址</span>
+                                    <div class="tenantUpdateChargingAds dropdown areaZone" ids="tenantUpdateChargingAds" optionid="" style="width: 9.31rem">
+                                        <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu" role="menu" style="width: 9.31rem;height: 0px;"></ul>
+                                    </div>
+                                    <div class="tenantUpdateUnitAds dropdown areaZone" ids="tenantUpdateUnitAds" optionid="" style="width: 9.31rem">
+                                        <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu" role="menu" style="width: 9.31rem"></ul>
+                                    </div>
+                                    <div class="tenantUpdateDoorplateAds dropdown areaZone" ids="tenantUpdateDoorplateAds" optionid="" style="width: 9.31rem">
+                                        <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu" role="menu" style="width: 9.31rem"></ul>
+                                    </div>
+                                </li>
+                            </ul>
+                            <span class="title">租户信息</span>
+                            <ul class="list-unstyled clearfix large-half">
+                                <li>
+                                    <span>姓名</span>
+                                    <input type="text" id="tenant_update_name" name="t.name" class="text-center"/>
+                                </li>
+                                <li>
+                                    <span>身份证</span>
+                                    <input type="text" id="tenant_update_identity" name="t.identity" class="text-center"/>
+                                </li>
+                                <li class="menuBox" id="tenant_unitType-update-gender">
+                                    <span>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</span>
+                                    <div class="tenant_unitType-update-gender dropdown areaZone" ids="tenant_unitType-update-gender" optionid="1" modename="男">
+                                        <a class="dropdown-toggle areaZoneList text-center" data-toggle="dropdown"><span class="option_type">男</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                            <li><a codelist="1" modename="男">男</a></li>
+                                            <li><a codelist="2" modename="女">女</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span>成员数量</span>
+                                    <input type="text" id="tenant_update_memberNum" name="t.membernum" class="text-center"/>
+                                </li>
+                                <li id="tenant_telephone_update">
+                                    <span>手机号码</span>
+                                    <input type="text" id="tenant_update_telephone" name="t.telephone" class="text-center" style="width: 11.38rem;margin-bottom: 0.856rem;"/><span class="add" style="text-align: left;padding-left: 10px;color: #69c;">添加</span>
+                                    <div id="tenant_telephone_box_update">
+                                        <ul class="list-unstyled" id="tenant_telephone_box_ul_update">
+
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                            <span class="title">起租时间</span>
+                            <ul class="list-unstyled clearfix large-half ofTheTime">
+                                <li>
+                                    <span>起始时间</span>
+                                    <input type="text" class="calendar" id="tenant_update_start_time" name="t.starttime" class="text-center"/>
+                                </li>
+                                <li>
+                                    <span>结束时间</span>
+                                    <input type="text" class="calendar" id="tenant_update_end_time" name="t.endtime" class="text-center"/>
+                                </li>
+                                <li>
+                                    <span style="color: #69c;">合同编号</span>
+                                    <input type="text" id="tenant_update_contract" name="t.contract" class="text-center"/>
+                                </li>
+                                <li class="totalLength">
+                                    <span>备注</span>
+                                    <textarea id="tenant_update_mark" name="t.mark"></textarea>
+                                </li>
+                            </ul>
+                            <span class="title">收费项目</span>
+                            <ul class="list-unstyled in-right addPro">
+                                <li>
+                                    <span class="title">收费名称</span>
+                                    <span class="title">设备编号</span>
+                                </li>
+                            </ul>
+                            <ul class="list-unstyled in-right addPro" id="tenantUpdatePro">
+
+                            </ul>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning btn-lg toResure" onclick="tenantInfoUpdate()" data-dismiss="modal">确定</button>
+                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--删除 模态框-->
+        <div class="modal fade" id="tenantInfo_delete" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">删除信息</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-inline mBody_title text-center">是否确定删除?</form>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg to_delete" onclick="tenantInfoDelete('')" data-dismiss="modal">删除</button>
+                        <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--协助人任务详情-->
+        <div class="modal fade" id="tenantInfo_details" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">租户详情</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text">
+                            <div><span id="tenant_details_mark"></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--收费项目详情-->
+        <div class="modal fade" id="tenantInfo_charge_item" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">收费项目详情</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text">
+                            <div><span id="tenantInfo_details_charge_item"></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/household_management/household_management_view.js"></script>
+<script src="js/household_management/household_management.js"></script>
+<script>
+    function selectChoiceRight(class1,class2){
+        $(class1+">li>a").on('click',function(){
+            var  html="<span>"+$(this).html()+"</span><b class='caret'></b>";
+            $(class2).html(html);
+        });
+    }
+    selectChoiceRight(".periodTypeList-menu",".periodTypeList");
+    selectChoiceRight(".zoneTypeList-menu",".zoneTypeList");
+    selectChoiceRight(".buildingTypeList-menu",".buildingTypeList");
+    selectChoiceRight(".unitTypeList-menu",".unitTypeList");
+    selectChoiceRight(".roomNumList-menu",".roomNumList");
+    //模态框中下拉框
+    selectChoiceRight(".villageTypeList-menu-m",".villageTypeList-m");
+    selectChoiceRight(".periodTypeList-menu-m",".periodTypeList-m");
+    selectChoiceRight(".zoneTypeList-menu-m",".zoneTypeList-m");
+    selectChoiceRight(".buildingTypeList-menu-m",".buildingTypeList-m");
+    selectChoiceRight(".unitTypeList-menu-m",".unitTypeList-m");
+    selectChoiceRight(".roomNumList-menu-m",".roomNumList-m");
+    selectChoiceRight(".unitTypeList-menu-gender",".unitTypeList-gender");
+    selectChoiceRight(".unitTypeList-menu-status",".unitTypeList-status");
+
+    document.getElementsByTagName('html')[0].style.fontSize=document.body.clientWidth/100 +'px';
+
+</script>

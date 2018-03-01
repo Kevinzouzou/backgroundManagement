@@ -1,0 +1,470 @@
+ <!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=1.0">
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!--<meta http-equiv="Access-Control-Allow-Origin" content="*">-->
+    <title>UCOT智慧社区管理平台</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css"/>
+    <link href="css/bootstrap-theme.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css"/>
+
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<!--左侧菜单部分-->
+<div class="pull-left left_aside">
+    <!--标签logo部分-->
+    <div class="logo">
+        <p class="text-left"><span>UCOT</span>物联通</p>
+        <p style="padding-left: 3.43rem;">智慧社区管理平台</p>
+    </div>
+    <!--菜单部分-->
+    <ul class="text-center nav_tab tablist">
+        <li class="community_management">
+            <a class="collapsed" href="#community_management_menu" data-toggle="collapse">
+                <i></i><span>社区管理</span>
+            </a>
+            <ul class="collapse tablist_second" id="community_management_menu">
+                <li class="community_profile"><a role="tab" data-toggle="tab" href="#tab_community_profile"><b></b>小区概要</a></li>
+                <li class="house_set"><a role="tab" data-toggle="tab" href="#tab_house_set"><b></b>房屋设置</a></li>
+            </ul>
+        </li>
+        <li class="system_management">
+            <a class="collapsed" href="#system_management_menu" data-toggle="collapse">
+                <i></i><span>系统管理</span>
+            </a>
+            <ul class="collapse tablist_second" id="system_management_menu">
+                <li class="system_settings"><a role="tab" data-toggle="tab" href="#tab_system_settings"><b></b>系统设置</a></li>
+                <li class="data_management"><a role="tab" data-toggle="tab" href="#tab_data_management"><b></b>数据管理</a></li>
+                <li class="interFace_settings"><a role="tab" data-toggle="tab" href="#tab_interFace_settings"><b></b>接口设置</a></li>
+            </ul>
+        </li>
+        <li class="household_management"><a href="#tab_household_management" role="tab" data-toggle="tab" onclick="houseHoldManagementInitialize('owner')"><i></i><span>住户管理</span></a></li>
+        <li class="property_management">
+            <a class="collapsed" href="#property_management_menu" data-toggle="collapse">
+                <i></i><span>物业管理</span>
+            </a>
+            <ul class="collapse tablist_second" id="property_management_menu">
+                <li class="department_set active"><a role="tab" data-toggle="tab" href="#tab_department_set"><b></b>部门设置</a></li>
+                <li class="personnel_management"><a role="tab" data-toggle="tab" href="#tab_personnel_management"><b></b>员工管理</a></li>
+                <li class="scheduling_management"><a role="tab" data-toggle="tab" href="#tab_scheduling_management"><b></b>排班管理</a></li>
+                <li class="inspection_management"><a role="tab" data-toggle="tab" href="#tab_inspection_management"><b></b>巡检管理</a></li>
+                <li class="visitor_management"><a role="tab" data-toggle="tab" href="#tab_visitor_management"><b></b>访客管理</a></li>
+                <li class="material_management"><a role="tab" data-toggle="tab" href="#tab_material_management"><b></b>物料管理</a></li>
+                <li class="supplier_management"><a role="tab" data-toggle="tab" href="#tab_supplier_management"><b></b>供应商管理</a></li>
+            </ul>
+        </li>
+        <li class="property_services active">
+            <a class="collapsed" href="#property_service_menu" data-toggle="collapse">
+                <i></i><span>物业服务</span>
+            </a>
+            <ul class="collapse tablist_second" id="property_service_menu">
+                <li class="community_notice active"><a role="tab" data-toggle="tab" href="#tab_community_notice"><b></b>社区公告</a></li>
+                <li class="suggest_complaints"><a role="tab" data-toggle="tab" href="#tab_suggest_complaints"><b></b>建议投诉</a></li>
+                <li class="property_maintenance"><a role="tab" data-toggle="tab" href="#tab_property_maintenance"><b></b>物业维修</a></li>
+                <li class="cost_management"><a role="tab" data-toggle="tab" href="#tab_cost_management"><b></b>费用管理</a></li>
+                <li class="domestic_service"><a role="tab" data-toggle="tab" href="#tab_domestic_service"><b></b>家政服务</a></li>
+                <li class="repair_statistics"><a role="tab" data-toggle="tab" href="#tab_repair_statistics"><b></b>报事报修统计</a></li>
+            </ul>
+        </li>
+        <li class="access_control_system">
+            <a class="collapsed" href="#access_control_menu" data-toggle="collapse">
+                <i></i><span>门禁系统</span>
+            </a>
+            <ul class="collapse tablist_second" id="access_control_menu">
+                <li class="device_configuration"><a role="tab" data-toggle="tab" href="#tab_device_configuration"><b></b>设备配置</a></li>
+                <li class="information_push"><a role="tab" data-toggle="tab" href="#tab_information_push"><b></b>信息推送</a></li>
+                <li class="remote_upgrade"><a role="tab" data-toggle="tab" href="#tab_remote_upgrade"><b></b>远程升级</a></li>
+                <li class="database"><a role="tab" data-toggle="tab" href="#tab_database"><b></b>数据库备份</a></li>
+            </ul>
+        </li>
+        <li class="access6_control_system">
+            <a class="collapsed" href="#access6_control_menu" data-toggle="collapse">
+                <i></i><span>门禁666</span>
+            </a>
+            <ul class="collapse tablist_second" id="access6_control_menu">
+                <li class="device6_configuration active"><a role="tab" data-toggle="tab" href="#tab_device6_configuration"><b></b>设备配置</a></li>
+                <li class="information6_push"><a role="tab" data-toggle="tab" href="#tab_information6_push"><b></b>信息推送</a></li>
+                <li class="remote6_upgrade"><a role="tab" data-toggle="tab" href="#tab_remote6_upgrade"><b></b>远程升级</a></li>
+            </ul>
+        </li>
+        <li class="smart_home">
+            <a class="collapsed" href="#smart_home_menu" data-toggle="collapse">
+                <i></i><span>智能家居</span>
+            </a>
+            <ul class="collapse tablist_second" id="smart_home_menu">
+                <li class="device_state active"><a role="tab" data-toggle="tab" href="#tab_device_state" id="deviceStateA"><b></b>设备状态</a></li>
+                <li class="manual_logout"><a role="tab" data-toggle="tab" href="#tab_manual_logout" id="manualLogoutA"><b></b>app账户注销</a></li>
+                <!--<li class="system_upgrade"><a role="tab" data-toggle="tab" href="#tab_system_upgrade"><b></b>系统升级</a></li>-->
+            </ul>
+        </li>
+        <li class="security_alarm">
+            <a class="collapsed" href="#security_alarm_menu" data-toggle="collapse">
+                <i></i><span>安防报警</span>
+            </a>
+            <ul class="collapse tablist_second" id="security_alarm_menu">
+                <li class="set_alarm active"><a role="tab" data-toggle="tab" href="#tab_set_alarm"><b></b>报警设置</a></li>
+                <li class="device_state active"><a role="tab" data-toggle="tab" href="#tab_user_alarm"><b></b>用户报警</a></li>
+                <li class="house_alarm"><a role="tab" data-toggle="tab" href="#tab_house_alarm"><b></b>小区报警</a></li>
+                <!--<li class="machine_monitoring"><a role="tab" data-toggle="tab" href="#tab_machine_monitoring"><b></b>机房监控</a></li>-->
+            </ul>
+        </li>
+        <li class="automatic_meter_reading"><a href="#tab_automatic_meter_reading" role="tab" data-toggle="tab"><i></i><span>自动抄表</span></a></li>
+        <li class="energy_consumption_monitoring"><a href="#tab_energy_consumption_monitoring" role="tab" data-toggle="tab"><i></i><span>能耗监控</span></a></li>
+        <!--<li class="car_park_management"><a  onclick="window.open('parking_management.html')"><i></i><span>停车场管理</span></a></li>-->
+        <li class="community_mall"><a href="#tab_community_mall" role="tab" data-toggle="tab"><i></i><span>社区商城</span></a></li>
+        <li class="expert_system"><a href="#tab_expert_system" role="tab" data-toggle="tab"><i></i><span>专家系统</span></a></li>
+        <li class="ucot_cloud"><a href="#tab_ucot_cloud" role="tab" data-toggle="tab"><i></i><span>物联云</span></a></li>
+    </ul>
+</div>
+
+<!--右侧内容部分-->
+<div class="pull-right right_aside">
+    <div class="text-right logout">
+        <span id="username">当前用户：</span>
+        <button class="btn" id="login_out">注销</button>
+        <button class="btn" id="back">后退</button>
+
+        <a class="car_park_management" onclick="window.open('parking_management.html')"><i></i><span>停车场管理</span></a>
+    </div>
+    <div class="tab-content">
+        <!--社区管理-->
+        <div class="tab-pane" id="tab_community_management">
+            <div class="tab-content">
+                <!--小区概要-->
+                <div class="tab-pane active" id="tab_community_profile">小区概要</div>
+                <!--房屋设置-->
+                <div class="tab-pane" id="tab_house_set">房屋设置</div>
+            </div>
+        </div>
+        <!--系统管理-->
+        <div class="tab-pane" id="tab_system_management">
+            <div class="tab-content">
+                <!--系统设置-->
+                <div class="tab-pane active" id="tab_system_settings">系统设置</div>
+                <!--数据管理-->
+                <div class="tab-pane" id="tab_data_management">数据管理</div>
+                <!--接口设置-->
+                <div class="tab-pane" id="tab_interFace_settings">接口设置</div>
+            </div>
+        </div>
+        <!--住户管理-->
+        <div class="tab-pane" id="tab_household_management"></div>
+        <!--物业管理-->
+        <div class="tab-pane" id="tab_property_management">
+            <div class="tab-content">
+                <!--部门设置-->
+                <div class="tab-pane active" id="tab_department_set"></div>
+                <!--人员管理-->
+                <div class="tab-pane" id="tab_personnel_management"></div>
+                <!--排班管理-->
+                <div class="tab-pane" id="tab_scheduling_management"></div>
+                <!--巡检管理-->
+                <div class="tab-pane" id="tab_inspection_management"></div>
+                <!--访客管理-->
+                <div class="tab-pane" id="tab_visitor_management"></div>
+                <!--物料管理-->
+                <div class="tab-pane" id="tab_material_management"></div>
+                <!--供应商管理-->
+                <div class="tab-pane" id="tab_supplier_management"></div>
+            </div>
+        </div>
+        <!--物业服务-->
+        <div class="tab-pane active" id="tab_property_services">
+            <div class="tab-content">
+                <!--社区公告-->
+                <div class="tab-pane active" id="tab_community_notice"></div>
+                <!--建议投诉-->
+                <div class="tab-pane" id="tab_suggest_complaints"></div>
+                <!--物业维修-->
+                <div class="tab-pane" id="tab_property_maintenance"></div>
+                <!--费用管理-->
+                <div class="tab-pane" id="tab_cost_management"></div>
+                <!--家政服务-->
+                <div class="tab-pane" id="tab_domestic_service"></div>
+                <!--报事报修统计-->
+                <div class="tab-pane" id="tab_repair_statistics"></div>
+            </div>
+        </div>
+        <!--门禁系统-->
+        <div class="tab-pane" id="tab_access_control_system">
+            <div class="tab-content">
+                <!--门禁系统-->
+                <div class="tab-pane active" id="tab_device_configuration">
+                    <!--设备配置-->
+                    <!--三级菜单-->
+                    <div class="tablist_third">
+                        <ul class="nav clearfix" role="tablist_third">
+                            <li class="community active myclick"><a href="#tab_community" role="tab" data-toggle="tab">小区</a></li>
+                            <li class="indoor_machine"><a href="#tab_indoor_machine" role="tab" data-toggle="tab">室内机</a></li>
+                            <li class="door_machine"><a href="#tab_door_machine" role="tab" data-toggle="tab">门口机</a></li>
+                            <li class="fence_machine"><a href="#tab_fence_machine" role="tab" data-toggle="tab">围墙机</a></li>
+                            <li class="center_machine"><a href="#tab_center_machine" role="tab" data-toggle="tab">中心机</a></li>
+                            <li class="entrance_card"><a href="#tab_entrance_card" role="tab" data-toggle="tab">门禁卡</a></li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane active myclick" id="tab_community"></div>
+                        <div class="tab-pane" id="tab_indoor_machine">室内机</div>
+                        <div class="tab-pane myclick" id="tab_door_machine">门口机</div>
+                        <div class="tab-pane myclick" id="tab_fence_machine">围墙机</div>
+                        <div class="tab-pane myclick" id="tab_center_machine">中心机</div>
+                        <div class="tab-pane" id="tab_servers">服务器</div>
+                        <div class="tab-pane myclick" id="tab_entrance_card">门禁卡</div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="tab_information_push">
+                    <!--信息推送-->
+                    <!--三级菜单-->
+                    <div class="tablist_third">
+                        <ul class="nav clearfix" role="tablist_third">
+                            <li class="advertising active"><a href="#tab_advertising_push" role="tab" data-toggle="tab">广告推送</a></li>
+                            <li class="lcd_switch"><a href="#tab_lcd_switch" role="tab" data-toggle="tab">LCD设置</a></li>
+                            <li class="hand_push"><a href="#tab_hand_push" role="tab" data-toggle="tab">手动推送</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-content">
+                        <!--广告推送-->
+                        <!--四级菜单-->
+                        <div class="tab-pane active" id="tab_advertising_push">
+                            <div class="tablist_forth">
+                                <ul class="nav clearfix" role="tablist_forth">
+                                    <li class="push_all_machine active"><a href="#tab_push_all_machine" role="tab" data-toggle="tab">全部</a></li>
+                                    <li class="push_door_machine"><a href="#tab_push_door_machine" role="tab" data-toggle="tab">门口机</a></li>
+                                    <li class="push_fence_machine"><a href="#tab_push_fence_machine" role="tab" data-toggle="tab">围墙机</a></li>
+                                </ul>
+                            </div>
+                            <div class="btns adBtns pull-right" id="advertising_push_all_machine_btn_group">
+                                <button class="btn btn-warning adding text-center" data-toggle="modal" data-target="#addAdModal"><i></i>添加</button>
+                                <button class="btn btn-primary batch_delete text-center"  onclick="deleteAdByBatchTips()"><i></i>批量删除</button>
+                                <button class="btn btn-primary pushing text-center"  onclick="checkIsSelected()"><i></i>推送广告</button>
+                            </div>
+                            <div class="tab-content">
+                                <div class="tab-pane active myclick" id="tab_push_all_machine">全部</div>
+                                <div class="tab-pane myclick" id="tab_push_door_machine">门口机</div>
+                                <div class="tab-pane" id="tab_push_fence_machine">围墙机</div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab_lcd_switch">LCD开关设置</div>
+                        <div class="tab-pane" id="tab_hand_push">手动推送</div>
+                    </div>
+
+                </div>
+                <div class="tab-pane" id="tab_remote_upgrade">
+                    远程升级
+                </div>
+                <!--数据库-->
+                <div class="tab-pane" id="tab_database">
+                    <!--数据库中备份-->
+                    <div class="tablist_third">
+                        <ul class="nav clearfix" role="tablist_third">
+                            <li class="database_backups active"><a href="#tab_database_backups" role="tab" data-toggle="tab">备份</a></li>
+                            <!--<li class="database_push"><a href="#tab_database_push" role="tab" data-toggle="tab">推送</a></li>-->
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab_database_backups">备份</div>
+                        <!--<div class="tab-pane" id="tab_database_push">推送</div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--门禁666-->
+        <div class="tab-pane" id="tab_access6_control_system">
+            <div class="tab-content">
+                <!--设备配置-->
+                <div class="tab-pane active" id="tab_device6_configuration"></div>
+                <!--信息推送-->
+                <div class="tab-pane" id="tab_information6_push"></div>
+                <!--远程升级-->
+                <div class="tab-pane" id="tab_remote6_upgrade"></div>
+            </div>
+        </div>
+        <!--智能家居-->
+        <div class="tab-pane" id="tab_smart_home">
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab_device_state">
+                    设备状态
+                </div>
+                <div class="tab-pane" id="tab_manual_logout">
+                    app账户注销
+                </div>
+                <!--<div class="tab-pane" id="tab_system_upgrade">-->
+                    <!--系统升级-->
+                <!--</div>-->
+            </div>
+        </div>
+        <!--安防报警-->
+        <div class="tab-pane" id="tab_security_alarm">
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab_set_alarm">
+                    报警设置
+                </div>
+                <div class="tab-pane" id="tab_user_alarm">
+                    用户报警
+                </div>
+                <div class="tab-pane" id="tab_house_alarm">
+                    小区报警
+                </div>
+                <!--<div class="tab-pane" id="tab_machine_monitoring">-->
+                    <!--机房监控-->
+                <!--</div>-->
+            </div>
+        </div>
+        <!--自动抄表-->
+        <div class="tab-pane" id="tab_automatic_meter_reading">
+            自动抄表
+        </div>
+        <!--能耗监控-->
+        <div class="tab-pane" id="tab_energy_consumption_monitoring">
+            能耗监控
+        </div>
+        <!--&lt;!&ndash;停车场管理&ndash;&gt;-->
+        <!--<div class="tab-pane" id="tab_car_park_management">-->
+            <!--停车场-->
+        <!--</div>-->
+        <!--社区商城-->
+        <div class="tab-pane" id="tab_community_mall">
+            社区商城
+        </div>
+        <!--专家系统-->
+        <div class="tab-pane" id="tab_expert_system">
+            专家系统
+        </div>
+        <!--物联云-->
+        <div class="tab-pane" id="tab_ucot_cloud">
+            物联云
+        </div>
+    </div>
+    <!--分页-->
+    <div>
+        <div class="tab-department inner clearfix" style="display: none" id="all_paging">
+            <div id="homeList-paging" class="pull-right pageList"></div>
+            <div id="paging-tips" class="pull-right pageTips"></div>
+        </div>
+    </div>
+    <!--警示框-->
+    <div class="alert alert-danger animated tada" style="text-align: center;padding: 40px;" id="msgContent">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+</div>
+<!-------模态框------->
+<!--删除提示框-->
+<div class="modal fade" id="deletePubModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">删除信息</h4>
+            </div>
+            <div class="modal-body" id="deletePubContent">
+                <p class="form-inline mBody_title text-center">确认是否要删除！</p>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg to_delete" id="deletePubBut">确认</button>
+                <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--预览详情-->
+<div class="modal fade" id="previewModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">详细</h4>
+            </div>
+            <div class="modal-body" id="previewContent">
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--选择门口机-->
+<div class="modal fade tab-content" id="doorPhonebookModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">选择需要查看的信息</h4>
+            </div>
+            <div class="modal-body" id="doorPhonebookForm">
+                <span class="blue pull-right" id="doorContrast" onclick="doorContrast()" style="display:none">对比</span>
+                <ul class="list-unstyled clearfix large-half" id="doorPhonebookmenu">
+                    <li class="menuBox" id="doorPhonebookType" value="0">
+                        <span>查看类型</span>
+                        <div class="doorPhonebookType dropdown areaZone" ids="doorPhonebookType" optionid="" modename="">
+                            <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                            <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                <li><a codelist="doorcard" modename="门禁卡信息">门禁卡信息</a></li>
+                                <li><a codelist="h_call_info" modename="电话本信息">电话本信息</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                <div id="doorPhonebookBox">
+                    <table class="table table-striped text-center">
+                        <thead></thead>
+                        <tbody></tbody>
+                    </table>
+                    <!--分页-->
+                    <div class="pagingImplement tab-pane inner clearfix">
+                        <div class="pageList pull-right"></div>
+                        <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
+                    </div>
+                    <!--end homeList-paging-->
+                </div>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg to_delete" id="doorPhonebookBut">确认</button>
+                <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--------------------->
+<!--js库-->
+<script src="js/serip.js"></script>
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.twbsPagination.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+<!--导入导出-->
+<script src="js/xlsx.full.min.js"></script>
+<!--二维码-->
+<script src="js/jquery.qrcode.min.js"></script>
+<!--公共js-->
+<script src="js/index.js"></script>
+<script src="js/public.js"></script>
+<script src="js/tools.js"></script>
+<!---->
+<script src="js/access6_control_sys/zoneservice.js"></script>
+<script src="js/access6_control_sys/zoneview.js"></script>
+<script src="js/access6_control_sys/appupdateservice.js"></script>
+<script src="js/access6_control_sys/appupdateview.js"></script>
+<script src="js/access6_control_sys/advertising_push_all_machine.js"></script>
+<script src="js/access6_control_sys/advertising_push_all_machine_view.js"></script>
+<script src="js/access6_control_sys/advertising_push_door_machine.js"></script>
+<script src="js/access6_control_sys/advertising_push_door_machine_view.js"></script>
+<script src="js/access6_control_sys/entrance_cardservice.js"></script>
+<script src="js/access6_control_sys/entrance_cardview.js"></script>
+<script src="js/access6_control_sys/hand_push.js"></script>
+<script src="js/access6_control_sys/homecontrollerview.js"></script>
+<script src="js/access6_control_sys/homecontrollerservice.js"></script>
+<script src="js/access6_control_sys/lcd_switchservice.js"></script>
+<script src="js/access6_control_sys/lcd_switchview.js"></script>
+<script src="js/system_management/database_backups.js"></script>
+</body>
+</html>

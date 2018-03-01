@@ -1,0 +1,196 @@
+body{overflow: hidden;}
+.row{
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 10rem;
+    color: #666;
+}
+.row .head{
+    text-align: left;
+    margin-bottom: 0.5rem;
+}
+.row .head span{
+    font-size: 1.15rem;
+    color: #666;
+}
+.row .head span:first-child{
+    margin-left: 12.46rem;
+    font-size: 1.875rem;
+}
+.row .head span:last-child{
+    margin-left: 0.78rem;
+}
+.row .section{
+    height: 24.79rem;
+    color: #666;
+    position: relative;
+}
+.row .section .img{
+    width: 37.188rem;
+    height: 24.79rem;
+    display: inline-block;
+    background: url(../img/login.png) no-repeat center center;
+    background-size: 37.188rem 24.79rem;
+    margin-left: 11.46rem;
+}
+.row .section .login{
+    display: inline-block;
+    width: 18.48rem;
+    margin-left: 11.2rem;
+    vertical-align: top;
+}
+.row .section .login h3{
+    font-size: 1.875rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+.row .section .login fieldset{
+    width: 18.23rem;
+    height: 3.6rem;
+    border: 1px solid #666;
+    margin-bottom: 2.08rem;
+}
+.row .login fieldset legend{
+    width: 5.125rem;
+    font-size: 0.94rem;
+    border: 0;
+    margin: 0 0 0 1.46rem;
+    padding: 2px 0.78rem;
+}
+.row .login fieldset legend span{
+    display: inline-block;
+    width: 100%;
+}
+.row .login fieldset input{
+    width: 100%;
+    padding: 1px 5px 1px 0.78rem;
+    box-sizing: border-box;
+    border: 0;
+    font-size: 0.94rem;
+    outline: none;
+}
+.row .remember input{
+    display: inline-block;
+    width: 1.04rem;
+    height: 1.04rem;
+    margin-top: 0;
+    vertical-align: middle;
+}
+.row .remember label{
+    font-size: 0.94rem;
+    margin: 0;
+}
+.row .section .toLogin{
+    width: 18.23rem;
+    height: 2.86rem;
+    line-height: 2.86rem;
+    padding: 0;
+    color: #fff;
+    background: #59a294;
+    font-size: 1.04rem;
+    margin: 1.56rem auto;
+}
+.row .forget a{
+    font-size: 0.94rem;
+    color: #666;
+    text-decoration: underline;
+}
+.row .forget a:hover,.row .forget a:active{
+    color: #548c8f;
+}
+.row .forget i{
+    border: 0.5px solid #666;
+    margin: 0 0.52rem;
+    background: #666;
+}
+.row .section .aside{
+    width: 1.04rem;
+    height: 24.79rem;
+    background: #59a294;
+}
+.row .section .err{
+    color: #FF3333;
+    font-size: 0.76rem;
+    position: absolute;
+    right: 11.77rem;
+    top: 6.2rem;
+    margin-bottom: 0;
+    display: none;
+}
+.row .section .pwdErr{
+    top: 11.7rem;
+    right: 11.18rem;
+}
+.row .section p i{
+    display: inline-block;
+    height: 0.94rem;
+    width: 0.93rem;
+    background: url(../img/icon_prompt.png) no-repeat center center;
+    background-size: 0.94rem 0.94rem;
+    margin-right: 0.25rem;
+    vertical-align: sub;
+}
+/*提示框*/
+.alert{
+    display: none;
+    position: fixed;
+    right: 0.52rem;
+    bottom: 0;
+    min-width: 17rem;
+    min-height: 5rem;
+}
+/*提示框动画*/
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+@-webkit-keyframes tada {
+    from {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+    10%, 20% {
+        -webkit-transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+        transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+    }
+    30%, 50%, 70%, 90% {
+        -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+        transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+    }
+    40%, 60%, 80% {
+        -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+        transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+    }
+    to {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}
+@keyframes tada {
+    from {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+    10%, 20% {
+        -webkit-transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+        transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+    }
+    30%, 50%, 70%, 90% {
+        -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+        transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+    }
+    40%, 60%, 80% {
+        -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+        transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+    }
+    to {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}
+.tada {
+    -webkit-animation-name: tada;
+    animation-name: tada;
+}

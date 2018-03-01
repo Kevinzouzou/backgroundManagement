@@ -1,0 +1,178 @@
+<!--访客管理-->
+<div class="tablist_third">
+    <ul class="nav clearfix">
+        <li class="visitorManage active"><a href="#tab_visitorManage" role="tab" data-toggle="tab">访客管理</a></li>
+    </ul>
+</div>
+<div class="tab-content">
+    <!--访客管理-->
+    <div class="tab-pane active" id="tab_visitorManage">
+        <div class="btns pull-right clearfix">
+            <button class='btn btn-primary btn_search text-center pull-right' onclick="enqueryVisit(this);"><i></i>查询</button>
+            <div class="startToEnd pull-right">
+                从
+                <input type="text" class="reactive_height calendar startTime" placeholder="起止时间"/>
+                到
+                <input type="text" class="reactive_height calendar endTime" placeholder="结束时间"/>
+            </div>
+        </div>
+        <div class="btns pull-left clearfix">
+            <button class='btn btn-warning adding text-center' data-toggle="modal"  data-target="#addVisitor"><i></i>添加</button>
+        </div>
+        <!--列表-->
+        <div class="tables">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>来访时间</th>
+                    <th>预计拜访时间(小时)</th>
+                    <th>来访人姓名</th>
+                    <th>证件类型</th>
+                    <th>证件号码</th>
+                    <th>人数</th>
+                    <th>来访事由</th>
+                    <th>来访地址</th>
+                    <th>备注</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <!--添加 模态框-->
+        <div class="modal fade" id="addVisitor" aria-hidden="true">
+            <div class="modal-dialog" style="margin-top: 8rem">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center" id="complaintsModalLabel">添加</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-unstyled clearfix large-half">
+                            <li>
+                                <span>来访时间</span>
+                                <input type="text" class="calendar startTime"/>
+                            </li>
+                            <li class="text-right">
+                                <span>预计拜访</span>
+                                <input type="text" class="visitTime" placeholder="单位：小时"/>
+                            </li>
+                            <li>
+                                <span>来&nbsp;&nbsp;访&nbsp;&nbsp;人</span>
+                                <input type="text" class="vName" placeholder="来访人姓名"/>
+                            </li>
+                            <li class="text-right">
+                                <span>证件类型</span>
+                                <div class="dropdown areaZone certificateName">
+                                    <a class="dropdown-toggle areaZoneList text-center" data-toggle="dropdown" ids="1"><span>身份证</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+                                </div>
+                            </li>
+                            <li>
+                                <span>证件号码</span>
+                                <input type="text" class="certificateNo"/>
+                            </li>
+                            <li class="text-right">
+                                <span>人&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数</span>
+                                <input type="text" class="personNum"/>
+                            </li>
+                            <li class="totalLength">
+                                <span>来访事由</span>
+                                <input type="text" class="reason"/>
+                            </li>
+                            <li class="totalLength">
+                                <span>来访地址</span>
+                                <input type="text" class="address"/>
+                            </li>
+                            <li class="totalLength">
+                                <span>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</span>
+                                <textarea class="marBotArea"></textarea>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg toResure" data-dismiss="modal">确定</button>
+                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--修改 模态框-->
+        <div class="modal fade" id="visitor_modify" aria-hidden="true">
+            <div class="modal-dialog" style="margin-top: 8rem">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">修改</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-unstyled clearfix large-half">
+                            <li>
+                                <span>来访时间</span>
+                                <input type="text" class="calendar startTime"/>
+                            </li>
+                            <li class="text-right">
+                                <span>预计拜访</span>
+                                <input type="text" class="visitTime" placeholder="单位：小时"/>
+                            </li>
+                            <li>
+                                <span>来&nbsp;&nbsp;访&nbsp;&nbsp;人</span>
+                                <input type="text" class="vName" placeholder="来访人姓名"/>
+                            </li>
+                            <li class="text-right">
+                                <span>证件类型</span>
+                                <div class="dropdown areaZone certificateName">
+                                    <a class="dropdown-toggle areaZoneList text-center" data-toggle="dropdown" ids="1"><span>身份证</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+                                </div>
+                            </li>
+                            <li>
+                                <span>证件号码</span>
+                                <input type="text" class="certificateNo"/>
+                            </li>
+                            <li class="text-right">
+                                <span>人&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数</span>
+                                <input type="text" class="personNum"/>
+                            </li>
+                            <li class="totalLength">
+                                <span>来访事由</span>
+                                <input type="text" class="reason"/>
+                            </li>
+                            <li class="totalLength">
+                                <span>来访地址</span>
+                                <input type="text" class="address"/>
+                            </li>
+                            <li class="totalLength">
+                                <span>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</span>
+                                <textarea class="marBotArea"></textarea>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg toResure" data-dismiss="modal">确定</button>
+                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--删除 模态框-->
+        <div class="modal fade" id="visitor_delete" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">提示</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-inline mBody_title text-center">确定删除该消息?</form>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg to_delete" data-dismiss="modal">删除</button>
+                        <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/property_management/visitor_material_supplier.js"></script>

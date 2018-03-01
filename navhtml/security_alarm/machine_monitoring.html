@@ -1,0 +1,87 @@
+<!--Created by along on 2018/1/24 安防报警-->
+<!--机房监控-->
+<div class="tablist_third">
+    <span class="menu_title">机房监控</span>
+</div>
+<div class="tab-content">
+    <div class="tab-pane active" id="tab_user_logout">
+        <div class="btns menuBox" id="logoutAddress" type="charge">
+            <span>地址筛选：</span>
+            <div class="chargingAds dropdown areaZone" ids="chargingAds" optionid="">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+            </div>
+            <div class="unitAds dropdown areaZone" ids="unitAds" optionid="">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部 单元</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+            </div>
+            <div class="doorplateAds dropdown areaZone" ids="doorplateAds">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部 房间号</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+            </div>
+            <span>响应状态：</span>
+            <div class="logoutTypeMenu dropdown areaZone" ids="logoutTypeMenu" optionid="1">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                    <li><a codelist="" modename="全部">全部</a></li>
+                    <li><a codelist="0" modename="已响应">已响应</a></li>
+                    <li><a codelist="1" modename="未响应">未响应</a></li>
+                </ul>
+            </div>
+            <span>时间：</span>
+            <div class="startToEnd">
+                从
+                <input type="text" class="reactive_height calendar" id="logoutStartTime" placeholder="起止时间">
+                到
+                <input type="text" class="reactive_height calendar" id="logoutEndTime" placeholder="结束时间">
+            </div>
+            <button class="btn btn-warning btn_search btnSearch" id="userLogoutSearch" type="button"><i></i>查询</button>
+        </div>
+        <!--table-->
+        <div class="tab-content">
+            <div class="tables">
+                <table class="table table-striped text-center">
+                    <thead>
+                    <tr>
+                        <th>房屋地址</th>
+                        <th>业主姓名</th>
+                        <th>业主电话</th>
+                        <!--<th>报警数量</th>-->
+                        <!--<th>报警类型</th>-->
+                        <th>报警设备</th>
+                        <!--<th>报警图片</th>-->
+                        <th>报警时间</th>
+                        <th>报警级别</th>
+                        <th>响应状态</th>
+                        <th>响应时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody id="userLogoutList"></tbody>
+                </table>
+                <!--分页-->
+                <div class="pagingImplement tab-pane inner clearfix">
+                    <div class="pageList pull-right"></div>
+                    <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
+                </div>
+                <!--end homeList-paging-->
+            </div>
+        </div>
+    </div>
+</div>
+<!--modal-->
+<!--家电状态详情-->
+<div class="modal fade" id="equDetailsModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">状态详情</h4>
+            </div>
+            <div class="modal-body" id="equDetailsForm">
+                <p class="form-inline mBody_title text-center">暂无数据...</p>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/security_alarm/machine_monitoring.js"></script>

@@ -1,0 +1,80 @@
+<!--系统升级-->
+<div class="tab-pane text-center APP_upgrade_package">
+    <h2>系统升级</h2>
+</div>
+<div class="tab-department">
+    <div class="btns pull-right clearfix">
+        <button class='btn btn-primary lead_in text-center' data-toggle="modal"  data-target="#importSystemUpgrade"><i></i>导入</button>
+    </div>
+    <!--导入信息-->
+    <div class="modal fade" id="importSystemUpgrade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                    <h4 class="modal-title text-center">导入数据</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form" enctype="multipart/form-data" id="upload_personnel">
+                        <div class="file text-center form-group report-file">
+                            <label for="file_systemUpgrade">选择文件：</label>
+                            <div class="defined_file">
+                                <input type="text" name="defined_systemUpgrade" id="defined_systemUpgrade" value="未选择任何文件">
+                                <button type="button" class="btn-primary">请选择</button>
+                            </div>
+                            <input type="file" name="upFile" id="file_systemUpgrade" onchange="document.getElementById('defined_systemUpgrade').value = document.getElementById('file_systemUpgrade').value;">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="form-control btn btn-warning btn-lg bSubmit" onclick="importMachinePublicData('C');" data-dismiss="modal">导入</button>
+                    <button type="button" class="form-control btn btn-primary btn-lg to_reset" onclick="resetMachinePublicData('C');">重置</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--列表-->
+    <div class="tables">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>版本号</th>
+                    <th>上传内容</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1.0</td>
+                    <td>电器状态</td>
+                    <td>
+                        <a data-toggle="modal" data-target="#systemUpgrade_resend">推送</a>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <div class="inner clearfix">
+            <div class="pull-right pageList"></div>
+            <div class="pull-right pageTips"></div>
+        </div>
+    </div>
+   <!--推送 模态框-->
+    <div class="modal fade" id="systemUpgrade_resend" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                    <h4 class="modal-title text-center">推送信息</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-inline mBody_title text-center">是否确定推送?</form>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-warning btn-lg toResend">推送</button>
+                    <button type="button" class="btn btn-primary btn-lg to_cancel" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

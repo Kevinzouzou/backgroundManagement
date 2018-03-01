@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=1.0">
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!--<meta http-equiv="Access-Control-Allow-Origin" content="*">-->
+    <title>登录页面</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/login.css"/>
+    <link rel="stylesheet" href="css/index.css"/>
+
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+<div class="row">
+    <div class="head">
+        <span class="ucot">UCOT</span>
+        <span>物联通</span>
+        <span class="management">智慧社区管理平台</span>
+    </div>
+    <div class="section">
+        <div class="img"></div>
+        <div class="login">
+            <h3>欢迎您！</h3>
+            <fieldset>
+                <legend><span class="text-center">用户名</span></legend>
+                <input type="text" id="login_username" autofocus/>
+                <p class="userErr err"><i></i>输入的手机号不存在</p>
+            </fieldset>
+            <fieldset>
+                <legend><span class="text-center">密码</span></legend>
+                <input type="password" id="login_password" autofocus/>
+                <p class="pwdErr err"><i></i>输入的密码有误</p>
+            </fieldset>
+            <div class="remember">
+                <input type="checkbox" id="rem"/>
+                <label for="rem">记住我</label>
+            </div>
+            <button class="btn toLogin" id="login_in">登 录</button>
+            <div class="forget text-right">
+                <a href="#">忘记密码？</a>
+                <i></i>
+                <a href="register.html">注册新用户</a>
+            </div>
+        </div>
+        <div class="aside pull-left"></div>
+        <div class="aside pull-right"></div>
+    </div>
+</div>
+<div class="alert alert-danger animated tada" style="z-index: 4;text-align: center;padding: 40px;">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+</div>
+
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/serip.js"></script>
+<script src="js/login.js"></script>
+<script src="js/access6_control_sys/zoneview.js"></script>
+<script>
+    document.getElementsByTagName('html')[0].style.fontSize=window.innerWidth/100 +'px';
+    //        document.getElementsByTagName('html')[0].style.fontSize=window.screen.width/100 +'px';
+    $("body").css("height",window.innerHeight);
+</script>
+</body>
+</html>

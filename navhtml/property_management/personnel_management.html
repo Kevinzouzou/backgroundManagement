@@ -1,0 +1,284 @@
+<!--员工管理-->
+<div class="tablist_third">
+    <span class="menu_title">员工管理</span>
+</div>
+<div class="tab-department">
+    <div class="btns pull-left clearfix">
+        <button class="btn btn-warning adding" id="addPersonnelBut"><i></i>添加</button>
+        <button class="btn btn-primary batch_delete" id="batchDelete" type="batchDelete"><i></i>批量删除</button>
+        <button class="btn btn-primary lead_in" data-toggle="modal"  data-target="#importPersonnel"><i></i>导入</button>
+        <button class="btn btn-primary lead_out" ids="personnelExport" id="personnelExport"><i></i>导出</button>
+        <!--<a href="" download="员工信息.xlsx" id="personnelExport" class="dowExlName"></a>-->
+        <button class='btn btn-primary print' id="personnelPrint"><i></i>打印</button>
+    </div>
+    <div class="btns menuBox pull-right" id="personnelMenu">
+        <div class="personnelMenu dropdown areaZone" ids="personnelMenu" optionId="">
+            <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部部门</span><b class="caret"></b></a>
+            <ul class="dropdown-menu areaZoneList-menu " role="menu"></ul>
+        </div>
+    </div>
+    <!--列表-->
+    <div class="tables" id="printPersonnel">
+        <table class="table table-striped" id="personnelTable">
+            <thead>
+                <tr>
+                    <th class="notPrint"><input type="checkbox" class="checkboxsBut" typeIds="personnelManagementList">&nbsp;&nbsp;全选</th>
+                    <th>工号</th>
+                    <th>姓名</th>
+                    <th>电话</th>
+                    <th>部门</th>
+                    <th>职位</th>
+                    <th>权限</th>
+                    <th class="notPrint">详细详情</th>
+                    <th class="notPrint">操作</th>
+                </tr>
+            </thead>
+            <tbody id="personnelManagementList"></tbody>
+        </table>
+        <!--分页-->
+        <div class="pagingImplement tab-pane inner clearfix">
+            <div class="pageList pull-right"></div>
+            <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
+        </div>
+        <!--end homeList-paging-->
+    </div>
+</div>
+<!--添加/修改 模态框-->
+<div class="modal fade" id="addPersonnelModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">添加</h4>
+            </div>
+            <div class="modal-body personnelForm" id="addPersonnelForm">
+                <form id="personnelForm" enctype="multipart/form-data" method="post" name="fileinfo">
+                    <ul class="list-unstyled clearfix large-half">
+                        <li class="margin-bottom0">
+                            <ul class="list-unstyled clearfix large-half">
+                                <li class="totalLength">
+                                    <span>工&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号</span>
+                                    <input type="text" name="employee.accout" class="accout"/>
+                                </li>
+                                <li class="totalLength">
+                                    <span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</span>
+                                    <input type="text" name="employee.ename" class="ename"/>
+                                </li>
+                                <li class="menuBox totalLength" id="gender">
+                                    <span>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</span>
+                                    <div class="gender dropdown areaZone" ids="gender" optionid="1">
+                                        <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type">男</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu" role="menu" style="width:100%;">
+                                            <li><a codelist="1" modename="男">男</a></li>
+                                            <li><a codelist="2" modename="女">女</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="totalLength">
+                                    <span>身份证号</span>
+                                    <input type="text" name="employee.identify" class="identifys" minlength="18" maxlength="18" placeholder="请输入18位身份证号码"/>
+                                </li>
+                                <li class="totalLength">
+                                    <span>出生年月</span>
+                                    <input type="text" name="employee.birthday" class="birthday calendar"/>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="margin-bottom0">
+                            <div class="uploading">
+                                <img class="portrait" src="img/portrait.png" alt="相片加载失败...">
+                                <div class="portraitUp">
+                                    <label class="pull-left">
+                                        <strong class="btn btn-primary">上传</strong>
+                                        <input type="file" name="upfile" class="uploadingImg" placeholder="图片名称">
+                                    </label>
+                                    <input class="pull-left upfileName" type="text">
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="list-unstyled clearfix large-half">
+                        <li class="totalLength">
+                            <span>户口地址</span>
+                            <input name="employee.registeredaddress" class="lengthSize registeredad" type="text"/>
+                        </li>
+                        <li class="totalLength">
+                            <span>居住地址</span>
+                            <input name="employee.address" class="lengthSize address" type="text"/>
+                        </li>
+                        <li>
+                            <span>电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话</span>
+                            <input name="employee.cellphone" type="text" class="cellphone" maxlength="11"/>
+                        </li>
+                        <li>
+                            <span>微信</span>
+                            <input name="employee.weichatNo" type="text" class="weichatNo"/>
+                        </li>
+                        <li>
+                            <span>入职时间</span>
+                            <input name="employee.entryday" type="text" class="entryday calendar"/>
+                        </li>
+                        <li class="menuBox" id="deptname">
+                            <span>部门</span>
+                            <div class="deptname dropdown areaZone" ids="deptname" optionid="1">
+                                <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type">全部部门</span><b class="caret"></b></a>
+                                <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+                            </div>
+                        </li>
+                        <li class="menuBox" id="jobposition">
+                            <span>职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位</span>
+                            <div class="jobposition dropdown areaZone" ids="jobposition" optionid="1">
+                                <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type">全部部门</span><b class="caret"></b></a>
+                                <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+                            </div>
+                        </li>
+                        <li class="menuBox" id="grantleve">
+                            <span>权限</span>
+                            <div class="grantleve dropdown areaZone" ids="grantleve" optionid="30">
+                                <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type">普通</span><b class="caret"></b></a>
+                                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                    <li><a codelist="30" modename="普通">普通</a></li>
+                                    <li><a codelist="40" modename="租客">租客</a></li>
+                                    <li><a codelist="60" modename="家人">家人</a></li>
+                                    <li><a codelist="70" modename="业主">业主</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="totalLength">
+                            <span>紧急联络人</span>
+                        </li>
+                        <li>
+                            <span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</span>
+                            <input name="employee.emergencyContact" type="text" class="emergencyContact"/>
+                        </li>
+                        <li>
+                            <span>电话</span>
+                            <input name="employee.emergencyPhone" type="text" class="emergencyPhone" maxlength="11"/>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg toResure" id="submitPersonnelBut">确定</button>
+                <button type="button" class="btn btn-default btn-lg to_reset" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--查看 模态框-->
+<div class="modal fade" id="checkModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">详情</h4>
+            </div>
+            <div class="modal-body personnelForm" id="checkForm">
+                <ul class="list-unstyled clearfix large-half">
+                    <li class="margin-bottom0">
+                        <ul class="list-unstyled clearfix large-half">
+                            <li class="totalLength">
+                                <span>工&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号</span>
+                                <input type="text" class="accout" disabled="disabled"/>
+                            </li>
+                            <li class="totalLength">
+                                <span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</span>
+                                <input type="text" class="ename" disabled="disabled"/>
+                            </li>
+                            <li class="totalLength">
+                                <span>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</span>
+                                <input type="text" class="gender" disabled="disabled"/>
+                            </li>
+                            <li class="totalLength">
+                                <span>身份证号</span>
+                                <input type="text" class="identifys" disabled="disabled"/>
+                            </li>
+                            <li class="totalLength">
+                                <span>出生年月</span>
+                                <input type="text" class="birthday" disabled="disabled"/>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="margin-bottom0">
+                        <div class="uploading">
+                            <img class="portrait" src="img/portrait.png" alt="相片加载失败...">
+                        </div>
+                    </li>
+                </ul>
+                <ul class="list-unstyled clearfix large-half">
+                    <li class="totalLength">
+                        <span>户口地址</span>
+                        <input class="lengthSize registeredad" type="text" disabled="disabled"/>
+                    </li>
+                    <li class="totalLength">
+                        <span>居住地址</span>
+                        <input class="lengthSize address" type="text" disabled="disabled"/>
+                    </li>
+                    <li>
+                        <span>电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话</span>
+                        <input type="text" class="cellphone" maxlength="11" disabled="disabled"/>
+                    </li>
+                    <li>
+                        <span>微信</span>
+                        <input type="text" class="weichatNo" disabled="disabled"/>
+                    </li>
+                    <li>
+                        <span>入职时间</span>
+                        <input type="text" class="entryday" disabled="disabled"/>
+                    </li>
+                    <li>
+                        <span>部门</span>
+                        <input type="text" class="deptname" disabled="disabled"/>
+                    </li>
+                    <li>
+                        <span>职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位</span>
+                        <input type="text" class="jobposition" disabled="disabled"/>
+                    </li>
+                    <li>
+                        <span>权限</span>
+                        <input type="text" class="grantleve" disabled="disabled"/>
+                    </li>
+                    <li class="totalLength">
+                        <span>紧急联络人</span>
+                    </li>
+                    <li>
+                        <span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</span>
+                        <input type="text" class="emergencyContact" disabled="disabled"/>
+                    </li>
+                    <li>
+                        <span>电话</span>
+                        <input type="text" class="emergencyPhone" disabled="disabled" maxlength="11"/>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--导入信息-->
+<div class="modal fade" id="importPersonnel" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">导入数据</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" enctype="multipart/form-data" id="upload_personnel">
+                    <div class="file text-center form-group report-file">
+                        <label for="import_personnel">选择文件</label>
+                        <div class="defined_file">
+                            <input type="text" name="defined_personnel" id="defined_personnel" value="未选择任何文件">
+                            <button type="button" class="btn-primary">请选择</button>
+                        </div>
+                        <input type="file" name="upFile" id="import_personnel">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="form-control btn btn-warning btn-lg bSubmit" id="submitImportBut">导入</button>
+                <button type="button" class="btn btn-default btn-lg to_reset" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/property_management/personnel_management.js"></script>

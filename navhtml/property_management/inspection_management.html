@@ -1,0 +1,542 @@
+<!--巡检管理-->
+<div class="tablist_third">
+    <ul class="nav clearfix" role="tablist_third">
+        <li class="ins_name active"><a href="#tab_ins_name" role="tab" data-toggle="tab" onclick="insInitialize('name')">巡检名称</a></li>
+        <li class="ins_plan"><a href="#tab_ins_plan" role="tab" data-toggle="tab" onclick="insInitialize('plan')">巡检计划</a></li>
+        <li class="ins_inquire"><a href="#tab_ins_inquire" role="tab" data-toggle="tab" onclick="insInitialize('inquire')">巡检查询</a></li>
+        <li class="ins_particulars"><a href="#tab_ins_particulars" role="tab" data-toggle="tab" onclick="insInitialize('particulars')">巡检详情</a></li>
+    </ul>
+</div>
+<div class="tab-content">
+    <!--巡检名称-->
+    <div class="tab-pane active" id="tab_ins_name">
+        <div class="btns pull-left">
+            <button class='btn btn-warning' id="addInsName"><i></i>添加</button>
+        </div>
+        <!--列表-->
+        <div class="tab-pane tables">
+            <table class="table table-striped table-hover table-responsive">
+                <thead>
+                    <tr>
+                        <th>巡检编号</th>
+                        <th>巡检名称</th>
+                        <th>巡检路线</th>
+                        <th>巡检点位</th>
+                        <th>巡检状态</th>
+                        <th>备注</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="insNameList"></tbody>
+            </table>
+            <!--分页-->
+            <div class="pagingImplement tab-pane inner clearfix">
+                <div class="pageList pull-right"></div>
+                <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
+            </div>
+            <!--end homeList-paging-->
+        </div>
+    </div>
+    <!--巡检计划-->
+    <div class="tab-pane" id="tab_ins_plan">
+        <div class="btns menuBox" id="insPlanMenu">
+            <button class="btn btn-warning text-center" id="addInsPlanBut"><i></i>添加</button>
+            <div class="insPlanMenu dropdown areaZone pull-right" ids="insPlanMenu" optionid="">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部部门</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+            </div>
+            <input type="text" class="calendar pull-right workMonth" id="insPlanTime" onchange="cutoutmonth('schedulingMenu')">
+        </div>
+        <div class="btns" id="insDateButBox">
+            <button class="btn btn-warning pull-right" id="insDateCreatelBut">生成</button>
+            <button class="btn btn-primary pull-right" id="insDateCancelBut">取消</button>
+        </div>
+        <!--table-->
+        <div class="tab-content" id="insPlanBox">
+            <div class="tables">
+                <table class="table table-striped text-center">
+                    <thead>
+                    <tr>
+                        <th>部门</th>
+                        <th>人员</th>
+                        <th>巡检月份</th>
+                        <th>巡检周期</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody id="insPlanList"></tbody>
+                </table>
+                <!--分页-->
+                <div class="pagingImplement tab-pane inner clearfix">
+                    <div class="pageList pull-right"></div>
+                    <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
+                </div>
+                <!--end homeList-paging-->
+            </div>
+            <div class="date">
+                <div class="title" id="insDatatitbox"></div>
+                <div class="weekbox" id="insWeekbox">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th id="insSize">一Mon<span class="blue" line="1">编辑</span></th>
+                            <th>二Tue<span class="blue" line="2">编辑</span></th>
+                            <th>三Wed<span class="blue" line="3">编辑</span></th>
+                            <th>四Thu<span class="blue" line="4">编辑</span></th>
+                            <th>五Fri<span class="blue" line="5">编辑</span></th>
+                            <th>六Sat<span class="blue" line="6">编辑</span></th>
+                            <th>日Sun<span class="blue" line="7">编辑</span></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr><td>00:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td>01:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td>02:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td>03:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td>04:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td>05:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td>06:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td>07:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td>08:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td>09:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td>10:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td>11:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td>12:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td>13:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td>14:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td>15:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td>16:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td>17:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td>18:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td>19:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td>20:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td>21:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td>22:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td>23:00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="monthbox" id="insMonthbox">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th id="monthsize">日Sun</th>
+                            <th>一Mon</th>
+                            <th>二Tue</th>
+                            <th>三Wed</th>
+                            <th>四Thu</th>
+                            <th>五Fri</th>
+                            <th>六Sat</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--巡检查询-->
+    <div class="tab-pane" id="tab_ins_inquire">
+        <div class="btns visible">
+            <div class="menuBox  pull-left" id="inquireInsDepartmentMenu">
+                <div class="inquireInsDepartmentMenu dropdown areaZone" ids="inquireInsDepartmentMenu" optionid="">
+                    <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部部门</span><b class="caret"></b></a>
+                    <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+                </div>
+            </div>
+            <div class="menuBox  pull-left" id="inquireInsStaffMenu">
+                <div class="inquireInsStaffMenu dropdown areaZone" ids="inquireInsStaffMenu" optionid="">
+                    <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部员工</span><b class="caret"></b></a>
+                    <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+                </div>
+            </div>
+            <button class="btn btn-warning btn_search" id="insInquireSearch" type="button"><i></i>查询</button>
+            <div class="pull-right">
+                <!--<button class="btn btn-primary pushing" id="pushIns"><i></i>推送</button>-->
+                <button class="btn btn-primary print" id="printIns"><i></i>打印</button>
+            </div>
+        </div>
+        <!--table-->
+        <div class="tab-content" id="insInquireBox">
+            <div class="date">
+                <div class="title" id="insInquiretitBox"><div class="date"><span class="arrowsleft"></span><span class="content" id="insDateTimes"></span><span class="arrowsright"></span></div></div>
+                <div class="monthbox" id="insInquireMonthbox">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th id="inquiremonthsize">日Sun</th>
+                            <th>一Mon</th>
+                            <th>二Tue</th>
+                            <th>三Wed</th>
+                            <th>四Thu</th>
+                            <th>五Fri</th>
+                            <th>六Sat</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--巡检详情-->
+    <div class="tab-pane" id="tab_ins_particulars">
+        <div class="btns pull-left">
+            <button class='btn btn-primary lead_out educeBut' ids="InsPartDowExl"><i></i>导出</button>
+            <a href="" download="巡检详情.xlsx" id="InsPartDowExl" style="display: none"></a>
+            <button class='btn btn-primary text-center' id="backParticulars" style="display:none;">返回</button>
+        </div>
+        <div class="btns pull-right">
+            <div class="startToEnd">
+                从
+                <input type="text" class="reactive_height calendar" id="insPlanStartTime" placeholder="起始时间">
+                到
+                <input type="text" class="reactive_height calendar" id="insPlanEndTime" placeholder="结束时间">
+            </div>
+            <button class='btn btn-warning btn_search text-center' id="searchInsParticulars"><i></i>查询</button>
+        </div>
+        <!--列表-->
+        <div class="tab-pane tables">
+            <table class="table table-striped" id="insParticulars">
+                <thead>
+                    <tr>
+                        <th>巡检编号</th>
+                        <th>巡检名称</th>
+                        <th>正常数量</th>
+                        <th>漏检数量</th>
+                        <th>超时数量</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="insParticularsList"></tbody>
+            </table>
+            <table class="table table-striped" id="insPT" style="display:none;">
+                <thead>
+                <tr>
+                    <th>巡检时间</th>
+                    <th>巡检人</th>
+                    <th>巡检内容</th>
+                    <th>巡检照片</th>
+                    <th>状态</th>
+                </tr>
+                </thead>
+                <tbody id="insPTList"></tbody>
+            </table>
+            <!--分页-->
+            <div class="pagingImplement tab-pane inner clearfix">
+                <div class="pageList pull-right"></div>
+                <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
+            </div>
+            <!--end homeList-paging-->
+        </div>
+    </div>
+</div>
+<!--modal-->
+<!--巡检名称  添加/修改-->
+<div class="modal fade" id="insNameModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">添加</h4>
+            </div>
+            <div class="modal-body" id="insNameForm">
+                <ul class="list-unstyled clearfix large-half">
+                        <li class="totalLength">
+                            <span>巡检编号</span>
+                            <input type="text" class="inscode"/>
+                        </li>
+                        <li class="totalLength">
+                            <span>巡检名称</span>
+                            <input type="text" class="insname">
+                        </li>
+                        <li class="totalLength">
+                            <span>巡查路线</span>
+                            <span class="blue routeRedact" id="routeRedact">编辑路线</span>
+                        </li>
+                        <li class="totalLength">
+                            <span class="pull-left">路&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;线</span>
+                            <span class="route pull-left patrolpoints" id="route"></span>
+                        </li>
+                        <li class="totalLength menuBox" id="insNameStatus">
+                            <span>状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态</span>
+                            <div class="dropdown areaZone insNameStatus" ids="insNameStatus" optionid="" modename="">
+                                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                    <li><a codelist="0" modename="不生效">不生效</a></li>
+                                    <li><a codelist="1" modename="生效">生效</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="totalLength">
+                            <span>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</span>
+                            <textarea class="insmark"></textarea>
+                        </li>
+                    </ul>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning" id="submitInsNameBut">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 编辑路线-->
+<div class="modal fade" id="routeRedactModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">编辑路线</h4>
+            </div>
+            <div class="modal-body" id="routeRedactForm">
+                <div class="routeBox">
+                    <ul class="list-unstyled clearfix large-half">
+                        <li>
+                            <span>巡检点位:</span>
+                            <span class="input_dianw">01</span>
+                            <span type="text" class="span_dianw"></span>
+                        </li>
+                        <li class="but">
+                            <span class="operate finish blue" type="finishBut" blue="false">完成</span>
+                            <!--<span class="routeCancelBut blue" blue="false">取消</span>-->
+                            <span class="operate code blue" type="codeBut" blue="true">生成二维码</span>
+                            <span class="operate add blue" type="addBut" blue="true">添加下一行</span>
+                            <span class="operate delete blue" type="deleteBut" blue="true">删除</span>
+                            <span class="operate edit blue" type="editBut" blue="true">编辑</span>
+                        </li>
+                        <li class="totalLength">
+                            <span>名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称:</span>
+                            <input type="text" class="input_minc"/>
+                            <span type="text" class="span_minc"></span>
+                        </li>
+                        <li>
+                            <span>超时时间:</span>
+                            <input type="text" class="input_cssj" value="30"/>
+                            <span class="units">分钟</span>
+                            <span type="text" class="span_cssj"></span>
+                        </li>
+                        <li>
+                            <span style="margin-left: 1rem;">漏检时限:</span>
+                            <input type="text" class="input_njsx" value="60"/>
+                            <span class="units">分钟</span>
+                            <span type="text" class="span_njsx"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning" id="submitRouteRedactBut">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--巡检二维码-->
+<div class="modal fade" id="qrcodeModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">巡检二维码</h4>
+            </div>
+            <div class="modal-body" id="qrcode"></div>
+        </div>
+    </div>
+</div>
+<!--巡检计划 添加/修改-->
+<div class="modal fade" id="addInsPlanModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">添加巡检计划 </h4>
+            </div>
+            <div class="modal-body" id="insPlanForm">
+                <ul class="list-unstyled clearfix large-half">
+                    <li>
+                        <span>巡检月份</span>
+                        <input type="text" class="calendar workMonth" onchange="cutoutmonth('insPlanForm')">
+                    </li>
+                    <li class="menuBox" id="insPlanDeptnameMenu">
+                        <span>部门名称</span>
+                        <div class="dropdown areaZone insPlanDeptnameMenu" ids="insPlanDeptnameMenu" optionid="" modename="">
+                            <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                            <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+                        </div>
+                    </li>
+                    <li class="" style="width:100%;">
+                        <span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</span>
+                        <div class="pitch-on" id="insPitchOn"></div><span id="insEmploModal" class="blue">选择人员</span>
+                    </li>
+                    <li class="menuBox" id="workCycle">
+                        <span>巡检周期</span>
+                        <div class="dropdown areaZone workCycle" ids="workCycle" optionid="" modename="">
+                            <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                            <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                <li><a codelist="0" modename="复制上月">复制上月</a></li>
+                                <li><a codelist="1" modename="按周">按周</a></li>
+                                <li><a codelist="2" modename="按月">按月</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg to_add" id="submitInsPlanBut">添加</button>
+                <button type="button" class="btn btn-default btn-lg to_reset" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--员工-->
+<div class="modal fade housePush" id="insStaffModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">请选择需要添加的员工</h4>
+            </div>
+            <div class="modal-body tables">
+                <table class="table text-center">
+                    <thead>
+                    <tr>
+                        <th><input type="checkbox" class="checkboxsBut" typeids="insStaffModalList"></th>
+                        <th>工号</th>
+                        <th>姓名</th>
+                        <th>电话</th>
+                    </tr>
+                    </thead>
+                    <tbody id="insStaffModalList"></tbody>
+                </table>
+                <!--分页-->
+                <div class="pagingImplement tab-pane inner clearfix">
+                    <div class="pageList pull-right"></div>
+                    <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
+                </div>
+                <!--end homeList-paging-->
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg toResure" id="insStaffModalBut">确认</button>
+                <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--选择添加巡检-->
+<div class="modal fade housePush" id="selectInsPlanModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">请选择需要添加的巡检</h4>
+            </div>
+            <div class="modal-body tables" id="selectInsPlanForm">
+                <table class="table text-center">
+                    <thead>
+                    <tr>
+                        <th>巡检编号</th>
+                        <th>巡检名称</th>
+                        <th>巡检路线</th>
+                        <th>巡检点位</th>
+                        <th>备注</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody id="selectInsPlanList"></tbody>
+                </table>
+                <!--分页-->
+                <div class="pagingImplement tab-pane inner clearfix">
+                    <div class="pageList pull-right"></div>
+                    <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
+                </div>
+                <!--end homeList-paging-->
+            </div>
+            <!--<div class="modal-footer text-center">-->
+                <!--<button type="button" class="btn btn-warning btn-lg toResure" id="selectInsPlanModalBut" line="1">确认</button>-->
+                <!--<button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>-->
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+<!--巡检起始时间-->
+<div class="modal fade housePush" id="timeInsPlanModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">请设定巡检起始时间</h4>
+            </div>
+            <div class="modal-body tables" id="timeInsPlanForm">
+                <ul class="list-unstyled clearfix large-half">
+                    <li class="totalLength" id="insPlan_time">
+                        <span>起始时间</span>
+                        <input type="time" class="starttime">
+                        <!--<em>&nbsp;:&nbsp;</em><input type="time" class="endtime">-->
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg toResure" id="timeInsPlanModalBut">确认</button>
+                <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--编辑巡检计划-->
+<div class="modal fade housePush" id="modifyInsPlanModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center"></h4>
+            </div>
+            <div class="modal-body tables" id="modifyInsPlanForm">
+                <div id="insPlanTimeBox">
+                    <span id="modInsBut" class="blue">编辑</span>
+                    <table class="table text-center">
+                        <tbody id="modifyInsPlanList" class="timerShaftBox">
+                        <tr><td><span class="timerShaft">00:00</span></td><td><span class="timerShaft">01:00</span></td><td><span class="timerShaft">02:00</span></td><td><span class="timerShaft">03:00</span></td><td><span class="timerShaft">04:00</span></td><td><span class="timerShaft">05:00</span></td><td><span class="timerShaft">06:00</span></td><td><span class="timerShaft">07:00</span></td><td><span class="timerShaft">08:00</span></td><td><span class="timerShaft">09:00</span></td><td><span class="timerShaft">10:00</span></td><td><span class="timerShaft">11:00</span></td><td><span class="timerShaft">12:00</span></td><td><span class="timerShaft">13:00</span></td><td><span class="timerShaft">14:00</span></td><td><span class="timerShaft">15:00</span></td><td><span class="timerShaft">16:00</span></td><td><span class="timerShaft">17:00</span></td><td><span class="timerShaft">18:00</span></td><td><span class="timerShaft">19:00</span></td><td><span class="timerShaft">20:00</span></td><td><span class="timerShaft">21:00</span></td><td><span class="timerShaft">22:00</span></td><td><span class="timerShaft">23:00</span></td></tr>
+                        <tr><td id="timeInsSize"><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td><td><span></span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg toResure" id="modifyInsPlanModalBut" line="1">确认</button>
+                <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--巡检人员-->
+<div class="modal fade housePush" id="showInsPlanModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">添加排班日程</h4>
+            </div>
+            <div class="modal-body tables" id="showInsPlanForm">
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/property_management/inspection_management.js"></script>

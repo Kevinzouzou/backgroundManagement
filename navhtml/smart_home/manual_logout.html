@@ -1,0 +1,44 @@
+<!--Created by along on 2018/1/3 智能家居-->
+<!--app账户注销-->
+<div class="tablist_third">
+    <span class="menu_title">app账户注销</span>
+</div>
+<div class="tab-department">
+    <div class="btns menuBox" id="appAccountAddress" type="charge">
+            <span>地址筛选：</span>
+            <div class="chargingAds dropdown areaZone" ids="chargingAds" optionid="">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+            </div>
+            <div class="unitAds dropdown areaZone" ids="unitAds" optionid="">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部 单元</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+            </div>
+            <div class="doorplateAds dropdown areaZone" ids="doorplateAds">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部 房间号</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+            </div>
+            <button class="btn btn-warning btn_search btnSearch" ids="appAccountAddress" type="button"><i></i>查询</button>
+        </div>
+    <!--列表-->
+    <div class="tables">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>姓名</th>
+                <th>手机号码</th>
+                <th>住户地址</th>
+                <th>住户类型</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="logoutList"></tbody>
+        </table>
+        <!--分页-->
+        <div class="pagingImplement tab-pane inner clearfix">
+            <div class="pageList pull-right"></div>
+            <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
+        </div>
+        <!--end homeList-paging-->
+    </div>
+</div>

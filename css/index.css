@@ -1,0 +1,2348 @@
+/*公共属性*/
+body,ul,header,footer,h1,h2,h3,h4,h5,h6{
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+    color: #97b9b0;
+    cursor: pointer;
+}
+.opacity0{opacity: 0;}
+.marBot0{margin-bottom: 0;}
+.marBotArea{margin-bottom: -0.3125rem;}
+body .modal .modal-body .inBlock{display: inline-block;}
+input[type="checkbox"]{cursor: pointer;}
+.icon-arrow-left{
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: url(../img/icon-arrow-left.png) no-repeat left;
+}
+.icon-arrow-right{
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: url(../img/icon-arrow-right.png) no-repeat right;
+}
+#msgContent{z-index:1100}
+body .modal {
+    overflow-x: auto !important;
+}
+.modal #previewContent{min-height:0;padding: 2.875rem 2rem;}
+.dropdown-menu{max-height:360px;overflow-y:auto;}
+.dowExlName{display:none;}
+/*左侧菜单部分*/
+.left_aside{
+    width: 15.6%;
+    height: 100%;
+    background: url(../img/left_aside.png) no-repeat right top;
+    background-size: 100% 100%;
+    overflow: auto;
+}
+/*右侧内容部分*/
+.right_aside{
+    width: 84.4%;
+    height: 100%;
+    background: #EDEFF5;
+}
+
+/*左侧部分*/
+.logo{
+    color: #fff;
+    font-size: 1.19rem;
+    border-bottom: 2px solid #8FB5AD;
+    box-sizing: border-box;
+    padding: 0px 0.73rem;;
+}
+.logo p:first-child{margin-top: 0.63rem;}
+.logo p span{font-size: 1.56rem;}
+/*菜单*/
+.nav_tab{
+    font-size: 1.19rem;
+    margin-top: 1.15rem;
+}
+.nav_tab li{
+    transition: all 0.3s linear;
+}
+.nav_tab>li>a,.nav_tab .collapse a{
+    display: inline-block;
+    width: 100%;
+    height: 2.6rem;
+    line-height: 2.6rem;
+    color: #97B9B0;
+    text-decoration: none;
+    transition: all 0.3s linear;
+    text-align: left;
+}
+.nav_tab .collapse a{
+    font-size: 0.94rem;
+    height: 2.08rem;
+    line-height: 2.08rem;
+}
+.nav_tab .collapse a b{
+    display: inline-block;
+    height: 3px;
+    width: 3px;
+    border-radius: 50%;
+    background: #97b9b0;
+    margin-right: 3px;
+    margin-left: 5.1rem;
+    vertical-align: middle;
+}
+.nav_tab .active>a,.nav_tab li:active>a{background: #4e897e;}
+.nav_tab>li a:hover{background: rgba(78,137,126,0.5);}
+.nav_tab>.active>a,.nav_tab>li:active>a,.nav_tab a:hover{color: #fff;}
+.nav_tab .collapse a:active,.nav_tab .collapse a.active{color: #c6e036;}
+/*二级菜单选中*/
+.nav_tab>li>ul>li.active>a,.nav_tab>li>ul>li:active>a{
+    background: transparent;
+    color: #c6e036;
+}
+.nav_tab .property_services i,.nav_tab li i{
+    background: url(../img/property_services_a.png) no-repeat left center;
+    background-size: 1.35rem 1.35rem;
+    width: 1.35rem;
+    height: 1.35rem;
+    display: inline-block;
+    margin-right: 0.46rem;
+    margin-left: 3.75rem;
+    vertical-align: sub;
+    transition: all 0.3s linear;
+}
+.nav_tab .property_management i{background-image: url(../img/pro_management_a.png);}
+.nav_tab .household_management i{background-image: url(../img/household_m_a.png);}
+.nav_tab .access_control_system i{background-image: url(../img/access_control_a.png);}
+.nav_tab .access6_control_system i{background-image: url(../img/access_control_a.png);}
+.nav_tab .smart_home i{background-image: url(../img/smart-home_a.png);}
+.nav_tab .security_alarm i{background-image: url(../img/security_alarm_a.png);}
+.nav_tab .car_park_management i{background-image: url(../img/car_paking_a.png);}
+.nav_tab .automatic_meter_reading i{background-image: url(../img/auto_meter_a.png);}
+.nav_tab .broadcasting_system i{background-image: url(../img/broadcasting_a.png);}
+.nav_tab .energy_consumption_monitoring i{background-image: url(../img/energy_con_mon_a.png);}
+.nav_tab .community_mall i{background-image: url(../img/community_mall_a.png);}
+.nav_tab .community_management i{background-image: url(../img/community_management_a.png);}
+.nav_tab .expert_system i{background-image: url(../img/expert_system_a.png);}
+.nav_tab .ucot_cloud i{background-image: url(../img/cloud_a.png);}
+
+
+.nav_tab .property_services.active i,.nav_tab .property_services:hover i{background-image: url(../img/property_services.png);}
+.nav_tab .property_management.active i,.nav_tab .property_management:hover i{background-image: url(../img/pro_management.png);}
+.nav_tab .household_management.active i,.nav_tab .household_management:hover i{background-image: url(../img/household_m.png);}
+.nav_tab .access_control_system.active i,.nav_tab .access_control_system:hover i{background-image: url(../img/access_control.png);}
+.nav_tab .smart_home.active i,.nav_tab .smart_home:hover i{background-image: url(../img/smart-home.png);}
+.nav_tab .security_alarm.active i,.nav_tab .security_alarm:hover i{background-image: url(../img/security_alarm.png);}
+.nav_tab .car_park_management.active i,.nav_tab .car_park_management:hover i{background-image: url(../img/car_paking.png);}
+.nav_tab .automatic_meter_reading.active i,.nav_tab .automatic_meter_reading:hover i{background-image: url(../img/auto_meter.png);}
+.nav_tab .broadcasting_system.active i,.nav_tab .broadcasting_system:hover i{background-image: url(../img/broadcasting.png);}
+.nav_tab .energy_consumption_monitoring.active i,.nav_tab .energy_consumption_monitoring:hover i{background-image: url(../img/energy_con_mon.png);}
+.nav_tab .community_mall.active i,.nav_tab .community_mall:hover i{background-image: url(../img/community_mall.png);}
+.nav_tab .community_management.active i,.nav_tab .community_management:hover i{background-image: url(../img/community_management.png);}
+.nav_tab .expert_system.active i,.nav_tab .expert_system:hover i{background-image: url(../img/expert_system.png);}
+.nav_tab .ucot_cloud.active i,.nav_tab .ucot_cloud:hover i{background-image: url(../img/cloud.png);}
+
+/*右侧部分*/
+.logout{
+    font-size: 0.94rem;
+    color: #666;
+    box-sizing: border-box;
+    background: #fff;
+}
+.logout button{
+    font-size: 0.94rem;
+    background: transparent;
+    color: #6699cc;
+    padding: 0.312rem 0.625rem;
+}
+
+/*物业服务 建议投诉*/
+.right_aside .tablist_third{
+    height: 3.65rem;
+    background: #fff;
+}
+.tablist_third .nav{
+    font-size: 1.15rem;
+    background: #fff;
+    border-bottom: 1px solid #ccc;
+}
+.tablist_third li{
+    float: left;
+    min-width: 9rem;
+    height: 3.65rem;
+    line-height: 2.65rem;
+    text-align: center;
+    transition: all 0.3s linear;
+}
+.tablist_third .nav li:first-child{ margin-left: 0.2rem;}
+.tablist_third li a{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    color: #adadad;
+    border-bottom: 5px solid transparent;
+    background: #fff;
+    transition: all 0.3s linear;
+}
+.tablist_third li.active a,.tablist_third li:active a{
+    color: #669999;
+    border-color: #57a291;
+    background: #fff;
+}
+.tablist_third li a:hover{
+    color: #669999;
+    background: #fff;
+}
+/*四级菜单*/
+.right_aside .tablist_forth{
+    min-width: 10.5rem;
+    display: inline-block;
+    margin: 0.8rem 0 0.625rem;
+}
+.tablist_forth .nav{
+    margin-left: 0.67rem;
+}
+.tablist_forth li{
+    min-width: 3.33rem;
+    float: left;
+    margin: 0 0.83rem;
+}
+.tablist_forth li a{
+    width: 100%;
+    text-align: center;
+    font-size: 0.93rem;
+    display: inline-block;
+    height: 100%;
+    color: #adadad;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s linear;
+    padding-left: 0.16rem;
+    padding-right: 0.16rem;
+    padding-bottom: 0.21rem;
+}
+.tablist_forth li.active a,.tablist_forth li:active a{
+    color: #669999;
+    border-color: #57a291;
+}
+.tablist_forth li a:hover{
+    color: #669999;
+}
+.tab-content .adBtns button:last-child{margin-right: 0;}
+/*小区*/
+button i,.adding i{
+    display: inline-block;
+    width: 0.94rem;
+    height: 0.94rem;
+    background: url(../img/icon_add.png) no-repeat center center;
+    background-size: 0.94rem 0.94rem;
+    margin-right: 0.26rem;
+    vertical-align: text-bottom;
+}
+.lead_in i{background-image: url(../img/icon_lead_in.png);}
+.lead_out i{background-image: url(../img/icon_lead_out.png);}
+.shelves i{background-image: url(../img/icon_shelves.png);}
+.setting i{background-image: url(../img/icon_setting.png);}
+.pushing i{background-image: url(../img/icon_pushing.png);}
+.batch_delete i{background-image: url(../img/icon_delete.png);}
+.btn_search i{background-image: url(../img/icon_search.png);}
+.print i{background-image: url(../img/icon_print.png);}
+.refresh_auto i{background-image: url(../img/icon_refresh.png);}
+.modify i{background-image: url(../img/icon_modify.png);}
+.backup i{background-image: url(../img/icon_backups.png);}
+.synchronous_data i{background-image: url(../img/icon-synchronous.png);}
+.upload_pic i{background-image: url(../img/icon-upload_.png);}
+
+.reactive_input{
+    width: 11.46rem;
+    height: 1.875rem;
+    font-size: 0.83rem;
+}
+.reactive_height{
+    height: 1.875rem;
+    line-height: 1.875rem;
+    font-size: 0.73rem;
+    padding: 0 0.3rem;
+    box-sizing: border-box;
+}
+
+#tab_community .lead_in i{background-image: url(../img/icon_lead_in.png);}
+#tab_community .lead_out i{background-image: url(../img/icon_lead_out.png);}
+
+.right_aside>.tab-content>.tab-pane>.tab-content>.tab-pane>.tab-content{margin: 0 0.625rem;}
+.tab-content .btns{margin: 1.04rem 0 0.52rem;font-size: 0.83rem;}
+.tab-content .btns>span{
+    height: 1.875rem;
+    display: inline-block;
+    line-height: 1.875rem;
+}
+.tab-content .btns button{
+    min-width: 6.77rem;
+    height: 1.875rem;
+    margin-right: 0.52rem;
+    font-size: 0.73rem;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-radius: 0.26rem;
+}
+.tab-content .btns.pull-right button:last-child{margin-right: 0;}
+.tab-content .btns .header-title{
+    font-size: 1.15rem;
+    margin-left: 2.1rem;
+    height: 1.875rem;
+    display: inline-block;
+}
+.tab-content .btns.pull-right button:last-child{
+    margin-right: 0;
+}
+.tab-content .tables{
+    font-size: 0.83rem;
+}
+.tab-content .table_scroll{
+    overflow-x: scroll;
+    width: 100%;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+.tab-content .table thead tr{
+    background: #539A91;
+    color: #fff;
+    text-align: center;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    height: 2.6rem;
+}
+.tab-content .table thead th{
+    text-align: center;
+    border-bottom: 0;
+}
+.tab-content .table tr th:first-child{border-top-left-radius: 5px;}
+.tab-content .table tr th:last-child{border-top-right-radius: 5px;}
+.tab-content .table tbody{
+    border: 1px solid #ccc;
+}
+.tab-content .table tbody tr{
+    color: #666;
+    height: 3.2rem;
+}
+.tab-content .table tr td{
+    padding: 0;
+    border: 0;
+    vertical-align: middle;
+    text-align: center;
+}
+.tab-content .table tr td button{
+    color: #6699cc;
+    border: 0;
+    background: transparent;
+}
+.tab-content .table tr td i{
+    border: 1px solid #666;
+    margin: 0 4px;
+}
+/*分页*/
+.tables .pages{
+    font-size: 0.83rem;
+    color: #666;
+}
+.tables .pages .pagination{
+    margin: 0 0 0 1.46rem;
+}
+.tables .pages .pagination span,.tables .pages .pagination a{
+    display: inline-block;
+    width: 1.82rem;
+    height: 1.67rem;
+    line-height: 1.67rem;
+    border: 1px solid #9B9B9C;
+    text-align: center;
+    color: #666;
+}
+.tables .pages .pagination span{
+    background: #F19149;
+    color: #fff;
+}
+.tables .pages .pagination a:hover{
+    color: #fff;
+    background: #F2B990;
+}
+.tables .pages .pagination-detail{
+    display: inline-block;
+    height: 32px;
+    line-height: 32px;
+}
+.tables .pages .pagination-detail .pageNum_now{
+    margin-right: 0.5rem;
+}
+/*模态框*/
+.modal .modal-dialog{
+    margin-top: 11.54rem;
+    width: 38.28rem;
+}
+.modal .modal-body{padding: 1.875rem 2rem;}
+.modal .modal-dialog .modal-header{
+    padding: 0 0.52rem;
+    height: 3.125rem;
+    line-height: 3.125rem;
+    background: #58A093;
+    color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-size: 1.15rem;
+}
+.modal .modal-header button{
+    display: inline-block;
+    height: 100%;
+    font-size: 1.15rem;
+    color: #Fff;
+    margin: 0;
+    opacity: 1;
+}
+.modal .modal-header h4{
+    height: 100%;
+    line-height: 3.125rem;
+    vertical-align: middle;
+    font-size: 1.15rem;
+}
+/*input placeholder默认颜色*/
+input::-webkit-input-placeholder,textarea::-webkit-input-placeholder { /* WebKit browsers*/
+    color: #929292;
+    font-size:0.83rem;
+}
+input:-moz-placeholder,textarea:-moz-placeholder{  /* Mozilla Firefox 4 to 18*/
+    color: #929292;
+    font-size:0.83rem;
+}
+input::-moz-placeholder,textarea::-moz-placeholder{  /* Mozilla Firefox 19+*/
+    color: #929292;
+    font-size:0.83rem;
+}
+input:-ms-input-placeholder,textarea:-ms-input-placeholder {
+    /* Internet Explorer 10+*/
+    color:  #929292;
+    font-size: 0.83rem;
+}
+.modal-body ul{font-size: 0.73rem;}
+.modal-body textarea{line-height:1rem;}
+.modal-body .large li,.modal-body .large-half li,.b_contain .large-half li{margin-bottom: 1.875rem;}
+.modal-body .large li:last-child,.modal-body .large-half li:last-child{margin-bottom: 0;}
+.modal-body .large span,.modal-body .large-half span{
+    display: inline-block;
+    text-align: right;
+    width: 3.2rem;
+    vertical-align: top;
+    height: 1.56rem;
+    line-height: 1.56rem;
+    margin-right: 0.52rem;
+}
+#tab_housekeepingFirm .modal-body .large span{width: 3.83rem;}
+#tab_housekeepingFirm .modal-body .large input{width: 29.23rem;}
+.modal-body .large li>input,.modal-body .large-half .totalLength>input{
+    display: inline-block;
+    height: 1.56rem;
+    line-height: 1.56rem;
+    padding: 1px 0.3rem;
+    width: 29.86rem;
+    border-radius: 0.26rem;
+    border: 1px solid #ccc;
+}
+.modal-body .large li>.calendar{
+    width: 10.83rem;
+    padding-right: 1.8rem;
+}
+.modal-body .large li>textarea{
+    height: 9.9rem;
+    padding: 1px 0.3rem;
+    width: 29.86rem;
+    border-radius: 0.26rem;
+}
+.modal-body .large dl,.modal-body .large-half dl{display: inline-block;}
+.modal-body .large dt input,.modal-body .large-half dt input{
+    padding: 0.3rem 0.88rem;
+    border-radius: 5px;
+    border: 1px solid #666;
+    height: 1.67rem;
+    line-height: 1.67rem;
+    box-sizing: border-box;
+    width: 26.875rem;
+}
+.modal-body .large dt textarea{
+    padding: 0.3rem 0.88rem;
+    border-radius: 5px;
+    border: 1px solid #666;
+    box-sizing: border-box;
+    width: 26.875rem;
+    margin-bottom: -0.42rem;
+}
+.modal-body .large dd,.modal-body .large-half dd{
+    color: #E92626;
+    font-size: 0.76rem;
+    margin-top: 0.42rem;
+}
+.ad_pic_format i{
+    display: inline-block;
+    height: 0.94rem;
+    width: 0.93rem;
+    background: url(../img/icon_prompt.png) no-repeat center center;
+    background-size: 0.94rem 0.94rem;
+    margin-right: 0.25rem;
+    vertical-align: top;
+}
+.modal-body .large-half li{
+    width: 50%;
+    float: left;
+}
+.modal-body .large-half li select,.modal-body .large-half li input{
+    display: inline-block;
+    height: 1.56rem;
+    line-height: 1.56rem;
+    padding: 1px 0.3rem;
+    width: 11.42rem;
+    border-radius: 0.26rem;
+    border: 1px solid #ccc;
+}
+.modal-body .large-half>li>a, .modal-body .in-right li>a,.modal-body .addFamMem{
+    color: #69c;
+    display: inline-block;
+    height: 1.56rem;
+    line-height: 1.56rem;
+    padding: 1px 0.2rem;
+}
+.modal-body .large-half .totalLength textarea{
+    height: 4.68rem;
+    padding: 1px 0.3rem;
+    width: 29.86rem;
+    border-radius: 0.26rem;
+    border: 1px solid #ccc;
+}
+.modal-body .large-half dt input{
+    width: 10.41rem;
+}
+.modal .modal-footer{
+    border: 0;
+    margin: 0;
+    padding: 0 1.51rem 1.09rem;
+}
+.modal .modal-footer button{
+    width: 44%;
+    box-sizing: border-box;
+    margin: 0 3%;
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 2.2rem;
+    font-size: 0.94rem;
+}
+.modal .modal-footer .btn+.btn{margin-left: 2%;}
+
+/*提示框*/
+.alert{
+    display: none;
+    position: fixed;
+    right: 0.52rem;
+    bottom: 0;
+    min-width: 17rem;
+    min-height: 5rem;
+}
+/*提示框动画*/
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+@-webkit-keyframes tada {
+    from {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+    10%, 20% {
+        -webkit-transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+        transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+    }
+    30%, 50%, 70%, 90% {
+        -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+        transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+    }
+    40%, 60%, 80% {
+        -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+        transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+    }
+    to {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}
+@keyframes tada {
+    from {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+    10%, 20% {
+        -webkit-transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+        transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+    }
+    30%, 50%, 70%, 90% {
+        -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+        transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+    }
+    40%, 60%, 80% {
+        -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+        transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+    }
+    to {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}
+.tada {
+    -webkit-animation-name: tada;
+    animation-name: tada;
+}
+/*门禁系统*/
+.tab-content .table tr td a{
+    margin: 0 0.21rem;
+    padding: 0.42rem 0;
+    text-decoration: none;
+    color: #6699cc;
+    cursor: pointer;
+}
+.tab-content .table tr td>span{
+    margin: 0 0.21rem;
+    padding: 0.42rem 0;
+    color: #999;
+}
+.tab-content .table tr td a:hover{
+    color: #9BBCDE;
+}
+.tab-pane .updateHouse{
+    margin-top: 3rem;
+    border: 1px solid #ccc;
+    min-height: 39rem;
+}
+.updateHouse .updateHouse_title{
+    margin-bottom: 1.56rem;
+    height: 2.6rem;
+    line-height: 2.6rem;
+    background: #539A91;
+    color: #fff;
+    font-size: 0.94rem;
+    font-weight: 600;
+}
+.updateHouse .foot{
+    margin-top: 2.6rem;
+}
+.updateHouse .foot button{
+    width: 8.77rem;
+    height: 1.875rem;
+    font-size: 0.94rem;
+    margin: 0 1.67rem;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.modal .modal-dialog .modal-body h4{
+    margin: 2rem 0;
+}
+/*室内机*/
+#homecontroller-modal-add .modal-body .large span{
+    width: 8.2rem;
+}
+#homecontroller-modal-add .modal-body .large dt input{
+    width: 23.875rem;
+}
+#homecontroller_select_search_condition>div{
+    display: inline-block;
+}
+.form-horizontal .form-group{
+    margin: 0.45rem 0;
+}
+.modal-body input[type=file]{display: inline-block;}
+
+.modal .file {
+    height: 1.56rem;
+    line-height: 1.56rem;
+}
+.file label {
+    display: inline-block;
+    width: 6.1rem;
+    margin: 0;
+    vertical-align: bottom;
+    font-weight: normal;
+}
+.defined_file {
+    display: inline-block;
+    z-index: 2;
+    width: 300px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 0;  /*应对子元素为 inline-block 引起的外边距*/
+}
+.defined_file input[type="text"] {
+    display: inline-block;
+    vertical-align: middle;
+    padding-right: 14px;
+    padding-left: 14px;
+    width: 220px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.defined_file button {
+    display: inline-block;
+    vertical-align: middle;
+    width: 80px;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    background: #59a294;
+}
+.file input[type="file"] {
+    position: relative;
+    top: -40px;
+    left: 3.1rem;
+    z-index: 3;
+    opacity: 0;
+    width: 300px;
+    height: 40px;
+    line-height: 40px;
+    cursor: pointer;
+}
+
+.modal .form-inline>span{
+    display: inline-block;
+    text-align: right;
+    width: 9.2rem;
+}
+.modal .form-inline .alertRed{
+    padding-left: 9.2rem;
+    color: #e92525;
+    text-align: left;
+    width: 100%;
+}
+.tab-content .table tr td .setLabel{
+    margin-left: 0.6rem;
+    display: inline-block;
+    width: 0.94rem;
+    height: 0.94rem;
+    background: url(../img/icon_setInput.png) no-repeat center center;
+    padding: 0;
+    background-size: 0.94rem 0.94rem;
+    vertical-align: middle;
+}
+.tablist_forth_content{
+    margin-top: -0.87rem;
+}
+.modal .ad_push_file{
+    margin-bottom: 0.52rem;
+}
+.addAdModal .modal-body .large li span{
+    text-align: left;
+}
+.ad_uploader{
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    cursor: default;
+    padding: 0;
+    margin: 0.625rem 0rem;
+    -moz-box-shadow: 0rem 0rem 0.26rem #ddd;
+    -webkit-box-shadow: 0rem 0rem 0.26rem #ddd;
+    box-shadow: 0rem 0rem 0.26rem #ddd;
+    -moz-border-radius: 0.26rem;
+    -webkit-border-radius: 0.26rem;
+    border-radius: 0.26rem;
+}
+.ad_filename{
+    float: left;
+    display: inline-block;
+    outline: 0 none;
+    height: 1.72rem;
+    width: 18.55rem;
+    margin: 0;
+    padding: 0.42rem 0.625rem;
+    overflow: hidden;
+    font: 9pt/100% Arial, Helvetica, sans-serif;
+    color: #777;
+    white-space: nowrap;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid #666;
+}
+.blue .uploadbutton{
+    color: #fff;
+    text-shadow: 0.05rem 0.05rem 0rem #09365f;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#59A294), color-stop(100%,#59A294));
+    border-color: #6699CC;
+    height: 1.72rem;
+}
+.ad_uploader input[type=file]{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 23.4rem;
+    bottom: 0;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    height: 1.67rem;
+    cursor: pointer;
+    opacity: 0;
+}
+#advertising_push_all_machine_div3 select{
+    height: 1.875rem;
+}
+#advertising_push_all_machine_div3 input[type=text]{
+    width: 8.42rem;
+}
+
+.inner .pageTips{
+    display: inline-block;
+    margin-right: 0.78rem;
+    font-size: 0.83rem;
+    color: #666;
+}
+.inner{
+    height: 1.67rem;
+    line-height: 1.67rem;
+}
+.inner .pagination{
+    margin: 0;
+    vertical-align: middle;
+}
+.inner .pagination li a{
+    display: inline-block;
+    background: #fff;
+    color: #666;
+    width: 1.82rem;
+    height: 1.67rem;
+    line-height: 1.67rem;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #e2e2e2;
+    text-align: center;
+}
+.inner .pagination a:hover,.inner .pagination li a:focus,.inner .pagination .page-active a{
+    color: #fff;
+    background: #E8B998;
+    text-decoration: none;
+}
+.inner .pagination li a:focus,.inner .pagination .page-active a{
+    background: #f19149;
+}
+
+#homePhonebookForm,#doorPhonebookBox{max-height:500px;overflow-y: auto;}
+#doorPhonebookModal thead,#homePhonebookForm thead{border: 1px solid #ccc;}
+#doorPhonebookModal thead tr,#homePhonebookForm thead tr{
+    background: #fff;
+    color: #666;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+#doorPhonebookModal tr,#homePhonebookForm tr{height:2rem !important;}
+#doorPhonebookModal td,#homePhonebookForm td{padding:0 5px !important;}
+#homeContrast,#doorContrast{margin-top: -25px;}
+/*门口机*/
+#menuDoorMachine .dropdown-menu{max-height:360px;overflow: auto;}
+/*物业服务*/
+.areaZone{
+    display: inline-block;
+    color: #999;
+    margin-right: 0.5rem;
+}
+.areaZone>a{
+    display: inline-block;
+    vertical-align: middle;
+    text-decoration: none;
+    text-align: center;
+    color: #333;
+    width: 9.375rem;
+    background: #fff;
+    border: 1px solid #e2e2e2;
+    border-radius: 0.26rem;
+    position: relative;
+    z-index: 2;
+}
+.areaZone a .caret{
+    border-top: 0.32rem solid #999;
+    border-right: 0.32rem solid transparent;
+    border-left: 0.32rem solid transparent;
+    position: absolute;
+    right: 0.72rem;
+    top: 0.76rem;
+}
+.areaZoneList-menu{
+    min-width: 6.15rem;
+    border: 1px solid #999;
+    padding: 0;
+    left: -1px;
+    font-size: 0.9rem;
+}
+.areaZoneList-menu>li{
+    height: 1.56rem;
+    text-align: center;
+}
+
+.areaZoneList-menu>li:hover a{
+    color: #fff;
+    background: #59a294;
+    cursor: pointer;
+}
+.addComplaints .modal-body .large-half span{
+    width: 7.2rem;
+    height: 1.98rem;
+    line-height: 1.98rem;
+}
+.addComplaints .modal-body .large-half input{
+    width: 8rem;
+    height: 1.98rem;
+    padding: 1px 0.3rem;
+}
+.addComplaints .modal-body .large-half i,.addComplaints .modal-body .title i{
+    margin-right: 3px;
+    color: #e92525;
+}
+.addComplaints .modal-body .large-half li{
+    margin: 0.2rem 0;
+}
+.addComplaints .modal-body .large-half select{
+    width: 8rem;
+    text-align: center;
+    padding-left: 0.3rem;
+    height: 1.98rem;
+}
+.addComplaints .modal-body .large-half textarea {
+    width: 24.45rem;
+    display: inline-block;
+    margin-bottom: -0.9rem;
+    padding: 2px 0.3rem;
+}
+.modal-body .large-half .totalLength{
+    width: 100%;
+}
+.addComplaints .modal .file{
+    margin: 0;
+    height: 1.98rem;
+    line-height: 1.98rem;
+}
+.modal .modal-body{
+    min-height: 6rem;
+    word-wrap: break-word;
+}
+.addComplaints .file label{
+    width: 6.2rem;
+    text-align: right;
+    height: 1.98rem;
+    line-height: 1.98rem;
+}
+.addComplaints .file .defined_file{
+    width: 24.45rem;
+    text-align: left;
+    height: 1.98rem;
+    line-height: 1.98rem;
+}
+.addComplaints .file button{
+    height: 1.98rem;
+    line-height: 1.98rem;
+    width: 5.2rem;
+}
+.addComplaints .file .fileHide{
+    left: -0.5rem;
+    top: -1.98rem;
+}
+.addComplaints .defined_file input[type="text"]{
+    width: 11.7rem;
+}
+.addComplaints .file input[type="file"]{
+    width: 17rem;
+}
+.addComplaints .modal-body p{
+    color: #e92525;
+}
+.addComplaints .modal-body .title{
+    font-size: 0.94rem;
+    width: 7.2rem;
+    height: 1.98rem;
+    line-height: 1.98rem;
+    display: inline-block;
+    text-align: right;
+    font-weight: 600;
+}
+.addComplaints .modal-body ul{
+    margin-bottom: 0.52rem;
+}
+.modal .modal-body .calendar,.calendar{
+    background: url(../img/icon_calendar_blue.png) no-repeat 9.375rem center #fff;
+    background-size: 1.04rem 1.04rem;
+    border: 1px solid #e2e2e2;
+}
+/*费用管理*/
+.unitAds,.doorplateAds{display: none;}
+#chargingSetForm .btns{
+    margin:0 0 1.875rem;
+    font-size: inherit;
+}
+body .dropdown-menu>.active>a{
+    color: #fff;
+    background: #59a294;
+}
+.modal-body .large-half .dropdown-toggle span{
+    width:100%;
+    text-align:center;
+}
+.modal-body .large-half .dropdown-menu li{
+    width:100%;
+    margin-bottom:0;
+}
+.modal-body .btns{
+    font-size:inherit;
+    margin:0;
+}
+.modal-body .text-right{
+    padding-right: 0.26rem;
+}
+.modal-body .dropdown,.modal-body .dropdown .dropdown-menu{
+    width: 11.42rem;
+}
+.modal-body .dropdown a.dropdown-toggle{width:100%;}
+.modalAddress{height:1.56rem;overflow:visible;}
+.modal-body .modalAddress .dropdown,.modal-body .modalAddress .dropdown .dropdown-menu{
+    width: 9.4rem;
+    float: left;
+}
+.modal-body .modalAddress .areaZone>a{width:100%;}
+.modal-body .areaZone>a{
+    width:100%;
+    height: 1.56rem;
+    line-height: 1.56rem;
+    border-color: #ccc;
+}
+.modal-body .areaZone a .caret{top: 0.62rem;}
+.modal-body .dropdown-menu{
+    width:100%;
+    z-index:3;
+    border-color: #ccc;
+}
+.disabled{
+    overflow:hidden;
+}
+.disabled span{
+    color:#ccc;
+}
+.disabled .caret{
+    border-top: 0.32rem solid #ccc !important;
+}
+#addPro li{width:100%;margin-bottom:10px;}
+#tab_bill_set input{
+    width: 13.54rem;
+    height: 1.56rem;
+    line-height: 1.56rem;
+    padding: 1px 0.3rem;
+    color: #333;
+    background-position: 11.67rem center;
+    border-radius: 0.26rem;
+    background-size: 1.04rem 1.04rem;
+    border: 1px solid #e2e2e2;
+}
+#feeItem input{vertical-align: middle;}
+/*滞纳金*/
+.lateFees{position:relative;}
+#tab_bill_set .lateFees input{padding-right:30px;}
+#tab_bill_set .lateFees .perCent{width:20px;position:absolute;right:10px;margin-right:0;}
+/*手动推送*/
+.billListModal ul.list{width:100%;}
+.billListModal ul.list{overflow:hidden;}
+.billListModal ul li{
+    list-style:none;
+    width:100%;
+    margin-bottom: 0rem;
+    height: 1.56rem;
+    line-height: 1.56rem;
+}
+.billListModal ul li.half{width:50%;float: left;}
+.billListModal li.title{
+    text-align: left;
+    color: #333;
+    font-weight: 700;
+    font-size: 0.83rem;
+}
+.billListModal ul li span.left{padding-left:0.96rem;}
+.billListModal .pay{border-top:1px solid #ccc;border-bottom:1px solid #ccc;}
+
+.billListModal li span{display: inline-block;float:left;text-align:center;}
+.billListModal .cost-detail span,.billListModal .pay span,.billListModal .paytotal span{width:16.666%;height:100%;}
+.billListModal .cost-detail li span.left{text-align:left;}
+.billListModal li span.left{text-align:left;}
+.billListModal li span.right{float:right;}
+.billListModal .paytotal{font-size:18px;color:#f19149;font-weight: 700;}
+.billListModal .remark span.title{
+    color: #333;
+    font-weight: 700;
+    font-size: 0.83rem;
+    text-align:left
+}
+.billListModal .remark .textarea{height: 4.68rem;}
+.billListModal .remark textarea{
+    height: 4.68rem;
+    padding: 1px 0.3rem;
+    width: 100%;
+    border-radius: 0.26rem;
+    border: 1px solid #ccc;
+}
+.billListModal .selectbox .lis{width:100%;}
+.billListModal .selectbox li{height: inherit;overflow: visible;;}
+.billListModal .selectbox .menuBox{padding-top:1.875rem;}
+.billListModal .selectbox .manualPushType{margin-bottom:2.12rem;}
+#manualPushType span.title{width:5.2rem}
+#manualPushType .manualPushType,#manualPushType .calendar{width:10.4rem}
+#manualPushType .calendar { background-position: 8.79rem center; }
+/*用户缴费*/
+#payForm .payul li{padding-left: 30%;padding-right:25%;height: 1.56rem;line-height: 1.56rem;}
+#payForm .payul li span.title{width:6rem;display: inline-block}
+#payForm .payul li input{width:6rem;height: 1.4rem;border-radius: 0.26rem;border: 1px solid #ccc;}
+#payForm .totalpay{font-size:22px;color:#f19149;}
+#payAccomplishForm ul{padding-left: 20%;padding-right:20%;overflow: hidden;}
+#payAccomplishForm ul li{width:50%;float:left}
+#payAccomplishForm ul p{height:2.6rem;line-height:2.6rem;font-size:18px;font-weight: 700;}
+#payAccomplishForm .looseChange{font-size:22px;color:#f19149;}
+/*社区公告*/
+.noticeImgUp .portraitUp{width:29.86rem;height: 1.56rem;line-height: 1.56rem;display: inline-block;}
+.modal-body .noticeImgUp .upfileName{width:24rem;}
+.noticeImgUp .portraitUp label{width:4.86rem;position:relative;overflow: hidden;border-radius:0.26rem;}
+.noticeImgUp .portraitUp strong{width:100%;height:100%;position:absolute;top: 0;left:0;}
+#noticeForm .chargingAds{width:11.42rem;}
+#noticeForm .dropdown-toggle{width:100%;}
+/*家政服务*/
+#serveList .detailText{
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    vertical-align: middle;
+}
+#serveList .feedbackBut[forbidden="yes"]{color:#ccc;}
+#pushList input{vertical-align: middle;}
+/*部门设置*/
+.tablist_third span.menu_title{
+    display: inline-block;
+    float: left;
+    width: 9rem;
+    height: 100%;
+    line-height: 2.65rem;
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 1.15rem;
+    color: #666;
+    background: #fff;
+    transition: all 0.3s linear;
+}
+#departmentName .dropdown-toggle{height: 1.56rem;}
+#departmentName{width:100%;}
+#departmentName .nameInput{width: 15.42rem;}
+#addDepartmentModal .responsibility{height: 3rem;}
+body .blue{cursor:pointer;color: #6699cc !important;}
+.position{width:100%;}
+.position ul{width:100%;padding-left: 3.825rem;}
+.modal-body .position ul li{width:100%;margin-bottom:10px;}
+/*tooltips*/
+.tooltips{position: relative;overflow: visible;}
+.tooltips:hover .popover{display: block;}
+.popover{min-width:260px;left:calc(50% - 130px);bottom:90%;top:inherit;color:#666;text-align:center;}
+.ellipsis{max-width:360px;overflow: hidden;text-overflow:ellipsis;word-wrap: break-word;white-space:nowrap;position: relative;cursor:pointer;display:inline-block;}
+/*员工管理*/
+.modal .personnelForm .large-half li{margin-bottom: 0.875rem;}
+.modal .personnelForm .large-half li.menuBox li{margin-bottom: 0;}
+.modal .personnelForm .margin-bottom0{margin-bottom:0 !important;}
+.modal .personnelForm .totalLength input{width:11.42rem;}
+.modal .personnelForm li span{width: 3.8rem;}
+.modal .personnelForm .uploading{width:100%;padding-left: 3.8rem;}
+.modal .personnelForm .uploading img{width:150px;min-height:150px;height:auto;margin:0 auto 10px;display: block;border:1px solid #f7f3f3;}
+.modal .personnelForm .uploading label{width:52px;overflow:hidden;cursor: pointer;text-align: center;}
+.modal .personnelForm .uploading .upfileName{width:9.42rem;border-top-left-radius:0;border-bottom-left-radius:0;}
+.modal .personnelForm .uploading label input{display: none;}
+.modal  .personnelForm .uploading .btn{padding:5px 12px;border-top-right-radius:0;border-bottom-right-radius:0;}
+.modal .personnelForm li input.lengthSize{width:28.5rem;}
+.modal .personnelForm .portraitUp{clear:both;}
+#upload_personnel label{height:40px;line-height:40px;}
+#upload_personnel button{border-top-left-radius:0;border-bottom-left-radius:0;}
+.modal input{vertical-align:middle !important;}
+/*添加任务详情*/
+.task_detail .modal-body ul{
+    margin-bottom: 1rem;
+}
+.task_detail .modal-body ul li span{
+    width: initial;
+    text-align: left;
+}
+.task_detail .modal-body ul li div,.task_detail .modal-body ul li a{
+    display: inline-block;
+    height: 1.67rem;
+    line-height: 1.67rem;
+}
+.task_detail .modal-body li a b{
+    display: inline-block;
+    width: 0.94rem;
+    height: 0.94rem;
+    background: url(../img/icon_search_view.png) no-repeat center center;
+    background-size: 0.94rem 0.94rem;
+    margin-right: 0.26rem;
+    vertical-align: text-top;
+}
+.task_detail .modal-body .title{
+    font-size: 0.94rem;
+    height: 1.98rem;
+    line-height: 1.98rem;
+    display: inline-block;
+    font-weight: 600;
+}
+.task_detail .modal-body .large-half input{
+    border: 0;
+    height: 1.67rem;
+    line-height: 1.67rem;
+}
+/*拒单任务*/
+.reject_detail .modal-body .large li{
+    margin-bottom: 1.3rem;
+}
+.reject_detail .modal-body .large span{
+    text-align: left;
+    width: 5.7rem;
+}
+.reject_detail .modal-body .large input{
+    width: 27rem;
+    height: 1.67rem;
+    padding-left: 0.5rem;
+}
+.reject_detail .modal-body .large select{
+    width: 12rem;
+    height: 1.67rem;
+    line-height: 1.67rem;
+    padding-left: 0.25rem;
+}
+.reject_detail .modal-body .large textarea{
+    width: 27rem;
+    padding: 2px 0.5rem;
+}
+.reject_detail .file label,.addDoorMac .file label{
+    width: 3.7rem;
+    text-align: right;
+    height: 1.56rem;
+    line-height: 1.56rem;
+    padding-right: 0.52rem;
+}
+.reject_detail .defined_file,.addDoorMac .defined_file{
+    width: 29.86rem;
+    box-sizing: border-box;
+    height: 1.56rem;
+    line-height: 1.56rem;
+}
+.reject_detail .defined_file input[type="text"],.addDoorMac .defined_file input[type="text"]{
+    margin-right: 0.62rem;
+    width: 24.04rem;
+    height: 1.56rem;
+}
+.reject_detail .defined_file button,.addDoorMac .defined_file button{
+    width: 5.2rem;
+    height: 1.56rem;
+    line-height: 1.56rem;
+}
+.reject_detail .file input[type="file"],.addDoorMac .file input[type="file"]{
+    width: 29.86rem;
+    left: 3.9rem;
+    top: -1.54rem;
+    height: 1.6rem;
+}
+.status_details{
+    background: #e92525;
+    color: #fff;
+    border-radius: 50%;
+    display: inline-block;
+    width: 1.05rem;
+    height: 1.05rem;
+    line-height: 1.05rem;
+    font-size: 0.8rem;
+    text-align: center;
+    position: absolute;
+    top: 0.65rem;
+    right: 1.24rem;
+    z-index: 2;
+}
+.red{
+    color: #e92525;
+}
+/*待办任务*/
+.second_label>.btns>span{
+    height: 1.875rem;
+    line-height: 1.875rem;
+    display: inline-block;
+}
+.toDo_box .toDo_header_title{
+    height: 2.6rem;
+    line-height: 2.6rem;
+    color: #fff;
+    background: #59a294;
+    text-align: center;
+}
+.toDo_box .toDo_body{
+    border: 1px solid #ccc;
+    text-align: center;
+    min-height: 33rem;
+}
+.toDo_box .toDo_body>p{
+    margin: 1.04rem 0 2.6rem;
+}
+.toDo_box .toDo_body>ul{
+    min-width: 23rem;
+    margin: 0 auto;
+    display: inline-block;
+}
+.toDo_box .toDo_body>ul li{
+    text-align: left;
+    margin-bottom: 1.3rem;
+}
+.toDo_box .toDo_body>ul li:first-child{
+    margin-bottom: 1rem;
+}
+.toDo_box .toDo_body>ul li>span{
+    display: inline-block;
+    width: 4.6rem;
+}
+.toDo_box .toDo_body>ul li:first-child>span{
+    width: 6rem;
+}
+.toDo_box .toDo_body>ul li>.clear_detail{
+    vertical-align: top;
+}
+.toDo_box .toDo_body>ul li>input,
+.toDo_box .toDo_body>ul li>select{
+    width: 18.22rem;
+    height: 1.98rem;
+    padding: 1px 5px;
+}
+.toDo_box .toDo_body>ul li>textarea{
+    width: 18.22rem;
+    height: 5.21rem;
+    padding: 2px 5px;
+}
+.toDo_box .toDo_body>ul li>.file{
+    height: 1.98rem;
+}
+.toDo_box .toDo_body>ul li>.file>label{
+    width: 4.6rem;
+    height: 1.98rem;
+    line-height: 1.98rem;
+    vertical-align: sub;
+}
+.toDo_box .toDo_body>ul li>.file>.defined_file{
+    width: 18.22rem;
+}
+.toDo_box .toDo_body>ul li>.file>input[type='file']{
+    left: 4.8rem;
+    width: 18.22rem;
+}
+.toDo_box .toDo_body>ul li>.file>.defined_file>input{
+    width: 13rem;
+    height: 1.98rem;
+    box-sizing: border-box;
+}
+.toDo_box .toDo_body>ul li>.file>.defined_file>button{
+    width: 5.2rem;
+    height: 1.98rem;
+    line-height: 1.98rem;
+    box-sizing: border-box;
+}
+.toDo_box .resend_task .toDo_body>ul{
+    margin: 3.6rem 2rem 0;
+    vertical-align: top;
+}
+.second_label,.next_step_info{
+    display: none;
+}
+.cost_item_involved_zone,.cost_item_already_selected{
+    margin-left: -5.21rem;
+}
+.dropdown .dropdown-menu{
+    padding: 0;
+    width: 9.375rem;
+    border: 1px solid #e2e2e2;
+    font-size: 0.73rem;
+    top: 1.7rem;
+    z-index: 3;
+}
+.table-condensed thead tr:last-child{
+    color: #59a294;
+}
+.modal .modal-body .mBody_title{
+    font-size: 1.15rem;
+    margin: 2.92rem 0;
+}
+/*欠费通知图片*/
+.arrearage_notice_main_page_img{
+    width: 1.35rem;
+    height: 1.35rem;
+}
+/*门禁系统》远程升级*/
+.APP_upgrade_package{
+    text-align: center;
+    height: 3.65rem;
+    font-size: 1.15rem;
+    background: #fff;
+    border-bottom: 1px solid #ccc;
+}
+.APP_upgrade_package h2{
+    color: #666;
+    height: 3.65rem;
+    line-height: 2.65rem;
+    font-size: 1.25rem;
+}
+.tab-department{
+    margin: 0 0.625rem;
+}
+/*起始到截止日期*/
+.startToEnd{
+    display: inline-block;
+    border: 1px solid #e2e2e2;
+    background: url(../img/icon_calendar_blue.png) no-repeat 0.625rem center #fff;
+    background-size: 1.25rem 1.25rem;
+    color: #929292;
+    width: 15.625rem;
+    padding-left: 2.5rem;
+    border-radius: 0.26rem;
+    margin-left: 0.52rem;
+}
+.btns .startToEnd .calendar{
+    border: 0;
+    text-align: center;
+    background-image: none;
+    width: 5.2rem;
+    color: #333;
+    margin: 0;
+}
+/*添加修改部分*/
+.btn-warning,.btn-primary,.btn-default{
+    background: #f19149;
+    border: 0;
+    border-radius: 0.26rem;
+}
+.btn-warning:hover{background: #f1a46b;}
+.btn-warning:active,.btn-warning.active{background: #d88243;}
+
+.btn-primary{background: #69c;}
+.btn-primary:hover{background: #77b3ef;}
+.btn-primary:active,.btn-primary.active{background: #5983ae;}
+
+.btn-default{background: #999;color: #fff;}
+.btn-default:hover{background: #bebebe;color: #fff;}
+.btn-default:active,.btn-default.active{background: #7a7a7a;color: #fff;}
+.totalLengthinput{
+    width: 24.48rem;;
+}
+.modal-body .in-right{
+    margin-left: 4.2rem;
+    margin-bottom: 1.875rem;
+    width: 29.86rem;
+}
+.modal-body .in-right li{margin-bottom: 1.04rem;}
+.modal-body .in-right li>input,.modal-body .in-right li .pull-right>input{
+    width: 7.18rem;
+    height: 1.56rem;
+    line-height: 1.56rem;
+    display: inline-block;
+    margin: 0 0.41rem;
+    text-align: center;
+    border-radius: 0.26rem;
+    border: 1px solid #ccc;
+}
+
+.modal-body .in-right li .pull-right>input{
+    margin-right: 0;
+}
+
+/*右侧下拉列表右边距为0*/
+.pull-right .areaZone{margin-right: 0;}
+.hauling>a,.haulingList-menu{width: 9.375rem;}
+
+.housePush .modal-dialog{width: 58.33rem;}
+.housePush .pagingImplement{margin-top:1rem;}
+.housePush .modal-body{padding: 1.3rem 2.6rem;}
+.housePush .table{margin-bottom: 0;}
+.housePush .table tr{border-bottom: 1px solid #ccc;}
+.housePush .table thead tr{
+    font-size: 0.83rem;
+    background: #fff;
+    color: #333;
+}
+.housePush .table tbody{
+    font-size: 0.73rem;
+    border: 0;
+}
+.housePush .table input[type="checkbox"]{
+    width: 0.94rem;
+    height: 0.94rem;
+    vertical-align: text-bottom;
+    margin-top: 0;
+}
+.housePush .modal-footer{
+    padding: 0 11.93rem 1.09rem;
+}
+
+.totalLength>.areaZone{
+    width: 5.2rem;
+    margin-right: 0.765rem;
+}
+.totalLength>.areaZone:last-child{
+    margin-right: 0;
+}
+.totalLength>.areaZone>a{
+    width: 5.2rem;
+    height: 1.56rem;
+    line-height: 1.56rem;
+    border-color: #ccc;
+}
+.totalLength>.areaZone>a>span,.b_contain li>.areaZone>a>span{
+    display: inline;
+}
+.totalLength>.areaZone>a>.caret,.b_contain li>.areaZone>a>.caret{
+    right: 0.52rem;
+    top: 0.62rem;
+}
+.totalLength .dropdown-menu{
+    top: 1.38rem;
+    width: 5.2rem;
+    min-width: 5.2rem;
+}
+.modal-body .dropdown-menu li,.b_contain .large-half .areaZone .dropdown-menu li{
+    width: 100%;
+    margin-bottom: 0;
+}
+.modal-body .large-half .calendar{
+    background-position: 9.79rem center;
+    border-color: #ccc;
+}
+.modal-body .addPro{
+    margin-top: 0.52rem;
+    margin-bottom: 0;
+}
+.modal-body .addPro li .title{
+    display: inline-block;
+    width: 12.28rem;
+    text-align: center;
+    margin-right: 2.8rem;
+}
+.modal-body .addPro li .title:last-child{
+    margin-right: 0;
+}
+.modal-body .addPro li>input{
+    width: 10.4rem;
+    margin: 0 0.94rem;
+}
+.modal-body .addPro li>.icon{
+    display: inline-block;
+    width: 1.67rem;
+    height: 1.56rem;
+    line-height: 1.56rem;
+    margin: 0 0.5rem;
+    vertical-align: middle;
+    background: url(../img/icon_link.png) no-repeat center center;
+    background-size: 1.67rem 0.625rem;
+}
+.modal-body .addPro li>.delete{
+    padding-left: 0;
+    margin-left: -0.4rem;
+}
+/*费项管理》账单设置*/
+.b_set>h4{
+    height: 2.6rem;
+    line-height: 2.6rem;
+    background: #539A91;
+    color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-size: 0.83rem;
+}
+.b_set .box{
+    border: 1px solid #ccc;
+    border-top: 0;
+    background: #fff;
+}
+.b_set .box .b_contain{
+    width: 20rem;
+    color: #333;
+    margin: 0 auto 3.125rem;
+    padding-top: 3rem;
+}
+.b_set .b_contain .large-half{font-size: 0.73rem;}
+.b_set .b_contain .large-half li>span{
+    display: inline-block;
+    width: 5.5rem;
+    height: 1.56rem;
+    line-height: 1.56rem;
+    text-align: left;
+    margin-right: 0.5rem;
+}
+.b_set .b_contain .large-half .title>span{
+    text-align: left;
+    color: #333;
+    font-weight: 700;
+    font-size: 0.83rem;
+}
+.b_contain .large-half .areaZone>a{
+    width: 13.54rem;
+    height: 1.56rem;
+    line-height: 1.56rem;
+    border-radius: 0.26rem;
+}
+.b_contain .large-half .areaZone .dropdown-menu{
+    top: 1.45rem;
+    width: 13.54rem;
+    left: 0;
+    z-index: 3;
+}
+.b_contain .large-half li>.calendar{
+    width: 13.54rem;
+    height: 1.56rem;
+    line-height: 1.56rem;
+    padding: 1px 0.3rem;
+    color: #333;
+    background-position: 11.67rem center;
+    border-radius: 0.26rem;
+}
+.b_set .b_footer{margin-bottom: 2rem;}
+.b_set .box .b_footer button{
+    width: 15.10rem;
+    height: 2.19rem;
+    line-height: 2.19rem;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin: 0 1.12rem;
+}
+.modal .modal-body .timer{
+    margin: 1.875rem auto;
+    font-size: 0.73rem;
+}
+.modal .modal-body .timer>input{
+    width: 5.2rem;
+    height: 1.56rem;
+    line-height: 1.56rem;
+    text-align: center;
+    padding: 1px 0.3rem;
+    border-radius: 0.26rem;
+    border: 1px solid #ccc;
+    margin: 0 0.52rem;
+}
+.modal .modal-body .timer>input[type='text']{
+    width: 6.25rem;
+}
+.modal .modal-body .timer>.later{
+    margin-right: 2.4rem;
+}
+.btns .calendar{
+    width: 10.42rem;
+    text-align: center;
+    background-position: 8.75rem center;
+    border-radius: 0.26rem;
+    margin-right: 0.5rem;
+}
+.tab-pane .table tr input[type='checkbox']{
+    width: 1.04rem;
+    height: 1.04rem;
+    margin: 0;
+    vertical-align: sub;
+}
+.modal-body .lateFee li>input{width: 16.67rem;}
+.modal-body .lateFee .areaZone>a{
+    width: 13.02rem;
+    border-color: #ccc;
+    height: 1.56rem;
+    line-height: 1.56rem;
+}
+.modal-body .lateFee .areaZone>.dropdown-menu{
+    width: 13.02rem;
+}
+.modal-body .lateFee li>.calendar{
+    width: 13.02rem;
+    background-position: 11.35rem center;
+}
+.modal .modal-body .latePay{margin: 3rem 0;}
+.modal .modal-body .latePay>span{color: #69c;}
+.modal .oweIn>p{margin-bottom: 0;}
+.modal .oweIn>p>span{
+    display: inline-block;
+    width: 6.77rem;
+    height: 1.04rem;
+    line-height: 1.04rem;
+}
+/*住户管理*/
+.modal .modal-body>.title,.modal .modal-body form>.title{
+    font-size: 0.83rem;
+    font-weight: bold;
+    margin: 0 0 1rem;
+    display: block;
+}
+.houseTitle .totalLength>.areaZone{margin-right: 1rem;}
+.ownerInfo-m .modal-body .large-half>li,
+.tenantInfo-m .modal-body .large-half>li{margin-bottom: 0.78rem;}
+.modal-body .large-half .addNumber,.modal-body .large-half .addNumber_tenant{padding-left: 4rem;}
+.modal-body .large-half .addNumber>input,
+.modal-body .large-half .addNumber_tenant>input{width: 11.42rem;}
+.modal-body .large-half .totalLength>.name{
+    width: 4.2rem;
+    text-align: center;
+}
+.modal-body .large-half .totalLength>.identify{
+    width: 9rem;
+    text-align: center;
+}
+.modal-body .large-half .totalLength>select{
+    width: 3rem;
+}
+.modal-body .large-half .totalLength>.relation{
+    width: 4.68rem;
+    text-align: center;
+}
+.modal-body .large-half .totalLength>.phoneNum{
+    width: 5.6rem;
+    text-align: center;
+}
+/*.modal-body .houseInformation{width: 33rem;}*/
+.modal-body .houseInformation>li{width: 33%;}
+.modal-body .houseInformation>li>input,.modal-body .houseInformation>li>select{width: 6.2rem;}
+.modal-body .houseInformation>.totalLength>textarea{
+    height: 4rem;
+    width: 27.9rem;
+}
+.modal-body .ofTheTime>.totalLength>textarea{width: 36.1rem;}
+.ownerInfo-m .modal-body .addPro{margin: 0 11rem;}
+.tenantInfo-m .modal-body .addPro{margin: 0 5.2rem;}
+.ownerInfo-m .modal-footer,.tenantInfo-m .modal-footer{text-align: center;}
+.ownerInfo-m .modal-footer>button{
+    width: 15.9rem;
+    margin: 0 0.62rem;
+}
+.tenantInfo-m .modal-footer>button{
+    width: 14.6rem;
+    margin: 0 1.32rem;
+}
+.btns select,.btns input{
+    border: 1px solid #e2e2e2;
+    border-radius: 0.26rem;
+}
+.btns .areaZone{margin-right: 0.62rem;}
+.btns.pull-right .areaZone{margin-right: 0;}
+/*.familyMembers{display: none;}*/
+.reject_detail .file .APP_upPackage{
+    width: 3.825rem;
+    text-align: right;
+    padding-right: 0.625rem;
+}
+/*建议投诉修改部分*/
+.modal-body .change-center{padding: 2.8rem 0;}
+.modal .modal-body .change-center li{margin-bottom: 0;}
+.modal-body .large-half .totalLength .rejectE{
+    height: 4.68rem;
+    margin-bottom: -0.6rem;
+}
+.modal-body .totalLength .fileExplain{
+    margin-left: 3.87rem;
+    margin-top: 0.4rem;
+}
+.modal-body .totalLength .fileExplain>span{
+    color: #81b587;
+    display: inline;
+    margin-right: 0;
+    vertical-align: baseline;
+}
+.addDoorMac .modal-body .totalLength .fileExplain>span{
+    color: #999;
+}
+.modal-body .large-half li .imgBox{
+    width: 7.82rem;
+    height: 7.82rem;
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 0.937rem 0;
+}
+.modal-body .large-half li .imgBox>i{
+    display: inline-block;
+    width: 100%;
+    height: 5.946rem;
+    background: url(../img/icon-indoor-register.png) no-repeat center center;
+    background-size: 10.1rem 5.946rem;
+    cursor: pointer;
+}
+.modal .modal-body>.text{
+    text-indent: 1.8rem;
+    text-align: justify;
+}
+.modal-body .detail-img,.modal-body .deal-img{
+    width: 16.67rem;
+    height: 12.5rem;
+    background: url(../img/icon-detail.jpg) no-repeat center center;
+    margin: 3.9rem auto 2.3rem;
+}
+.modal-body .deal-img{
+    width: 13rem;
+    height: 7.8125rem;
+    margin: 1.8rem auto;
+}
+.modal .modThree button{
+    width: 9.9rem;
+    margin: 0 0.62rem;
+}
+.modal-body .large-half li>b{
+    font-weight: normal;
+    line-height: 1.56rem;
+}
+.modal-body .large-half .starEvaluation,.modal-body .large-half .hireMgCycle{display: inline-block;}
+.modal-body .large-half .starEvaluation>input[type='radio']{
+    width: 0.73rem;
+    height: 0.73rem;
+}
+.modal-body .large-half .hireMgCycle>input[type='radio']{
+    width: 0.83rem;
+    height: 0.83rem;
+}
+.modal-body .large-half .starEvaluation>label{
+    vertical-align: middle;
+    width: 0.78rem;
+    height: 0.73rem;
+    margin-bottom: 0;
+    cursor: pointer;
+    margin-right: 1rem;
+    background: url(../img/star.png) no-repeat left center;
+}
+.modal-body .large-half .hireMgCycle>label{
+    vertical-align: middle;
+    width: 1.78rem;
+    height: 0.73rem;
+    margin-bottom: 0;
+    cursor: pointer;
+    margin-right: 0.7rem;
+}
+.modal-body .large-half .starEvaluation>.star2{width: 1.92rem;}
+.modal-body .large-half .starEvaluation>.star3{width: 2.97rem;}
+.modal-body .large-half .starEvaluation>.star4{width: 4.07rem;}
+.modal-body .large-half .starEvaluation>.star5{width: 5.16rem;}
+
+.return_done_detail .modal-body .large-half span{width: 4.5rem;}
+.return_done_detail .modal-body .large-half .inBlock{
+    width: 28.56rem;
+    text-align: justify;
+    line-height: 1.56rem;
+}
+.return_done_detail .modal-body .large-half .detail-img{
+    margin: 1.8rem auto;
+}
+#tab_suggest_complaints .modal-body .large-half .totalLength textarea{
+    height: 4.68rem;
+}
+
+/*物业管理*/
+.tab-content .btns button.pull-right{
+    margin-left: 0.52rem;
+    margin-right: 0;
+}
+.modal-body .photoDetail li{margin-bottom: 1rem;}
+.modal-body .photoDetail span{
+    width: 3.8rem;
+}
+.modal-body .large-half li.text-right{padding-right: 0.3rem;}
+.addEquipMg .dropdown .dropdown-menu{width: 100%;}
+.equipMg_detail .modal-body .large-half li{margin-bottom: 0;}
+.equipMg_detail .modal-body .large-half li p{text-align: justify;}
+.equipMg_detail .modal-body ol li .large-half{
+    margin: -1rem 0 0.93rem;
+}
+/*排班*/
+#scheduling_time input,#insPlan_time input{width:5rem;}
+#schedulingSetList span.status{color:#ff0000;font-size: 16px;}
+#schedulingMenu .calendar{height: 1.875rem;}
+.visible{overflow: visible;}
+#employeesMenu li[pitchon="ison"]{background: #e8e6e6;}
+#emploModal{width:initial;margin-left:0.625rem;}
+.modal .pitch-on{
+    width: 11.42rem;
+    min-height: 1.56rem;
+    overflow: visible;
+    line-height: 1.56rem;
+    display: inline-block;
+    vertical-align: middle;
+    text-decoration: none;
+    text-align: center;
+    color: #333;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 0.26rem;
+    position: relative;
+    z-index: 2;
+}
+.modal .pitch-on span{
+    width: initial;
+    height: 1rem;
+    line-height: 1rem;
+    padding:0 5px;
+    margin-top:2px;
+    margin-left:5px;
+    margin-right:0px;
+    vertical-align: middle;
+    float:left;
+    display: inline-block;
+    background:#e8e6e6;
+    position: relative;
+}
+.pitch-on span i,#scheduleBox .schweek i,#scheduleBox .schmonth i,#inquireTimeBox .schweek i,#insPlanBox .schweek i,#insPlanBox .schmonth i,#insPlanTimeBox .schweek i{
+    width:10px;
+    height:10px;
+    line-height: 10px;
+    text-align: center;
+    vertical-align: middle;
+    display: inline-block;
+    border-radius: 100%;
+    background: #e92525;
+    color:#ffffff;
+    font-size: 10px;
+    font-weight: lighter;
+    font-style: normal;
+    top:-10px;
+    right:-5px;
+    position: absolute;
+    cursor: pointer;
+    z-index:10;
+}
+.tab-content .monthbox .schmonth i{
+    top:3px;
+    right:-15px;
+}
+#dateButBox,#insDateButBox{overflow: hidden;display: none;}
+#scheduleBox .date,#scheduleBox .weekbox,#monthbox .monthbox,#insPlanBox .date,#insPlanBox .weekbox,#insMonthbox .monthbox{display: none;}
+#scheduleBox .title,#inquireBox .title,#insPlanBox .title,#insInquireBox .title{width:100%;height: 40px;text-align: center;line-height: 40px;border-top-left-radius: 10px;border-top-right-radius: 10px;background: #57a291;color:#ffffff;font-size: 14px;font-weight: bold;}
+#scheduleBox .weekbox,.monthbox,#insPlanBox .weekbox{padding:20px;border-left:1px solid #C5C6C8;border-right:1px solid #C5C6C8;border-bottom:1px solid #C5C6C8;background:#ffffff;position: relative;}
+#scheduleBox .weekbox table,.monthbox table,#insPlanBox .weekbox table{width:100%;vertical-align: middle;border-collapse:collapse;}
+#scheduleBox .weekbox th,.monthbox th,#insPlanBox .weekbox th{height: 30px;text-align: center}
+#scheduleBox .weekbox td,#insPlanBox .weekbox td{height: 30px;text-align: center;border:1px solid #CDD6D4;background:#D2F0E8;}
+#scheduleBox .weekbox tr th:first-child,#scheduleBox .weekbox tr td:first-child,#insPlanBox .weekbox tr th:first-child,#insPlanBox .weekbox tr td:first-child{width:110px;}
+.schweek{position: absolute;background: #59A294;color:#ffffff;text-align: center;border-right:1px solid #fff;}
+.monthbox td{height:120px;text-align: center;border:1px solid #CDD6D4;background:#EDEFF5;color:#ffffff;position: relative;}
+.monthbox td.targetmonth{background:#D2F0E8;cursor: pointer;}
+.monthbox .datetime{position:absolute;top:0;left:0;display: inline-block;padding: 10px;}
+.monthbox td.schmonth{background: #59A294 !important;}
+#scheduleBox .schmonth,#insPlanBox .schmonth{position: relative;}
+#tab_scheduling_inquire .btns{min-height:1.875rem;}
+#inquiretitBox .date,#insInquiretitBox .date{width:360px;height:100%;margin: auto;}
+#inquiretitBox .date span,#insInquiretitBox .date span{display: inline-block;}
+#inquiretitBox .date .arrowsleft,#insInquiretitBox .date .arrowsleft{
+    border-top: 0.32rem solid transparent;
+    border-bottom: 0.32rem solid transparent;
+    border-right: 0.32rem solid #fff;
+    border-left: 0.32rem solid transparent;
+    cursor: pointer;
+}
+#inquiretitBox .date .arrowsright,#insInquiretitBox .date .arrowsright{
+    border-top: 0.32rem solid transparent;
+    border-bottom: 0.32rem solid transparent;
+    border-right: 0.32rem solid transparent;
+    border-left: 0.32rem solid #fff;
+    cursor: pointer;
+}
+#inquiretitBox .date .content,#insInquiretitBox .date .content{width: 4.6rem;text-align: center;}
+.timerShaftBox table{border-collapse:collapse;}
+.tab-content table tbody.timerShaftBox tr td{width:45px;position: relative;text-align: center;vertical-align: sub;border:1px solid #CDD6D4;}
+#modifyInquireSchModal .modal-dialog,#modifyInsPlanModal .modal-dialog{min-width:1150px !important;}
+#inquireTimeBox,#insPlanTimeBox,#modifyInquireSchForm table,#modifyInsPlanForm table{width:1080px;position: relative;}
+.timerShaftBox tr:first-child,.timerShaftBox tr:first-child td{height:25px !important;line-height: 25px;}
+.timerShaftBox tr:last-child,.timerShaftBox tr:last-child td{height:180px !important;}
+#inquireTimeBox .schweek{font-size:12px;text-align: left;padding: 30px 10px;}
+#modInqBut{font-size: 14px;height:22px;line-height:22px;margin: 0;padding: 0;display: inline-block;}
+#showInqDepPerForm,#showInsPlanForm{overflow: hidden;}
+#showInqDepPerForm div,#showInsPlanForm div{width:200px;height:40px;float: left;overflow: hidden}
+#showInqDepPerForm div span,#showInsPlanForm div span{widtn:100%;height:50%;display:inline-block;}
+/*巡检*/
+#timeInsPlanModal .modal-footer {
+    padding: 0 1.93rem 1.09rem;
+}
+#timeInsPlanModal .modal-body {
+    padding: 4rem 2.6rem;
+}
+#timeInsPlanModal .modal-body {
+    padding: 4rem 2.6rem;
+    min-height: 0;
+    overflow: hidden;
+}
+#timeInsPlanModal .modal-content{max-width:32rem}
+#insNameForm li span{width:4.2rem;}
+#insNameForm li input,#insNameForm li .dropdown{width: 11.42rem;}
+#insNameForm li textarea,#insNameForm li div.route{width: 29rem;}
+#insNameForm li span.routeRedact{text-align:left;}
+#insNameForm .route{width:initial;height: initial;overflow: hidden;display: inline-block;}
+#routeRedactForm,#previewContent{max-height:500px;overflow:auto;}
+#routeRedactForm .input_minc{width:28rem;}
+#routeRedactForm .routeBox,#previewContent .routeBox{border-bottom:1px solid #999999;}
+#routeRedactForm .routeBox li,#previewContent .routeBox li{overflow:hidden;margin-bottom:20px;}
+#routeRedactForm li.but span,#previewContent li.but span{width:initial;margin-right:8px;color:#cccccc;float: right;}
+#routeRedactForm .routeBox span[type="text"],#previewContent .routeBox span[type="text"]{width:inherit;display:none;}
+li.but .edit,li.but .delete,li.but .add,li.but .code{display:none;}
+#routeRedactForm .input_cssj,#routeRedactForm .input_njsx{width: 6rem;text-align: center;}
+#routeRedactForm .routeBox .units{width:initial;margin-left:0.52rem;margin-right:0;}
+#routeRedactForm .routeBox .input_dianw{text-align: left;}
+#insPlanTime{height: 1.875rem;}
+#insPlan_time em{font-style: normal;font-weight: bold;}
+#backParticulars,#insPT{display:none;}
+#tab_ins_particulars .btns input{margin-right:0;}
+#tab_ins_particulars input[disabled="disabled"]{background-color: rgb(235, 235, 228);}
+#qrcode canvas{
+    margin: auto;
+    display: block;
+}
+/*智能家居*/
+#equDetailsForm li{margin-bottom: 1rem;}
+#equDetailsForm li span{width: initial;}
+#equDetailsForm li span:first-child{margin-right:2.52rem}
+/*系统管理*/
+.sys_info .box,.info6_push .box{height: 37.5rem;}
+.sys_info .box .sys_contain{padding-top: 5rem;}
+.sys_info .sys_contain .large-half li>span{width: 3.8rem;}
+.sys_info .sys_contain .large-half .title>span{width: 7.8rem;}
+.sys_info .sys_contain .large-half li>input,
+.sys_info .sys_contain .large-half li>b{
+    display: inline-block;
+    width: 13.54rem;
+    height: 1.56rem;
+    line-height: 1.56rem;
+    padding: 1px 0.3rem;
+    color: #333;
+    border-radius: 0.26rem;
+    text-align: center;
+    border: 1px solid #e2e2e2;
+}
+.sys_info .sys_contain .large-half li>b{
+    display: inline-block;
+    text-align: left;
+    font-weight: normal;
+    border: 0;
+}
+#tab_system_infor .sys_info .sys_contain .large-half li>input,
+#tab_system_infor .sys_info .box .b_footer{
+    display: none;
+}
+#tab_change_pwd .sys_contain li>input{display: inline-block;}
+#tab_change_pwd .sys_info .b_footer{display: block;}
+#tab_change_pwd .sys_info .large-half li>b{
+    display: none;
+    position: absolute;
+    color: #e92525;
+    margin-left: 1rem;
+}
+
+.sys_info .box .changePwdLabel{
+    padding: 5rem 0 0;
+    font-size: 0.73rem;
+}
+.sys_info .box .changePwdLabel li{
+    display: inline-block;
+    width: 10.9rem;
+}
+.sys_info .box .changePwdLabel li dt{
+    border: 3px solid #ccc;
+    width: 104%;
+    margin-bottom: -16px;
+}
+.sys_info .box .changePwdLabel .active dt{border-color: #f19149;}
+.sys_info .box .changePwdLabel li dl .word{
+    background: #ccc;
+    color: #fff;
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    border-radius: 50%;
+    text-align: center;
+}
+.sys_info .box .changePwdLabel .active dl .word{background: #f19149;}
+.sys_info .box .changePwdLabel li dl dd:last-child{
+    color: #666;
+    margin-top: 0.416rem;
+    font-weight: bold;
+}
+.sys_info .box .changePwdLabel .active dl dd:last-child{color: #f19149;}
+.modal-body .large-half .dates{
+    display: inline-block;
+    width: 29.86rem;
+}
+.modal-body .large-half .dates>span{
+    margin-right: 0.2rem;
+    margin-left: 0.15rem;
+    display: inline;
+}
+.modal-body .large-half .dates>input{
+    width: 6rem;
+    text-align: center;
+}
+.modal-body .large-half .dates>.dropdown{
+    width: 6.75rem;
+    margin-right: 0.5rem;
+}
+.modal-body .large-half .dates>.dropdown .dropdown-menu{
+    width: 100%;
+}
+.modal-body .large-half .dateSet{display: none;}
+.modal-body .totalLength>.operationSystem{width: 29.86rem;}
+.modal-body .totalLength>.operationSystem>ul{width: 100%;}
+.sys_info .box .data_restore{width: 24.5rem;}
+.sys_info .data_restore .file{position: relative;}
+.sys_info .data_restore .file>label{
+    width: 4rem;
+    height: 1.56rem;
+    line-height: 1.56rem;
+    text-align: left;
+    margin-right: 0.5rem;
+    color: #333;
+}
+.sys_info .data_restore .file>.defined_file{
+    width: 18.75rem;
+    height: 1.56rem;
+    line-height: 1.56rem;
+}
+.sys_info .data_restore .file>.defined_file>input{
+    display: inline-block;
+    width: 13.54rem;
+    height: 1.56rem;
+    line-height: 1.56rem;
+    padding: 1px 0.3rem;
+    color: #333;
+    border-radius: 0.26rem;
+    text-align: center;
+    border: 1px solid #e2e2e2;
+}
+.sys_info .data_restore .file>.defined_file>button{
+    height: 1.56rem;
+    line-height: 1.56rem;
+    width: 4.58rem;
+    margin-left: 0.5rem;
+}
+.sys_info .data_restore .file>input{
+    width: 18.75rem;
+    height: 1.56rem;
+    position: absolute;
+    top: 0;
+    left: 5.2rem;
+}
+.sys_info .data_restore .large-half li>span{width: 4rem;}
+.sys_info .data_restore .large-half li>textarea{
+    width: 18.75rem;
+    height: 4.69rem;
+    border-radius: 0.26rem;
+    border-color: #e2e2e2;
+    vertical-align: top;
+}
+.true{
+    display: inline-block;
+    width: 1.56rem;
+    height: 1.56rem;
+    background: url(../img/icon_ture.png) no-repeat left center;
+    background-size: 1.15rem 1.15rem;
+}
+/*门禁666*/
+.modal .modal-body li .installPosition{
+    display: inline-block;
+    width: 29.86rem;
+    margin-bottom: -1.04rem;
+}
+.addDoorMac .modal-body .installPosition>.areaZone{
+    width: 7.8rem;
+    margin-right: 2.6rem;
+    margin-bottom: 1.04rem;
+}
+.addDoorMac .modal-body .installPosition>.areaZone:nth-child(3),
+.addDoorMac .modal-body .installPosition>.areaZone:nth-child(6){
+    margin-right: 0;
+}
+.addDoorMac .modal-body .large-half>li{position: relative;}
+.addDoorMac .modal-body .large-half>li>b{
+    display: inline-block;
+    color: #999;
+    position: absolute;
+    left: 4rem;
+    top: 1.45rem;
+    font-size: 12px;
+}
+.addDoorMac .modal-body .large-half>li.text-right>b{
+   left: 5.5rem;
+}
+.addDoorMac .modal-body .large-half>li>b.operationTip{
+    top: 7.7rem;
+    color: #e92525;
+}
+.addDoorMac .modal-body .large-half>li>.ipLine{
+    display: inline-block;
+    width: 11.42rem;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+.addDoorMac .modal-body .large-half>li>.ipLine>input{
+    width: 2.4rem;
+    border: 0;
+    text-align: center;
+}
+.addDoorMac .modal-body .dropdown>.dropdown-menu{width: 100%;}
+/*社区管理*/
+.houseSet .modal-body .large-half .totalLength>input{width: 27.86rem;}
+.houseSet .modal-body .large-half input,.modifyRoom .modal-body .large-half input{text-align: center;}
+.houseSet .totalLength>.dropdown{width: 27.86rem;}
+.houseSet .totalLength>.dropdown>.dropdown-menu{width: 100%;}
+.houseSet .modal-body li .address{
+    display: inline-block;
+    width: 27.86rem;
+    margin-bottom: -1.04rem;
+}
+.houseSet .modal-body li .address>.dropdown{
+    width: 7.8rem;
+    margin-right: 2rem;
+    margin-bottom: 1.04rem;
+}
+.houseSet .modal-body li .address>.dropdown:nth-child(3){
+    margin-right: 0;
+}
+.houseSet .modal-body li .address>.dropdown>.dropdown-menu{
+    width: 100%;
+}
+.modifyRoom .modal-body .large-half>li:nth-child(even){text-align: right;}
+.b_set .box .introduce{
+    margin: 0 auto 1rem;
+    width: 50rem;
+}
+.b_set .box .introduce>.comTitle,.b_set .box .introduce>.headerComTitle{
+    display: inline-block;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 1.5rem 0;
+}
+.b_set .box .introduce>.headerComTitle{
+    border: 1px solid #e2e2e2;
+    border-radius: 0.26rem;
+    display: none;
+}
+.b_set .box .introduce .comDetail>.textContent,.b_set .box .introduce .comDetail>.textDetail{
+    display: block;
+    width: 100%;
+    text-align: justify;
+    text-indent: 1.67rem;
+    margin-bottom: 1.2rem;
+}
+.b_set .box .introduce .comDetail>.textContent{
+    height: 7rem;
+    display: none;
+}
+.b_set .box .introduce .showPic>.zonePic{
+    width: 100%;
+    height: 15.6rem;
+    background: url(../img/image_house.png) no-repeat center center;
+    background-size: auto;
+}
+.b_set .box .introduce .showPic>span{
+    margin: 0.6rem 3rem 0.6rem 0;
+    display: inline-block;
+}
+#tab_communityPro .btns .uploadImg{
+    width: 6.77rem;
+    height: 1.875rem;
+    position: absolute;
+    opacity: 0;
+}
+#tab_communityPro .btns>.determine{
+   display: none;
+}
+.tab-content .btns .pull-right button{
+    margin-right: 0;
+}
+.addDoorMac .modal-body ul li input[type='checkbox']{
+    width: 14px;
+    height: 14px;
+    margin: 0 0.36rem;
+}
+.modal .modal-body li .right_box{
+    display: inline-block;
+    width: 29.86rem;
+}
+.modal .modal-body li .macType input[type='checkbox']{
+    height: 1.56rem;
+}
+.modal .large-half .macType a.pull-right{
+    color: #69c;
+    display: inline-block;
+    height: 1.56rem;
+    line-height: 1.56rem;
+    padding: 1px 0.2rem;
+    margin: 0 5px;
+}
+.modal .large-half .macType span.pull-right{
+    color: #999;
+    text-align: center;
+    margin: 0 5px;
+    width: 2.7rem;
+}
+.modal-body .large-half .right_box li{margin-bottom: 1.04rem;}
+.info6_push .b_contain .large-half{margin-top: 4.6rem;}
+.info6_push .b_contain .large-half .title>span{display: inline;}
+.info6_push .b_contain .large-half li>span{width: 4.7rem;}
+.modal .form-inline>.content{display: inline;}
+.indoorMacRe .modal-content .img{
+    width: 23.4rem;
+    height: 13.7rem;
+    background: url(../img/icon-indoor-register.png) no-repeat center center;
+    background-size: 23.4rem 13.7rem;
+}
+#tab_manual6_push .page2{display: none;}
+.b_set .b_contain .large-half li>input{text-align: center;}
+.b_set .b_contain .large-half li>.dates{display: inline-block;}
+.b_set .b_contain .large-half li>.dates .dropdown{width: 6.3rem;}
+.b_set .b_contain .large-half li>.dates .dropdown>.dropdown-toggle,
+.b_set .b_contain .large-half li>.dates .dropdown>.dropdown-menu{width: 100%;}
+.b_set .b_contain .large-half li>.dates>input{
+    border-radius: 0.26rem;
+    border: 1px solid #ccc;
+    padding: 1px 0.3rem;
+    text-align: center;
+    height: 1.56rem;
+    line-height: 1.56rem;
+    width: 5rem;
+    margin: 0 5px;
+}
+.b_set .b_contain .large-half li.month>.dates>input:first-child,
+.b_set .b_contain .large-half li.year>.dates>input:first-child{
+   margin-left: 0;
+}
+.b_set .b_contain .large-half li.dateSet{display: none;}
+
+
+
+.loading{
+    display: none;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+}
+.loading i{
+    position: fixed;
+    background: #333;
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+    z-index: 1;
+}
+.loading img{
+    position: relative;
+    z-index: 3;
+    display: block;
+    margin: 1px auto;
+}
+
+

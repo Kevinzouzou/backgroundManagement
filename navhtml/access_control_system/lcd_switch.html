@@ -1,0 +1,51 @@
+<!--LCD开关设置-->
+<div class="tables" id="lcd_switch_tableList1" style="margin-top: 3.85rem;">
+    <table class="table table-striped">
+        <thead id="lcd_switchInfo-head2">
+        <tr>
+            <th>名称</th>
+            <th>操作</th>
+            <th>时间</th>
+        </tr>
+        </thead>
+        <tbody id="lcd_switchInfo-body">
+        </tbody>
+    </table>
+</div>
+<!--设置日期、时间-->
+<div class="modal fade" id="lcdswitch-modal-set" tabindex="-1" role="dialog" aria-labelledby="addAdModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center" id="addAdModalLabel">设置</h4>
+            </div>
+            <div class="modal-body">
+                <div id="lcdswitch-model-body-div1">
+                    <div class="form-inline">
+                      <span style="font-size:1.04rem;">日期:&nbsp;&nbsp;&nbsp;</span>
+                        <select name="lcdswitch_week" id="lcdswitch_week" class="form-control">
+                            <option value="1">星期一</option>
+                            <option value="2">星期二</option>
+                            <option value="3">星期三</option>
+                            <option value="4">星期四</option>
+                            <option value="5">星期五</option>
+                            <option value="6">星期六</option>
+                            <option value="7">星期天</option>
+                        </select>
+                    </div>
+                    <div class="form-inline" style="margin-top:0.52rem;">
+                        <span style="font-size: 1.04rem;">时间：</span>
+                        <input type="text" name="lcdswitch_time" id="lcdswitch_time" class="form-control" placeholder="格式如12:12:12"/>
+                        <input type="hidden" name="lcdswitch_status" id="lcdswitch_status"/>
+                    </div>
+                </div>
+            <div class="modal-footer text-center" style="margin-top: 0.52rem;">
+                <button type="button" class="btn btn-warning btn-lg to_add" onclick="lcdSwitchUpdateSet()">设置</button>
+                <button type="button" class="btn btn-default btn-lg to_reset" onclick="cancelLCDSwitchSet()">取消</button>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+

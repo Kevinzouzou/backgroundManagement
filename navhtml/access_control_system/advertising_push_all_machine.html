@@ -1,0 +1,200 @@
+<!--广告推送门口机-->
+<div class="tab-pane" id="advertising_push_all_machine_div1">
+    <div class="tables" id="advertising_push_all_machine_tableList1">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th><a href="#" onclick="selectAllAd()" style="color: white">全选</a></th>
+                <th>广告名称</th>
+                <th>广告类型</th>
+                <th>投放公司</th>
+                <th>版本号</th>
+                <th>广告状态</th>
+                <th>投放时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="advertising_push_all_machine_Info-body1"></tbody>
+        </table>
+    </div>
+    <!--分页插件-->
+    <div class="tab-pane" id="advertising_push_all_machine_div5">
+        <div class="tab-pane inner clearfix">
+            <div id="advertising_push_all_machineList-paging" class="pull-right pageList"></div>
+            <div id="advertising_push_all_machine_paging-tips" class="pull-right pageTips"></div>
+        </div><!--end homeList-paging-->
+    </div>
+</div>
+
+<!--添加广告-->
+<div class="modal fade reject_detail" id="addAdModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center" id="myModalLabel">添加广告</h4>
+            </div>
+            <div class="modal-body">
+                <form id="advertising_push_all_machine_upload_form" enctype="multipart/form-data">
+                    <ul class="list-unstyled clearfix large-half">
+                        <li class="totalLength">
+                            <span>投放公司</span>
+                            <input type="text" placeholder="请输入投放公司" name="ad.custormername"/>
+                        </li>
+                        <li class="totalLength">
+                            <span>版本号</span>
+                            <input type="text" placeholder="请输入版本号" name="ad.version"/>
+                        </li>
+                       <li class="totalLength">
+                            <div class="file">
+                                <label for="advertising_file">广告图片</label>
+                                <div class="defined_file">
+                                    <input type="text" name="advertising_text" id="advertising_text" value="未选择任何文件"/>
+                                    <button type="button" class="btn-primary">请选择</button>
+                                </div>
+                                <input type="file" name="upFile" class="fileHide" id="advertising_file"
+                                       onchange="document.getElementById('advertising_text').value = document.getElementById('advertising_file').value;"/>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ad_pic_format" style="margin-left: 3.5rem;color: red;"><i></i>文件仅限于png、mp3、mp4、jpg格式</div>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg to_add" onclick="addAdvertising()">添加</button>
+                <button type="button" class="btn btn-default btn-lg to_reset" onclick="rest_addAdvertising()">重置</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--删除门口机广告弹出框-->
+<div class="modal fade" id="delAd_all_Machine_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center" id="myDelModalLabel">提示</h4>
+            </div>
+            <div class="modal-body">
+                <div class="delAdModalTips">确定删除已选中的信息？</div>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg to_add" onclick="delAdallMachine()">删除</button>
+                <button type="button" class="btn btn-default btn-lg to_reset" onclick="cancel('delAd_all_Machine_Modal')">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--弹出框（删除广告）-->
+<div class="modal fade" id="delAd_all_Machine_single" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center" id="myDelModalLabel2">提示</h4>
+            </div>
+            <div class="modal-body">
+                <div class="delAdModalTips mBody_title text-center">确定删除已选中的信息？</div>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg to_add" onclick="deleteAdByBatch()">删除</button>
+                <button type="button" class="btn btn-default btn-lg to_reset" onclick="cancel('delAd_all_Machine_single')">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--弹出框（删除单个广告）-->
+<div class="modal fade" id="delAd_single_Machine" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center" id="myDelModalLabel3">提示</h4>
+            </div>
+            <div class="modal-body">
+                <div class="delAdModalTips mBody_title text-center">确定删除已选中的信息？</div>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg to_add" onclick="delAdBySingle()">删除</button>
+                <button type="button" class="btn btn-default btn-lg to_reset" onclick="cancel('delAd_single_Machine')">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--推送已选中的广告(原版UI)-->
+<div class="modal fade" id="leadOutModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center" id="myPushAdModalLabel">提示</h4>
+            </div>
+            <div class="modal-body">
+                <div class="delAdModalTips">是否推送已选中的信息？</div>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg to_add"
+                        data-toggle="modal" data-target="#leadOutModal" onclick="isPushAdallMachine2()">推送</button>
+                <button type="button" class="btn btn-default btn-lg to_reset" onclick="cancel('leadOutModal')">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--推送已选中的广告(老版本的)-->
+<div id="advertising_push_all_machine_div3">
+    <!--<h1>推送广告</h1>-->
+    <div class="btns">
+        <button type="button" class="btn btn-success text-center" onclick="selectAllMachine()">选择所有</button>
+        <button type="button" class="btn btn-primary pushing text-center" onclick="pushAdAllMachine()"><i></i>推&nbsp;送</button>
+    </div>
+    <div class="btns">
+        <span>操作类型：</span>
+        <select  name="operationType" id="adoperationType" class="reactive_height">
+            <option value="1">投放</option>
+        </select>
+        <span>播放时间：</span>
+        <input type="text" class="reactive_height" placeholder="填写播放时间" name="playtime" id="adplaytime"/>
+        <span>开始播放时间:</span>
+        <input type="text" class="calendar reactive_height" placeholder="选择时间" name="starttime" id="adstarttime" style="background-position: 6.75rem center;"/>
+        <span>结束播放时间:</span>
+        <input type="text" class="calendar reactive_height" placeholder="选择时间" name="endtime" id="adendtime" style="background-position: 6.75rem center;"/>
+        <span>机器类型：</span>
+        <select onclick="selectMachineType(this.value)" class="reactive_height">
+            <option value="">全部</option>
+            <option value="D">门口机</option>
+            <option value="W">围墙机</option>
+            <option value="C">中心机</option>
+        </select>
+    </div>
+
+
+    <div class="tab-pane" id="advertising_push_all_machine_div4">
+        <div class="tables" id="advertising_push_all_machine_tableList4">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>单元编号</th>
+                    <th>安装位置</th>
+                    <th>状态</th>
+                    <th>机器类型</th>
+                    <th>MAC地址</th>
+                </tr>
+                </thead>
+                <tbody id="advertising_push_all_machine_Info-body4"></tbody>
+            </table>
+        </div>
+        <!--分页插件-->
+        <div class="tab-pane" id="advertising_push_all_machine_div6">
+            <div class="tab-pane inner clearfix">
+                <div id="advertising_push_all_machineList-paging6" class="pull-right pageList"></div>
+                <div id="advertising_push_all_machine_paging-tips6" class="pull-right pageTips"></div>
+            </div><!--end homeList-paging-->
+        </div>
+    </div>
+</div>
+

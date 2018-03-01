@@ -1,0 +1,233 @@
+<!--系统设置-->
+<div class="tablist_third">
+    <ul class="nav clearfix">
+        <li class="system_infor active"><a href="#tab_system_infor" role="tab" data-toggle="tab">系统信息</a></li>
+        <li class="change_pwd"><a href="#tab_change_pwd" role="tab" data-toggle="tab">修改密码</a></li>
+        <li class="system_init"><a href="#tab_system_init" role="tab" data-toggle="tab">系统初始化</a></li>
+    </ul>
+</div>
+<div class="tab-content">
+    <!--系统信息-->
+    <div class="tab-pane active" id="tab_system_infor">
+        <div class="btns">
+            <button class='btn btn-primary modify text-center'><i></i>修改</button>
+        </div>
+        <div class="tables b_set sys_info">
+           <h4></h4>
+            <div class="box">
+                <div class="b_contain sys_contain">
+                    <ul class="list-unstyled large-half text-center">
+                        <li class="title text-left">
+                            <span>系统信息设置</span>
+                        </li>
+                        <li>
+                            <span>公司名称：</span>
+                            <input class="comName" type="text" ids="0" placeholder="请输入公司名称"/>
+                            <b class="comNameInfo" ids="0"></b>
+                        </li>
+                        <li>
+                            <span>公司电话：</span>
+                            <input class="comDel" type="text" placeholder="请输入公司电话"/>
+                            <b class="comDelInfo"></b>
+                        </li>
+                        <li>
+                            <span>公司邮箱：</span>
+                            <input class="comEmail" type="text" placeholder="请输入公司邮箱"/>
+                            <b class="comEmailInfo"></b>
+                        </li>
+                        <li>
+                            <span>公司地址：</span>
+                            <input class="comAddress" type="text" placeholder="请输入公司地址"/>
+                            <b class="comAddressInfo"></b>
+                        </li>
+                        <li>
+                            <span>软件版本：</span>
+                            <input class="softVersion" type="text" placeholder="请输入软件版本号"/>
+                            <b class="softVersionInfo"></b>
+                        </li>
+                        <li>
+                            <span>更新时间：</span>
+                            <input class="updateTime calendar" type="text"/>
+                            <b class="updateTimeInfo"></b>
+                        </li>
+                    </ul>
+                </div>
+                <div class="text-center b_footer">
+                    <button class="btn btn-warning btn-lg determine">确认</button>
+                    <button class="btn btn-default btn-lg cancel">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--修改密码-->
+    <div class="tab-pane" id="tab_change_pwd">
+        <div class="btns">
+            <span>密码设置</span>
+        </div>
+        <div class="tables b_set sys_info">
+            <h4></h4>
+            <div class="box">
+                <div class="normal">
+                    <ul class="list-unstyled text-center changePwdLabel">
+                        <li>
+                            <dl>
+                                <dt></dt>
+                                <dd class="word">1</dd>
+                                <dd>输入旧密码</dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl>
+                                <dt></dt>
+                                <dd class="word">2</dd>
+                                <dd>输入新密码</dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl>
+                                <dt></dt>
+                                <dd class="word">3</dd>
+                                <dd>确认密码</dd>
+                            </dl>
+                        </li>
+                    </ul>
+                    <div class="b_contain sys_contain">
+                        <ul class="list-unstyled large-half text-center">
+                            <li class="title text-left">
+                                <span>修改密码</span>
+                            </li>
+                            <li>
+                                <span>旧&nbsp;&nbsp;密&nbsp;&nbsp;码</span>
+                                <input class="oldPwd" type="text" placeholder="请输入旧密码"/>
+                                <b></b>
+                            </li>
+                            <li>
+                                <span>新&nbsp;&nbsp;密&nbsp;&nbsp;码</span>
+                                <input class="newPwd" type="text" pattern="[a-zA-Z0-9_]{6,20}" placeholder="请输入6-20位新密码" required="required" minlength="6" maxlength="20" autocomplete="off"/>
+                                <b></b>
+                            </li>
+                            <li>
+                                <span>确认密码</span>
+                                <input class="confirmPwd" type="text" placeholder="请再次输入新密码"/>
+                                <b></b>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="superAdmin">
+                    <ul class="list-unstyled text-center changePwdLabel">
+                        <li>
+                            <dl>
+                                <dt></dt>
+                                <dd class="word">1</dd>
+                                <dd>输入超级密码</dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl>
+                                <dt></dt>
+                                <dd class="word">2</dd>
+                                <dd>输入用户名</dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl>
+                                <dt></dt>
+                                <dd class="word">3</dd>
+                                <dd>输入新密码</dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl>
+                                <dt></dt>
+                                <dd class="word">4</dd>
+                                <dd>确认密码</dd>
+                            </dl>
+                        </li>
+                    </ul>
+                    <div class="b_contain sys_contain">
+                        <ul class="list-unstyled large-half text-center">
+                            <li class="title text-left">
+                                <span>修改密码</span>
+                            </li>
+                            <li>
+                                <span>超级密码</span>
+                                <input class="superPwd" type="text" placeholder="请输入超级密码"/>
+                                <b></b>
+                            </li>
+                            <li>
+                                <span>用&nbsp;&nbsp;户&nbsp;&nbsp;名</span>
+                                <input class="userName" type="text" placeholder="请输入用户名"/>
+                                <b></b>
+                            </li>
+                            <li>
+                                <span>新&nbsp;&nbsp;密&nbsp;&nbsp;码</span>
+                                <input class="newPwd" type="text" pattern="[a-zA-Z0-9_]{6,20}" placeholder="请输入6-20位新密码" required="required" minlength="6" maxlength="20" autocomplete="off"/>
+                                <b></b>
+                            </li>
+                            <li>
+                                <span>确认密码</span>
+                                <input class="confirmPwd" type="text" placeholder="请再次输入新密码"/>
+                                <b></b>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="text-center b_footer">
+                    <button class="btn btn-warning btn-lg determine">确认</button>
+                    <button class="btn btn-default btn-lg cancel">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--系统初始化-->
+    <div class="tab-pane" id="tab_system_init">
+        <div class="btns">
+            <span>系统初始化设置</span>
+        </div>
+        <div class="tables b_set sys_info">
+            <h4></h4>
+            <div class="box">
+                <div class="b_contain sys_contain">
+                        <ul class="list-unstyled large-half text-center" style="margin-top: 8rem;">
+                            <li class="title text-left">
+                                <span>系统初始化设置</span>
+                            </li>
+                            <li>
+                                <span>超级密码</span>
+                                <input class="superPwd" type="text" placeholder="请输入超级密码"/>
+                            </li>
+                        </ul>
+                    </div>
+                <div class="text-center b_footer">
+                    <button class="btn btn-warning btn-lg determine" data-toggle="modal" data-target="#systemInit">确认</button>
+                    <button class="btn btn-default btn-lg cancel">取消</button>
+                </div>
+            </div>
+        </div>
+        <!--系统初始化 -->
+        <div class="modal fade" id="systemInit" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">提示</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mBody_title text-center">确定系统初始化?</div>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg determine" data-dismiss="modal">确认</button>
+                        <button type="button" class="btn btn-default btn-lg cancel" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<div class="loading">
+    <i></i>
+    <img src="img/loading.gif"/>
+    <img src="img/loading_@3x.gif"/>
+</div>-->
+<script src="js/system_management/system_manage.js"></script>

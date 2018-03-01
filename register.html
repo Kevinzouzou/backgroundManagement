@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=1.0">
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!--<meta http-equiv="Access-Control-Allow-Origin" content="*">-->
+    <title>注册页面</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/register.css"/>
+
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+<div class="register">
+    <div class="header">
+        <i></i>
+        <span class="title">用户注册</span>
+    </div>
+    <ul class="main list-unstyled">
+        <li>
+            <label for="phoneNum">手机号码</label>
+            <input type="text" id="phoneNum" pattern="1[3578]\d{9}" required="required" autofocus placeholder="可用于登录和找回密码"/>
+            <p class="num_info">输入的手机号码不存在</p>
+        </li>
+        <li class="vCode">
+            <label for="checkCode">验证码</label>
+            <input type="text" id="checkCode" required="required" autofocus placeholder="填写验证码"/>
+            <input type="button" id="send" class="btn-warning" value="获取验证码"/>
+            <p class="vCode_info">输入的验证码有误</p>
+        </li>
+        <li>
+            <label for="pwd">密码</label>
+            <input type="password" id="pwd"  pattern="[a-zA-Z0-9_]{6,14}" required="required" autofocus placeholder="请设置登录密码"/>
+            <p class="pwd_info">密码需要6~14位，包含字母、数字和下划线</p>
+        </li>
+        <li>
+            <label for="rePwd">确认密码</label>
+            <input type="password" id="rePwd"  pattern="[a-zA-Z0-9_]{6,14}" required="required" autofocus placeholder="请再次输入密码"/>
+            <p class="rePwd_info">两次输入的密码不一致</p>
+        </li>
+        <li>
+            <label for="emil">E-mail</label>
+            <input type="email" id="emil"  pattern="^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$" required="required" autofocus placeholder="请再次输入密码"/>
+            <p class="emil_info">E-mail 格式有误</p>
+        </li>
+        <li>
+            <div>
+                <label for="roles">角色</label>
+                <select name="roles" id="roles">
+                    <option value="0">--请选择--</option>
+                    <option value="30">普通</option>
+                    <option value="40">租客</option>
+                    <option value="60">家人</option>
+                    <option value="70">业主</option>
+                </select>
+            </div>
+            <div>
+                <label for="forZones">所属小区</label>
+                <select name="forZones" id="forZones">
+                    <option value="0">--请选择--</option>
+                    <option value="100002d1p1z">龙辉花园</option>
+                    <option value="100003d1p1z">测试</option>
+                    <option value="100004d1p1z">测试小区</option>
+                </select>
+            </div>
+        </li>
+        <li class="accepted">
+            <input type="checkbox" id="copyRight"/>
+            <label for="copyRight">我已阅读并接受<b>《版权声明》</b>和<b>《隐私保护》</b></label>
+        </li>
+        <li>
+            <button class="toRegister">注  册</button>
+        </li>
+        <li class="toLogin text-right">已有账号？<a href="login.html">点击登录</a></li>
+    </ul>
+</div>
+
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/serip.js"></script>
+<script src="js/register.js"></script>
+<script>
+    document.getElementsByTagName('html')[0].style.fontSize=window.innerWidth/100 +'px';
+    //        document.getElementsByTagName('html')[0].style.fontSize=window.screen.width/100 +'px';
+    $("body").css("height",window.innerHeight);
+</script>
+</body>
+</html>

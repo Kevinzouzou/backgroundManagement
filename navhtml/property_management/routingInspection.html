@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>巡检二相片</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=1.0">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../css/bootstrap-datetimepicker.min.css"/>
+    <link rel="stylesheet" href="../../css/bootstrap-theme.css"/>
+    <link rel="stylesheet" href="../../css/index.css"/>
+    <style>
+        #webuploading{width:90%;margin:10px auto;display: block;}
+        #webuploading img{width:150px;min-height:150px;height:auto;margin:0 auto 10px;display:block;border:1px solid #f7f3f3;}
+        #webuploading .portraitUp{width:250px;height:35px;overflow:hidden;margin:0 auto 10px;position:relative;}
+        #webuploading label{width:55px;height:100%;margin-bottom:0;display:inline-block;overflow:hidden;cursor:pointer;text-align:center;position:absolute;background:#fff;}
+        #webuploading label strong{height:100%;}
+        #webuploading label input{display:none;}
+        #webuploading .upfileName{width:100%;height:100%;border-top-left-radius:0;border-bottom-left-radius: 0;padding-left:55px;border:1px solid #CCCCCC;}
+        #webuploading .portraitUp .btn{padding:5px 12px;border-top-right-radius:0;border-bottom-right-radius:0;}
+        .btn-primary{background:#69c;}
+        #webuploading button{width:50%;margin:0 25%;}
+        #webuploading select{width:50%;height:30px;}
+        #webuploading .menuBox{margin:10px 0;}
+        #webuploading textarea{
+            height: 50px;
+            padding: 1px 0.3rem;
+            width: 80%;
+            float: left;
+            border-radius: 0.26rem;
+            border: 1px solid #ccc;
+        }
+        #webuploading .btns span{width:20%;}
+        #webuploading .btns span,#webuploading .btns input{float: left;}
+        #hint{height:20px;line-height:20px;color:red;text-align: center;display: block}
+    </style>
+</head>
+<body>
+<div id="webuploading">
+    <img class="portrait" src="" alt="相片加载失败...">
+    <div class="portraitUp">
+        <label class="pull-left">
+            <strong class="btn btn-primary">上传</strong>
+            <input type="file" multiple="multiple" accept="image/*" capture="camera" class="uploadingImg" placeholder="图片名称">
+        </label>
+        <input class="pull-left upfileName" type="text">
+    </div>
+    <div class="btns visible">
+        <div class="menuBox">
+            <span>部门</span>
+            <select id="deptnameMenu"></select>
+        </div>
+        <div class="menuBox">
+            <span>人员</span>
+            <select id="StaffMenu"></select>
+        </div>
+        <div class="menuBox" style="overflow: hidden">
+            <span>备注</span>
+            <textarea></textarea>
+        </div>
+    </div>
+    <p id="hint"></p>
+    <button class="btn btn-warning" id="submitWebuploading">提交</button>
+</div>
+<script src="../../js/serip.js"></script>
+<script src="../../js/jquery-1.11.1.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script>
+    function getParameter(name){
+        let r = decodeURI(window.location.search.substr(1)).split("=");
+        let Parameter=r[1].split(",");
+        if(r!=null){
+            return Parameter;
+        }else{
+            return null
+        };
+    };
+    var Parameter=getParameter("Parameter");
+    var permit=Parameter[3];
+    //查询部门、人员
+    $("select").change(function(){
+        let this_id=this.id;
+        let idx=this.options.selectedIndex;
+        let optionid=$(this).find("option").eq(idx).attr("optionid");
+        $(this).attr("optionid",optionid);
+        if(this_id=="deptnameMenu"){
+            inquirePersonnel(optionid);
+        };
+    });
+    (function(){
+        $.ajax({
+            type: "post",
+            url: zoneServerIp+"/ucotSmart/departmentAction!queryDepartment.action",
+            dataType: "json",
+            data: {
+                "token":permit
+            },
+            success: function (data) {
+                // console.log("查询部门:");
+                // console.log(data);
+                //    数据
+                if(data.obj){
+                    let obj=data.obj.data;
+                    $("#deptnameMenu").attr("optionid",obj[0].deptno);
+                    inquirePersonnel(obj[0].deptno);
+                    let htmlList='';
+                    for(let i=0;i<obj.length;i++){
+                        htmlList+='<option optionid="'+obj[i].deptno+'" value ="'+obj[i].deptname+'">'+obj[i].deptname+'</option>';
+                    };
+                    $("#deptnameMenu").html(htmlList);
+                }
+            },
+            error: function (data, status) {
+                //msgTips("");
+            }
+        });
+    }());
+    function inquirePersonnel(deptid){
+        //查询人员
+        $.ajax({
+            type: "post",
+            url: zoneServerIp+"/ucotSmart/employeeAction!queryEmployee.action",
+            dataType: "json",
+            data: {
+                "token":permit,
+                "employee.deptno":deptid
+            },
+            success: function (data) {
+                // console.log("查询人员:");
+                // console.log(data);
+                //    数据
+                let obj=data.obj.data;
+                $("#StaffMenu").attr("optionid",obj[0].id);
+                let htmlList='';
+                for(let i=0;i<obj.length;i++){
+                    htmlList+='<option optionid="'+obj[i].id+'" value="'+obj[i].ename+'">'+obj[i].ename+'</option>';
+                };
+                $("#StaffMenu").html(htmlList);
+            },
+            error: function (data, status) {
+                //msgTips("");
+            }
+        });
+    };
+    //上传相片
+    $(".uploadingImg").change(function(){
+        let pathUrl=$(this).val();
+        let names=pathUrl.lastIndexOf("\\");
+        let upfileName=pathUrl.substring(names+1,pathUrl.length);
+        let imgName=pathUrl.substring(names+1,pathUrl.length-4);
+        $("#webuploading .upfileName").val(imgName).attr("upfileName",upfileName);
+        let file =$(this).get(0).files[0];
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload=function(e){
+            console.log(e);
+            $("#webuploading .portrait").attr("src",e.target.result);//预览图片
+        };
+    });
+    $("#submitWebuploading").click(function(){
+        let deptid=$("#deptnameMenu").attr("optionid");
+        if(!deptid){
+            $("#hint").text('请选择部门');
+            return;
+        }
+        let empid=$("#StaffMenu").attr("optionid");
+        let empname=$("#StaffMenu").val();
+        let content=$("#webuploading textarea").val();
+        if(!empid){
+            $("#hint").text('请选择员工');
+            return;
+        }
+        if(!$(".uploadingImg")[0].files[0]){
+            $("#hint").text('请上传相片');
+            return;
+        }
+        let formData = new FormData();
+        formData.append("upfile",$(".uploadingImg")[0].files[0]);
+        formData.append("upfileName",$("#webuploading .upfileName").val());
+        formData.append("token",permit);
+        formData.append("patrolpointreccord.empid",empid);
+        formData.append("patrolpointreccord.empname",empname);
+        formData.append("patrolpointreccord.pointid",Parameter[0]);
+        formData.append("patrolpointreccord.pointname",unescape(Parameter[2]));
+        formData.append("patrolpointreccord.areaid",Parameter[1]);
+        formData.append("patrolpointreccord.content",content);
+
+        $.ajax({
+            type: "post",
+            url: zoneServerIp+"/ucotSmart/patrolpointreccordAction!addPatrolpointreccord.action",
+            dataType: "json",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                alert(data.msg);
+            },
+            error: function (data, status) {
+                //msgTips("");
+            }
+        });
+    });
+</script>
+</body>
+</html>

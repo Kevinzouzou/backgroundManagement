@@ -1,0 +1,521 @@
+<!--信息推送-->
+<div class="tablist_third">
+    <ul class="nav clearfix">
+         <li class="ad6_push active"><a href="#tab_ad6_push" role="tab" data-toggle="tab">广告推送</a></li>
+        <li class="LCD6_set"><a href="#tab_LCD6_set" role="tab" data-toggle="tab">LCD设置</a></li>
+        <li class="manual6_push"><a href="#tab_manual6_push" role="tab" data-toggle="tab">手动推送</a></li>
+    </ul>
+</div>
+<div class="tab-content">
+    <!--广告推送-->
+    <div class="tab-pane active" id="tab_ad6_push">
+        <div class="btns">
+            <button class='btn btn-warning adding text-center' data-toggle="modal"  data-target="#addAdPush"><i></i>添加</button>
+            <button class='btn btn-primary batch_delete text-center'><i></i>批量下架</button>
+        </div>
+        <div class="tab-pane tables">
+            <table class="table table-striped table-hover table-responsive">
+                <thead>
+                <tr>
+                    <th><input type="checkbox"/> 全选</th>
+                    <th>广告名称</th>
+                    <th>广告类型</th>
+                    <th>投放公司</th>
+                    <th>版本号</th>
+                    <th>广告状态</th>
+                    <th>播放起始时间</th>
+                    <th>播放结束时间</th>
+                    <th>投放时间</th>
+                    <th class="notPrint">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><input type="checkbox"/></td>
+                    <td>floor</td>
+                    <td>图片</td>
+                    <td>物联通</td>
+                    <td>1.0</td>
+                    <td class="red">未推送</td>
+                    <td>2017-12-12</td>
+                    <td>2017-12-30</td>
+                    <td>2017-11-30 16:25</td>
+                    <td>
+                        <a class="pushIm">立即推送</a>|
+                        <a class="shelves">下架</a>|
+                        <a class="download">下载</a>|
+                        <a class="delete" data-toggle="modal" data-target="#info6_delete">删除</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"/></td>
+                    <td>floor</td>
+                    <td>图片</td>
+                    <td>物联通</td>
+                    <td>1.0</td>
+                    <td>已推送</td>
+                    <td>2017-12-12</td>
+                    <td>2017-12-30</td>
+                    <td>2017-11-30 16:25</td>
+                    <td>
+                        <span class="push" >立即推送</span>|
+                        <a class="shelves">下架</a>|
+                        <a class="download">下载</a>|
+                        <a class="delete" data-toggle="modal" data-target="#info6_delete">删除</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--添加-->
+        <div class="modal fade addDoorMac" id="addAdPush" >
+            <div class="modal-dialog" style="margin-top: 9rem;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">添加广告</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-unstyled clearfix large-half">
+                            <li class="totalLength">
+                                <span>广告名称</span>
+                                <input type="text" placeholder="输入广告名称"/>
+                            </li>
+                            <li class="totalLength">
+                                <span>投放公司</span>
+                                <input type="text" placeholder="输入投放的公司名"/>
+                            </li>
+                            <li class="totalLength">
+                                <span>版&nbsp;&nbsp;本&nbsp;&nbsp;号</span>
+                                <input type="text" class="equipBrand" placeholder="请输入版本号"/>
+                            </li>
+                            <li class="totalLength">
+                                <div class="file">
+                                    <label for="file_info_push">上传文件</label>
+                                    <div class="defined_file">
+                                        <input type="text" name="defined_info_push" id="defined_info_push" value="未选择任何文件">
+                                        <button type="button" class="btn-primary">添加</button>
+                                    </div>
+                                    <input type="file" name="upFile" class="fileHide" id="file_info_push" onchange="document.getElementById('defined_info_push').value=document.getElementById('file_info_push').value;">
+                                </div>
+                                <div class="fileExplain" style="position: absolute;">
+                                    <span>文件仅限于png, mp3, mp4格式</span>
+                                </div>
+                            </li>
+                            <li></li>
+                        </ul>
+                        <span class="title">播放时间</span>
+                        <ul class="list-unstyled clearfix large-half">
+                            <li>
+                                <span>起始时间</span>
+                                <input type="text" class="calendar"/>
+                            </li>
+                            <li>
+                                <span>结束时间</span>
+                                <input type="text" class="calendar"/>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg determine" data-dismiss="modal">确定</button>
+                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--修改-->
+        <div class="modal fade addDoorMac" id="ModifyIndoorMac" >
+            <div class="modal-dialog" style="margin-top:6rem;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">修改室内机</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-unstyled clearfix large-half">
+                            <li class="totalLength">
+                                <span>安装位置</span>
+                                <div class="installPosition">
+                                    <div class="dropdown areaZone periodType">
+                                        <a class="dropdown-toggle areaZoneList periodTypeList text-center" data-toggle="dropdown"><span>请选择期</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu periodTypeList-menu" role="menu">
+                                            <li><a>1期</a></li>
+                                            <li><a>2期</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="dropdown areaZone zoneType">
+                                        <a class="dropdown-toggle areaZoneList zoneTypeList text-center" data-toggle="dropdown"><span>请选择区</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu zoneTypeList-menu" role="menu">
+                                            <li><a>1区</a></li>
+                                            <li><a>2区</a></li>
+                                            <li><a>3区</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="dropdown areaZone buildingType">
+                                        <a class="dropdown-toggle areaZoneList buildingTypeList text-center" data-toggle="dropdown"><span>请选择栋</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu buildingTypeList-menu" role="menu">
+                                            <li><a>1栋</a></li>
+                                            <li><a>2栋</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="dropdown areaZone unitType">
+                                        <a class="dropdown-toggle areaZoneList unitTypeList text-center" data-toggle="dropdown"><span>请选择单元</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu unitTypeList-menu" role="menu">
+                                            <li><a>1单元</a></li>
+                                            <li><a>2单元</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="dropdown areaZone layer">
+                                        <a class="dropdown-toggle areaZoneList roomNumList text-center" data-toggle="dropdown"><span>请选择层</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu roomNumList-menu" role="menu">
+                                            <li><a>1层</a></li>
+                                            <li><a>2层</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="dropdown areaZone ventricle">
+                                        <a class="dropdown-toggle areaZoneList roomNumList text-center" data-toggle="dropdown"><span>请选择室</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu roomNumList-menu" role="menu">
+                                            <li><a>101室</a></li>
+                                            <li><a>201室</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="totalLength">
+                                <span>MAC地址</span>
+                                <input type="text" class="equipName" placeholder="如：811043c205904c0a0be"/>
+                                <b>格式为811043c205904c0a0be 且不能重复</b>
+                            </li>
+                            <li class="totalLength">
+                                <span>分&nbsp;&nbsp;机&nbsp;&nbsp;号</span>
+                                <input type="text" class="equipBrand" placeholder="请输入分机号"/>
+                            </li>
+                            <li>
+                                <span>静态&nbsp;&nbsp;&nbsp;IP</span>
+                                <div class="ipLine">
+                                    <input class="ip" name="ip" onkeydown="return ipVali(event,this,0);" onblur="return ipVali2(this,1);" type="text" maxlength="3" size="3"/><b>.</b>
+                                    <input class="ip" name="ip" onkeydown="return ipVali(event,this,1);" onblur="return ipVali2(this,2);" type="text" maxlength="3" size="3"/><b>.</b>
+                                    <input class="ip" name="ip" onkeydown="return ipVali(event,this,2);" onblur="return ipVali2(this,2);" type="text" maxlength="3" size="3"/><b>.</b>
+                                    <input class="ip" name="ip" onkeydown="return ipVali(event,this,3);" onblur="return ipVali2(this,2);" type="text" maxlength="3" size="3"/>
+                                    <input type="hidden" class="showSta"/>
+                                </div>
+                                <b>格式为192.168.1.254 且不重复</b>
+                            </li>
+                            <li class="text-right">
+                                <span>网关&nbsp;&nbsp;&nbsp;IP</span>
+                                <div class="ipLine">
+                                    <input class="ip" name="ip" onkeydown="return ipVali(event,this,0);" onblur="return ipVali2(this,1);" type="text" maxlength="3" size="3"/><b>.</b>
+                                    <input class="ip" name="ip" onkeydown="return ipVali(event,this,1);" onblur="return ipVali2(this,2);" type="text" maxlength="3" size="3"/><b>.</b>
+                                    <input class="ip" name="ip" onkeydown="return ipVali(event,this,2);" onblur="return ipVali2(this,2);" type="text" maxlength="3" size="3"/><b>.</b>
+                                    <input class="ip" name="ip" onkeydown="return ipVali(event,this,3);" onblur="return ipVali2(this,2);" type="text" maxlength="3" size="3"/>
+                                    <input type="hidden" class="showGate"/>
+                                </div>
+                                <b>格式为192.168.1.1 且不重复</b>
+                            </li>
+                            <li>
+                                <span>服务器IP</span>
+                                <div class="ipLine">
+                                    <input class="ip" name="ip" onkeydown="return ipVali(event,this,0);" onblur="return ipVali2(this,1);" type="text" maxlength="3" size="3"/><b>.</b>
+                                    <input class="ip" name="ip" onkeydown="return ipVali(event,this,1);" onblur="return ipVali2(this,2);" type="text" maxlength="3" size="3"/><b>.</b>
+                                    <input class="ip" name="ip" onkeydown="return ipVali(event,this,2);" onblur="return ipVali2(this,2);" type="text" maxlength="3" size="3"/><b>.</b>
+                                    <input class="ip" name="ip" onkeydown="return ipVali(event,this,3);" onblur="return ipVali2(this,2);" type="text" maxlength="3" size="3"/>
+                                    <input type="hidden" class="showSer"/>
+                                </div>
+                                <b>格式为192.168.1.254 且不重复</b>
+                            </li>
+                            <li class="text-right">
+                                <span>子网掩码</span>
+                                <div class="ipLine">
+                                    <input class="ip" name="ip" onkeydown="return ipVali(event,this,0);" onblur="return ipVali2(this,1);" type="text" maxlength="3" size="3"/><b>.</b>
+                                    <input class="ip" name="ip" onkeydown="return ipVali(event,this,1);" onblur="return ipVali2(this,2);" type="text" maxlength="3" size="3"/><b>.</b>
+                                    <input class="ip" name="ip" onkeydown="return ipVali(event,this,2);" onblur="return ipVali2(this,2);" type="text" maxlength="3" size="3"/><b>.</b>
+                                    <input class="ip" name="ip" onkeydown="return ipVali(event,this,3);" onblur="return ipVali2(this,2);" type="text" maxlength="3" size="3"/>
+                                    <input type="hidden" class="showSub"/>
+                                </div>
+                                <b>格式为255.255.255.0 且不重复</b>
+                            </li>
+                            <li>
+                                <span>D&nbsp;&nbsp;&nbsp;N&nbsp;&nbsp;&nbsp;S</span>
+                                <div class="ipLine">
+                                    <input class="ip" name="ip" onkeydown="return ipVali(event,this,0);" onblur="return ipVali2(this,1);" type="text" maxlength="3" size="3"/><b>.</b>
+                                    <input class="ip" name="ip" onkeydown="return ipVali(event,this,1);" onblur="return ipVali2(this,2);" type="text" maxlength="3" size="3"/><b>.</b>
+                                    <input class="ip" name="ip" onkeydown="return ipVali(event,this,2);" onblur="return ipVali2(this,2);" type="text" maxlength="3" size="3"/><b>.</b>
+                                    <input class="ip" name="ip" onkeydown="return ipVali(event,this,3);" onblur="return ipVali2(this,2);" type="text" maxlength="3" size="3"/>
+                                    <input type="hidden" class="showDns"/>
+                                </div>
+                                <b>格式为8.8.8.8 且不重复</b>
+                            </li>
+                            <li class="text-right">
+                                <span>备用DNS</span>
+                                <div class="ipLine">
+                                    <input class="ip" name="ip" onkeydown="return ipVali(event,this,0);" onblur="return ipVali2(this,1);" type="text" maxlength="3" size="3"/><b>.</b>
+                                    <input class="ip" name="ip" onkeydown="return ipVali(event,this,1);" onblur="return ipVali2(this,2);" type="text" maxlength="3" size="3"/><b>.</b>
+                                    <input class="ip" name="ip" onkeydown="return ipVali(event,this,2);" onblur="return ipVali2(this,2);" type="text" maxlength="3" size="3"/><b>.</b>
+                                    <input class="ip" name="ip" onkeydown="return ipVali(event,this,3);" onblur="return ipVali2(this,2);" type="text" maxlength="3" size="3"/>
+                                    <input type="hidden" class="showSecondly"/>
+                                </div>
+                                <b>格式为202.96.143.133 且不重复</b>
+                            </li>
+                            <li>
+                                <span>媒体音量</span>
+                                <div class="dropdown areaZone mediaVolume">
+                                    <a class="dropdown-toggle areaZoneList mediaVolumeList text-center" data-toggle="dropdown"><span>100%</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu areaZoneList-menu mediaVolumeList-menu" role="menu">
+                                        <li><a>100%</a></li>
+                                        <li><a>75%</a></li>
+                                        <li><a>50%</a></li>
+                                        <li><a>25%</a></li>
+                                        <li><a>0</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="text-right">
+                                <span>通话音量</span>
+                                <div class="dropdown areaZone callVolume">
+                                    <a class="dropdown-toggle areaZoneList callVolumeList text-center" data-toggle="dropdown"><span>100%</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu areaZoneList-menu callVolumeList-menu" role="menu">
+                                        <li><a>100%</a></li>
+                                        <li><a>75%</a></li>
+                                        <li><a>50%</a></li>
+                                        <li><a>25%</a></li>
+                                        <li><a>0</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <span>屏幕亮度</span>
+                                <div class="dropdown areaZone screenBright">
+                                    <a class="dropdown-toggle areaZoneList screenBrightList text-center" data-toggle="dropdown"><span>100%</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu areaZoneList-menu screenBrightList-menu" role="menu">
+                                        <li><a>100%</a></li>
+                                        <li><a>75%</a></li>
+                                        <li><a>50%</a></li>
+                                        <li><a>25%</a></li>
+                                        <li><a>0</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg determine" data-dismiss="modal">确定</button>
+                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--LCD设置-->
+    <div class="tab-pane" id="tab_LCD6_set">
+        <div class="btns">
+            <span></span>
+        </div>
+        <div class="tables b_set sys_info info6_push">
+            <h4 class="text-center">LCD设置</h4>
+            <div class="box">
+                <div class="b_contain">
+                    <ul class="list-unstyled large-half text-center">
+                        <li class="title text-left">
+                            <span>LCD开关时间设置</span>
+                        </li>
+                       <li>
+                            <span>自动打开LCD</span>
+                           <input type="text" class="calendar"/>
+                        </li>
+                        <li style="margin-bottom: 4.6rem;">
+                            <span>是否启用</span>
+                            <div class="dropdown areaZone toEnable">
+                                <a class="dropdown-toggle areaZoneList toEnableList reactive_height text-center" data-toggle="dropdown"><span>启用</span><b class="caret"></b></a>
+                                <ul class="dropdown-menu areaZoneList-menu toEnableList-menu" role="menu">
+                                    <li><a>启用</a></li>
+                                    <li><a>停用</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                       <li>
+                            <span>自动关闭LCD</span>
+                           <input type="text" class="calendar"/>
+                        </li>
+                        <li>
+                            <span>是否启用</span>
+                            <div class="dropdown areaZone toEnable">
+                                <a class="dropdown-toggle areaZoneList toEnableList reactive_height text-center" data-toggle="dropdown"><span>启用</span><b class="caret"></b></a>
+                                <ul class="dropdown-menu areaZoneList-menu toEnableList-menu" role="menu">
+                                    <li><a>启用</a></li>
+                                    <li><a>停用</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--手动推送-->
+    <div class="tab-pane" id="tab_manual6_push">
+        <div class="page1">
+            <div class="btns">
+                <span></span>
+            </div>
+            <div class="tab-pane tables">
+                <table class="table table-striped table-hover table-responsive">
+                    <thead>
+                        <tr>
+                            <th>项目</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>天气时间</td>
+                            <td><a class="push" data-toggle="modal" data-target="#manual_push">推送</a></td>
+                        </tr>
+                        <tr>
+                            <td>重新启动</td>
+                            <td><a class="restart_push">推送</a></td>
+                        </tr>
+                        <tr>
+                            <td>门口机开LCD</td>
+                            <td><a class="push" data-toggle="modal" data-target="#manual_push">推送</a></td>
+                        </tr>
+                        <tr>
+                            <td>门口机关LCD</td>
+                            <td><a class="push" data-toggle="modal" data-target="#manual_push">推送</a></td>
+                        </tr>
+                        <tr>
+                            <td>围墙机开LCD</td>
+                            <td><a class="push" data-toggle="modal" data-target="#manual_push">推送</a></td>
+                        </tr>
+                        <tr>
+                            <td>围墙机关LCD</td>
+                            <td><a class="push" data-toggle="modal" data-target="#manual_push">推送</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="page2">
+            <div class="btns">
+                <span>类型：</span>
+                <div class="dropdown areaZone type">
+                    <a class="dropdown-toggle areaZoneList typeList reactive_height text-center" data-toggle="dropdown"><span>全部</span><b class="caret"></b></a>
+                    <ul class="dropdown-menu areaZoneList-menu typeList-menu" role="menu">
+                        <li><a>全部</a></li>
+                        <li><a>室内机</a></li>
+                        <li><a>门口机</a></li>
+                        <li><a>围墙机</a></li>
+                        <li><a>中心机</a></li>
+                    </ul>
+                </div>
+                <span>地址：</span>
+                <div class="dropdown areaZone periodType">
+                    <a class="dropdown-toggle areaZoneList periodTypeList reactive_height text-center" data-toggle="dropdown"><span>全部 期</span><b class="caret"></b></a>
+                    <ul class="dropdown-menu areaZoneList-menu periodTypeList-menu" role="menu">
+                        <li><a>全部 期</a></li>
+                        <li><a>1期</a></li>
+                        <li><a>2期</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown areaZone zoneType">
+                    <a class="dropdown-toggle areaZoneList zoneTypeList reactive_height text-center" data-toggle="dropdown"><span>全部 区</span><b class="caret"></b></a>
+                    <ul class="dropdown-menu areaZoneList-menu zoneTypeList-menu" role="menu">
+                        <li><a>全部 区</a></li>
+                        <li><a>1区</a></li>
+                        <li><a>2区</a></li>
+                        <li><a>3区</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown areaZone buildingType">
+                    <a class="dropdown-toggle areaZoneList buildingTypeList reactive_height text-center" data-toggle="dropdown"><span>全部 栋</span><b class="caret"></b></a>
+                    <ul class="dropdown-menu areaZoneList-menu buildingTypeList-menu" role="menu">
+                        <li><a>全部 栋</a></li>
+                        <li><a>1栋</a></li>
+                        <li><a>2栋</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown areaZone unitType">
+                    <a class="dropdown-toggle areaZoneList unitTypeList reactive_height text-center" data-toggle="dropdown"><span>全部 单元</span><b class="caret"></b></a>
+                    <ul class="dropdown-menu areaZoneList-menu unitTypeList-menu" role="menu">
+                        <li><a>全部 单元</a></li>
+                        <li><a>1单元</a></li>
+                        <li><a>2单元</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown areaZone layer">
+                    <a class="dropdown-toggle areaZoneList roomNumList reactive_height text-center" data-toggle="dropdown"><span>全部 层</span><b class="caret"></b></a>
+                    <ul class="dropdown-menu areaZoneList-menu roomNumList-menu" role="menu">
+                        <li><a>全部 层</a></li>
+                        <li><a>1层</a></li>
+                        <li><a>2层</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown areaZone ventricle">
+                    <a class="dropdown-toggle areaZoneList roomNumList reactive_height text-center" data-toggle="dropdown"><span>全部 室</span><b class="caret"></b></a>
+                    <ul class="dropdown-menu areaZoneList-menu roomNumList-menu" role="menu">
+                        <li><a>全部 室</a></li>
+                        <li><a>101室</a></li>
+                        <li><a>201室</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tab-pane tables">
+                <table class="table table-striped table-hover table-responsive">
+                    <thead>
+                        <tr>
+                            <th>安装位置</th>
+                            <th>MAC地址</th>
+                            <th>分机号</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1期1区1栋1单元1层101室</td>
+                            <td>161843c205920902a5e8</td>
+                            <td>1</td>
+                            <td>
+                                <a class="push" data-toggle="modal" data-target="#manual_push">推送</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--推送 -->
+        <div class="modal fade" id="manual_push" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">提示</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-inline mBody_title text-center">确定推送<span class="content">天气时间</span>?</form>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg determine" data-dismiss="modal">确定</button>
+                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--删除 -->
+    <div class="modal fade" id="info6_delete" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                    <h4 class="modal-title text-center">提示</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-inline mBody_title text-center">确定删除该消息?</form>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-warning btn-lg to_delete" data-dismiss="modal">删除</button>
+                    <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

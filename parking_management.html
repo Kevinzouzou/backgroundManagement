@@ -1,0 +1,2539 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=1.0">
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!--<meta http-equiv="Access-Control-Allow-Origin" content="*">-->
+    <title>停车场管理</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css"/>
+    <link href="css/bootstrap-theme.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css"/>
+    <link rel="stylesheet" href="css/parking.css"/>
+
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<!--左侧菜单部分-->
+<div class="pull-left left_aside">
+    <!--标签logo部分-->
+    <div class="logo">
+        <p class="text-left"><span>UCOT</span>物联通</p>
+        <p style="padding-left: 3.43rem;">智慧社区管理平台</p>
+    </div>
+    <!--菜单部分-->
+    <ul class="text-center nav_tab tablist">
+        <li class="car_park_management active">
+            <a class="collapsed" href="#car_park_management_menu" data-toggle="collapse">
+                <i></i><span>停车场管理</span>
+            </a>
+            <ul class="collapse in" id="car_park_management_menu">
+                <li class="parking_management active"><a role="tab" data-toggle="tab" href="#tab_parking_management"><b></b>车位管理</a></li>
+                <li class="owner_management"><a role="tab" data-toggle="tab" href="#tab_owner_management"><b></b>车主管理</a></li>
+                <li class="temporary_charge"><a role="tab" data-toggle="tab" href="#tab_temporary_charge"><b></b>临时收费管理</a></li>
+                <li class="rent_at_leisure"><a role="tab" data-toggle="tab" href="#tab_rent_at_leisure"><b></b>车位闲时出租</a></li>
+                <li class="vehicle_monitoring"><a role="tab" data-toggle="tab" href="#tab_vehicle_monitoring"><b></b>车辆监控</a></li>
+                <li class="reverse_unusual"><a role="tab" data-toggle="tab" href="#tab_reverse_unusual"><b></b>反向寻常</a></li>
+                <li class="vehicle_analysis"><a role="tab" data-toggle="tab" href="#tab_vehicle_analysis"><b></b>车辆分析</a></li>
+                <li class="blacklist_management"><a role="tab" data-toggle="tab" href="#tab_blacklist_management"><b></b>黑名单管理</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<!--右侧内容部分-->
+<div class="pull-right right_aside">
+    <div class="text-right logout">
+        <span id="username">当前用户：</span>
+        <button class="btn" id="login_out">注销</button>
+        <button class="btn" id="back">后退</button>
+    </div>
+    <div class="tab-content">
+        <!--停车场管理-->
+        <div class="tab-pane active" id="tab_car_park_management">
+            <div class="tab-content">
+                <!--车位管理-->
+                <div class="tab-pane active" id="tab_parking_management">
+                    <div class="tablist_third">
+                        <ul class="nav clearfix">
+                            <li class="digital_map active"><a href="#tab_digital_map" role="tab" data-toggle="tab">数字地图</a></li>
+                            <li class="list"><a href="#tab_list" role="tab" data-toggle="tab">列表</a></li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <!--数字地图-->
+                        <div class="tab-pane active" id="tab_digital_map">
+                            <div class="btns">
+                                <button class='btn btn-warning adding text-center' data-toggle="modal" data-target="#addDigitalMap"><i></i>添加</button>
+                                <button class='btn btn-primary batch_delete text-center' data-toggle="modal" data-target="#digitalMapDelete"><i></i>删除</button>
+                                <div class="pull-right">
+                                    <span>车位号</span>
+                                    <input type="text" class="reactive_height" placeholder="输入车位号"/>
+                                    <button class='btn btn-primary btn_search text-center'><i></i>查询</button>
+                                </div>
+                            </div>
+                            <div class="tables b_set sys_info parkingMg">
+                                <h4></h4>
+                                <div class="box">
+                                    <div class="cont">
+                                        <ul class="list-unstyled nav_top clearfix areas">
+                                            <!--<li class="active"><a href="#f1" role="tab" data-toggle="tab">地下一层A区</a></li>-->
+                                        </ul>
+                                        <div class="parkTable tab-content cars">
+                                            <!--<ul id="f1" class="tab-pane active clearfix list-unstyled">-->
+                                                <!--<li class="active parkImg" data-toggle="modal" data-target="#" ca="f11"><span>A-01</span></li>-->
+                                                <!--<li class="active" ca="f12"><span>A-02</span></li>-->
+                                                <!--<li class="parkImg" ca="f13"><span></span></li>-->
+                                                <!--<li ca="f16"><span></span></li>-->
+                                            <!--</ul>-->
+                                        </div>
+                                        <div class="edits pull-right">
+                                            <ul class="list-unstyled clearfix details">
+                                                <li>
+                                                    <a class="edit">编辑</a>
+                                                    <a class="done">完成</a>
+                                                    <a class="pull-right delete">删除</a>
+                                                </li>
+                                                <li class="parkingNum">
+                                                    <span ids="">车位号</span>
+                                                    <b class="pull-right"></b>
+                                                    <input type="text" class="pull-right" autofocus/>
+                                                </li>
+                                                <li class="sta">
+                                                    <span>状态</span>
+                                                    <span class="pull-right"></span>
+                                                    <div class="dropdown areaZone parkingState pull-right">
+                                                        <a class="dropdown-toggle areaZoneList parkingState-list text-center" data-toggle="dropdown" ids="2"><span>请选择</span><b class="caret"></b></a>
+                                                        <ul class="dropdown-menu areaZoneList-menu parkingState-menu" role="menu">
+                                                            <li><a ids="1">占用</a></li>
+                                                            <li><a ids="0">空闲</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li class="attr">
+                                                    <span>属性</span>
+                                                    <span class="pull-right"></span>
+                                                    <div class="dropdown areaZone attribute pull-right">
+                                                        <a class="dropdown-toggle areaZoneList attribute-list text-center" data-toggle="dropdown" ids="2"><span>请选择</span><b class="caret"></b></a>
+                                                        <ul class="dropdown-menu areaZoneList-menu attribute-menu" role="menu">
+                                                            <li><a ids="1">公共车位</a></li>
+                                                            <li><a ids="0">私家车位</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li class="ownerName private">
+                                                    <span>车主姓名</span>
+                                                    <b class="pull-right"></b>
+                                                    <input type="text" class="pull-right" autofocus/>
+                                                </li>
+                                                <li class="ownerPhone private">
+                                                    <span>联系电话</span>
+                                                    <b class="pull-right"></b>
+                                                    <input type="text" class="pull-right" autofocus/>
+                                                </li>
+                                                <li class="numPlate">
+                                                    <span>车牌号</span>
+                                                    <b class="pull-right"></b>
+                                                    <input type="text" class="pull-right" autofocus/>
+                                                </li>
+                                                <li class="cameraName">
+                                                    <span>摄像机名称</span>
+                                                    <b class="pull-right"></b>
+                                                    <input type="text" class="pull-right" autofocus/>
+                                                </li>
+                                                <li class="cameraId">
+                                                    <span>摄像机ID</span>
+                                                    <b class="pull-right"></b>
+                                                    <input type="text" class="pull-right" autofocus/>
+                                                </li>
+                                                <li class="sensorName">
+                                                    <span>传感器名称</span>
+                                                    <b class="pull-right"></b>
+                                                    <input type="text" class="pull-right" autofocus/>
+                                                </li>
+                                                <li class="sensorId">
+                                                    <span>传感器ID</span>
+                                                    <b class="pull-right"></b>
+                                                    <input type="text" class="pull-right" autofocus/>
+                                                </li>
+                                                <li class="mark">
+                                                    <span>备注</span>
+                                                    <b class="pull-right"></b>
+                                                    <textarea class="pull-right" autofocus></textarea>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--添加-->
+                            <div class="modal fade" id="addDigitalMap" aria-hidden="false">
+                                <div class="modal-dialog" style="margin-top: 16rem;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                                            <h4 class="modal-title text-center">添加</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <ul class="list-unstyled clearfix large-half text-center">
+                                                <li class="totalLength">
+                                                    <span>区域名称</span><input type="text" class="areaName" placeholder="输入区域名称"><span>车&nbsp;&nbsp;位&nbsp;&nbsp;数</span><input type="number" class="carNum"><a class="add">添加</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="modal-footer text-center">
+                                            <button type="button" class="btn btn-warning btn-lg determine" data-dismiss="modal">确定</button>
+                                            <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--设置-->
+                            <div class="modal fade" id="parkerSet" aria-hidden="false">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                                            <h4 class="modal-title text-center">设置</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <ul class="list-unstyled clearfix large-half">
+                                                <li>
+                                                    <span>车&nbsp;&nbsp;位&nbsp;&nbsp;号</span>
+                                                    <input type="text" class="parkingNum" placeholder="输入车位号">
+                                                </li>
+                                                <li class="text-right">
+                                                    <span>属&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;性</span>
+                                                    <div class="dropdown areaZone attribute">
+                                                        <a class="dropdown-toggle areaZoneList attribute-list text-center" data-toggle="dropdown" ids="2"><span>请选择</span><b class="caret"></b></a>
+                                                        <ul class="dropdown-menu areaZoneList-menu attribute-menu" role="menu">
+                                                            <li><a ids="1">公共车位</a></li>
+                                                            <li><a ids="0">私家车位</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li class="private">
+                                                    <span>车主姓名</span>
+                                                    <input type="text" class="ownerName" placeholder="输入车主姓名">
+                                                </li>
+                                                <li class="text-right private">
+                                                    <span>联系电话</span>
+                                                    <input type="text" class="ownerPhone" placeholder="输入联系电话">
+                                                </li>
+                                                <li>
+                                                    <span>车位状态</span>
+                                                    <div class="dropdown areaZone parkingState">
+                                                        <a class="dropdown-toggle areaZoneList parkingState-list text-center" data-toggle="dropdown" ids="2"><span>请选择</span><b class="caret"></b></a>
+                                                        <ul class="dropdown-menu areaZoneList-menu parkingState-menu" role="menu">
+                                                            <li><a ids="1">占用</a></li>
+                                                            <li><a ids="0">空闲</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li class="text-right">
+                                                    <span>车&nbsp;&nbsp;牌&nbsp;&nbsp;号</span>
+                                                    <input type="text" class="numPlate" placeholder="输入车牌号">
+                                                </li>
+                                                <li>
+                                                    <span>摄&nbsp;&nbsp;像&nbsp;&nbsp;机</span>
+                                                    <input type="text" class="cameraName" placeholder="输入摄像机名称">
+                                                </li>
+                                                <li class="text-right">
+                                                    <span>摄像机ID</span>
+                                                    <input type="text" class="cameraId" placeholder="输入摄像机ID">
+                                                </li>
+                                                <li>
+                                                    <span>传&nbsp;&nbsp;感&nbsp;&nbsp;器</span>
+                                                    <input type="text" class="sensorName" placeholder="输入传感器名称">
+                                                </li>
+                                                <li class="text-right">
+                                                    <span>传感器ID</span>
+                                                    <input type="text" class="sensorId" placeholder="输入传感器ID">
+                                                </li>
+                                                <li class="totalLength">
+                                                    <span>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</span>
+                                                    <textarea class="remark"></textarea>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="modal-footer text-center">
+                                            <button type="button" class="btn btn-warning btn-lg determine" data-dismiss="modal">确定</button>
+                                            <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--删除 -->
+                            <div class="modal fade" id="digitalMapDelete" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                                            <h4 class="modal-title text-center">提示</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form class="form-inline mBody_title text-center">确定删除该区域车位?</form>
+                                        </div>
+                                        <div class="modal-footer text-center">
+                                            <button type="button" class="btn btn-warning btn-lg delete" data-dismiss="modal">删除</button>
+                                            <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--列表-->
+                        <div class="tab-pane" id="tab_list">
+                            <div class="btns">
+                                <button class='btn btn-primary lead_in text-center'><i></i>导入</button>
+                                <button class='btn btn-primary lead_out text-center'><i></i>导出<a href="" download="停车场管理》车位管理》列表.xlsx" id="parkingList" style="display: none"></a></button>
+                                <div class="pull-right">
+                                    <span>区域名称</span>
+                                    <input type="text" class="reactive_height" placeholder="输入区域名称"/>
+                                    <span>车位号</span>
+                                    <input type="text" class="reactive_height" placeholder="输入车位号"/>
+                                    <button class='btn btn-primary btn_search text-center'><i></i>查询</button>
+                                </div>
+                            </div>
+                            <div class="tab-pane tables">
+                                <table class="table table-striped table-hover table-responsive">
+                                    <thead>
+                                        <tr>
+                                            <th>区域名称</th>
+                                            <th>车位号</th>
+                                            <th>属性</th>
+                                            <th>车主姓名</th>
+                                            <th>联系电话</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>地下一层A区</td>
+                                            <td>01</td>
+                                            <td>私家车位</td>
+                                            <td>张三</td>
+                                            <td>13812345678</td>
+                                            <td>
+                                                <a  data-toggle="modal" data-target="#listModify">修改</a>|
+                                                <a  data-toggle="modal" data-target="#listDelete">删除</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>地下一层A区</td>
+                                            <td>02</td>
+                                            <td>公共车位</td>
+                                            <td>张三</td>
+                                            <td>13812345678</td>
+                                            <td>
+                                                <a  data-toggle="modal" data-target="#listModify">修改</a>|
+                                                <a  data-toggle="modal" data-target="#listDelete">删除</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!--修改-->
+                            <div class="modal fade" id="listModify" aria-hidden="false">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                                            <h4 class="modal-title text-center">修改</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <ul class="list-unstyled clearfix large-half">
+                                                <li>
+                                                    <span>车&nbsp;&nbsp;位&nbsp;&nbsp;号</span>
+                                                    <input type="text" class="parkingNum" placeholder="输入车位号">
+                                                </li>
+                                                <li class="text-right">
+                                                    <span>属&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;性</span>
+                                                    <div class="dropdown areaZone attribute">
+                                                        <a class="dropdown-toggle areaZoneList attribute-list text-center" data-toggle="dropdown" ids="0"><span>请选择</span><b class="caret"></b></a>
+                                                        <ul class="dropdown-menu areaZoneList-menu attribute-menu" role="menu">
+                                                            <li><a ids="1">公共车位</a></li>
+                                                            <li><a ids="2">私家车位</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <span>车主名称</span>
+                                                    <input type="text" class="ownerName" placeholder="输入车主名称">
+                                                </li>
+                                                <li class="text-right">
+                                                    <span>联系电话</span>
+                                                    <input type="text" class="ownerPhone" placeholder="输入联系电话">
+                                                </li>
+                                                <li>
+                                                    <span>摄&nbsp;&nbsp;像&nbsp;&nbsp;机</span>
+                                                    <input type="text" class="cameraName" placeholder="输入摄像机名称">
+                                                </li>
+                                                <li class="text-right">
+                                                    <span>摄像机ID</span>
+                                                    <input type="text" class="cameraId" placeholder="输入摄像机ID">
+                                                </li>
+                                                <li>
+                                                    <span>传&nbsp;&nbsp;感&nbsp;&nbsp;器</span>
+                                                    <input type="text" class="sensorName" placeholder="输入传感器名称">
+                                                </li>
+                                                <li class="text-right">
+                                                    <span>传感器ID</span>
+                                                    <input type="text" class="sensorId" placeholder="输入传感器ID">
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="modal-footer text-center">
+                                            <button type="button" class="btn btn-warning btn-lg toResure" data-dismiss="modal">确定</button>
+                                            <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--删除 -->
+                            <div class="modal fade" id="listDelete" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                                            <h4 class="modal-title text-center">提示</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form class="form-inline mBody_title text-center">确定删除该消息?</form>
+                                        </div>
+                                        <div class="modal-footer text-center">
+                                            <button type="button" class="btn btn-warning btn-lg to_delete" data-dismiss="modal">删除</button>
+                                            <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--车主管理-->
+                <div class="tab-pane" id="tab_owner_management">
+                    <div class="tablist_third">
+                        <ul class="nav clearfix">
+                            <li class="parkerMg active"><a href="#tab_parkerMg" role="tab" data-toggle="tab">车主管理</a></li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <!--车主管理-->
+                        <div class="tab-pane active" id="tab_parkerMg">
+                            <div class="btns">
+                                <button class='btn btn-warning adding text-center' data-toggle="modal" data-target="#addParkerMg"><i></i>添加</button>
+                                <button class='btn btn-primary lead_in text-center'><i></i>导入</button>
+                                <button class='btn btn-primary lead_out text-center'><i></i>导出<a href="" download="停车场管理》车主管理.xlsx" id="parkerMg" style="display: none"></a></button>
+                            </div>
+                            <div class="btns">
+                                <span>地址</span>
+                                <div class="dropdown areaZone periodType">
+                                    <a class="dropdown-toggle areaZoneList periodTypeList reactive_height text-center" data-toggle="dropdown"><span>全部 期</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu areaZoneList-menu periodTypeList-menu" role="menu">
+                                        <li><a>全部 期</a></li>
+                                        <li><a>1期</a></li>
+                                        <li><a>2期</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown areaZone zoneType">
+                                    <a class="dropdown-toggle areaZoneList zoneTypeList reactive_height text-center" data-toggle="dropdown"><span>全部 区</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu areaZoneList-menu zoneTypeList-menu" role="menu">
+                                        <li><a>全部 区</a></li>
+                                        <li><a>1区</a></li>
+                                        <li><a>2区</a></li>
+                                        <li><a>3区</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown areaZone buildingType">
+                                    <a class="dropdown-toggle areaZoneList buildingTypeList reactive_height text-center" data-toggle="dropdown"><span>全部 栋</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu areaZoneList-menu buildingTypeList-menu" role="menu">
+                                        <li><a>全部 栋</a></li>
+                                        <li><a>1栋</a></li>
+                                        <li><a>2栋</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown areaZone unitType">
+                                    <a class="dropdown-toggle areaZoneList unitTypeList reactive_height text-center" data-toggle="dropdown"><span>全部 单元</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu areaZoneList-menu unitTypeList-menu" role="menu">
+                                        <li><a>全部 单元</a></li>
+                                        <li><a>1单元</a></li>
+                                        <li><a>2单元</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown areaZone layer">
+                                    <a class="dropdown-toggle areaZoneList layerList reactive_height text-center" data-toggle="dropdown"><span>全部 层</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu areaZoneList-menu layerList-menu" role="menu">
+                                        <li><a>全部 层</a></li>
+                                        <li><a>1层</a></li>
+                                        <li><a>2层</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown areaZone ventricle">
+                                    <a class="dropdown-toggle areaZoneList roomNumList reactive_height text-center" data-toggle="dropdown"><span>全部 室</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu areaZoneList-menu roomNumList-menu" role="menu">
+                                        <li><a>全部 室</a></li>
+                                        <li><a>101室</a></li>
+                                        <li><a>201室</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="tab-pane tables">
+                                <table class="table table-striped table-hover table-responsive">
+                                    <thead>
+                                        <tr>
+                                            <th>家庭地址</th>
+                                            <th>车主姓名</th>
+                                            <th>联系电话</th>
+                                            <th>区域名称</th>
+                                            <th>车位号</th>
+                                            <th>车牌号</th>
+                                            <th>车型号</th>
+                                            <th>车颜色</th>
+                                            <th>车型大小</th>
+                                            <th>入驻时间</th>
+                                            <th>收费名称</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ids="0">
+                                            <td>1期1区1栋1单元2层201</td>
+                                            <td>张三</td>
+                                            <td>13812345678</td>
+                                            <td>地下一层A区</td>
+                                            <td>01</td>
+                                            <td>粤B GU102</td>
+                                            <td>本田</td>
+                                            <td>黑色</td>
+                                            <td>小</td>
+                                            <td>2017-01-12</td>
+                                            <td>######</td>
+                                            <td>
+                                                <a class="modify"  data-toggle="modal" data-target="#parkerMgModify">修改</a>|
+                                                <a class="delete"  data-toggle="modal" data-target="#parkerMgDelete">删除</a>
+                                            </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!--添加-->
+                            <div class="modal fade addDoorMac" id="addParkerMg" aria-hidden="false">
+                                <div class="modal-dialog" style="margin-top: 7rem;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                                            <h4 class="modal-title text-center">添加</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <ul class="list-unstyled clearfix large-half">
+                                                <li class="totalLength">
+                                                    <span>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址</span>
+                                                    <div class="installPosition">
+                                                        <div class="dropdown areaZone periodType">
+                                                            <a class="dropdown-toggle areaZoneList periodTypeList text-center" data-toggle="dropdown"><span>请选择期</span><b class="caret"></b></a>
+                                                            <ul class="dropdown-menu areaZoneList-menu periodTypeList-menu" role="menu">
+                                                                <li><a>1期</a></li>
+                                                                <li><a>2期</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="dropdown areaZone zoneType">
+                                                            <a class="dropdown-toggle areaZoneList zoneTypeList text-center" data-toggle="dropdown"><span>请选择区</span><b class="caret"></b></a>
+                                                            <ul class="dropdown-menu areaZoneList-menu zoneTypeList-menu" role="menu">
+                                                                <li><a>1区</a></li>
+                                                                <li><a>2区</a></li>
+                                                                <li><a>3区</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="dropdown areaZone buildingType">
+                                                            <a class="dropdown-toggle areaZoneList buildingTypeList text-center" data-toggle="dropdown"><span>请选择栋</span><b class="caret"></b></a>
+                                                            <ul class="dropdown-menu areaZoneList-menu buildingTypeList-menu" role="menu">
+                                                                <li><a>1栋</a></li>
+                                                                <li><a>2栋</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="dropdown areaZone unitType">
+                                                            <a class="dropdown-toggle areaZoneList unitTypeList text-center" data-toggle="dropdown"><span>请选择单元</span><b class="caret"></b></a>
+                                                            <ul class="dropdown-menu areaZoneList-menu unitTypeList-menu" role="menu">
+                                                                <li><a>1单元</a></li>
+                                                                <li><a>2单元</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="dropdown areaZone layer">
+                                                            <a class="dropdown-toggle areaZoneList layerList text-center" data-toggle="dropdown"><span>请选择层</span><b class="caret"></b></a>
+                                                            <ul class="dropdown-menu areaZoneList-menu layerList-menu" role="menu">
+                                                                <li><a>1层</a></li>
+                                                                <li><a>2层</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="dropdown areaZone room">
+                                                            <a class="dropdown-toggle areaZoneList roomList text-center" data-toggle="dropdown"><span>请选择室</span><b class="caret"></b></a>
+                                                            <ul class="dropdown-menu areaZoneList-menu roomList-menu" role="menu">
+                                                                <li><a>1室</a></li>
+                                                                <li><a>2室</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <span>车主姓名</span>
+                                                    <input type="text" class="ownerName" placeholder="输入车主姓名">
+                                                </li>
+                                                <li class="text-right">
+                                                    <span>联系电话</span>
+                                                    <input type="text" class="ownerPhone" placeholder="输入联系电话">
+                                                </li>
+                                                <li>
+                                                    <span>区域名称</span>
+                                                    <input type="text" class="areasname" placeholder="输入区域名称">
+                                                </li>
+                                                <li class="text-right">
+                                                    <span>车&nbsp;&nbsp;位&nbsp;&nbsp;号</span>
+                                                    <input type="text" class="parkingNum" placeholder="输入车位号">
+                                                </li>
+                                                <li>
+                                                    <span>车&nbsp;&nbsp;牌&nbsp;&nbsp;号</span>
+                                                    <input type="text" class="numPlate" placeholder="输入车牌号">
+                                                </li>
+                                                <li class="text-right">
+                                                    <span>车&nbsp;&nbsp;型&nbsp;&nbsp;号</span>
+                                                    <input type="text" class="carModels" placeholder="输入车型号">
+                                                </li>
+                                                <li>
+                                                    <span>车&nbsp;&nbsp;颜&nbsp;&nbsp;色</span>
+                                                    <input type="text" class="carColor" placeholder="输入车颜色">
+                                                </li>
+                                                <li class="text-right">
+                                                    <span>车型大小</span>
+                                                    <div class="dropdown areaZone carSize">
+                                                        <a class="dropdown-toggle areaZoneList carSizeList text-center" data-toggle="dropdown" ids="3"><span>请选择</span><b class="caret"></b></a>
+                                                        <ul class="dropdown-menu areaZoneList-menu carSize-menu" role="menu">
+                                                            <li><a ids="2">大型</a></li>
+                                                            <li><a ids="1">中型</a></li>
+                                                            <li><a ids="0">小型</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <span>入驻时间</span>
+                                                    <input type="text" class="calendar inTime">
+                                                </li>
+                                                <li class="text-right">
+                                                    <span>收费名称</span>
+                                                    <input type="text" class="chargeName" placeholder="输入收费名称">
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="modal-footer text-center">
+                                            <button type="button" class="btn btn-warning btn-lg determine" data-dismiss="modal">确定</button>
+                                            <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--修改-->
+                            <div class="modal fade addDoorMac" id="parkerMgModify" aria-hidden="false">
+                                <div class="modal-dialog" style="margin-top: 11rem;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                                            <h4 class="modal-title text-center">修改</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <ul class="list-unstyled clearfix large-half">
+                                                <!--<li class="totalLength">-->
+                                                    <!--<span>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址</span>-->
+                                                    <!--<div class="installPosition">-->
+                                                        <!--<div class="dropdown areaZone periodType">-->
+                                                            <!--<a class="dropdown-toggle areaZoneList periodTypeList text-center" data-toggle="dropdown"><span>请选择期</span><b class="caret"></b></a>-->
+                                                            <!--<ul class="dropdown-menu areaZoneList-menu periodTypeList-menu" role="menu">-->
+                                                                <!--<li><a>1期</a></li>-->
+                                                                <!--<li><a>2期</a></li>-->
+                                                            <!--</ul>-->
+                                                        <!--</div>-->
+                                                        <!--<div class="dropdown areaZone zoneType">-->
+                                                            <!--<a class="dropdown-toggle areaZoneList zoneTypeList text-center" data-toggle="dropdown"><span>请选择区</span><b class="caret"></b></a>-->
+                                                            <!--<ul class="dropdown-menu areaZoneList-menu zoneTypeList-menu" role="menu">-->
+                                                                <!--<li><a>1区</a></li>-->
+                                                                <!--<li><a>2区</a></li>-->
+                                                                <!--<li><a>3区</a></li>-->
+                                                            <!--</ul>-->
+                                                        <!--</div>-->
+                                                        <!--<div class="dropdown areaZone buildingType">-->
+                                                            <!--<a class="dropdown-toggle areaZoneList buildingTypeList text-center" data-toggle="dropdown"><span>请选择栋</span><b class="caret"></b></a>-->
+                                                            <!--<ul class="dropdown-menu areaZoneList-menu buildingTypeList-menu" role="menu">-->
+                                                                <!--<li><a>1栋</a></li>-->
+                                                                <!--<li><a>2栋</a></li>-->
+                                                            <!--</ul>-->
+                                                        <!--</div>-->
+                                                        <!--<div class="dropdown areaZone unitType">-->
+                                                            <!--<a class="dropdown-toggle areaZoneList unitTypeList text-center" data-toggle="dropdown"><span>请选择单元</span><b class="caret"></b></a>-->
+                                                            <!--<ul class="dropdown-menu areaZoneList-menu unitTypeList-menu" role="menu">-->
+                                                                <!--<li><a>1单元</a></li>-->
+                                                                <!--<li><a>2单元</a></li>-->
+                                                            <!--</ul>-->
+                                                        <!--</div>-->
+                                                        <!--<div class="dropdown areaZone layer">-->
+                                                            <!--<a class="dropdown-toggle areaZoneList layerList text-center" data-toggle="dropdown"><span>请选择层</span><b class="caret"></b></a>-->
+                                                            <!--<ul class="dropdown-menu areaZoneList-menu layerList-menu" role="menu">-->
+                                                                <!--<li><a>1层</a></li>-->
+                                                                <!--<li><a>2层</a></li>-->
+                                                            <!--</ul>-->
+                                                        <!--</div>-->
+                                                    <!--</div>-->
+                                                <!--</li>-->
+                                                <li>
+                                                    <span>车主姓名</span>
+                                                    <input type="text" class="ownerName" placeholder="输入车主姓名">
+                                                </li>
+                                                <li class="text-right">
+                                                    <span>联系电话</span>
+                                                    <input type="text" class="ownerPhone" placeholder="输入联系电话">
+                                                </li>
+                                                <li>
+                                                    <span>区域名称</span>
+                                                    <input type="text" class="areasname" placeholder="输入区域名称">
+                                                </li>
+                                                <li class="text-right">
+                                                    <span>车&nbsp;&nbsp;位&nbsp;&nbsp;号</span>
+                                                    <input type="text" class="parkingNum" placeholder="输入车位号">
+                                                </li>
+                                                <li>
+                                                    <span>车&nbsp;&nbsp;牌&nbsp;&nbsp;号</span>
+                                                    <input type="text" class="numPlate" placeholder="输入车牌号">
+                                                </li>
+                                                <li class="text-right">
+                                                    <span>车&nbsp;&nbsp;型&nbsp;&nbsp;号</span>
+                                                    <input type="text" class="carModels" placeholder="输入车型号">
+                                                </li>
+                                                <li>
+                                                    <span>车&nbsp;&nbsp;颜&nbsp;&nbsp;色</span>
+                                                    <input type="text" class="carColor" placeholder="输入车颜色">
+                                                </li>
+                                                <li class="text-right">
+                                                    <span>车型大小</span>
+                                                    <div class="dropdown areaZone carSize">
+                                                        <a class="dropdown-toggle areaZoneList carSizeList text-center" data-toggle="dropdown" ids="3"><span>请选择</span><b class="caret"></b></a>
+                                                        <ul class="dropdown-menu areaZoneList-menu carSize-menu" role="menu">
+                                                            <li><a ids="2">大型</a></li>
+                                                            <li><a ids="1">中型</a></li>
+                                                            <li><a ids="0">小型</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <span>入驻时间</span>
+                                                    <input type="text" class="calendar inTime">
+                                                </li>
+                                                <li class="text-right">
+                                                    <span>收费名称</span>
+                                                    <input type="text" class="chargeName" placeholder="输入收费名称">
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="modal-footer text-center">
+                                            <button type="button" class="btn btn-warning btn-lg determine" data-dismiss="modal">确定</button>
+                                            <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--删除 -->
+                            <div class="modal fade" id="parkerMgDelete" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                                            <h4 class="modal-title text-center">提示</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form class="form-inline mBody_title text-center">确定删除该消息?</form>
+                                        </div>
+                                        <div class="modal-footer text-center">
+                                            <button type="button" class="btn btn-warning btn-lg to_delete" data-dismiss="modal">删除</button>
+                                            <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--临时收费管理-->
+                <div class="tab-pane" id="tab_temporary_charge">
+                    <div class="tablist_third">
+                        <ul class="nav clearfix">
+                            <li class="chargeSetting active"><a href="#tab_chargeSetting" role="tab" data-toggle="tab">临时收费设置</a></li>
+                            <li class="chargeDetails"><a href="#tab_chargeDetails" role="tab" data-toggle="tab">临时收费详情</a></li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <!--临时收费设置-->
+                        <div class="tab-pane active" id="tab_chargeSetting">
+                            <div class="btns">
+                                <button class='btn btn-warning adding text-center' data-toggle="modal" data-target="#addChargeSetting"><i></i>添加</button>
+                            </div>
+                            <div class="tab-pane tables">
+                                <table class="table table-striped table-hover table-responsive">
+                                    <thead>
+                                        <tr>
+                                            <th>收费名称</th>
+                                            <th>收费编号</th>
+                                            <th>车型大小</th>
+                                            <th>收费类型</th>
+                                            <th>收费标准</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ids="1">
+                                            <td>######</td>
+                                            <td>001</td>
+                                            <td>小</td>
+                                            <td>按次收费</td>
+                                            <td>
+                                                <a class="detail" data-toggle="modal" data-target="#chargeSettingDetails_tip">详情</a>
+                                            </td>
+                                            <td>
+                                                <a class="modify" data-toggle="modal" data-target="#chargeSettingModify">修改</a>|
+                                                <a class="delete" data-toggle="modal" data-target="#chargeSettingDelete">删除</a>
+                                            </td>
+                                        </tr>
+                                        <tr ids="2">
+                                            <td>######</td>
+                                            <td>001</td>
+                                            <td>小</td>
+                                            <td>按次收费</td>
+                                            <td>
+                                                <a class="detail" data-toggle="modal" data-target="#chargeSettingDetails_time">详情</a>
+                                            </td>
+                                            <td>
+                                                <a class="modify" data-toggle="modal" data-target="#chargeSettingModify">修改</a>|
+                                                <a class="delete" data-toggle="modal" data-target="#chargeSettingDelete">删除</a>
+                                            </td>
+                                        </tr>
+                                        <tr ids="3">
+                                            <td>######</td>
+                                            <td>001</td>
+                                            <td>小</td>
+                                            <td>按次收费</td>
+                                            <td>
+                                                <a class="detail" data-toggle="modal" data-target="#chargeSettingDetails_times">详情</a>
+                                            </td>
+                                            <td>
+                                                <a class="modify" data-toggle="modal" data-target="#chargeSettingModify">修改</a>|
+                                                <a class="delete" data-toggle="modal" data-target="#chargeSettingDelete">删除</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!--添加-->
+                            <div class="modal fade addDoorMac" id="addChargeSetting" aria-hidden="false">
+                                <div class="modal-dialog" style="margin-top: 8rem;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                                            <h4 class="modal-title text-center">添加</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <ul class="list-unstyled clearfix large-half">
+                                                <li>
+                                                    <span>收费名称</span>
+                                                    <input type="text" class="chargeName" placeholder="输入收费名称">
+                                                </li>
+                                                <li class="text-right">
+                                                    <span>收费编号</span>
+                                                    <input type="text" class="chargeNum" placeholder="输入收费编号">
+                                                </li>
+                                                <li>
+                                                    <span>车型大小</span>
+                                                    <div class="dropdown areaZone modelSize">
+                                                        <a class="dropdown-toggle areaZoneList modelSizeList text-center" data-toggle="dropdown" ids="0"><span>请选择</span><b class="caret"></b></a>
+                                                        <ul class="dropdown-menu areaZoneList-menu modelSizeList-menu" role="menu">
+                                                            <li><a ids="1">大</a></li>
+                                                            <li><a ids="2">中</a></li>
+                                                            <li><a ids="3">小</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li class="text-right">
+                                                    <span>收费类型</span>
+                                                    <div class="dropdown areaZone chargeType">
+                                                        <a class="dropdown-toggle areaZoneList chargeTypeList text-center" data-toggle="dropdown" ids="0"><span>请选择</span><b class="caret"></b></a>
+                                                        <ul class="dropdown-menu areaZoneList-menu chargeTypeList-menu" role="menu">
+                                                            <li><a ids="1">按次收费</a></li>
+                                                            <li><a ids="2">按时收费</a></li>
+                                                            <li><a ids="3">按时段收费</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li class="totalLength per-time">
+                                                    <span>每&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次</span>
+                                                    <input type="number" class="midWidth">
+                                                    <span class="sInline">分钟内免费</span>
+                                                    <span>每次</span>
+                                                    <input type="text" class="midWidth"/>
+                                                    <span class="sInline">元</span>
+                                                </li>
+                                                <li class="totalLength times times-both">
+                                                    <span>范&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;围</span>
+                                                    <input type="text" class="midWidth"/>
+                                                    <span class="sInline">分钟内免费</span>
+                                                </li>
+                                                <li class="totalLength times a-time">
+                                                    <span></span>
+                                                    <ul class="chargeTime list-unstyled">
+                                                        <li>
+                                                            <input type="text" class="startTo"/><span class="toTime">小时内</span><span>收费</span><input type="text" class="endTo"/><span>元</span><a class="add">添加</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="totalLength times a-time" style="margin-top: -0.5rem;">
+                                                    <span></span>
+                                                    <ul class="list-unstyled">
+                                                        <li>
+                                                            <span>以24小时为单位算一天，每天最多收费</span>
+                                                            <input type="text" class="midWidth"/>
+                                                            <span>元</span>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="totalLength times period-time">
+                                                    <span></span>
+                                                    <ul class="chargeTime list-unstyled">
+                                                        <li>
+                                                            <span>白天（8:00~20:00）</span>
+                                                        </li>
+                                                        <li>
+                                                            <input type="text" class="startTo"/><span class="toTime">小时内</span><span>收费</span><input type="text" class="endTo"/><span>元</span><a class="add">添加</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="totalLength times period-time">
+                                                    <span></span>
+                                                    <ul class="chargeTime list-unstyled">
+                                                        <li>
+                                                            <span>晚上（20:00~08:00）</span>
+                                                        </li>
+                                                        <li>
+                                                            <input type="text" class="startTo"/><span class="toTime">小时内</span><span>收费</span><input type="text" class="endTo"/><span>元</span><a class="add">添加</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="totalLength times period-time" style="margin-top: -0.5rem;">
+                                                    <span></span>
+                                                    <ul class="list-unstyled">
+                                                        <li>
+                                                            <span>以24小时为单位算一天，每天最多收费</span>
+                                                            <input type="text" class="midWidth"/>
+                                                            <span>元</span>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="modal-footer text-center">
+                                            <button type="button" class="btn btn-warning btn-lg determine" data-dismiss="modal">确定</button>
+                                            <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--详情 按次收费-->
+                            <div class="modal fade detailTime" id="chargeSettingDetails_tip" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                                            <h4 class="modal-title text-center">详情</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <ul class="list-unstyled text-center">
+                                                <li>
+                                                    <p>每次15分钟内免收费，每次收费20元</p>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--详情 按时收费-->
+                            <div class="modal fade detailTime" id="chargeSettingDetails_time" aria-hidden="true">
+                                <div class="modal-dialog" style="margin-top: 7rem;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                                            <h4 class="modal-title text-center">详情</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <ul class="list-unstyled text-center">
+                                                <li>
+                                                    <p>每次15分钟内免收费</p>
+                                                </li>
+                                                <li>
+                                                    <p>15分钟到5小时收费15元</p>
+                                                </li>
+                                                <li>
+                                                    <p>5小时到8小时收费50元</p>
+                                                </li>
+                                                <li>
+                                                    <p>8小时到12小时收费80元</p>
+                                                </li>
+                                                <li>
+                                                    <p>以24小时为单位算一天，每天最多收费200元</p>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--详情 按时段收费-->
+                            <div class="modal fade detailTime" id="chargeSettingDetails_times" aria-hidden="true">
+                                <div class="modal-dialog" style="margin-top: 4rem;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                                            <h4 class="modal-title text-center">详情</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <ul class="list-unstyled text-center clearfix">
+                                                <li>
+                                                    <p>每次15分钟内免收费，每次收费20元</p>
+                                                </li>
+                                                <li class="second_time">
+                                                    <div class="pull-left">
+                                                        <p>白天（8:00~20:00）</p>
+                                                    </div>
+                                                    <ul class="pull-left list-unstyled clearfix">
+                                                        <li>
+                                                            <p>15分钟到3小时收费25元</p>
+                                                        </li>
+                                                        <li>
+                                                            <p>3小时到8小时收费60元</p>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="second_time">
+                                                    <div class="pull-left">
+                                                        <p>晚上（21:00~07:00）</p>
+                                                    </div>
+                                                    <ul class="pull-left list-unstyled clearfix">
+                                                        <li>
+                                                            <p>15分钟到3小时收费15元</p>
+                                                        </li>
+                                                        <li>
+                                                            <p>3小时到8小时收费50元</p>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <p>以24小时为单位算一天，每天最多收费200元</p>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--修改-->
+                            <div class="modal fade addDoorMac" id="chargeSettingModify" aria-hidden="false">
+                                <div class="modal-dialog" style="margin-top: 8rem;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                                            <h4 class="modal-title text-center">修改</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <ul class="list-unstyled clearfix large-half">
+                                                <li>
+                                                    <span>收费名称</span>
+                                                    <input type="text" class="chargeName" placeholder="输入收费名称">
+                                                </li>
+                                                <li class="text-right">
+                                                    <span>收费编号</span>
+                                                    <input type="text" class="chargeNum" placeholder="输入收费编号">
+                                                </li>
+                                                <li>
+                                                    <span>车型大小</span>
+                                                    <div class="dropdown areaZone modelSize">
+                                                        <a class="dropdown-toggle areaZoneList modelSizeList text-center" data-toggle="dropdown" ids="0"><span>请选择</span><b class="caret"></b></a>
+                                                        <ul class="dropdown-menu areaZoneList-menu modelSizeList-menu" role="menu">
+                                                            <li><a ids="1">大</a></li>
+                                                            <li><a ids="2">中</a></li>
+                                                            <li><a ids="3">小</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li class="text-right">
+                                                    <span>收费类型</span>
+                                                    <div class="dropdown areaZone chargeType">
+                                                        <a class="dropdown-toggle areaZoneList chargeTypeList text-center" data-toggle="dropdown" ids="0"><span>请选择</span><b class="caret"></b></a>
+                                                        <ul class="dropdown-menu areaZoneList-menu chargeTypeList-menu" role="menu">
+                                                            <li><a ids="1">按次收费</a></li>
+                                                            <li><a ids="2">按时收费</a></li>
+                                                            <li><a ids="3">按时段收费</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li class="totalLength per-time">
+                                                    <span>每&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次</span>
+                                                    <input type="number" class="midWidth">
+                                                    <span class="sInline">分钟内免费</span>
+                                                    <span>每次</span>
+                                                    <input type="text" class="midWidth"/>
+                                                    <span class="sInline">元</span>
+                                                </li>
+                                                <li class="totalLength times times-both">
+                                                    <span>范&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;围</span>
+                                                    <input type="text" class="midWidth"/>
+                                                    <span class="sInline">分钟内免费</span>
+                                                </li>
+                                                <li class="totalLength times a-time">
+                                                    <span></span>
+                                                    <ul class="chargeTime list-unstyled">
+                                                        <li>
+                                                            <input type="text" class="startTo"/><span class="toTime">小时内</span><span>收费</span><input type="text" class="endTo"/><span>元</span><a class="add">添加</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="totalLength times a-time" style="margin-top: -0.5rem;">
+                                                    <span></span>
+                                                    <ul class="list-unstyled">
+                                                        <li>
+                                                            <span>以24小时为单位算一天，每天最多收费</span>
+                                                            <input type="text" class="midWidth"/>
+                                                            <span>元</span>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="totalLength times period-time">
+                                                    <span></span>
+                                                    <ul class="chargeTime list-unstyled">
+                                                        <li>
+                                                            <span>白天（8:00~20:00）</span>
+                                                        </li>
+                                                        <li>
+                                                            <input type="text" class="startTo"/><span class="toTime">小时内</span><span>收费</span><input type="text" class="endTo"/><span>元</span><a class="add">添加</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="totalLength times period-time">
+                                                    <span></span>
+                                                    <ul class="chargeTime list-unstyled">
+                                                        <li>
+                                                            <span>晚上（20:00~08:00）</span>
+                                                        </li>
+                                                        <li>
+                                                            <input type="text" class="startTo"/><span class="toTime">小时内</span><span>收费</span><input type="text" class="endTo"/><span>元</span><a class="add">添加</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="totalLength times period-time" style="margin-top: -0.5rem;">
+                                                    <span></span>
+                                                    <ul class="list-unstyled">
+                                                        <li>
+                                                            <span>以24小时为单位算一天，每天最多收费</span>
+                                                            <input type="text" class="midWidth"/>
+                                                            <span>元</span>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="modal-footer text-center">
+                                            <button type="button" class="btn btn-warning btn-lg determine" data-dismiss="modal">确定</button>
+                                            <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--删除 -->
+                            <div class="modal fade" id="chargeSettingDelete" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                                            <h4 class="modal-title text-center">提示</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form class="form-inline mBody_title text-center">确定删除该消息?</form>
+                                        </div>
+                                        <div class="modal-footer text-center">
+                                            <button type="button" class="btn btn-warning btn-lg to_delete" data-dismiss="modal">删除</button>
+                                            <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--临时收费详情-->
+                        <div class="tab-pane" id="tab_chargeDetails">
+                            <div class="btns">
+                                <button class="btn btn-primary lead_out text-center"><i></i>导出<a href="" download="临时收费详情.xlsx" id="chargeSetDetailDowExl" style="display: none"></a></button>
+                                <button class="btn btn-primary print text-center"><i></i>打印</button>
+                                <button class="btn btn-primary btn_search text-center pull-right"><i></i>查询</button>
+                                <div class="startToEnd pull-right">
+                                    从
+                                    <input type="text" class="reactive_height calendar startTime" placeholder="起止时间">
+                                    到
+                                    <input type="text" class="reactive_height calendar endTime" placeholder="结束时间">
+                                </div>
+                            </div>
+                            <div class="btns btns_chargeDetails">
+                                <span>车位属性</span>
+                                <div class="dropdown areaZone parkingAttribute">
+                                    <a class="dropdown-toggle areaZoneList parkingAttributeList reactive_height text-center" data-toggle="dropdown"><span>请选择</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu areaZoneList-menu parkingAttributeList-menu" role="menu">
+                                        <li><a>全部</a></li>
+                                        <li><a>公共车位</a></li>
+                                        <li><a>私家车位</a></li>
+                                    </ul>
+                                </div>
+                                <span>车位</span>
+                                <div class="dropdown areaZone parkingSpace">
+                                    <a class="dropdown-toggle areaZoneList parkingSpaceList reactive_height text-center" data-toggle="dropdown"><span>请选择</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu areaZoneList-menu parkingSpaceList-menu" role="menu">
+                                        <li><a>全部</a></li>
+                                        <li><a>01车位</a></li>
+                                        <li><a>02车位</a></li>
+                                    </ul>
+                                </div>
+                                <span>区域</span>
+                                <input type="text" class="reactive_height" placeholder="输入区域"/>
+                                <span>车位号</span>
+                                <input type="text" class="reactive_height" placeholder="输入车位号"/>
+                                <span>电话</span>
+                                <input type="text" class="reactive_height" placeholder="输入电话"/>
+                            </div>
+                            <div class="tab-pane tables">
+                                <table class="table table-striped table-hover table-responsive">
+                                    <thead>
+                                    <tr>
+                                        <th>车牌号</th>
+                                        <th>车型大小</th>
+                                        <th>收费类型</th>
+                                        <th>区域</th>
+                                        <th>停车位号</th>
+                                        <th>入场时间</th>
+                                        <th>出场时间</th>
+                                        <th>停车时长</th>
+                                        <th>收费金额(￥)</th>
+                                        <th>应返业户金额(￥)</th>
+                                        <th>实收金额(￥)</th>
+                                        <th>合计</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>粤B GH089</td>
+                                            <td>小</td>
+                                            <td>按次收费</td>
+                                            <td>地下一层A区</td>
+                                            <td>A-01</td>
+                                            <td>2017-12-12 08:00</td>
+                                            <td>2017-12-12 18:00</td>
+                                            <td>10小时</td>
+                                            <td>30元</td>
+                                            <td>30元</td>
+                                            <td>30元</td>
+                                            <td>30元</td>
+                                        </tr>
+                                        <tr>
+                                            <td>粤B GH089</td>
+                                            <td>小</td>
+                                            <td>按时收费</td>
+                                            <td>地下一层A区</td>
+                                            <td>A-01</td>
+                                            <td>2017-12-12 08:00</td>
+                                            <td>2017-12-12 18:00</td>
+                                            <td>10小时</td>
+                                            <td>30元</td>
+                                            <td>30元</td>
+                                            <td>30元</td>
+                                            <td>30元</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--车位闲时出租-->
+                <div class="tab-pane" id="tab_rent_at_leisure">
+                    <div class="tablist_third">
+                        <ul class="nav clearfix">
+                            <li class="hire_set active"><a href="#tab_hire_set" role="tab" data-toggle="tab">车位闲时出租设置</a></li>
+                            <li class="hire_management"><a href="#tab_hire_management" role="tab" data-toggle="tab">车位闲时出租管理</a></li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <!--车位闲时出租设置-->
+                        <div class="tab-pane active" id="tab_hire_set">
+                            <div class="btns">
+                                <button class='btn btn-primary modify text-center'><i></i>修改</button>
+                            </div>
+                            <div class="tables b_set sys_info">
+                                <h4></h4>
+                                <div class="box">
+                                    <div class="b_contain sys_contain">
+                                        <ul class="list-unstyled large-half text-center" style="margin-top: 2rem;">
+                                            <li class="title text-left">
+                                                <span>车位闲时出租设置</span>
+                                            </li>
+                                            <li class="commission">
+                                                <span>提&nbsp;&nbsp;成&nbsp;&nbsp;比：</span>
+                                                <input type="text" ids="0" placeholder="请输入物管提成比"/>
+                                                <b>10%</b>
+                                            </li>
+                                            <li class="returnTime">
+                                                <span>返款时间：</span>
+                                                <input class="calendar" type="text"/>
+                                                <b>2017-10-10</b>
+                                            </li>
+                                            <li class="returnWay">
+                                                <span>返款方式：</span>
+                                                <div class="dropdown areaZone refundWay">
+                                                    <a class="dropdown-toggle areaZoneList refundWayList reactive_height text-center" data-toggle="dropdown" ids=""><span>请选择</span><b class="caret"></b></a>
+                                                    <ul class="dropdown-menu areaZoneList-menu refundWayList-menu" role="menu">
+                                                        <li><a ids="1">现金</a></li>
+                                                        <li><a ids="2">微信</a></li>
+                                                        <li><a ids="3">支付宝</a></li>
+                                                        <li><a ids="4">冲销</a></li>
+                                                    </ul>
+                                                </div>
+                                                <b>现金</b>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="text-center b_footer">
+                                        <button class="btn btn-warning btn-lg determine">确认</button>
+                                        <button class="btn btn-default btn-lg cancel">取消</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--车位闲时出租管理-->
+                        <div class="tab-pane" id="tab_hire_management">
+                            <div class="btns">
+                                <button class='btn btn-warning adding text-center' data-toggle="modal" data-target="#addHireManagement"><i></i>添加</button>
+                                <button class="btn btn-primary lead_out text-center"><i></i>导出<a href="" download="车位闲时出租管理.xlsx" id="hireManagementDowExl" style="display: none"></a></button>
+                                <button class="btn btn-primary print text-center"><i></i>打印</button>
+                            </div>
+                            <div class="btns btns_chargeDetails">
+                                <span>区域名称</span>
+                                <input type="text" class="reactive_height" placeholder="输入区域名称"/>
+                                <span>车位号</span>
+                                <input type="text" class="reactive_height" placeholder="输入车位号"/>
+                                <span>电话</span>
+                                <input type="text" class="reactive_height" placeholder="输入电话"/>
+                                <button class="btn btn-primary btn_search text-center pull-right"><i></i>查询</button>
+                                <div class="startToEnd pull-right">
+                                    从
+                                    <input type="text" class="reactive_height calendar startTime" placeholder="起止时间">
+                                    到
+                                    <input type="text" class="reactive_height calendar endTime" placeholder="结束时间">
+                                </div>
+                            </div>
+                            <div class="tab-pane tables">
+                                <table class="table table-striped table-hover table-responsive">
+                                    <thead>
+                                        <tr>
+                                            <th>区域名称</th>
+                                            <th>车位号</th>
+                                            <th>车牌号</th>
+                                            <th>车型大小</th>
+                                            <th>收费类型</th>
+                                            <th>入场时间</th>
+                                            <th>出场时间</th>
+                                            <th>停车时长</th>
+                                            <th>应返业户金额(￥)</th>
+                                            <th>应返金额详情</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>地下一层A区</td>
+                                            <td>A-01</td>
+                                            <td>粤B GH089</td>
+                                            <td>小</td>
+                                            <td>按次收费</td>
+                                            <td>2017-12-12 08:00</td>
+                                            <td>2017-12-12 18:00</td>
+                                            <td>10小时</td>
+                                            <td>30元</td>
+                                            <td>
+                                                <a data-toggle="modal" data-target="#hireManagementDetails_tip">详情</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>地下一层A区</td>
+                                            <td>A-01</td>
+                                            <td>粤B GH089</td>
+                                            <td>小</td>
+                                            <td>按时收费</td>
+                                            <td>2017-12-12 08:00</td>
+                                            <td>2017-12-12 18:00</td>
+                                            <td>10小时</td>
+                                            <td>30元</td>
+                                            <td>
+                                                <a data-toggle="modal" data-target="#hireManagementDetails_tip">详情</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>地下一层A区</td>
+                                            <td>A-01</td>
+                                            <td>粤B GH089</td>
+                                            <td>小</td>
+                                            <td>按时段收费</td>
+                                            <td>2017-12-12 08:00</td>
+                                            <td>2017-12-12 18:00</td>
+                                            <td>10小时</td>
+                                            <td>30元</td>
+                                            <td>
+                                                <a data-toggle="modal" data-target="#hireManagementDetails_tip">详情</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!--添加-->
+                            <div class="modal fade addDoorMac" id="addHireManagement" aria-hidden="false">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                                            <h4 class="modal-title text-center">添加</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <ul class="list-unstyled clearfix large-half">
+                                                <li>
+                                                    <span>车主姓名</span>
+                                                    <input type="text" class="ownerName" placeholder="输入车主姓名">
+                                                </li>
+                                                <li class="text-right">
+                                                    <span>联系电话</span>
+                                                    <input type="text" class="ownerPhone" placeholder="输入联系电话">
+                                                </li>
+                                                <li>
+                                                    <span>区域名称</span>
+                                                    <input type="text" class="areasname" placeholder="输入区域名称">
+                                                </li>
+                                                <li class="text-right">
+                                                    <span>车&nbsp;&nbsp;位&nbsp;&nbsp;号</span>
+                                                    <input type="text" class="parkingNum" placeholder="输入车位号">
+                                                </li>
+                                                <li>
+                                                    <span>起租时间</span>
+                                                    <input type="text" class="calendar rentTimer">
+                                                </li>
+                                                <li class="text-right">
+                                                    <span>止租时间</span>
+                                                    <input type="text" class="calendar rentTimer">
+                                                </li>
+                                                <li>
+                                                    <span>周&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;期</span>
+                                                    <div class="dropdown areaZone cycleHire">
+                                                        <a class="dropdown-toggle areaZoneList cycleHireList text-center" data-toggle="dropdown"><span>请选择</span><b class="caret"></b></a>
+                                                        <ul class="dropdown-menu areaZoneList-menu cycleHireList-menu" role="menu">
+                                                            <li><a ids="1">仅此一次</a></li>
+                                                            <li><a ids="2">周期</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li class="totalLength cycle-items">
+                                                    <span></span>
+                                                    <div class="hireMgCycle">
+                                                        <input type="radio" name="hireCycle" id="Monday" value="1">
+                                                        <label class="Monday" for="Monday">周一</label>
+                                                        <input type="radio" name="hireCycle" id="Tuesday" value="2">
+                                                        <label class="Tuesday" for="Tuesday">周二</label>
+                                                        <input type="radio" name="hireCycle" id="Wednesday" value="3">
+                                                        <label class="Wednesday" for="Wednesday">周三</label>
+                                                        <input type="radio" name="hireCycle" id="Thursday" value="4">
+                                                        <label class="Thursday" for="Thursday">周四</label>
+                                                        <input type="radio" name="hireCycle" id="Friday" value="5">
+                                                        <label class="Friday" for="Friday">周五</label>
+                                                        <input type="radio" name="hireCycle" id="Saturday" value="4">
+                                                        <label class="Saturday" for="Saturday">周六</label>
+                                                        <input type="radio" name="hireCycle" id="Sunday" value="5">
+                                                        <label class="Sunday" for="Sunday">周天</label>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="modal-footer text-center">
+                                            <button type="button" class="btn btn-warning btn-lg determine" data-dismiss="modal">确定</button>
+                                            <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--详情-->
+                            <div class="modal fade addDoorMac" id="hireManagementDetails_tip" aria-hidden="false">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                                            <h4 class="modal-title text-center">详情</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <table class="table table-bordered hireMgTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>应返金额总计</th>
+                                                        <th>已返业户金额</th>
+                                                        <th>剩余金额</th>
+                                                        <th>返款方式</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>1500元</td>
+                                                        <td>700元</td>
+                                                        <td>800元</td>
+                                                        <td>支付宝</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer text-center">
+                                            <button type="button" class="btn btn-warning btn-lg determine" data-dismiss="modal">确定</button>
+                                            <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--车辆监控-->
+                <div class="tab-pane" id="tab_vehicle_monitoring">
+                    <div class="tablist_third">
+                        <ul class="nav clearfix">
+                            <li class="entranceLane active"><a href="#tab_entranceLane" role="tab" data-toggle="tab">入口车道</a></li>
+                            <li class="exportLane"><a href="#tab_exportLane" role="tab" data-toggle="tab">出口车道</a></li>
+                            <li class="historyRecord"><a href="#tab_historyRecord" role="tab" data-toggle="tab">历史记录</a></li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <!--入口车道-->
+                        <div class="tab-pane active" id="tab_entranceLane">
+                            <div class="btns">
+                                <button class='btn btn-primary lead_out text-center'><i></i>导出<a href="" download="停车场管理》车辆监控》入口车道.xlsx" id="entranceLane" style="display: none"></a></button>
+                                <button class="btn btn-primary print text-center"><i></i>打印</button>
+                            </div>
+                            <div class="tables b_set sys_info parkingMg">
+                                <h4></h4>
+                                <div class="box">
+                                    <div class="cont">
+                                        <ul class="list-unstyled nav_top clearfix parkSpace">
+                                            <li><span>2017-12-25 13:30</span></li>
+                                            <li><span>车位：</span><a>729</a><span>/1000</span></li>
+                                        </ul>
+                                        <div class="leftMonitory">
+                                            <ul class="list-unstyled clearfix topItems">
+                                                <li>
+                                                    <i></i>
+                                                    <div class="items">
+                                                        <div class="top">
+                                                            <span class="lane">入口车道</span>
+                                                            <span>东门</span>
+                                                            <a class="pull-right amplification"></a>
+                                                        </div>
+                                                        <div class="bottom">
+                                                            <span>粤B 88888</span>
+                                                            <button class="btn btn-primary text-center">抓拍</button>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <i></i>
+                                                    <div class="items">
+                                                        <div class="top">
+                                                            <span class="lane">入口车道</span>
+                                                            <span>南门</span>
+                                                            <a class="pull-right amplification"></a>
+                                                        </div>
+                                                        <div class="bottom">
+                                                            <span>粤B 88888</span>
+                                                            <button class="btn btn-primary text-center">抓拍</button>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <i></i>
+                                                    <div class="items">
+                                                        <div class="top">
+                                                            <span class="lane">入口车道</span>
+                                                            <span>西门</span>
+                                                            <a class="pull-right amplification"></a>
+                                                        </div>
+                                                        <div class="bottom">
+                                                            <span>粤B 88888</span>
+                                                            <button class="btn btn-primary text-center">抓拍</button>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <i></i>
+                                                    <div class="items">
+                                                        <div class="top">
+                                                            <span class="lane">出口车道</span>
+                                                            <span>北门</span>
+                                                            <a class="pull-right amplification"></a>
+                                                        </div>
+                                                        <div class="bottom">
+                                                            <span>粤B 88888</span>
+                                                            <button class="btn btn-primary text-center">抓拍</button>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <div class="bottomItems">
+                                                <div class="bottomTitle">
+                                                    <span>过车记录</span>
+                                                    <div class="pull-right">
+                                                        <input type="checkbox" id="allCheck"/>
+                                                        <label for="allCheck">全部</label>
+                                                        <input type="checkbox" id="released"/>
+                                                        <label for="released">已放行</label>
+                                                        <input type="checkbox" id="notRelease"/>
+                                                        <label for="notRelease">未放行</label>
+                                                    </div>
+                                                </div>
+                                                <div class="imgs">
+                                                    <span class="prev"></span>
+                                                    <div class="imgs_item pull-left">
+                                                        <ul class="list-unstyled clearfix">
+                                                            <li>
+                                                                <div class="blackBottom">
+                                                                    <div class="passing">
+                                                                        <i></i>
+                                                                        <span>已放行</span>
+                                                                        <span class="pull-right">粤B 88888</span>
+                                                                    </div>
+                                                                </div>
+                                                                <span>2017-12-25</span>
+                                                                <span class="pull-right">13:40</span>
+                                                            </li>
+                                                            <li>
+                                                                <div class="blackBottom">
+                                                                    <div class="passing">
+                                                                        <i></i>
+                                                                        <span>已放行</span>
+                                                                        <span class="pull-right">粤B 88888</span>
+                                                                    </div>
+                                                                </div>
+                                                                <span>2017-12-25</span>
+                                                                <span class="pull-right">13:40</span>
+                                                            </li>
+                                                            <li>
+                                                                <div class="blackBottom">
+                                                                    <div class="passing">
+                                                                        <i></i>
+                                                                        <span>已放行</span>
+                                                                        <span class="pull-right">粤B 88888</span>
+                                                                    </div>
+                                                                </div>
+                                                                <span>2017-12-25</span>
+                                                                <span class="pull-right">13:40</span>
+                                                            </li>
+                                                            <li>
+                                                                <div class="blackBottom">
+                                                                    <div class="passing">
+                                                                        <i></i>
+                                                                        <span>已放行</span>
+                                                                        <span class="pull-right">粤B 88888</span>
+                                                                    </div>
+                                                                </div>
+                                                                <span>2017-12-25</span>
+                                                                <span class="pull-right">13:40</span>
+                                                            </li>
+                                                            <li>
+                                                                <div class="blackBottom">
+                                                                    <div class="passing notRelease">
+                                                                        <i></i>
+                                                                        <span>未放行</span>
+                                                                        <span class="pull-right">粤B 88888</span>
+                                                                    </div>
+                                                                </div>
+                                                                <span>2017-12-25</span>
+                                                                <span class="pull-right">13:40</span>
+                                                            </li>
+                                                            <li>
+                                                                <div class="blackBottom">
+                                                                    <div class="passing notRelease">
+                                                                        <i></i>
+                                                                        <span>未放行</span>
+                                                                        <span class="pull-right">粤B 88888</span>
+                                                                    </div>
+                                                                </div>
+                                                                <span>2017-12-25</span>
+                                                                <span class="pull-right">13:40</span>
+                                                            </li>
+                                                            <li>
+                                                                <div class="blackBottom">
+                                                                    <div class="passing notRelease">
+                                                                        <i></i>
+                                                                        <span>未放行</span>
+                                                                        <span class="pull-right">粤B 88888</span>
+                                                                    </div>
+                                                                </div>
+                                                                <span>2017-12-25</span>
+                                                                <span class="pull-right">13:40</span>
+                                                            </li>
+                                                            <li>
+                                                                <div class="blackBottom">
+                                                                    <div class="passing">
+                                                                        <i></i>
+                                                                        <span>已放行</span>
+                                                                        <span class="pull-right">粤B 88888</span>
+                                                                    </div>
+                                                                </div>
+                                                                <span>2017-12-25</span>
+                                                                <span class="pull-right">13:40</span>
+                                                            </li>
+                                                            <li>
+                                                                <div class="blackBottom">
+                                                                    <div class="passing">
+                                                                        <i></i>
+                                                                        <span>已放行</span>
+                                                                        <span class="pull-right">粤B 88888</span>
+                                                                    </div>
+                                                                </div>
+                                                                <span>2017-12-25</span>
+                                                                <span class="pull-right">13:40</span>
+                                                            </li>
+                                                            <li>
+                                                                <div class="blackBottom">
+                                                                    <div class="passing">
+                                                                        <i></i>
+                                                                        <span>已放行</span>
+                                                                        <span class="pull-right">粤B 88888</span>
+                                                                    </div>
+                                                                </div>
+                                                                <span>2017-12-25</span>
+                                                                <span class="pull-right">13:40</span>
+                                                            </li>
+                                                            <li>
+                                                                <div class="blackBottom">
+                                                                    <div class="passing">
+                                                                        <i></i>
+                                                                        <span>已放行</span>
+                                                                        <span class="pull-right">粤B 88888</span>
+                                                                    </div>
+                                                                </div>
+                                                                <span>2017-12-25</span>
+                                                                <span class="pull-right">13:40</span>
+                                                            </li>
+                                                            <li>
+                                                                <div class="blackBottom">
+                                                                    <div class="passing notRelease">
+                                                                        <i></i>
+                                                                        <span>未放行</span>
+                                                                        <span class="pull-right">粤B 88888</span>
+                                                                    </div>
+                                                                </div>
+                                                                <span>2017-12-25</span>
+                                                                <span class="pull-right">13:40</span>
+                                                            </li>
+                                                            <li>
+                                                                <div class="blackBottom">
+                                                                    <div class="passing notRelease">
+                                                                        <i></i>
+                                                                        <span>未放行</span>
+                                                                        <span class="pull-right">粤B 88888</span>
+                                                                    </div>
+                                                                </div>
+                                                                <span>2017-12-25</span>
+                                                                <span class="pull-right">13:40</span>
+                                                            </li>
+                                                            <li>
+                                                                <div class="blackBottom">
+                                                                    <div class="passing notRelease">
+                                                                        <i></i>
+                                                                        <span>未放行</span>
+                                                                        <span class="pull-right">粤B 88888</span>
+                                                                    </div>
+                                                                </div>
+                                                                <span>2017-12-25</span>
+                                                                <span class="pull-right">13:40</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <span class="next"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="edits pull-right licenseInfo">
+                                            <ul class="list-unstyled clearfix details">
+                                                <li class="text-center license">
+                                                    <span>出车车牌</span>
+                                                    <span class="licenseNum">粤B 88888</span>
+                                                </li>
+                                                <li>
+                                                    <span class="basicTitle">基本信息</span>
+                                                </li>
+                                                <li>
+                                                    <span>车型大小</span>
+                                                    <b class="pull-right modelSize">小型车</b>
+                                                </li>
+                                                <li>
+                                                    <span>入场时间</span>
+                                                    <b class="pull-right startTime">2017-12-25 13:30</b>
+                                                </li>
+                                                <li class="conBtns">
+                                                    <button class="btn btn-primary">开闸</button>
+                                                    <button class="btn btn-primary">常开</button>
+                                                    <button class="btn btn-primary">关闸</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--出口车道-->
+                        <div class="tab-pane" id="tab_exportLane">
+                            <div class="btns">
+                                <button class='btn btn-primary lead_out text-center'><i></i>导出<a href="" download="停车场管理》车辆监控》出口车道.xlsx" id="exportLaneExl" style="display: none"></a></button>
+                                <button class="btn btn-primary print text-center"><i></i>打印</button>
+                            </div>
+                            <div class="tables b_set sys_info parkingMg exportParkingMg">
+                                <h4></h4>
+                                <div class="box">
+                                    <div class="cont">
+                                        <ul class="list-unstyled nav_top clearfix parkSpace">
+                                            <li><span>2017-12-25 13:30</span></li>
+                                            <li><span>车位：</span><a>729</a><span>/1000</span></li>
+                                        </ul>
+                                        <div class="leftMonitory">
+                                            <ul class="list-unstyled clearfix topItems lists">
+                                                <li>
+                                                    <i></i>
+                                                    <div class="items">
+                                                        <div class="top">
+                                                            <span class="lane">入口车道</span>
+                                                            <span>东门</span>
+                                                            <a class="pull-right amplification"></a>
+                                                        </div>
+                                                        <div class="bottom">
+                                                            <span>粤B 88888</span>
+                                                            <button class="btn btn-primary text-center">抓拍</button>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <i></i>
+                                                    <div class="items">
+                                                        <div class="top">
+                                                            <span class="lane">入口车道</span>
+                                                            <span>南门</span>
+                                                            <a class="pull-right amplification"></a>
+                                                        </div>
+                                                        <div class="bottom">
+                                                            <span>粤B 88888</span>
+                                                            <button class="btn btn-primary text-center">抓拍</button>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <i></i>
+                                                    <div class="items">
+                                                        <div class="top">
+                                                            <span class="lane">入口车道</span>
+                                                            <span>西门</span>
+                                                            <a class="pull-right amplification"></a>
+                                                        </div>
+                                                        <div class="bottom">
+                                                            <span>粤B 88888</span>
+                                                            <button class="btn btn-primary text-center">抓拍</button>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <i></i>
+                                                    <div class="items">
+                                                        <div class="top">
+                                                            <span class="lane">出口车道</span>
+                                                            <span>北门</span>
+                                                            <a class="pull-right amplification"></a>
+                                                        </div>
+                                                        <div class="bottom">
+                                                            <span>粤B 88888</span>
+                                                            <button class="btn btn-primary text-center">抓拍</button>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <!--放大-->
+                                            <ul class="list-unstyled clearfix topItems list_expand">
+                                                <li>
+                                                    <i></i>
+                                                    <div class="items">
+                                                        <div class="top">
+                                                            <span class="lane">入口车道</span>
+                                                            <span>东门</span>
+                                                            <a class="pull-right amplification"></a>
+                                                        </div>
+                                                        <div class="bottom">
+                                                            <span>粤B 88888</span>
+                                                            <button class="btn btn-primary text-center">抓拍</button>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <div class="bottomItems">
+                                                <div class="bottomTitle">
+                                                    <span>过车记录</span>
+                                                    <div class="pull-right">
+                                                        <input type="checkbox" id="allCheck_export"/>
+                                                        <label for="allCheck_export">全部</label>
+                                                        <input type="checkbox" id="released_export"/>
+                                                        <label for="released_export">已放行</label>
+                                                        <input type="checkbox" id="notRelease_export"/>
+                                                        <label for="notRelease_export">未放行</label>
+                                                    </div>
+                                                </div>
+                                                <div class="imgs">
+                                                    <span class="prev"></span>
+                                                    <div class="imgs_item pull-left">
+                                                        <ul class="list-unstyled clearfix pull-left">
+                                                            <li>
+                                                                <div class="blackBottom">
+                                                                    <div class="passing">
+                                                                        <i></i>
+                                                                        <span>已放行</span>
+                                                                        <span class="pull-right">粤B 88888</span>
+                                                                    </div>
+                                                                </div>
+                                                                <span>2017-12-25</span>
+                                                                <span class="pull-right">13:40</span>
+                                                            </li>
+                                                            <li>
+                                                                <div class="blackBottom">
+                                                                    <div class="passing">
+                                                                        <i></i>
+                                                                        <span>已放行</span>
+                                                                        <span class="pull-right">粤B 88888</span>
+                                                                    </div>
+                                                                </div>
+                                                                <span>2017-12-25</span>
+                                                                <span class="pull-right">13:40</span>
+                                                            </li>
+                                                            <li>
+                                                                <div class="blackBottom">
+                                                                    <div class="passing">
+                                                                        <i></i>
+                                                                        <span>已放行</span>
+                                                                        <span class="pull-right">粤B 88888</span>
+                                                                    </div>
+                                                                </div>
+                                                                <span>2017-12-25</span>
+                                                                <span class="pull-right">13:40</span>
+                                                            </li>
+                                                            <li>
+                                                                <div class="blackBottom">
+                                                                    <div class="passing">
+                                                                        <i></i>
+                                                                        <span>已放行</span>
+                                                                        <span class="pull-right">粤B 88888</span>
+                                                                    </div>
+                                                                </div>
+                                                                <span>2017-12-25</span>
+                                                                <span class="pull-right">13:40</span>
+                                                            </li>
+                                                            <li>
+                                                                <div class="blackBottom">
+                                                                    <div class="passing notRelease">
+                                                                        <i></i>
+                                                                        <span>未放行</span>
+                                                                        <span class="pull-right">粤B 88888</span>
+                                                                    </div>
+                                                                </div>
+                                                                <span>2017-12-25</span>
+                                                                <span class="pull-right">13:40</span>
+                                                            </li>
+                                                            <li>
+                                                                <div class="blackBottom">
+                                                                    <div class="passing notRelease">
+                                                                        <i></i>
+                                                                        <span>未放行</span>
+                                                                        <span class="pull-right">粤B 88888</span>
+                                                                    </div>
+                                                                </div>
+                                                                <span>2017-12-25</span>
+                                                                <span class="pull-right">13:40</span>
+                                                            </li>
+                                                            <li>
+                                                                <div class="blackBottom">
+                                                                    <div class="passing notRelease">
+                                                                        <i></i>
+                                                                        <span>未放行</span>
+                                                                        <span class="pull-right">粤B 88888</span>
+                                                                    </div>
+                                                                </div>
+                                                                <span>2017-12-25</span>
+                                                                <span class="pull-right">13:40</span>
+                                                            </li>
+                                                            <li>
+                                                                <div class="blackBottom">
+                                                                    <div class="passing">
+                                                                        <i></i>
+                                                                        <span>已放行</span>
+                                                                        <span class="pull-right">粤B 88888</span>
+                                                                    </div>
+                                                                </div>
+                                                                <span>2017-12-25</span>
+                                                                <span class="pull-right">13:40</span>
+                                                            </li>
+                                                            <li>
+                                                                <div class="blackBottom">
+                                                                    <div class="passing">
+                                                                        <i></i>
+                                                                        <span>已放行</span>
+                                                                        <span class="pull-right">粤B 88888</span>
+                                                                    </div>
+                                                                </div>
+                                                                <span>2017-12-25</span>
+                                                                <span class="pull-right">13:40</span>
+                                                            </li>
+                                                            <li>
+                                                                <div class="blackBottom">
+                                                                    <div class="passing">
+                                                                        <i></i>
+                                                                        <span>已放行</span>
+                                                                        <span class="pull-right">粤B 88888</span>
+                                                                    </div>
+                                                                </div>
+                                                                <span>2017-12-25</span>
+                                                                <span class="pull-right">13:40</span>
+                                                            </li>
+                                                            <li>
+                                                                <div class="blackBottom">
+                                                                    <div class="passing">
+                                                                        <i></i>
+                                                                        <span>已放行</span>
+                                                                        <span class="pull-right">粤B 88888</span>
+                                                                    </div>
+                                                                </div>
+                                                                <span>2017-12-25</span>
+                                                                <span class="pull-right">13:40</span>
+                                                            </li>
+                                                            <li>
+                                                                <div class="blackBottom">
+                                                                    <div class="passing notRelease">
+                                                                        <i></i>
+                                                                        <span>未放行</span>
+                                                                        <span class="pull-right">粤B 88888</span>
+                                                                    </div>
+                                                                </div>
+                                                                <span>2017-12-25</span>
+                                                                <span class="pull-right">13:40</span>
+                                                            </li>
+                                                            <li>
+                                                                <div class="blackBottom">
+                                                                    <div class="passing notRelease">
+                                                                        <i></i>
+                                                                        <span>未放行</span>
+                                                                        <span class="pull-right">粤B 88888</span>
+                                                                    </div>
+                                                                </div>
+                                                                <span>2017-12-25</span>
+                                                                <span class="pull-right">13:40</span>
+                                                            </li>
+                                                            <li>
+                                                                <div class="blackBottom">
+                                                                    <div class="passing notRelease">
+                                                                        <i></i>
+                                                                        <span>未放行</span>
+                                                                        <span class="pull-right">粤B 88888</span>
+                                                                    </div>
+                                                                </div>
+                                                                <span>2017-12-25</span>
+                                                                <span class="pull-right">13:40</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <span class="next"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="edits pull-right licenseInfo">
+                                            <ul class="list-unstyled clearfix details">
+                                                <li class="text-center license">
+                                                    <span>出车车牌</span>
+                                                    <span class="licenseNum">粤B 88888</span>
+                                                </li>
+                                                <li>
+                                                    <span class="basicTitle">基本信息</span>
+                                                </li>
+                                                <li>
+                                                    <span>车型大小</span>
+                                                    <b class="pull-right modelSize">小型车</b>
+                                                </li>
+                                                <li>
+                                                    <span>入场时间</span>
+                                                    <b class="pull-right startTime">2017-12-25 13:30</b>
+                                                </li>
+                                                <li>
+                                                    <span>出场时间</span>
+                                                    <b class="pull-right playingTime">2017-12-25 18:30</b>
+                                                </li>
+                                                <li>
+                                                    <span>停车时间</span>
+                                                    <b class="pull-right stopTime">8小时</b>
+                                                </li>
+                                                <li>
+                                                    <span>区域名称</span>
+                                                    <b class="pull-right areasname">地下一层A区</b>
+                                                </li>
+                                                <li>
+                                                    <span>停车位号</span>
+                                                    <b class="pull-right parkingNum">01号</b>
+                                                </li>
+                                                <li>
+                                                    <span>收费规则</span>
+                                                    <b class="pull-right chargeRules">按次交费</b>
+                                                </li>
+                                                <li>
+                                                    <span>应收金额</span>
+                                                    <b class="pull-right">9元</b>
+                                                </li>
+                                                <li>
+                                                    <span>收款方式</span>
+                                                    <b class="pull-right">微信</b>
+                                                </li>
+                                                <li>
+                                                    <span>实收金额</span>
+                                                    <b class="pull-right">10元</b>
+                                                </li>
+                                                <li class="change">
+                                                    <span>找零</span>
+                                                    <b class="pull-right"><span>1</span>元</b>
+                                                </li>
+                                                <li class="conBtns">
+                                                    <button class="btn btn-primary">开闸</button>
+                                                    <button class="btn btn-primary">常开</button>
+                                                    <button class="btn btn-primary">关闸</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--历史记录-->
+                        <div class="tab-pane" id="tab_historyRecord">
+                            <div class="btns">
+                                <button class='btn btn-primary lead_out text-center'><i></i>导出<a href="" download="停车场管理》车辆监控》历史记录.xlsx" id="historicalRecordExl" style="display: none"></a></button>
+                                <button class="btn btn-primary print text-center"><i></i>打印</button>
+                                <div class="pull-right">
+                                    <span>出入口</span>
+                                    <div class="dropdown areaZone inOutWard">
+                                        <a class="dropdown-toggle areaZoneList inOutWardList reactive_height text-center" data-toggle="dropdown"><span>请选择</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu inOutWardList-menu" role="menu">
+                                            <li><a>全部</a></li>
+                                            <li><a>入口车道</a></li>
+                                            <li><a>出口车道</a></li>
+                                        </ul>
+                                    </div>
+                                    <span>时间</span>
+                                    <div class="startToEnd">
+                                        从
+                                        <input type="text" class="reactive_height calendar startTime" placeholder="起止时间">
+                                        到
+                                        <input type="text" class="reactive_height calendar endTime" placeholder="结束时间">
+                                    </div>
+                                    <button class='btn btn-primary btn_search text-center'><i></i>查询</button>
+                                </div>
+                            </div>
+                            <div class="tables b_set sys_info parkingMg">
+                                <h4></h4>
+                                <div class="box">
+                                    <div class="historical-record">
+                                        <ul class="list-unstyled clearfix hisRec">
+                                            <li>
+                                                <i></i>
+                                                <span class="leftTop">入口车道</span>
+                                                <span class="licenseNum">粤B 88888</span>
+                                                <span class="bottom">入场时间：2017-12-25 15:30</span>
+                                            </li>
+                                            <li>
+                                                <i></i>
+                                                <span class="leftTop">入口车道</span>
+                                                <span class="licenseNum">粤B 88888</span>
+                                                <span class="bottom">入场时间：2017-12-25 15:30</span>
+                                            </li>
+                                            <li>
+                                                <i></i>
+                                                <span class="leftTop">入口车道</span>
+                                                <span class="licenseNum">粤B 88888</span>
+                                                <span class="bottom">入场时间：2017-12-25 15:30</span>
+                                            </li>
+                                            <li>
+                                                <i></i>
+                                                <span class="leftTop">入口车道</span>
+                                                <span class="licenseNum">粤B 88888</span>
+                                                <span class="bottom">入场时间：2017-12-25 15:30</span>
+                                            </li>
+                                            <li>
+                                                <i></i>
+                                                <span class="leftTop">入口车道</span>
+                                                <span class="licenseNum">粤B 88888</span>
+                                                <span class="bottom">入场时间：2017-12-25 15:30</span>
+                                            </li>
+                                            <li>
+                                                <i></i>
+                                                <span class="leftTop">入口车道</span>
+                                                <span class="licenseNum">粤B 88888</span>
+                                                <span class="bottom">入场时间：2017-12-25 15:30</span>
+                                            </li>
+                                            <li>
+                                                <i></i>
+                                                <span class="leftTop">入口车道</span>
+                                                <span class="licenseNum">粤B 88888</span>
+                                                <span class="bottom">入场时间：2017-12-25 15:30</span>
+                                            </li>
+                                            <li>
+                                                <i></i>
+                                                <span class="leftTop">入口车道</span>
+                                                <span class="licenseNum">粤B 88888</span>
+                                                <span class="bottom">入场时间：2017-12-25 15:30</span>
+                                            </li>
+                                            <li>
+                                                <i></i>
+                                                <span class="leftTop">入口车道</span>
+                                                <span class="licenseNum">粤B 88888</span>
+                                                <span class="bottom">入场时间：2017-12-25 15:30</span>
+                                            </li>
+                                            <li>
+                                                <i></i>
+                                                <span class="leftTop">入口车道</span>
+                                                <span class="licenseNum">粤B 88888</span>
+                                                <span class="bottom">入场时间：2017-12-25 15:30</span>
+                                            </li>
+                                            <li>
+                                                <i></i>
+                                                <span class="leftTop">入口车道</span>
+                                                <span class="licenseNum">粤B 88888</span>
+                                                <span class="bottom">入场时间：2017-12-25 15:30</span>
+                                            </li>
+                                            <li>
+                                                <i></i>
+                                                <span class="leftTop">入口车道</span>
+                                                <span class="licenseNum">粤B 88888</span>
+                                                <span class="bottom">入场时间：2017-12-25 15:30</span>
+                                            </li>
+                                            <li>
+                                                <i></i>
+                                                <span class="leftTop">入口车道</span>
+                                                <span class="licenseNum">粤B 88888</span>
+                                                <span class="bottom">入场时间：2017-12-25 15:30</span>
+                                            </li>
+                                            <li>
+                                                <i></i>
+                                                <span class="leftTop">入口车道</span>
+                                                <span class="licenseNum">粤B 88888</span>
+                                                <span class="bottom">入场时间：2017-12-25 15:30</span>
+                                            </li>
+                                            <li>
+                                                <i></i>
+                                                <span class="leftTop">入口车道</span>
+                                                <span class="licenseNum">粤B 88888</span>
+                                                <span class="bottom">入场时间：2017-12-25 15:30</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--反向寻车-->
+                <div class="tab-pane" id="tab_reverse_unusual">
+                    <div class="tablist_third">
+                        <ul class="nav clearfix">
+                            <li class="reverse_car active"><a href="#tab_reverse_car" role="tab" data-toggle="tab">反向寻车</a></li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <!--反向寻车-->
+                        <div class="tab-pane active" id="tab_reverse_car">
+                            <div class="btns clearfix">
+                                <div class="pull-right">
+                                    <span>车牌号</span>
+                                    <input type="text" class="reactive_height" placeholder="输入车牌号"/>
+                                    <span>时间</span>
+                                    <input type="text" class="calendar reactive_height" value="2017-12-25"/>
+                                    <button class="btn btn-primary btn_search text-center"><i></i>查询</button>
+                                </div>
+                            </div>
+                            <div class="tab-pane tables">
+                                <table class="table table-striped table-hover table-responsive">
+                                    <thead>
+                                        <tr>
+                                            <th>时间</th>
+                                            <th>车牌号</th>
+                                            <th>区域名称</th>
+                                            <th>车位号</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>2017-12-12 08:00</td>
+                                            <td>粤B GH089</td>
+                                            <td>地下一层A区</td>
+                                            <td>01</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2017-12-12 08:00</td>
+                                            <td>粤B GH089</td>
+                                            <td>地下一层A区</td>
+                                            <td>02</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--车辆分析-->
+                <div class="tab-pane" id="tab_vehicle_analysis">
+                    <div class="tablist_third">
+                        <ul class="nav clearfix">
+                            <li class="traffic_analysis active"><a href="#tab_traffic_analysis" role="tab" data-toggle="tab">车辆分析</a></li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <!--车辆分析-->
+                        <div class="tab-pane active" id="tab_traffic_analysis">
+                            <div class="btns clearfix">
+                                <div class="pull-right">
+                                    <span>显示</span>
+                                    <div class="dropdown areaZone view">
+                                        <a class="dropdown-toggle areaZoneList viewList reactive_height text-center" data-toggle="dropdown" ids="1"><span>表格</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu viewList-menu" role="menu">
+                                            <li><a ids="1">表格</a></li>
+                                            <li><a ids="2">柱状图</a></li>
+                                        </ul>
+                                    </div>
+                                    <span>时间</span>
+                                    <div class="startToEnd">
+                                        从
+                                        <input type="text" class="reactive_height calendar startTime" placeholder="起止时间">
+                                        到
+                                        <input type="text" class="reactive_height calendar endTime" placeholder="结束时间">
+                                    </div>
+                                    <button class="btn btn-primary btn_search text-center"><i></i>查询</button>
+                                </div>
+                            </div>
+                            <div class="tab-pane tables">
+                                <table class="table table-striped table-hover table-responsive">
+                                    <thead>
+                                    <tr>
+                                        <th>时间</th>
+                                        <th>入口车辆数量</th>
+                                        <th>出口车辆数量</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>2017-12-12 08:00</td>
+                                        <td>######</td>
+                                        <td>######</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="b_set sys_info parkingMg">
+                                <h4></h4>
+                                <div class="box">
+                                    <div class="columnar">
+                                        <div class="text-right" id="cc">
+                                            <span class="extra">
+                                                <i></i>
+                                                入口车辆
+                                            </span>
+                                            <span class="exit">
+                                                <i></i>
+                                                出口车辆
+                                            </span>
+                                        </div>
+                                        <div class="columnar_items" id="col_items"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--黑名单管理-->
+                <div class="tab-pane" id="tab_blacklist_management">
+                    <div class="tablist_third">
+                        <ul class="nav clearfix">
+                            <li class="blackListMg active"><a href="#tab_blackListMg" role="tab" data-toggle="tab">黑名单管理</a></li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <!--黑名单管理-->
+                        <div class="tab-pane active" id="tab_blackListMg">
+                            <div class="btns">
+                                <button class='btn btn-warning adding text-center' data-toggle="modal" data-target="#addBlackListMg"><i></i>添加</button>
+                                <div class="pull-right">
+                                    <span>车牌号</span>
+                                    <input type="text" class="reactive_height" placeholder="格式如：粤B.12345"/>
+                                    <button class="btn btn-primary btn_search text-center"><i></i>查询</button>
+                                </div>
+                            </div>
+                            <div class="tab-pane tables">
+                                <table class="table table-striped table-hover table-responsive">
+                                    <thead>
+                                        <tr>
+                                            <th>车牌号</th>
+                                            <th>车主姓名</th>
+                                            <th>联系电话</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>粤B GH089</td>
+                                            <td>张三</td>
+                                            <td>13512341234</td>
+                                            <td>
+                                                <a data-toggle="modal" data-target="#blackListModify">修改</a>|
+                                                <a data-toggle="modal" data-target="#blackListDelete">删除</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!--添加-->
+                            <div class="modal fade addDoorMac" id="addBlackListMg" aria-hidden="false">
+                                <div class="modal-dialog" style="margin-top: 15rem;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                                            <h4 class="modal-title text-center">添加</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <ul class="list-unstyled clearfix large-half">
+                                                <li>
+                                                    <span>车&nbsp;&nbsp;牌&nbsp;&nbsp;号</span>
+                                                    <input type="text" class="numPlate" placeholder="输入车牌号">
+                                                </li>
+                                                <li class="text-right">
+                                                    <span>车主姓名</span>
+                                                    <input type="text" class="ownerName" placeholder="输入车主姓名">
+                                                </li>
+                                                <li>
+                                                    <span>联系电话</span>
+                                                    <input type="text" class="ownerPhone" placeholder="输入联系电话">
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="modal-footer text-center">
+                                            <button type="button" class="btn btn-warning btn-lg determine" data-dismiss="modal">确定</button>
+                                            <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--修改-->
+                            <div class="modal fade addDoorMac" id="blackListModify" aria-hidden="false">
+                                <div class="modal-dialog" style="margin-top: 15rem;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                                            <h4 class="modal-title text-center">修改</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <ul class="list-unstyled clearfix large-half">
+                                                <li>
+                                                    <span>车&nbsp;&nbsp;牌&nbsp;&nbsp;号</span>
+                                                    <input type="text" class="numPlate" placeholder="输入车牌号">
+                                                </li>
+                                                <li class="text-right">
+                                                    <span>车主姓名</span>
+                                                    <input type="text" class="ownerName" placeholder="输入车主姓名">
+                                                </li>
+                                                <li>
+                                                    <span>联系电话</span>
+                                                    <input type="text" class="ownerPhone" placeholder="输入联系电话">
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="modal-footer text-center">
+                                            <button type="button" class="btn btn-warning btn-lg determine" data-dismiss="modal">确定</button>
+                                            <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--删除-->
+                            <div class="modal fade" id="blackListDelete" aria-hidden="false">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                                            <h4 class="modal-title text-center">提示</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form class="form-inline mBody_title text-center">确定删除该消息?</form>
+                                        </div>
+                                        <div class="modal-footer text-center">
+                                            <button type="button" class="btn btn-warning btn-lg to_delete" data-dismiss="modal">删除</button>
+                                            <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--分页-->
+    <div>
+        <div class="tab-department inner clearfix" style="display: none" id="all_paging">
+            <div id="homeList-paging" class="pull-right pageList"></div>
+            <div id="paging-tips" class="pull-right pageTips"></div>
+        </div>
+    </div>
+    <!--警示框-->
+    <div class="alert alert-danger animated tada" style="z-index: 4;text-align: center;padding: 40px;" id="msgContent">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+</div>
+
+<script src="js/serip.js"></script>
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.twbsPagination.js"></script>
+<script src="js/jquery.pagination.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+<!--导入导出-->
+<script src="js/xlsx.full.min.js"></script>
+
+<script src="js/echarts.simple.min.js"></script>
+<script src="js/public.js"></script>
+<script src="js/tools.js"></script>
+<script src="js/parking_management/address.js"></script>
+<script src="js/parking_management/parking_management.js"></script>
+<script>
+//    $(window).resize(function(){
+        document.getElementsByTagName('html')[0].style.fontSize=document.body.clientWidth/100 +'px';
+//    });
+</script>
+</body>
+</html>

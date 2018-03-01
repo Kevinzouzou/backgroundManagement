@@ -1,0 +1,148 @@
+<!--Created by along on 2018/1/22 物业服务-->
+<!--社区公告-->
+<div class="tablist_third">
+    <span class="menu_title">社区公告</span>
+</div>
+<div class="tab-department">
+    <div class="btns pull-left clearfix">
+        <button class="btn btn-warning adding" id="addnoticeBut"><i></i>添加</button>
+        <button class="btn btn-primary lead_out educeBut" ids="noticeExport"><i></i>导出</button>
+        <a href="" download="社区公告.xls" id="noticeExport"></a>
+        <button class="btn btn-primary print" id="noticePrintBut"><i></i>打印</button>
+    </div>
+    <div class="btns pull-right clearfix">
+        <div class="startToEnd">
+            从
+            <input type="text" class="reactive_height calendar" id="noticeStartTime" placeholder="起止时间">
+            到
+            <input type="text" class="reactive_height calendar" id="noticeEndTime" placeholder="结束时间">
+        </div>
+        <button class="btn btn-warning btn_search" id="searchNotice"><i></i>查询</button>
+    </div>
+    <!--列表-->
+    <div class="tables" id="noticePrint">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>公告名称</th>
+                <th>公告内容</th>
+                <th>推送时间</th>
+                <th>推送范围</th>
+                <th class="notPrint">操作</th>
+            </tr>
+            </thead>
+            <tbody id="communityNoticeList"></tbody>
+        </table>
+        <!--分页-->
+        <div class="pagingImplement tab-pane inner clearfix">
+            <div class="pageList pull-right"></div>
+            <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
+        </div>
+        <!--end homeList-paging-->
+    </div>
+</div>
+<!--（添加/修改）-->
+<div class="modal fade" id="addnoticeModal" aria-hidden="true">
+    <div class="modal-dialog" style="margin-top: 4rem;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">添加公告</h4>
+            </div>
+            <div class="modal-body" id="noticeForm">
+                <ul class="list-unstyled clearfix large-half">
+                    <li class="menuBox totalLength" id="noticeModalAddress" ids="modalAddress" type="charge">
+                        <span class="pull-left">房屋地址</span>
+                        <div class="chargingAds dropdown areaZone" ids="chargingAds" optionId="" style="margin-left: 0.2rem;">
+                            <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type">全部</span><b class="caret"></b></a>
+                            <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                            </ul>
+                        </div>
+                        <!--<div class="unitAds dropdown areaZone" ids="unitAds" optionId="">-->
+                            <!--<a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type">全部 单元</span><b class="caret"></b></a>-->
+                            <!--<ul class="dropdown-menu areaZoneList-menu" role="menu">-->
+                            <!--</ul>-->
+                        <!--</div>-->
+                        <!--<div class="doorplateAds dropdown areaZone" ids="doorplateAds" optionId="">-->
+                            <!--<a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type">全部 房间号</span><b class="caret"></b></a>-->
+                            <!--<ul class="dropdown-menu areaZoneList-menu" role="menu">-->
+                            <!--</ul>-->
+                        <!--</div>-->
+                    </li>
+                    <li class="totalLength">
+                        <span>公告名称</span>
+                        <input type="text" id="noticeName"/>
+                    </li>
+                    <li class="totalLength">
+                        <span>公告内容</span>
+                        <textarea placeholder="请输入内容" maxlength="500" class="reactive_height" id="noticeRemark"></textarea>
+                    </li>
+                    <!--<li class="totalLength noticeImgUp">-->
+                        <!--<span>上传照片</span>-->
+                        <!--<div class="portraitUp">-->
+                            <!--<input class="pull-left upfileName" type="text">-->
+                            <!--<label class="pull-right">-->
+                                <!--<strong class="btn btn-primary">上传</strong>-->
+                                <!--<input type="file" name="upfile" class="uploadingImg" placeholder="图片名称">-->
+                            <!--</label>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                </ul>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn-primary btn-lg" id="pushNoticeBut">推送</button>
+                <button type="button" class="btn btn-warning btn-lg to_add" id="submitNoticeBut">添加</button>
+                <button type="button" class="btn btn-default btn-lg to_reset" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--删除-->
+<div class="modal fade" id="noticeDeleteModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">提示</h4>
+            </div>
+            <div class="modal-body">
+                <p class="form-inline mBody_title text-center">确定删除该信息?</p>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg toResure" id="noticeDeleteBut" ids="" type="">确认</button>
+                <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--推送-->
+<div class="modal fade" id="pushDeleteModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">提示</h4>
+            </div>
+            <div class="modal-body">
+                <ul class="list-unstyled large text-center lateFee">
+                    <li class="menuBox" id="noticePushType">
+                        <span>推送方式</span>
+                        <div class="rearagePushType dropdown areaZone" ids="rearagePushType" optionid="">
+                            <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部推送</span><b class="caret"></b></a>
+                            <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                <li><a codelist="">全部推送</a></li>
+                                <li><a codelist="1">APP推送</a></li>
+                                <li><a codelist="2">室内机</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg toResure" id="pushDeleteBut" ids="" type="">确认</button>
+                <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/property_services/community_notice.js"></script>

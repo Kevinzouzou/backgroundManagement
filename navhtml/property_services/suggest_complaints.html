@@ -1,0 +1,1191 @@
+<!--建议投诉-->
+<style>
+    #toDo_add .addressbox .menuBox{width:9.31rem;margin-right: 0.84rem;}
+    .urgencyColor{
+        color: #ff0000;
+    }
+</style>
+<div class="tablist_third">
+    <ul class="nav clearfix" role="tablist_third">
+        <li class="tasks active"><a href="#tab_tasks" role="tab" data-toggle="tab" onclick="suggestComplaintsInitialize('tasks')">全部任务</a></li>
+        <li class="tasks_toDo"><a href="#tab_toDoTasks" role="tab" data-toggle="tab" onclick="suggestComplaintsInitialize('toDo')">待办任务</a><span class="status_details" onclick="suggestStatusDetails('tasks',1)" style="display: none;"></span></li>
+        <li class="tasks_inTasks"><a href="#tab_in_tasks" role="tab" data-toggle="tab" onclick="suggestComplaintsInitialize('inTasks')">处理中任务</a><span class="status_details" style="display: none;"></span></li>
+        <li class="tasks_reprocessTasks"><a href="#tab_reprocess_tasks" role="tab" data-toggle="tab" onclick="suggestComplaintsInitialize('reprocessTasks')">再处理任务</a><span class="status_details" style="display: none;"></span></li>
+        <li class="tasks_notTasks"><a href="#tasks_not_tasks" role="tab" data-toggle="tab" onclick="suggestComplaintsInitialize('notTasks')">已完成任务</a></li>
+        <li class="tasks_return"><a href="#tab_return_tasks" role="tab" data-toggle="tab" onclick="suggestComplaintsInitialize('return')">已回访任务</a></li>
+    </ul>
+</div>
+<div class="tab-content">
+    <!--全部任务-->
+    <div class="tab-pane active" id="tab_tasks">
+        <div class="btns menuBox pull-right suggest_search" id="suggest_type_tasks" onclick="suggestSearch('tasks',0)">
+            <span>类型：</span>
+            <div class="suggest_type_tasks dropdown areaZone" ids="suggest_type_tasks" optionid="" modename="">
+                <a class="dropdown-toggle areaZoneList reactive_height text-center" data-toggle="dropdown"><span class="option_type">全部</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                    <li><a codelist="" modename="全部">全部</a></li>
+                    <li><a codelist="1" modename="建议">建议</a></li>
+                    <li><a codelist="2" modename="投诉">投诉</a></li>
+                    <li><a codelist="3" modename="综合">综合</a></li>
+                </ul>
+            </div>
+            <div class="startToEnd pull-right">
+                从
+                <input type="text" class="reactive_height calendar startTime"/>
+                到
+                <input type="text" class="reactive_height calendar endTime"/>
+            </div>
+        </div>
+        <div class="btns pull-left">
+            <button class='btn btn-primary lead_out text-center' id="machine_export_D" onclick="tasksExportData(0,1)"><i></i>导出</button>
+            <button class="btn btn-primary print text-center" id="tasks_print_tasks" onclick="suggestPrintData('tasks',0)"><i></i>打印</button>
+            <!--<button class="btn btn-danger batch_delete text-center" id="tasks_fetch_delete_id" onclick="suggestDeleteFetchData()"><i></i>批量删除</button>
+            <button class="btn btn-warning" id="tasks_select_all" onclick="selectTasks('tasks')">选择所有</button>-->
+        </div>
+        <div class="tab-pane tables" id="tasks_list_tasks">
+            <table class="table table-striped table-hover table-responsive">
+                <thead>
+                <tr>
+                    <!--<th>已选择</th>-->
+                    <th>工单编号</th>
+                    <th>类型</th>
+                    <th>任务详情</th>
+                    <th>所属区域</th>
+                    <th>建议投诉时间</th>
+                    <th>客户信息</th>
+                    <th>跟进人信息</th>
+                    <th>协助人信息</th>
+                    <th>状态</th>
+                    <th>紧急程度</th>
+                    <th>派送方式</th>
+                    <th class="suggestPrint">操作</th>
+                </tr>
+                </thead>
+                <tbody id="tasks_body_tasks"></tbody>
+            </table>
+            <div class="inner clearfix">
+                <div id="tasks_paging_tasks" class="pull-right pageList"></div>
+                <div id="tasks_tips_tasks"  class="pull-right pageTips"></div>
+            </div>
+        </div>
+    </div>
+    <!--待办任务-->
+    <div class="tab-pane" id="tab_toDoTasks">
+        <div class="btns menuBox pull-right suggest_search" id="suggest_type_toDo" onclick="suggestSearch('toDo',1)">
+            <span>类型：</span>
+            <div class="suggest_type_toDo dropdown areaZone" ids="suggest_type_toDo" optionid="" modename="">
+                <a class="dropdown-toggle areaZoneList reactive_height text-center" data-toggle="dropdown"><span class="option_type">全部</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                    <li><a codelist="" modename="全部">全部</a></li>
+                    <li><a codelist="1" modename="建议">建议</a></li>
+                    <li><a codelist="2" modename="投诉">投诉</a></li>
+                    <li><a codelist="3" modename="综合">综合</a></li>
+                </ul>
+            </div>
+            <div class="startToEnd pull-right">
+                从
+                <input type="text" class="reactive_height calendar startTime"/>
+                到
+                <input type="text" class="reactive_height calendar endTime"/>
+            </div>
+        </div>
+        <div class="btns pull-left">
+            <button class='btn btn-warning adding text-center' data-toggle="modal" data-target="#toDo_add" onclick="toDoAddPublic()"><i></i>添加</button>
+            <button class='btn btn-primary lead_out text-center' onclick="tasksExportData(1,1)"><i></i>导出</button>
+            <button class="btn btn-primary print text-center" id="tasks_print_toDo" onclick="suggestPrintData('toDo',1)"><i></i>打印</button>
+            <!--<button class="btn btn-danger batch_delete text-center" id="toDo_fetch_delete_id" onclick="suggestDeleteFetchToDoData()"><i></i>批量删除</button>
+            <button class="btn btn-warning" id="toDo_select_all" onclick="selectTasks('toDo')">选择所有</button>-->
+        </div>
+        <div class="tab-pane tables" id="tasks_list_toDo">
+            <table class="table table-striped table-hover table-responsive">
+                <thead>
+                <tr>
+                    <!--<th>已选择</th>-->
+                    <th>工单编号</th>
+                    <th>类型</th>
+                    <th>任务详情</th>
+                    <th>所属区域</th>
+                    <th>建议投诉时间</th>
+                    <th>客户信息</th>
+                    <th>跟进人信息</th>
+                    <th>协助人信息</th>
+                    <th>紧急程度</th>
+                    <th class="suggestPrint">操作</th>
+                </tr>
+                </thead>
+                <tbody id="tasks_body_toDo"></tbody>
+            </table>
+            <div class="inner clearfix">
+                <div id="tasks_paging_toDo" class="pull-right pageList"></div>
+                <div id="tasks_tips_toDo"  class="pull-right pageTips"></div>
+            </div>
+        </div>
+        <!--添加-->
+        <div class="modal fade reject_detail" id="toDo_add" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" style="margin-top: 4rem;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">添加</h4>
+                    </div>
+                    <div class="modal-body">
+                        <span class="title">基本信息</span>
+                        <ul class="list-unstyled clearfix large-half">
+                            <li class="menuBox" id="suggest_type">
+                                <span>类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型</span>
+                                <div class="suggest_type dropdown areaZone" ids="suggest_type" optionid="" modename="">
+                                    <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type">全部</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                        <li><a codelist="" modename="全部">全部</a></li>
+                                        <li><a codelist="1" modename="建议">建议</a></li>
+                                        <li><a codelist="2" modename="投诉">投诉</a></li>
+                                        <li><a codelist="3" modename="综合">综合</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="menuBox totalLength" id="suggest_toDoModalAddress">
+                                <span>客户地址</span>
+                                <div class="suggestChargingAds dropdown areaZone" ids="suggestChargingAds" optionid="" style="width: 9.31rem">
+                                    <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu areaZoneList-menu" role="menu" style="width: 9.31rem"></ul>
+                                </div>
+                                <div class="suggestUnitAds dropdown areaZone" ids="suggestUnitAds" optionid="" style="width: 9.31rem">
+                                    <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu areaZoneList-menu" role="menu" style="width: 9.31rem"></ul>
+                                </div>
+                                <div class="suggestDoorplateAds dropdown areaZone" ids="suggestDoorplateAds" optionid="" style="width: 9.31rem">
+                                    <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu areaZoneList-menu" role="menu" style="width: 9.31rem;height: 10rem;overflow: auto"></ul>
+                                </div>
+                            </li>
+                            <li class="totalLength">
+                                <span>详&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;情</span>
+                                <textarea class="rejectE" id="suggest_content"></textarea>
+                            </li>
+                            <li class="totalLength">
+                                <div class="file">
+                                    <label for="file_attach">附&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;件</label>
+                                    <div class="defined_file">
+                                        <input type="text" name="defined_attach" id="defined_attach" value="未选择任何文件">
+                                        <button type="button" class="btn-primary">请选择</button>
+                                    </div>
+                                    <input type="file" name="upFile" class="fileHide" id="file_attach" onchange="document.getElementById('defined_attach').value=document.getElementById('file_attach').value;">
+                                </div>
+                            </li>
+                        </ul>
+                        <span class="title" style="margin-top: 1.875rem;">客户信息</span>
+                        <ul class="list-unstyled clearfix large-half">
+                            <li>
+                                <span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</span>
+                                <input type="text" id="suggest_cusName"/>
+                            </li>
+                            <li class="text-right">
+                                <span>电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话</span>
+                                <input type="text" id="suggest_cusPhone"/>
+                            </li>
+                        </ul>
+                        <span class="title">跟进人信息</span>
+                        <ul class="list-unstyled clearfix large-half">
+                            <li>
+                                <span class="pull-left">部&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;门</span>
+                                <div class="menuBox pull-left" id="suggest_FollowDm">
+                                    <div class="dropdown areaZone suggest_FollowDm" ids="suggest_FollowDm" optionId="">
+                                        <a class="dropdown-toggle followDmZoneList reactive_height text-center" data-toggle="dropdown"><span>全部</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu followDmZoneList-menu" role="menu">
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="text-right">
+                                <span class="pull-left">跟&nbsp;&nbsp;进&nbsp;&nbsp;人</span>
+                                <div class="menuBox pull-left" id="suggest_FollowP">
+                                    <div class="dropdown areaZone suggest_FollowP" ids="suggest_FollowP" optionId="">
+                                        <a class="dropdown-toggle followPZoneList reactive_height text-center" data-toggle="dropdown"><span>全部</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu followPZoneList-menu" role="menu">
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <span class="title inBlock">协作人信息</span><a class="humanIn addFamMem">添加</a>
+                        <ul class="list-unstyled clearfix large-half addAiDance addDivMes">
+                            <li>
+                                <span class="pull-left">部&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;门</span>
+                                <div class="menuBox pull-left" id="suggest_aiDanceDm">
+                                    <div class="dropdown areaZone suggest_aiDanceDm" ids="suggest_aiDanceDm" optionId="">
+                                        <a class="dropdown-toggle aiDanceDmZoneList reactive_height text-center" data-toggle="dropdown"><span>全部</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu aiDanceDmZoneList-menu" role="menu">
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="text-right">
+                                <span class="pull-left">协&nbsp;&nbsp;作&nbsp;&nbsp;人</span>
+                                <div class="menuBox pull-left" id="suggest_aiDanceP">
+                                    <div class="dropdown areaZone suggest_aiDanceP" ids="suggest_aiDanceP" optionId="">
+                                        <a class="dropdown-toggle aiDancePZoneList reactive_height text-center" data-toggle="dropdown"><span>全部</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu aiDancePZoneList-menu" role="menu">
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <span class="title">其他信息</span>
+                        <ul class="list-unstyled clearfix large-half">
+                            <li class="menuBox" id="suggest_sendMode">
+                                <span>派送方式</span>
+                                <div class="suggest_sendMode dropdown areaZone" ids="suggest_sendMode" optionid="1" modename="APP派送">
+                                    <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type">APP派送</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                        <li><a codelist="1" modename="APP派送">APP派送</a></li>
+                                        <li><a codelist="2" modename="微信派送">微信派送</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li id="suggest_urgency">
+                                <span>紧急程度</span>
+                                <div class="suggest_urgency dropdown areaZone" ids="suggest_urgency" optionid="1" modename="非常严重">
+                                    <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type">非常严重</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                        <li><a codelist="1" modename="非常严重">非常严重</a></li>
+                                        <li><a codelist="2" modename="严重">严重</a></li>
+                                        <li><a codelist="3" modename="一般">一般</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer text-center modThree" style="margin-top: -0.625rem;">
+                        <button type="button" class="btn btn-primary btn-lg tosend" onclick="addSuggestSend()" data-dismiss="modal">派送</button>
+                        <button type="button" class="btn btn-warning btn-lg toResure" onclick="addTasks()" data-dismiss="modal">确认</button>
+                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--处理中任务-->
+    <div class="tab-pane" id="tab_in_tasks">
+        <div class="btns menuBox pull-right" id="suggest_type_inTasks" onclick="suggestSearch('inTasks',2)">
+            <span>类型：</span>
+            <div class="suggest_type_inTasks dropdown areaZone" ids="suggest_type_inTasks" optionid="" modename="">
+                <a class="dropdown-toggle areaZoneList reactive_height text-center" data-toggle="dropdown"><span class="option_type">全部</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                    <li><a codelist="" modename="全部">全部</a></li>
+                    <li><a codelist="1" modename="建议">建议</a></li>
+                    <li><a codelist="2" modename="投诉">投诉</a></li>
+                    <li><a codelist="3" modename="综合">综合</a></li>
+                </ul>
+            </div>
+            <div class="startToEnd pull-right">
+                从
+                <input type="text" class="reactive_height calendar startTime"/>
+                到
+                <input type="text" class="reactive_height calendar endTime"/>
+            </div>
+        </div>
+        <div class="btns pull-left">
+            <button class='btn btn-primary lead_out text-center' onclick="tasksExportData(2,1)"><i></i>导出</button>
+            <button class="btn btn-primary print text-center" id="tasks_print_inTasks" onclick="suggestPrintData('inTasks',2)"><i></i>打印</button>
+            <!--<button class="btn btn-danger batch_delete text-center" id="inTasks_fetch_delete_id" onclick="suggestDeleteFetchInTasksData()"><i></i>批量删除</button>
+            <button class="btn btn-warning" id="inTasks_select_all" onclick="selectTasks('inTasks')">选择所有</button>-->
+        </div>
+        <div class="tab-pane tables" id="tasks_list_inTasks">
+            <table class="table table-striped table-hover table-responsive">
+                <thead>
+                <tr>
+                    <!--<th>已选择</th>-->
+                    <th>工单编号</th>
+                    <th>类型</th>
+                    <th>内容</th>
+                    <th>所属区域</th>
+                    <th>建议投诉时间</th>
+                    <th>客户信息</th>
+                    <th>跟进人信息</th>
+                    <th>协助人信息</th>
+                    <th>紧急程度</th>
+                    <th class="suggestPrint">操作</th>
+                </tr>
+                </thead>
+                <tbody id="tasks_body_inTasks"></tbody>
+            </table>
+            <div class="inner clearfix">
+                <div id="tasks_paging_inTasks" class="pull-right pageList"></div>
+                <div id="tasks_tips_inTasks" class="pull-right pageTips"></div>
+            </div>
+        </div>
+    </div>
+    <!--再处理任务-->
+    <div class="tab-pane" id="tab_reprocess_tasks">
+        <div class="btns menuBox pull-right" id="suggest_type_reprocessTasks" onclick="suggestSearch('reprocessTasks',3)">
+            <span>类型：</span>
+            <div class="suggest_type_reprocessTasks dropdown areaZone" ids="suggest_type_reprocessTasks" optionid="" modename="全部">
+                <a class="dropdown-toggle areaZoneList reactive_height text-center" data-toggle="dropdown"><span class="option_type">全部</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                    <li><a codelist="" modename="全部">全部</a></li>
+                    <li><a codelist="1" modename="建议">建议</a></li>
+                    <li><a codelist="2" modename="投诉">投诉</a></li>
+                    <li><a codelist="3" modename="综合">综合</a></li>
+                </ul>
+            </div>
+            <div class="startToEnd pull-right">
+                从
+                <input type="text" class="reactive_height calendar startTime"/>
+                到
+                <input type="text" class="reactive_height calendar endTime"/>
+            </div>
+        </div>
+        <div class="btns pull-left">
+            <button class='btn btn-primary lead_out text-center' onclick="tasksExportData(3,1)"><i></i>导出</button>
+            <button class="btn btn-primary print text-center" id="tasks_print_reprocessTasks" onclick="suggestPrintData('reprocessTasks',3)"><i></i>打印</button>
+            <!--<button class="btn btn-danger batch_delete text-center" id="reprocessTasks_fetch_delete_id" onclick="suggestDeleteFetchReprocessTasksData()"><i></i>批量删除</button>
+            <button class="btn btn-warning" id="reprocessTasks_select_all" onclick="selectTasks('inTasks')">选择所有</button>-->
+        </div>
+        <div class="tab-pane tables" id="tasks_list_reprocessTasks">
+            <table class="table table-striped table-hover table-responsive">
+                <thead>
+                <tr>
+                    <!--<th>已选择</th>-->
+                    <th>工单编号</th>
+                    <th>类型</th>
+                    <th>内容</th>
+                    <th>所属区域</th>
+                    <th>建议投诉时间</th>
+                    <th>客户信息</th>
+                    <th>跟进人</th>
+                    <th>协助人</th>
+                    <th>紧急程度</th>
+                    <th class="suggestPrint">已完成详情</th>
+                    <th class="suggestPrint">操作</th>
+                </tr>
+                </thead>
+                <tbody id="tasks_body_reprocessTasks"></tbody>
+            </table>
+            <div class="inner clearfix">
+                <div id="tasks_paging_reprocessTasks" class="pull-right pageList"></div>
+                <div id="tasks_tips_reprocessTasks" class="pull-right pageTips"></div>
+            </div>
+        </div>
+        <!--下一步-->
+        <div class="modal fade" id="suggest_next" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog" style="margin-top: 8rem;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">下一步派送</h4>
+                    </div>
+                    <div class="modal-body updateId type status">
+                        <span class="title">跟进人信息</span>
+                        <ul class="list-unstyled clearfix large-half">
+                            <li>
+                                <span class="pull-left">部&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;门</span>
+                                <div class="menuBox pull-left" id="dm_follow_next">
+                                    <div class="dropdown areaZone dm_follow_next" ids="dm_follow_next" optionId="">
+                                        <a class="dropdown-toggle followDmZoneList reactive_height text-center" data-toggle="dropdown"><span>全部</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu followDmZoneList-menu" role="menu">
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="text-right">
+                                <span class="pull-left">跟&nbsp;&nbsp;进&nbsp;&nbsp;人</span>
+                                <div class="menuBox pull-left" id="p_follow_next">
+                                    <div class="dropdown areaZone p_follow_next" ids="p_follow_next" optionId="">
+                                        <a class="dropdown-toggle followPZoneList reactive_height text-center" data-toggle="dropdown"><span>全部</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu followPZoneList-menu" role="menu">
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <span class="title inBlock">协作人信息</span><a class="humanIn addFamMem">添加</a>
+                        <ul class="list-unstyled clearfix large-half addAiDance addDivMes">
+                            <li>
+                                <span class="pull-left">部&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;门</span>
+                                <div class="menuBox pull-left" id="dm_aiDance_next">
+                                    <div class="dropdown areaZone dm_aiDance_next" ids="dm_aiDance_next" optionId="">
+                                        <a class="dropdown-toggle aiDanceDmZoneList reactive_height text-center" data-toggle="dropdown"><span>全部</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu aiDanceDmZoneList-menu" role="menu">
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="text-right">
+                                <span class="pull-left">协&nbsp;&nbsp;作&nbsp;&nbsp;人</span>
+                                <div class="menuBox pull-left" id="p_aiDance_next">
+                                    <div class="dropdown areaZone p_aiDance_next" ids="p_aiDance_next" optionId="">
+                                        <a class="dropdown-toggle aiDancePZoneList reactive_height text-center" data-toggle="dropdown"><span>全部</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu aiDancePZoneList-menu" role="menu">
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="list-unstyled clearfix large-half">
+                            <li class="totalLength">
+                                <span>新&nbsp;&nbsp;任&nbsp;&nbsp;务</span>
+                                <textarea id="next_content"></textarea>
+                            </li>
+                            <li class="totalLength">
+                                <span>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</span>
+                                <textarea id="next_mark"></textarea>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-primary btn-lg to_resend" onclick="suggestNextTasks()" data-dismiss="modal">派送</button>
+                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--已完成任务-->
+    <div class="tab-pane" id="tasks_not_tasks">
+        <div class="btns menuBox pull-right" id="suggest_type_notTasks" onclick="suggestSearch('notTasks',4)">
+            <span>类型：</span>
+            <div class="suggest_type_notTasks dropdown areaZone" ids="suggest_type_notTasks" optionid="" modename="全部">
+                <a class="dropdown-toggle areaZoneList reactive_height text-center" data-toggle="dropdown"><span class="option_type">全部</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                    <li><a codelist="" modename="全部">全部</a></li>
+                    <li><a codelist="1" modename="建议">建议</a></li>
+                    <li><a codelist="2" modename="投诉">投诉</a></li>
+                    <li><a codelist="3" modename="综合">综合</a></li>
+                </ul>
+            </div>
+            <div class="startToEnd pull-right">
+                从
+                <input type="text" class="reactive_height calendar startTime"/>
+                到
+                <input type="text" class="reactive_height calendar endTime"/>
+            </div>
+        </div>
+        <div class="btns pull-left">
+            <button class='btn btn-primary lead_out text-center' onclick="tasksExportData(4,1)"><i></i>导出</button>
+            <button class="btn btn-primary print text-center" id="tasks_print_notTasks" onclick="suggestPrintData('notTasks',4)"><i></i>打印</button>
+        </div>
+        <div class="tab-pane tables" id="tasks_list_notTasks">
+            <table class="table table-striped table-hover table-responsive">
+                <thead>
+                <tr>
+                    <!--<th>已选择</th>-->
+                    <th>工单编号</th>
+                    <th>类型</th>
+                    <th>任务详情</th>
+                    <th>所属区域</th>
+                    <th>建议投诉时间</th>
+                    <th>客户信息</th>
+                    <th>跟进人</th>
+                    <th>协助人</th>
+                    <th>紧急程度</th>
+                    <th class="suggestPrint">完成详情</th>
+                    <th class="suggestPrint">回访记录</th>
+                </tr>
+                </thead>
+                <tbody id="tasks_body_notTasks"></tbody>
+            </table>
+            <div class="inner clearfix">
+                <div id="tasks_paging_notTasks" class="pull-right pageList"></div>
+                <div id="tasks_tips_notTasks" class="pull-right pageTips"></div>
+            </div>
+        </div>
+        <!--回访记录-->
+        <div class="modal fade reject_detail" id="suggest_visited_record" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">回访详情</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal updateId followDm followP aidanceDm aidanceP type status formId suggestTasksRecordFormId" role="form" id="suggestTasksRecordFormId" enctype="multipart/form-data">
+                            <ul class="list-unstyled clearfix large-half">
+                                <li>
+                                    <span>处理时间</span>
+                                    <input type="text" class="calendar" id="suggest_record_createTime" name="c.createtime"/>
+                                </li>
+                                <li class="totalLength">
+                                    <span>处理详情</span>
+                                    <textarea class="rejectE" id="suggest_record_content" name="c.content"></textarea>
+                                </li>
+                                <li class="totalLength">
+                                    <div class="file">
+                                        <label for="file_record">上传附件</label>
+                                        <div class="defined_file">
+                                            <input type="text" name="defined_record" id="defined_record" value="未选择任何文件">
+                                            <button type="button" class="btn-primary">请选择</button>
+                                        </div>
+                                        <input type="file" name="upFile" class="fileHide" id="file_record" onchange="document.getElementById('defined_record').value=document.getElementById('file_record').value;">
+                                    </div>
+                                </li>
+                                <li class="totalLength">
+                                    <span style="width: 3.89rem;">客户满意度</span>
+                                    <div class="starEvaluation">
+                                        <input type="radio" name="c.satisfaction" id="star1" value="1">
+                                        <label class="star1" for="star1"></label>
+                                        <input type="radio" name="c.satisfaction" id="star2" value="2">
+                                        <label class="star2" for="star2"></label>
+                                        <input type="radio" name="c.satisfaction" id="star3" value="3">
+                                        <label class="star3" for="star3"></label>
+                                        <input type="radio" name="c.satisfaction" id="star4" value="4">
+                                        <label class="star4" for="star4"></label>
+                                        <input type="radio" name="c.satisfaction" id="star5" value="5">
+                                        <label class="star5" for="star5"></label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                    <div class="modal-footer text-center modThree" style="margin-top: -0.625rem;">
+                        <button type="button" class="btn btn-primary btn-lg tosend" data-toggle="modal" onclick="suggestCompletedSend()" data-dismiss="modal">派送</button>
+                        <button type="button" class="btn btn-warning btn-lg toResure" onclick="suggestVisitedRecord()" data-dismiss="modal">确认</button>
+                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--派送 包含任务详情-->
+        <div class="modal fade" id="suggest_visited_send" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">派送</h4>
+                    </div>
+                    <div class="modal-body updateId">
+                        <span class="title">跟进人信息</span>
+                        <ul class="list-unstyled clearfix large-half">
+                            <li>
+                                <span class="pull-left">部&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;门</span>
+                                <div class="menuBox pull-left" id="dm_follow_send_finish">
+                                    <div class="dropdown areaZone dm_follow_send_finish" ids="dm_follow_send_finish" optionId="">
+                                        <a class="dropdown-toggle followDmZoneList reactive_height text-center" data-toggle="dropdown"><span>全部</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu followDmZoneList-menu" role="menu">
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="text-right">
+                                <span class="pull-left">跟&nbsp;&nbsp;进&nbsp;&nbsp;人</span>
+                                <div class="menuBox pull-left" id="p_follow_send_finish">
+                                    <div class="dropdown areaZone p_follow_send_finish" ids="p_follow_send_finish" optionId="">
+                                        <a class="dropdown-toggle followPZoneList reactive_height text-center" data-toggle="dropdown"><span>全部</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu followPZoneList-menu" role="menu">
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <span class="title inBlock">协作人信息</span><a class="humanIn addFamMem">添加</a>
+                        <ul class="list-unstyled clearfix large-half addAiDance addDivMes">
+                            <li>
+                                <span class="pull-left">部&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;门</span>
+                                <div class="menuBox pull-left" id="dm_aiDance_send_finish">
+                                    <div class="dropdown areaZone dm_aiDance_send_finish" ids="dm_aiDance_send_finish" optionId="">
+                                        <a class="dropdown-toggle aiDanceDmZoneList reactive_height text-center" data-toggle="dropdown"><span>全部</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu aiDanceDmZoneList-menu" role="menu">
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="text-right">
+                                <span class="pull-left">协&nbsp;&nbsp;作&nbsp;&nbsp;人</span>
+                                <div class="menuBox pull-left" id="p_aiDance_send_finish">
+                                    <div class="dropdown areaZone p_aiDance_send_finish" ids="p_aiDance_send_finish" optionId="">
+                                        <a class="dropdown-toggle aiDancePZoneList reactive_height text-center" data-toggle="dropdown"><span>全部</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu aiDancePZoneList-menu" role="menu">
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="list-unstyled clearfix large-half">
+                            <li class="totalLength">
+                                <span>任务详情</span>
+                                <textarea class="marBotArea" id="tasks_completed_send_content"></textarea>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg to_resend" onclick="suggestResendFinish()" data-dismiss="modal">派送</button>
+                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--已回访任务-->
+    <div class="tab-pane" id="tab_return_tasks">
+        <div class="btns menuBox pull-right" id="suggest_type_return" onclick="suggestSearch('return',5)">
+            <span>类型：</span>
+            <div class="suggest_type_return dropdown areaZone" ids="suggest_type_return" optionid="" modename="全部">
+                <a class="dropdown-toggle areaZoneList reactive_height text-center" data-toggle="dropdown"><span class="option_type">全部</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                    <li><a codelist="" modename="全部">全部</a></li>
+                    <li><a codelist="1" modename="建议">建议</a></li>
+                    <li><a codelist="2" modename="投诉">投诉</a></li>
+                    <li><a codelist="3" modename="综合">综合</a></li>
+                </ul>
+            </div>
+            <div class="startToEnd pull-right">
+                从
+                <input type="text" class="reactive_height calendar startTime"/>
+                到
+                <input type="text" class="reactive_height calendar endTime"/>
+            </div>
+        </div>
+        <div class="btns pull-left">
+            <button class='btn btn-primary lead_out text-center' onclick="tasksExportData(5,1)"><i></i>导出</button>
+            <button class="btn btn-primary print text-center" id="tasks_print_return" onclick="suggestPrintData('return',5)"><i></i>打印</button>
+        </div>
+        <div class="tab-pane tables" id="tasks_list_return">
+            <table class="table table-striped table-hover table-responsive">
+                <thead>
+                <tr>
+                    <!--<th>已选择</th>-->
+                    <th>工单编号</th>
+                    <th>类型</th>
+                    <th>任务详情</th>
+                    <th>所属区域</th>
+                    <th>建议投诉时间</th>
+                    <th>客户信息</th>
+                    <th>跟进人</th>
+                    <th>协助人</th>
+                    <th>紧急程度</th>
+                    <th>完成详情</th>
+                    <th>回访详情</th>
+                </tr>
+                </thead>
+                <tbody id="tasks_body_return"></tbody>
+            </table>
+            <div class="inner clearfix">
+                <div id="tasks_paging_return" class="pull-right pageList"></div>
+                <div id="tasks_tips_return" class="pull-right pageTips"></div>
+            </div>
+        </div>
+        <!--回访详情-->
+        <div class="modal fade return_done_detail" id="return_done_detail" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">回访详情</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-unstyled clearfix large-half">
+                            <li>
+                                <span>处理时间：</span>
+                                <b id="return_details_createTime"></b>
+                            </li>
+                            <li class="totalLength" style="margin-bottom: 0;">
+                                <span>处理详情：</span>
+                                <div class="inBlock" id="return_details_content"></div>
+                                <!-class="detail-img"->
+                                <div id="return_details_file"></div>
+                            </li>
+                            <li>
+                                <span>客户满意度：</span>
+                                <div class="starEvaluation" id="suggest_details_satisfaction">
+                                    <label class="star5" style="vertical-align: bottom;" id="return_details_satisfaction"></label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--模态框 公共部分-->
+    <!--任务详情-->
+    <div class="modal fade" id="tasks_detail" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                    <h4 class="modal-title text-center">任务详情</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="text">
+                        <div><span id="tasks_details_content"></span></div>
+                    </div>
+                    <div id="tasks_details_file"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--协助人任务详情-->
+    <div class="modal fade" id="tasks_ai_dance" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                    <h4 class="modal-title text-center">任务详情</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="text">
+                        <div><span id="tasks_details_ai_dance"></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--修改-->
+    <div class="modal fade" id="suggest_modify" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                    <h4 class="modal-title text-center">修改任务</h4>
+                </div>
+                <div class="modal-body updateId type status ordernum">
+                    <ul class="list-unstyled clearfix large-half change-center text-center">
+                        <li class="menuBox" id="suggest_update_status">
+                            <span>状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态</span>
+                            <div class="dropdown areaZone suggest_update_status" ids="suggest_update_status" optionid="1" modename="未处理">
+                                <a class="dropdown-toggle areaZoneList taskStatusMList text-center" data-toggle="dropdown"><span class="option_type">未处理</span><b class="caret"></b></a>
+                                <ul class="dropdown-menu areaZoneList-menu taskStatusMList-menu" role="menu">
+                                    <li><a codelist="1" modename="未处理">未处理</a></li>
+                                    <li><a codelist="2" modename="处理中">处理中</a></li>
+                                    <li><a codelist="3" modename="再处理">再处理</a></li>
+                                    <li><a codelist="4" modename="已完成">已完成</a></li>
+                                    <li><a codelist="5" modename="已回访">已回访</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="menuBox" id="suggest_update_urgency">
+                            <span>紧急程度</span>
+                            <div class="dropdown areaZone suggest_update_urgency" ids="suggest_update_urgency" optionid="1" modename="非常严重">
+                                <a class="dropdown-toggle areaZoneList taskEmergencyList text-center" data-toggle="dropdown"><span class="option_type">非常严重</span><b class="caret"></b></a>
+                                <ul class="dropdown-menu areaZoneList-menu taskEmergencyList-menu" role="menu">
+                                    <li><a codelist="1" modename="非常严重">非常严重</a></li>
+                                    <li><a codelist="2" modename="严重">严重</a></li>
+                                    <li><a codelist="3" modename="一般">一般</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-warning btn-lg to_add" onclick="suggestModify()" data-dismiss="modal">修改</button>
+                    <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--重派 全部任务里包含任务详情-->
+    <div class="modal fade" id="suggest_resend_tasks" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                    <h4 class="modal-title text-center">重派</h4>
+                </div>
+                <div class="modal-body updateId type status">
+                    <span class="title">跟进人信息</span>
+                    <ul class="list-unstyled clearfix large-half">
+                        <li>
+                            <span class="pull-left">部&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;门</span>
+                            <div class="menuBox pull-left" id="dm_follow_resend">
+                                <div class="dropdown areaZone dm_follow_resend" ids="dm_follow_resend" optionId="">
+                                    <a class="dropdown-toggle followDmZoneList reactive_height text-center" data-toggle="dropdown"><span>全部</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu followDmZoneList-menu" role="menu">
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="text-right">
+                            <span class="pull-left">跟&nbsp;&nbsp;进&nbsp;&nbsp;人</span>
+                            <div class="menuBox pull-left" id="p_follow_resend">
+                                <div class="dropdown areaZone p_follow_resend" ids="p_follow_resend" optionId="">
+                                    <a class="dropdown-toggle followPZoneList reactive_height text-center" data-toggle="dropdown"><span>全部</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu followPZoneList-menu" role="menu">
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <span class="title inBlock">协作人信息</span><a class="humanIn addFamMem">添加</a>
+                    <ul class="list-unstyled clearfix large-half addAiDance addDivMes">
+                        <li>
+                            <span class="pull-left">部&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;门</span>
+                            <div class="menuBox pull-left" id="dm_aiDance_resend">
+                                <div class="dropdown areaZone dm_aiDance_resend" ids="dm_aiDance_resend" optionId="">
+                                    <a class="dropdown-toggle aiDanceDmZoneList reactive_height text-center" data-toggle="dropdown"><span>全部</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu aiDanceDmZoneList-menu" role="menu">
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="text-right">
+                            <span class="pull-left">协&nbsp;&nbsp;作&nbsp;&nbsp;人</span>
+                            <div class="menuBox pull-left" id="p_aiDance_resend">
+                                <div class="dropdown areaZone p_aiDance_resend" ids="p_aiDance_resend" optionId="">
+                                    <a class="dropdown-toggle aiDancePZoneList reactive_height text-center" data-toggle="dropdown"><span>全部</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu aiDancePZoneList-menu" role="menu">
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-warning btn-lg to_resend" onclick="suggestResendTasks()" data-dismiss="modal">重派</button>
+                    <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--拒单-->
+    <div class="modal fade reject_detail" id="suggest_reject" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" style="margin-top: 8rem;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                    <h4 class="modal-title text-center">拒单</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal type status aiDanceDm aiDanceP" role="form" id="suggestTasksRejectFormId">
+                        <ul class="list-unstyled clearfix large-half">
+                            <li>
+                                <span class="pull-left">部&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;门</span>
+                                <div class="menuBox pull-left" id="dm_follow_reject">
+                                    <div class="dropdown areaZone dm_follow_reject" ids="dm_follow_reject" optionId="">
+                                        <a class="dropdown-toggle followDmZoneList reactive_height text-center" data-toggle="dropdown"><span>全部</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu followDmZoneList-menu" role="menu">
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="text-right">
+                                <span class="pull-left">跟&nbsp;&nbsp;进&nbsp;&nbsp;人</span>
+                                <div class="menuBox pull-left" id="p_follow_reject">
+                                    <div class="dropdown areaZone p_follow_reject" ids="p_follow_reject" optionId="">
+                                        <a class="dropdown-toggle followPZoneList reactive_height text-center" data-toggle="dropdown"><span>全部</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu followPZoneList-menu" role="menu">
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="totalLength">
+                                <span>拒单详情</span>
+                                <textarea class="rejectE" id="reject_refuseDetail" name="c.refuseDetail"></textarea>
+                            </li>
+                            <li class="totalLength">
+                                <div class="file">
+                                    <label for="file_reject">上传附件</label>
+                                    <div class="defined_file" id="defined_file_suggest">
+                                        <input type="text" name="defined_reject" id="defined_reject" value="未选择任何文件">
+                                        <button type="button" class="btn-primary">请选择</button>
+                                    </div>
+                                    <input type="file" name="upFile" class="fileHide" id="file_reject" onchange="document.getElementById('defined_reject').value=document.getElementById('file_reject').value;">
+                                </div>
+                                <div class="fileExplain">
+                                    图片预览文件大小不超过<span>**M</span>，格式支持 <span>jpg, jpeg, png, gif, bmp</span>
+                                </div>
+                            </li>
+                            <li>
+                                <span>图片预览</span>
+                                <div class="imgBox">
+                                    <i></i>
+                                </div>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-warning btn-lg toResure" onclick="suggestRejectTasks()" data-dismiss="modal">确认</button>
+                    <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--派送 回访记录中派送包含任务详情-->
+    <div class="modal fade" id="suggest_send" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                    <h4 class="modal-title text-center">派送</h4>
+                </div>
+                <div class="modal-body updateId type status">
+                    <span class="title">跟进人信息</span>
+                    <ul class="list-unstyled clearfix large-half">
+                        <li>
+                            <span class="pull-left">部&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;门</span>
+                            <div class="menuBox pull-left" id="dm_follow_send">
+                                <div class="dropdown areaZone dm_follow_send" ids="dm_follow_send" optionId="">
+                                    <a class="dropdown-toggle followDmZoneList reactive_height text-center" data-toggle="dropdown"><span>全部</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu followDmZoneList-menu" role="menu">
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="text-right">
+                            <span class="pull-left">跟&nbsp;&nbsp;进&nbsp;&nbsp;人</span>
+                            <div class="menuBox pull-left" id="p_follow_send">
+                                <div class="dropdown areaZone p_follow_send" ids="p_follow_send" optionId="">
+                                    <a class="dropdown-toggle followPZoneList reactive_height text-center" data-toggle="dropdown"><span>全部</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu followPZoneList-menu" role="menu">
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <span class="title inBlock">协作人信息</span><a class="humanIn addFamMem">添加</a>
+                    <ul class="list-unstyled clearfix large-half addAiDance addDivMes">
+                        <li>
+                            <span class="pull-left">部&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;门</span>
+                            <div class="menuBox pull-left" id="dm_aiDance_send">
+                                <div class="dropdown areaZone dm_aiDance_send" ids="dm_aiDance_send" optionId="">
+                                    <a class="dropdown-toggle aiDanceDmZoneList reactive_height text-center" data-toggle="dropdown"><span>全部</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu aiDanceDmZoneList-menu" role="menu">
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="text-right">
+                            <span class="pull-left">协&nbsp;&nbsp;作&nbsp;&nbsp;人</span>
+                            <div class="menuBox pull-left" id="p_aiDance_send">
+                                <div class="dropdown areaZone p_aiDance_send" ids="p_aiDance_send" optionId="">
+                                    <a class="dropdown-toggle aiDancePZoneList reactive_height text-center" data-toggle="dropdown"><span>全部</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu aiDancePZoneList-menu" role="menu">
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-warning btn-lg to_resend" onclick="suggestTasksResend()" data-dismiss="modal">派送</button>
+                    <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--删除-->
+    <div class="modal fade" id="suggest_delete" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                    <h4 class="modal-title text-center">提示</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="form-inline mBody_title text-center">确定删除该消息?</p>
+                </div>
+                <div class="modal-footer text-center type status">
+                    <button type="button" class="btn btn-warning btn-lg toResure" onclick="suggestDeleteData('')" data-dismiss="modal">确认</button>
+                    <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--完成详情-->
+    <div class="modal fade" id="suggest_detail" aria-hidden="true">
+        <div class="modal-dialog" style="margin-top: 1rem;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                    <h4 class="modal-title text-center">完成详情</h4>
+                </div>
+                <div class="modal-body">
+                    <span class="title">跟进人信息</span>
+                    <ul class="list-unstyled clearfix large-half">
+                        <li>
+                            <span>部&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;门:</span>
+                            <b id="details_finish_follow_dm"></b>
+                        </li>
+                        <li>
+                            <span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:</span>
+                            <b id="details_finish_follow_p"></b>
+                        </li>
+                    </ul>
+                    <span class="title">协作人信息</span>
+                    <ul class="list-unstyled clearfix large-half">
+                        <li>
+                            <span>部&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;门:</span>
+                            <b id="details_finish_ai_dance_dm"></b>
+                        </li>
+                        <li>
+                            <span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:</span>
+                            <b id="details_finish_ai_dance_p"></b>
+                        </li>
+                    </ul>
+                    <span class="title">处理详情</span>
+                    <div class="text">
+                        <div id="details_finish_content"></div>
+                        <!--<div class="deal-img"></div>-->
+                    </div>
+                    <div id="details_finish_file"></div>
+                    <span class="title">费用</span>
+                    <ul class="list-unstyled clearfix large-half">
+                        <li>
+                            <span style="width: 3.8rem;">材料费用:</span>
+                            <b id="details_finish_manual_charge"></b>
+                        </li>
+                        <li>
+                            <span style="width: 3.8rem;">人工费用:</span>
+                            <b id="details_finish_materials_charge"></b>
+                        </li>
+                    </ul>
+                    <span class="title">备注</span>
+                    <div class="text">
+                        <div id="details_finish_mark"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--完成-->
+    <div class="modal fade reject_detail" id="tasks_finish_detail" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" style="margin-top: 4rem;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                    <h4 class="modal-title text-center">完成</h4>
+                </div>
+                <div class="modal-body update_id type status code cusName cusPhone">
+                    <span class="title">跟进人信息</span>
+                    <ul class="list-unstyled clearfix large-half">
+                        <li>
+                            <span class="pull-left">部&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;门</span>
+                            <div class="menuBox pull-left" id="dm_follow_finish">
+                                <div class="dropdown areaZone dm_follow_finish" ids="dm_follow_finish" optionId="">
+                                    <a class="dropdown-toggle followDmZoneList reactive_height text-center" data-toggle="dropdown"><span>全部</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu followDmZoneList-menu" role="menu">
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="text-right">
+                            <span class="pull-left">跟&nbsp;&nbsp;进&nbsp;&nbsp;人</span>
+                            <div class="menuBox pull-left" id="p_follow_finish">
+                                <div class="dropdown areaZone p_follow_finish" ids="p_follow_finish" optionId="">
+                                    <a class="dropdown-toggle followPZoneList reactive_height text-center" data-toggle="dropdown"><span>全部</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu followPZoneList-menu" role="menu">
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <span class="title inBlock">协作人信息</span><a class="humanIn addFamMem">添加</a>
+                    <ul class="list-unstyled clearfix large-half addAiDance addDivMes">
+                        <li>
+                            <span class="pull-left">部&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;门</span>
+                            <div class="menuBox pull-left" id="dm_aiDance_finish">
+                                <div class="dropdown areaZone dm_aiDance_finish" ids="dm_aiDance_finish" optionId="">
+                                    <a class="dropdown-toggle aiDanceDmZoneList reactive_height text-center" data-toggle="dropdown"><span>全部</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu aiDanceDmZoneList-menu" role="menu">
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="text-right">
+                            <span class="pull-left">协&nbsp;&nbsp;作&nbsp;&nbsp;人</span>
+                            <div class="menuBox pull-left" id="p_aiDance_finish">
+                                <div class="dropdown areaZone p_aiDance_finish" ids="p_aiDance_finish" optionId="">
+                                    <a class="dropdown-toggle aiDancePZoneList reactive_height text-center" data-toggle="dropdown"><span>全部</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu aiDancePZoneList-menu" role="menu">
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="list-unstyled clearfix large-half">
+                        <li class="totalLength">
+                            <span>处理详情</span>
+                            <textarea class="rejectE" id="tasks_content_details"></textarea>
+                        </li>
+                        <li class="totalLength">
+                            <div class="file">
+                                <label for="file_attachCompletedInTasks">附&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;件</label>
+                                <div class="defined_file">
+                                    <input type="text" name="defined_attachCompleted" id="defined_attachCompletedInTasks" value="未选择任何文件">
+                                    <button type="button" class="btn-primary">请选择</button>
+                                </div>
+                                <input type="file" name="upFile" class="fileHide" id="file_attachCompletedInTasks" onchange="document.getElementById('defined_attachCompletedInTasks').value=document.getElementById('file_attachCompletedInTasks').value;">
+                            </div>
+                        </li>
+                    </ul>
+                    <span class="title" style="margin-top: 1.875rem;">费用</span>
+                    <ul class="list-unstyled clearfix large-half">
+                        <li>
+                            <span>材料费用</span>
+                            <input type="text" id="tasks_manual_charge"/>
+                        </li>
+                        <li class="text-right">
+                            <span>人工费用</span>
+                            <input type="text" id="tasks_materials_charge"/>
+                        </li>
+                        <li class="totalLength">
+                            <span>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</span>
+                            <textarea id="tasks_remark_details"></textarea>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-warning btn-lg toResure" onclick="suggestFinishInTasks()" data-dismiss="modal">确认</button>
+                    <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/property_services/suggest_complaints_view.js"></script>
+<script src="js/property_services/suggest_complaints.js"></script>
+<script type="text/javascript">
+    //    临时增加
+    //    function selectChoiceRight(class1,class2){
+    //        $(class1+">li>a").on('click',function(){
+    //            var  html="<span>"+$(this).html()+"</span><b class='caret'></b>";
+    //            $(class2).html(html);
+    //        });
+    //    }
+    //   function selectChoiceRight(class1,class2){
+    //       $(class1+">li>a").on('click',function(){
+    //           var  html="<span>"+$(this).html()+"</span><b class='caret'></b>";
+    //            $(this).parent().parent().siblings(class2).html(html);
+    //        });
+    //   }
+    //selectChoiceRight(".areaZoneList-menu",".areaZoneList");
+    //selectChoiceRight(".periodTypeList-menu",".periodTypeList");
+    //selectChoiceRight(".zoneTypeList-menu",".zoneTypeList");
+    //selectChoiceRight(".buildingTypeList-menu",".buildingTypeList");
+    //    selectChoiceRight(".taskSendList-menu",".taskSendList");
+    function selectChoiceRight(class1,class2){
+        $(class1+">li>a").on('click',function(){
+            var  html="<span>"+$(this).html()+"</span><b class='caret'></b>";
+            $(this).parent().parent().siblings(class2).html(html);
+        });
+    }
+    selectChoiceRight(".areaZoneList-menu",".areaZoneList");
+
+</script>

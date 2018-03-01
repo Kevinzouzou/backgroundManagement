@@ -1,0 +1,154 @@
+<!--供应商管理-->
+<div class="tablist_third">
+    <ul class="nav clearfix">
+        <li class="visitorManage active"><a href="#tab_supplierManage" role="tab" data-toggle="tab">供应商管理</a></li>
+    </ul>
+</div>
+<div class="tab-content">
+    <!--供应商管理-->
+    <div class="tab-pane active" id="tab_supplierManage">
+        <div class="btns pull-right clearfix">
+            <button class='btn btn-primary btn_search text-center pull-right' onclick="enquerySupplier(this);"><i></i>查询</button>
+            <div class="startToEnd pull-right">
+                从
+                <input type="text" class="reactive_height calendar startTime" placeholder="起止时间"/>
+                到
+                <input type="text" class="reactive_height calendar endTime" placeholder="结束时间"/>
+            </div>
+        </div>
+        <div class="btns pull-left clearfix">
+            <button class='btn btn-warning adding text-center' data-toggle="modal"  data-target="#addSupplier"><i></i>添加</button>
+        </div>
+        <!--列表-->
+        <div class="tables">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>供应商名称</th>
+                    <th>联系人姓名</th>
+                    <th>联系电话</th>
+                    <th>联系地址</th>
+                    <th>信用代码</th>
+                    <th>纳税识别号</th>
+                    <th>入围时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <!--添加 模态框-->
+        <div class="modal fade" id="addSupplier" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center" id="complaintsModalLabel">添加</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-unstyled clearfix large-half">
+                            <li>
+                                <span>供&nbsp;&nbsp;应&nbsp;&nbsp;商</span>
+                                <input type="text" class="supplier" value=""/>
+                            </li>
+                            <li>
+                                <span>联&nbsp;&nbsp;系&nbsp;&nbsp;人</span>
+                                <input type="text" class="linker" value=""/>
+                            </li>
+                            <li>
+                                <span>联系电话</span>
+                                <input type="text" class="cellphone" value=""/>
+                            </li>
+                            <li>
+                                <span>联系地址</span>
+                                <input type="text" class="address" value=""/>
+                            </li>
+                            <li>
+                                <span>信用代码</span>
+                                <input type="text" class="creditCode" value=""/>
+                            </li>
+                            <li>
+                                <span>纳&nbsp;&nbsp;税&nbsp;&nbsp;号</span>
+                                <input type="text" class="ratePayCode" value=""/>
+                            </li>
+                            <li>
+                                <span>入围时间</span>
+                                <input type="text" class="calendar theTime"/>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg toResure" data-dismiss="modal">确定</button>
+                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--修改 模态框-->
+        <div class="modal fade" id="supplier_modify" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">修改</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-unstyled clearfix large-half">
+                            <li>
+                                <span>供&nbsp;&nbsp;应&nbsp;&nbsp;商</span>
+                                <input type="text" class="supplier" value=""/>
+                            </li>
+                            <li>
+                                <span>联&nbsp;&nbsp;系&nbsp;&nbsp;人</span>
+                                <input type="text" class="linker" value=""/>
+                            </li>
+                            <li>
+                                <span>联系电话</span>
+                                <input type="text" class="cellphone" value=""/>
+                            </li>
+                            <li>
+                                <span>联系地址</span>
+                                <input type="text" class="address" value=""/>
+                            </li>
+                            <li>
+                                <span>信用代码</span>
+                                <input type="text" class="creditCode" value=""/>
+                            </li>
+                            <li>
+                                <span>纳&nbsp;&nbsp;税&nbsp;&nbsp;号</span>
+                                <input type="text" class="ratePayCode" value=""/>
+                            </li>
+                            <li>
+                                <span>入围时间</span>
+                                <input type="text" class="calendar theTime"/>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg toResure" data-dismiss="modal">确定</button>
+                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--删除 模态框-->
+        <div class="modal fade" id="supplier_delete" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">删除信息</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-inline mBody_title text-center">是否确定删除?</form>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg to_delete" data-dismiss="modal">删除</button>
+                        <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<script src="js/property_management/visitor_material_supplier.js"></script>-->

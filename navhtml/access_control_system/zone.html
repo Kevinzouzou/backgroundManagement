@@ -1,0 +1,573 @@
+
+<!-- start div1-->
+<div class="tab-pane" id="zone_div1">
+    <div class="tab-pane btns clearfix" id="headbar1">
+        <button class='btn btn-warning' id="headbar1-add" onclick="addzonemodal()"><img src='img/add.png'> 添加</button>
+    </div><!--end headbar1-->
+
+    <div class="tab-pane tables" id="tableList1">
+        <table class="mytable table table-striped table-hover table-responsive">
+            <thead id="zoneInfo-head1">
+            <tr>
+                <th>小区名称</th>
+                <th>小区地址</th>
+                <th>期</th>
+                <th>区</th>
+                <th>总栋数</th>
+                <th>小区编号</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="zoneInfo-body1"></tbody>
+        </table>
+    </div><!--end tableList1-->
+</div><!--end div1-->
+
+<div class="tab-pane" id="zone_div2">
+    <!--start div2-->
+    <div class="btns" id="headbar2">
+        <span>楼宇信息</span>
+    </div><!--end headbar2-->
+
+    <div class="tab-pane tables" id="tableList2">
+        <table class="table table-striped table-hover table-responsive">
+            <thead id="zoneInfo-head2">
+            <tr>
+                <th>楼宇名称</th>
+                <th>楼宇编号</th>
+                <th>单元数</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="zoneInfo-body2"></tbody>
+        </table>
+    </div><!--end tableList2-->
+</div><!--end div2-->
+
+<div class="tab-pane" id="zone_div3">
+    <!--start div3-->
+    <div class="btns" id="headbar3">
+        <span>单元信息</span>
+    </div><!--end headbar3-->
+
+    <div class="tab-pane tables" id="tableList3">
+        <table class="table table-striped table-hover table-responsive">
+            <thead id="zoneInfo-head3">
+            <tr>
+                <th>单元名称</th>
+                <th>单元编号</th>
+                <th>每层房屋数量</th>
+                <th>最高层</th>
+                <th>状态</th>
+            </tr>
+            </thead>
+            <tbody id="zoneInfo-body3"></tbody>
+        </table>
+    </div><!--end tableList3-->
+</div><!--end div3-->
+
+<div class="tab-pane" id="zone_div4">
+    <!--start div4-->
+    <div class="tab-pane" id="headbar4">
+        <div id="homelist-keywordleft" class="form-inline btns">
+            <button class='btn  btn-warning' onclick="homeaddJump()"><img src='img/add.png'> 添加</button>
+            <button class='btn  btn-primary' id="headbar4-import" onclick="importHomelist()"><img src='img/import.png'> 导入</button>
+            <button class='btn  btn-primary' id="headbar4-export" onclick="exportHomelist()"><img src='img/export.png'> 导出</button>
+            <button class='btn  btn-primary' id="headbar4-multidel" onclick="deleteMultiHome()"><img src='img/export.png'> 批量删除</button>
+            <button class='btn  btn-primary' id="headbar4-checkall" onclick="homecheckall()">选择所有</button>
+        <!--</div>-->
+        <!--<div class="form-inline btns pull-right">-->
+            <form class="form-inline pull-right">
+                <input type="text" class="form-control reactive_height" id="homelist-keyword"  name="home.code" placeholder="请输入查询门牌序列号"/>
+                <button class="btn btn-primary" id="headbar4-search_submit" onclick="queryHomeListparam()" type="button"><img src="img/search.png">查询</button>
+            </form>
+        </div>
+    </div><!--end headbar4-->
+
+    <div class="tab-pane tables" id="tableList4">
+        <table class="table table-striped table-hover table-responsive">
+            <thead id="zoneInfo-head4">
+            <tr>
+                <th></th>
+                <th>门牌序列号</th>
+                <th>门牌号</th>
+                <th>房屋状态</th>
+                <th>建筑面积</th>
+                <th>使用面积</th>
+                <th>卫生间数</th>
+                <th>厅数量</th>
+                <th>卧室数量</th>
+                <th>用途</th>
+                <th>入住时间</th>
+                <th>电话号码</th>
+                <th>房产证号</th>
+                <th>室内直呼</th>
+                <th>室内机数量</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="zoneInfo-body4"></tbody>
+        </table>
+    </div><!--end tableList4-->
+</div><!--end div4-->
+
+
+
+<div class="tab-pane" id="zone_div6" style="border-color: #222222">
+    <!--start div6-->
+    <div class="btns" id="headbar6">
+        <span>&nbsp;</span>
+    </div><!--end headbar3-->
+    <table class="table table-striped table-hover table-responsive">
+        <thead><tr><th style="font-size: 0.83rem;">修改房屋</th></tr></thead>
+    </table>
+    <div class="container" style="margin-top: 6rem;">
+        <form class="form-horizontal" role="form" id="home-form-update">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">卧室数量:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="homebedroom" name="home.bedroom">
+                </div>
+                <!--<label class="col-sm-3 control-label">别名:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="homealias"  name="home.alias">
+                </div>-->
+                <label class="col-sm-2 control-label">室内直呼:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="homedoorcontrollercode" name="home.doorcontrollercode">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">门牌号:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="homename" name="home.name">
+                </div>
+                <label class="col-sm-2 control-label">用途:</label>
+                <div class="col-sm-2">
+                    <select class="form-control" id="homeusecalssify" name="home.usecalssify">
+                        <option value="1">住房</option>
+                        <option value="2">商铺</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">建筑面积:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="homecoveredarea" name="home.coveredarea">
+                </div>
+                <label class="col-sm-2 control-label">入住时间:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control calendar_updatehome" id="homechectinday" name="home.chectinday">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">使用面积:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="homeusearea" name="home.usearea">
+                </div>
+                <label class="col-sm-2 control-label">电话号码:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="hometelephone" name="home.telephone" >
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">卫生间数:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="homebathroom" name="home.bathroom">
+                </div>
+                <label class="col-sm-2 control-label">房产证号:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="homecertificateid" name="home.certificateid">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">厅数量:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="homehall" name="home.hall">
+                </div>
+                <label class="col-sm-2 control-label">房屋状态:</label>
+                <div class="col-sm-2">
+                    <select class="form-control" id="updatehomestatus" name="home.status">
+                        <option value="0">未售</option>
+                        <option value="1">自住</option>
+                        <option value="2">出租</option>
+                        <option value="3">空闲</option>
+                        <option value="4">招租</option>
+                        <option value="5">待售</option>
+                        <option value="6">待装修</option>
+                        <option value="7">重装修</option>
+                        <option value="9">未初始化</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">室内机编号:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="homecode" name="home.code">
+                    <input type="hidden" id="homeid" name="home.id">
+                </div>
+            </div>
+        </form>
+    </div><!--end tableList3-->
+    <div style="margin-top: 3rem;">
+        <div class="col-sm-2 col-sm-push-4">
+            <button type="button" class="form-control btn btn-warning bSubmit" onclick="commithomeupdate()" data-dismiss="modal" style="height: 2.2rem;">确认修改</button>
+        </div>
+        <div class="col-sm-2 col-sm-push-4">
+            <button type="button" class="form-control btn btn-primary" onclick="back()" style="height: 2.2rem;">取消</button>
+        </div>
+    </div>
+</div><!--end div6-->
+
+<!--添加小区-->
+<div class="modal fade" id="zone-modal-add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <!--modal-dialog 开始-->
+    <div class="modal-dialog">
+        <!--modal-content 开始-->
+        <div class="modal-content">
+            <!--modal-header 开始-->
+            <div class="modal-header" style="background-color: #539990">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title text-center">添加小区</h4>
+            </div>
+            <!--modal-header 结束-->
+            <!--modal-body 开始-->
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" id="zone-form-add">
+                    <ul class="list-unstyled clearfix large-half">
+                        <li class="totalLength">
+                            <span>小区编号</span>
+                            <input type="text" class="form-control" id="zoneuuid" name="zone.uuid" placeholder="请输入小区编号，例200001" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+                        </li>
+                        <li class="totalLength">
+                            <span>小区名称</span>
+                            <input type="text" class="form-control" id="zonename" name="zone.name" placeholder="请输入小区名称">
+                        </li>
+                        <li class="totalLength">
+                            <span>小区地址</span>
+                            <textarea id="zoneaddress" rows="2" name="zone.address" placeholder="请输入小区地址"></textarea>
+                        </li>
+                        <li>
+                            <span>期</span>
+                            <input type="text" class="form-control" id="zonepz" name="zone.pz" placeholder="请输入数字" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+                         </li>
+                        <li class="text-right">
+                            <span>区</span>
+                            <input type="text" class="form-control" id="zonezz" name="zone.zz" placeholder="请输入数字" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+                        </li>
+                        <li>
+                            <span>栋</span>
+                            <input type="text" class="form-control" id="zonebz" name="zone.bz" placeholder="请输入数字" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+                        </li>
+                        <li class="text-right">
+                            <span>单元</span>
+                            <input type="text" class="form-control" id="zoneunit"  placeholder="默认0在单元处更新" value="0" disabled >
+                        </li>
+                    </ul>
+
+                    <!--<div class="form-group">-->
+                        <!--<label for="zoneuuid" class="col-sm-3 control-label">小区编号:</label>-->
+                        <!--<div class="col-sm-8">-->
+                            <!--<input type="text" class="form-control" id="zoneuuid" name="zone.uuid" placeholder="请输入小区编号，例200001" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label for="zonename" class="col-sm-3 control-label">小区名称:</label>-->
+                        <!--<div class="col-sm-8">-->
+                            <!--<input type="text" class="form-control" id="zonename" name="zone.name" placeholder="请输入小区名称">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label for="zoneaddress" class="col-sm-3 control-label">小区地址:</label>-->
+                        <!--<div class="col-sm-8">-->
+                            <!--&lt;!&ndash;<input type="text" class="form-control" id="code" placeholder="请输入安装位置">&ndash;&gt;-->
+                            <!--<textarea class="form-control" id="zoneaddress" rows="2" name="zone.address" placeholder="请输入小区地址"></textarea>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label for="zonepz" class="col-sm-3 control-label">期:</label>-->
+                        <!--<div class="col-sm-3">-->
+                            <!--<input type="text" class="form-control" id="zonepz" name="zone.pz" placeholder="请输入数字" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">-->
+                        <!--</div>-->
+                        <!--<label for="zonezz" class="col-sm-2 control-label">区:</label>-->
+                        <!--<div class="col-sm-3">-->
+                            <!--<input type="text" class="form-control" id="zonezz" name="zone.zz" placeholder="请输入数字" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label for="zonebz" class="col-sm-3 control-label">栋:</label>-->
+                        <!--<div class="col-sm-3">-->
+                            <!--<input type="text" class="form-control" id="zonebz" name="zone.bz" placeholder="请输入数字" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">-->
+                        <!--</div>-->
+                        <!--<label for="zoneunit" class="col-sm-2 control-label">单元:</label>-->
+                        <!--<div class="col-sm-3">-->
+                            <!--<input type="text" class="form-control" id="zoneunit"  placeholder="默认0在单元处更新" value="0" disabled >-->
+                        <!--</div>-->
+                    <!--</div>-->
+                </form>
+            </div>
+            <!--modal-body 结束-->
+            <!--modal-footer 开始-->
+            <div class="modal-footer text-center">
+                <button type="button" class="form-control btn btn-warning bSubmit" onclick="addzone()" data-dismiss="modal">添加</button>
+                <button type="button" class="form-control btn btn-primary" onclick="resetzoneform()">重置</button>
+
+                <!--<div class="form-group">-->
+                    <!--<div class="col-sm-5 col-sm-push-1">-->
+                        <!--<button type="button" class="form-control btn btn-warning bSubmit" onclick="addzone()" data-dismiss="modal">添加</button>-->
+                    <!--</div>-->
+                    <!--<div class="col-sm-5 col-sm-push-2">-->
+                        <!--<button type="button" class="form-control btn btn-primary" onclick="resetzoneform()">重置</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+            </div>
+            <!--modal-footer 结束-->
+        </div>
+        <!--modal-content 开始-->
+    </div>
+    <!--modal-dialog 结束-->
+</div>
+
+
+<div class="modal" id="buildingupdatemodal">
+    <div class="modal-dialog">
+        <div class="modal-content btns" id="modalcontent">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="model-title-text">更新楼宇信息</h4>
+            </div>
+            <div class="modal-body">
+                <form id="mode-form" class="form-inline">
+                    <div class="form-group">
+                        <label for="zoneuuid" class="col-sm-5 control-label">楼宇名称:</label>
+                        <div class="col-sm-7">
+                            <input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" type="text" class="form-control" id="buldingname"  placeholder="请输入楼宇名称">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="zoneuuid" class="col-sm-5 control-label">单元个数:</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="unitname"  placeholder="单元数" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer" id="modal-footer-div">
+                <button type="button" id="building_update" class="btn btn-warning" onclick="updatebuliding()">更新</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal" id="unitupdatemodal">
+    <div class="modal-dialog">
+        <div class="modal-content btns" id="modalcontent1">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="model-title-text1">更新单元信息</h4>
+            </div>
+            <div class="modal-body">
+                <form id="mode-form1" class="form-inline">
+                    <div class="form-group">
+                        <label for="zoneuuid" class="col-sm-5 control-label">单元名称:</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="unitname1" placeholder="请输入单元名称" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="zoneuuid" class="col-sm-5 control-label">单元层数:</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="unitfloors"  placeholder="请输入单元层数" onkeyup="this.value=this.value.replace(/\D/g,'')" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="zoneuuid" class="col-sm-5 control-label">每层房数:</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="unithomenum"  placeholder="请输入每层房屋数" onkeyup="this.value=this.value.replace(/\D/g,'')" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer" id="modal-footer-div1">
+                <button type="button" id="unit_update" class="btn btn-warning" onclick="updateunit1()">更新</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!--导入房屋-->
+<div class="modal fade" id="home_list_import" tabindex="-1" role="dialog" aria-labelledby="homelistImportLabel" aria-hidden="true">
+    <!--模态框 开始-->
+    <div class="modal-dialog" style="margin-top: 15rem;">
+        <!--模态框内容 开始-->
+        <div class="modal-content">
+            <!--模态框头部 开始-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center" id="homelistImportLabel">导入数据</h4>
+            </div>
+            <!--模态框头部 结束-->
+            <!--模态框主体 开始-->
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" enctype="multipart/form-data" id="home_list_upload_form">
+                    <div class="file text-center form-group report-file">
+                        <label style="line-height: 40px;">选择文件：</label>
+                        <div class="defined_file">
+                            　　<input type="text" name="upFile" id="home_list_select_file" value="未选择任何文件">
+                            　　<button type="button" class="btn-primary">请选择</button>
+                        </div>
+                        <input type="file" name="upFile" id="home_list_file"
+                               onchange="$('#home_list_select_file').val($('#home_list_file').val())">
+                    </div>
+                </form>
+            </div>
+            <!--模态框主体 结束-->
+            <!--模态框页脚 开始-->
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning"  onclick="importHomeList()">导入</button>
+                <button type="button" class="btn btn-primary" onclick="">重置</button>
+            </div>
+            <!--模态框页脚 结束-->
+        </div>
+        <!--模态框内容 结束-->
+    </div>
+    <!--模态框 结束-->
+</div>
+
+<div class="tab-pane" id="zone_div7" style="border-color: #222222">
+    <!--start div6-->
+    <div class="btns" id="headbar7">
+        <span>&nbsp;</span>
+    </div><!--end headbar3-->
+    <table class="table table-striped table-hover table-responsive">
+        <thead><tr><th style="font-size: 0.83rem;">添加房屋</th></tr></thead>
+    </table>
+    <div class="container" style="margin-top: 6rem;">
+        <form class="form-horizontal" role="form" id="home-form-add">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">别名:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="homealias"  name="home.alias">
+                </div>
+                <label class="col-sm-2 control-label">室内直呼:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control"  name="home.doorcontrollercode">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">门牌号:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="home.name">
+                </div>
+                <label class="col-sm-2 control-label">用途:</label>
+                <div class="col-sm-2">
+                    <select class="form-control" name="home.usecalssify">
+                        <option value="1">住房</option>
+                        <option value="2">商铺</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">建筑面积:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="home.coveredarea">
+                </div>
+                <label class="col-sm-2 control-label">入住时间:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control calendar_updatehome" name="home.chectinday">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">使用面积:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="home.usearea">
+                </div>
+                <label class="col-sm-2 control-label">电话号码:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="home.telephone" >
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">卫生间数:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="home.bathroom">
+                </div>
+                <label class="col-sm-2 control-label">房产证号:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="home.certificateid">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">厅数量:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="home.hall">
+                </div>
+                <label class="col-sm-2 control-label">房屋状态:</label>
+                <div class="col-sm-2">
+                    <select class="form-control" name="home.status" id="homestatus">
+                        <option value="0">未售</option>
+                        <option value="1">自住</option>
+                        <option value="2">出租</option>
+                        <option value="3">空闲</option>
+                        <option value="4">招租</option>
+                        <option value="5">待售</option>
+                        <option value="6">待装修</option>
+                        <option value="7">重装修</option>
+                        <option value="9">未初始化</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">卧室数量:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="home.bedroom">
+                </div>
+                <label class="col-sm-2 control-label">室内机编号:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="home.code">
+                </div>
+            </div>
+        </form>
+    </div><!--end tableList3-->
+    <div style="margin-top: 3rem;">
+        <div class="col-sm-2 col-sm-push-4">
+            <button type="button" class="form-control btn btn-warning bSubmit" onclick="commithomeadd()" data-dismiss="modal" style="height: 2.2rem;">添加</button>
+        </div>
+        <div class="col-sm-2 col-sm-push-4">
+            <button type="button" class="form-control btn btn-primary" onclick="back()" style="height: 2.2rem;">取消</button>
+        </div>
+    </div>
+</div><!--end div6-->
+
+<div class="modal" id="mymodal">
+    <div class="modal-dialog">
+        <div class="modal-content btns" id="mymode-form">
+            <div class="modal-header" id="model-title">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body" id="modal-body">
+            </div>
+            <div class="modal-footer" id="modal-footer">
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script>
+    $(function() {
+        $('.calendar_updatehome').datetimepicker({
+            format: 'yyyy-mm-dd',
+            minView:'month',
+            language: 'zh-CN',
+            autoclose:true,
+//startDate:new Date(),
+//endDate:new Date(),
+            pickerPosition:'bottom-right'//相对位置
+        });
+    });
+</script>

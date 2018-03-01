@@ -1,0 +1,166 @@
+<!--Created by along on 2018/1/24 安防报警-->
+<!--小区报警-->
+<style>
+    .houseAlarmVideo .portraitUp{display: inline-block;}
+    .houseAlarmVideo .portraitUp label{width:52px;overflow:hidden;cursor: pointer;text-align: center;}
+    .houseAlarmVideo .portraitUp .upfileName{width:9.42rem;border-top-right-radius:0;border-bottom-right-radius:0;}
+    .houseAlarmVideo .portraitUp label input{display: none;}
+    .houseAlarmVideo .portraitUp .btn{padding:5px 12px;border-top-left-radius:0;border-bottom-left-radius:0;}
+</style>
+<div class="tablist_third">
+    <ul class="nav clearfix" role="tablist_third">
+        <li class="equipment_management active"><a href="#tab_equipment_management" role="tab" data-toggle="tab" onclick="houseAlarmInitialize('equipment')">设备管理</a></li>
+        <li class="video_monitoring"><a href="#tab_video_monitorings" role="tab" data-toggle="tab" onclick="houseAlarmInitialize('video')">视屏监控</a></li>
+    </ul>
+</div>
+<div class="tab-content">
+    <div class="tab-pane active" id="tab_equipment_management">
+        <div class="btns"><button class="btn btn-warning" id="addEquipmentBut"><i></i>添加</button></div>
+        <!--table-->
+        <div class="tables">
+                <table class="table table-striped text-center">
+                    <thead>
+                    <tr>
+                        <th>设备名称</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody id="equipmentList">
+                        <tr>
+                            <td>设备名称001</td>
+                            <td>
+                                <a class="modifyBut" ids="6" type="alarmRank">修改</a>|
+                                <a class="deleteBut" ids="6" type="alarmRank">删除</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!--分页-->
+                <div class="pagingImplement tab-pane inner clearfix">
+                    <div class="pageList pull-right"></div>
+                    <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
+                </div>
+                <!--end homeList-paging-->
+            </div>
+    </div>
+    <div class="tab-pane" id="tab_video_monitorings">
+        <div class="btns menuBox" id="houseAlarmMenu" type="charge">
+                <span>监控区域</span>
+                <div class="property_type_tasks dropdown areaZone" ids="property_type_tasks" optionid="" modename="">
+                <a class="dropdown-toggle areaZoneList reactive_height text-center" data-toggle="dropdown"><span class="option_type">全部</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                    <li><a codelist="" modename="全部">全部</a></li>
+                    <li><a codelist="1" modename="监控区域001">监控区域001</a></li>
+                    <li><a codelist="2" modename="监控区域002">监控区域002</a></li>
+                    <li><a codelist="3" modename="监控区域003">监控区域003</a></li>
+                </ul>
+            </div>
+                <span>通道名称</span>
+                <div class="property_type_tasks dropdown areaZone" ids="property_type_tasks" optionid="" modename="">
+                <a class="dropdown-toggle areaZoneList reactive_height text-center" data-toggle="dropdown"><span class="option_type">全部</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                    <li><a codelist="" modename="全部">全部</a></li>
+                    <li><a codelist="1" modename="通道名称001">通道名称001</a></li>
+                    <li><a codelist="2" modename="通道名称002">通道名称002</a></li>
+                    <li><a codelist="3" modename="通道名称003">通道名称003</a></li>
+                </ul>
+            </div>
+                <button class="btn btn-warning btn_search btnSearch" id="houseAlarmSearch" type="button"><i></i>查询</button>
+        </div>
+        <!--table-->
+        <div class="tables">
+            <table class="table table-striped text-center">
+                    <thead>
+                    <tr>
+                        <th>监控区域</th>
+                        <th>监控视频</th>
+                    </tr>
+                    </thead>
+                    <tbody id="userLogoutList">
+                    <tr>
+                        <td>监控区域001</td>
+                        <td>监控视频001</td>
+                    </tr>
+                    </tbody>
+                </table>
+            <!--分页-->
+            <div class="pagingImplement tab-pane inner clearfix">
+                <div class="pageList pull-right"></div>
+                <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
+            </div>
+            <!--end homeList-paging-->
+        </div>
+    </div>
+</div>
+<!--modal-->
+<!--家电状态详情-->
+<div class="modal fade" id="addHouseAlarmModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">添加小区报警</h4>
+            </div>
+            <div class="modal-body" id="houseAlarmForm">
+                <ul class="list-unstyled clearfix large-half">
+                    <li class="menuBox">
+                        <span>监控区域</span>
+                        <div class="chargetype dropdown areaZone" ids="chargetype" optionid="">
+                            <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                            <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                <li><a codelist="0" modename="大门">大门</a></li>
+                                <li><a codelist="1" modename="活动中心">活动中心</a></li>
+                                <li><a codelist="2" modename="停车场">停车场</a></li>
+                                <li><a codelist="3" modename="应急通道">应急通道</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <span>监控事件</span>
+                        <input type="text">
+                    </li>
+                    <li>
+                        <span>设备名称</span>
+                        <input type="text">
+                    </li>
+                    <li>
+                        <span>设备型号</span>
+                        <input type="text">
+                    </li>
+                    <li>
+                        <span>设备编号</span>
+                        <input type="text">
+                    </li>
+                    <li>
+                        <!--class="totalLength"-->
+                        <span>设&nbsp;&nbsp;备&nbsp;&nbsp;IP</span>
+                        <input type="text">
+                    </li>
+                    <li>
+                        <span>设备端口</span>
+                        <input type="text">
+                    </li>
+                    <li>
+                        <span>品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;牌</span>
+                        <input type="text">
+                    </li>
+                    <li class="houseAlarmVideo">
+                        <span>监控视频</span>
+                        <div class="portraitUp">
+                            <label>
+                                <strong class="btn btn-primary">上传</strong>
+                                <input type="file" name="upfile" class="uploadingImg" placeholder="图片名称">
+                            </label>
+                            <input class="pull-left upfileName" type="text">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg toResure" id="houseAlarmModalBut">添加</button>
+                <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/security_alarm/house_alarm.js"></script>

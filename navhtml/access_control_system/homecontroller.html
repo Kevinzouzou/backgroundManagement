@@ -1,0 +1,302 @@
+<div class="tab-pane" id="homecontroller_div1">
+    <div class="tab-pane" id="homecontroller_headbar">
+        <div class="btns">
+            <button class="btn btn-warning" id="header_right_middle_btn1"
+                    onclick="load_add_homecontroller_window()">
+                <img src="img/add.png">添加
+            </button>
+            <button class="btn btn-primary" id="header_right_middle_btn2"
+                    data-toggle="modal" data-target="#home_controller_import">
+                <img src="img/import.png">导入
+            </button>
+            <button class="btn btn-primary" id="header_right_middle_btn3" onclick="exportHomeController()">
+                <img src="img/export.png">导出
+            </button>
+        </div>
+        <div id="homecontroller_select_search_condition"  class="btns">
+            <span>地址：</span>
+            <div class="findCodeD">
+                <select onchange="selectCodeD(this.value)" class="form-control reactive_height codeD" style="width: 10.15rem;"></select>
+            </div>
+            <div class="findCodeU">
+                <select onchange="selectCodeU(this.value)"  class="form-control reactive_height codeU" style="width: 9.89rem;"></select>
+            </div>
+            <div class="findCodeH">
+                <select onchange="selectCodeH()" class="form-control reactive_height codeH" style="width: 15.1rem;"></select>
+            </div>
+        </div>
+    </div><!--end headbar-->
+
+    <div class="tables" id="homecontroller_tableList1">
+        <table class="table table-striped">
+            <thead id="homecontrollerInfo-head1">
+            <tr>
+                <th>门牌序列号</th>
+                <th>MAC地址</th>
+                <th>状态</th>
+                <th>静态IP</th>
+                <th>机器编号</th>
+                <th>网关IP</th>
+                <th>服务器IP</th>
+                <th>子网掩码</th>
+                <th>主DNS服务器</th>
+                <th>备用DNS服务器</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="homecontrollerInfo-body1"></tbody>
+        </table>
+    </div><!--end tableList1-->
+</div><!--end div1-->
+<!--分页-->
+<div class="tab-pane" id="homecontroller_div5">
+    <div class="tab-pane inner clearfix">
+        <div id="homecontrollerList-paging" class="pull-right pageList"></div>
+        <div id="homecontroller_paging-tips" class="pull-right pageTips"></div>
+    </div><!--end homeList-paging-->
+</div>
+
+<div class="modal fade" id="homecontroller-modal-add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+    <div class="modal-dialog" style="margin-top: 3rem;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center" id="myModalLabel">添加室内机</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" id="homecontroller-add-form">
+                    <ul class="list-unstyled clearfix large-half">
+                        <li class="totalLength">
+                            <span>Mac地址</span>
+                            <input type="text" id="homecontroller-mac" placeholder="Mac地址格式如：161843c20590902a5e8">
+                        </li>
+                        <li>
+                            <span>房间编号</span>
+                            <input type="text" id="homecontroller-roomdid" placeholder="房间编号如1">
+                        </li>
+                        <li class="text-right">
+                            <span>静态&nbsp;&nbsp;&nbsp;IP</span>
+                            <input type="text" id="homecontroller-ip" placeholder="格式如：192.168.1.155">
+                        </li>
+                        <li>
+                            <span>机器编号</span>
+                            <input type="text" id="homecontroller-host" placeholder="机器编号如1">
+                        </li>
+                        <li class="text-right">
+                            <span >服务器IP</span>
+                            <input type="text" class="" id="homecontroller-serverip" placeholder="格式如：192.168.1.251">
+                        </li>
+                        <li>
+                            <span >子网掩码</span>
+                            <input type="text" class="" id="homecontroller-maskcode" placeholder="格式如：255.255.255.0">
+                        </li>
+                        <li class="text-right">
+                            <span >网关&nbsp;&nbsp;&nbsp;IP</span>
+                            <input type="text" class="" id="homecontroller-gatewayip" placeholder="格式如：192.168.1.1" />
+                        </li>
+                        <li>
+                            <span >D&nbsp;&nbsp;&nbsp;N&nbsp;&nbsp;&nbsp;S</span>
+                            <input type="text" class="" id="homecontroller-maindns" placeholder="格式如：8.8.8.8">
+                        </li>
+                        <li class="text-right">
+                            <span >备用DNS</span>
+                            <input type="text" class="" id="homecontroller-subdns" placeholder="格式如：202.96.143.133">
+                        </li>
+                        <li>
+                            <span >小区编号</span>
+                            <select onchange="selectCodeD_add(this.value)" class="reactive_height codeD_add" style="width: 11.42rem;"></select>
+                        </li>
+                        <li class="findCodeU_add text-right">
+                            <span>单元编号</span>
+                            <select onchange="selectCodeU_add(this.value)"  class="reactive_height codeU_add" style="width: 11.42rem;"></select>
+                        </li>
+                        <li class="findCodeH_add totalLength">
+                            <span>房屋编号</span>
+                            <select onchange="selectCodeH_add()" class="reactive_height codeH_add" style="width: 14.42rem;"></select>
+                        </li>
+                        <li class="totalLength">
+                            <span>操作提示</span>
+                            <div style="display: inline-block;">
+                                <img src="img/homecontoller_operate_tips.png" /><br>
+                                <b style="color: red">添加成功后请先在室内机中进行注册</b>
+                            </div>
+                        </li>
+                    </ul>
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-lg-3 control-label">Mac地址</label>-->
+                        <!--<div class="col-lg-8">-->
+                            <!--<input type="text" class="form-control" id="homecontroller-mac" placeholder="Mac地址如161843c20590902a5e8">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-lg-3 control-label">房间编号</label>-->
+                        <!--<div class="col-lg-8">-->
+                            <!--<input type="text" class="form-control" id="homecontroller-roomdid" placeholder="房间编号如1">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-lg-3 control-label">静态IP</label>-->
+                        <!--<div class="col-lg-8">-->
+                            <!--<input type="text" class="form-control" id="homecontroller-ip" placeholder="静态IP如192.168.1.155">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-lg-3 control-label">机器编号</label>-->
+                        <!--<div class="col-lg-8">-->
+                            <!--<input type="text" class="form-control" id="homecontroller-host" placeholder="机器编号如1">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-lg-3 control-label">服务器IP</label>-->
+                        <!--<div class="col-lg-8">-->
+                            <!--<input type="text" class="form-control" id="homecontroller-serverip" placeholder="服务器IP如192.168.1.251">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-lg-3 control-label">子网掩码</label>-->
+                        <!--<div class="col-lg-8">-->
+                            <!--<input type="text" class="form-control" id="homecontroller-maskcode" placeholder="子网掩码如255.255.255.0">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-lg-3 control-label">网关地址</label>-->
+                        <!--<div class="col-lg-8">-->
+                            <!--<input type="text" class="form-control" id="homecontroller-gatewayip" placeholder="网关地址如192.168.1.1" />-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-lg-3 control-label">DNS服务器</label>-->
+                        <!--<div class="col-lg-8">-->
+                            <!--<input type="text" class="form-control" id="homecontroller-maindns" placeholder="DNS服务器如8.8.8.8">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-lg-3 control-label">备用DNS服务器</label>-->
+                        <!--<div class="col-lg-8">-->
+                            <!--<input type="text" class="form-control" id="homecontroller-subdns" placeholder="备用DNS服务器如202.96.143.133">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-lg-3 control-label">小区编号</label>-->
+                        <!--<div class="findCodeD_add col-lg-4">-->
+                            <!--<select onchange="selectCodeD_add(this.value)" class="form-control reactive_height codeD_add" style="width: 9rem;"></select>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group findCodeU_add">-->
+                        <!--<label class="col-lg-3 control-label">单元编号</label>-->
+                        <!--<div class="col-lg-4">-->
+                            <!--<select onchange="selectCodeU_add(this.value)"  class="form-control reactive_height codeU_add" style="width: 9rem;"></select>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group findCodeH_add">-->
+                        <!--<label class="col-lg-3 control-label">房屋编号</label>-->
+                        <!--<div class=" col-lg-4">-->
+                            <!--<select onchange="selectCodeH_add()" class="form-control reactive_height codeH_add" style="width: 9rem;"></select>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-lg-3 control-label">操作提示</label>-->
+                        <!--<div class="col-lg-8">-->
+                            <!--<img src="img/homecontoller_operate_tips.png" /><br>-->
+                            <!--<span style="color: red"><b>添加成功后请先在室内机中进行注册</b></span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                </form>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg to_add" onclick="addHomeController()">添加</button>
+                <button type="button" class="btn btn-default btn-lg to_reset" onclick="resetHomeController()">重置</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--修改室内机-->
+<div class="modal fade" id="homecontroller-modal-update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="margin-top: 15rem;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center" id="myPushAdModalLabel">替换室内机MAC地址</h4>
+            </div>
+            <div class="modal-body">
+                <ul class="list-unstyled clearfix large-half text-center">
+                    <li style="margin-bottom: 0;">
+                        <span>旧&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mac</span>
+                        <span style="display: inline-block;width: 11.42rem;text-align: left;" id="homecontroller-oldmac"></span>
+                    </li>
+                    <li>
+                        <span>新&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mac</span>
+                        <input type="text" name="homecontrollernewmac" id="homecontroller-newmac">
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg to_add"
+                        onclick="homecontrollerReplaceMac()">替换</button>
+                <button type="button" class="btn btn-default btn-lg to_reset"
+                        onclick="cancel('homecontroller-modal-update')">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--注销室内机-->
+<div class="modal fade" id="homecontroller-modal-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="margin-top: 15rem;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center" id="myDelModalLabel">提示</h4>
+            </div>
+            <div class="modal-body">
+                <div class="delHomecontrollerModalTips mBody_title text-center">确定是否注销？</div>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning btn-lg to_add" onclick="removehomecontroller()">注销</button>
+                <button type="button" class="btn btn-default btn-lg to_reset" onclick="cancel('homecontroller-modal-delete')">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--导入室内机信息-->
+<div class="modal fade" id="home_controller_import" tabindex="-1" role="dialog" aria-labelledby="homecontrollerImportLabel" aria-hidden="true">
+    <!--模态框 开始-->
+    <div class="modal-dialog" style="margin-top: 15rem;">
+        <!--模态框内容 开始-->
+        <div class="modal-content">
+            <!--模态框头部 开始-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center" id="homecontrollerImportLabel">导入数据</h4>
+            </div>
+            <!--模态框头部 结束-->
+            <!--模态框主体 开始-->
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" enctype="multipart/form-data" id="home_controller_upload_form">
+                    <div class="file text-center form-group report-file">
+                        <label style="line-height: 40px;">选择文件：</label>
+                        <div class="defined_file">
+                            　　<input type="text" name="upFile" id="home_controller_select_file" value="未选择任何文件">
+                            　　<button type="button" class="btn-primary">请选择</button>
+                        </div>
+                        <input type="file" name="upFile" id="home_controller_file"
+                               onchange="$('#home_controller_select_file').val($('#home_controller_file').val())">
+                    </div>
+                </form>
+            </div>
+            <!--模态框主体 结束-->
+            <!--模态框页脚 开始-->
+            <div class="modal-footer text-center">
+                <button type="button" class="form-control btn btn-warning btn-lg bSubmit" onclick="importHomeController()" data-dismiss="modal">导入</button>
+                <button type="button" class="form-control btn btn-default btn-lg to_reset" onclick="resetHomeControllerImport()">重置</button>
+            </div>
+            <!--模态框页脚 结束-->
+        </div>
+        <!--模态框内容 结束-->
+    </div>
+    <!--模态框 结束-->
+</div>
+
+

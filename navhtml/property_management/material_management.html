@@ -1,0 +1,620 @@
+<!--物料管理-->
+<div class="tablist_third">
+    <ul class="nav clearfix">
+        <li class="equip_management active">
+            <a href="#tab_equip_management" role="tab" data-toggle="tab">设备管理</a>
+            <span class="status_details">0</span>
+        </li>
+        <li class="tool_management"><a href="#tab_tool_management" role="tab" data-toggle="tab">工具管理</a></li>
+    </ul>
+</div>
+<div class="tab-content">
+    <!--设备管理-->
+    <div class="tab-pane active" id="tab_equip_management">
+        <div class="btns pull-right">
+            <span>设备名称：</span>
+            <input type="text" class="equipName reactive_height" placeholder="请输入设备名称"/>
+            <button class='btn btn-primary btn_search text-center'><i></i>查询</button>
+        </div>
+        <div class="btns pull-left">
+            <button class='btn btn-warning adding text-center' data-toggle="modal"  data-target="#addEquipMge"><i></i>添加</button>
+            <button class='btn btn-primary lead_out text-center'><i></i>导出<a href="" download="物料管理中设备管理.xlsx" id="equipMgDowExl" style="display: none"></a></button>
+            <button class='btn btn-primary print text-center'><i></i>打印</button>
+        </div>
+        <!--列表-->
+        <div class="tab-pane tables table_scroll">
+            <table class="table table-striped table-hover table-responsive" style="width: 96rem;">
+                <thead>
+                    <tr>
+                        <th>设备编号</th>
+                        <th>设备名称</th>
+                        <th>设备品牌</th>
+                        <th>供应商</th>
+                        <th>设备位置</th>
+                        <th>设备状态</th>
+                        <th>采购时间</th>
+                        <th>使用时间</th>
+                        <th>负责人</th>
+                        <th>设备保养周期</th>
+                        <th>上次保养时间</th>
+                        <th>下次保养时间</th>
+                        <th class="notPrint">详情</th>
+                        <th>备注</th>
+                        <th class="notPrint">操作</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <!--添加-->
+        <div class="modal fade addEquipMg" id="addEquipMge" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" style="margin-top: 8rem;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">添加</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" role="form" enctype="multipart/form-data">
+                            <ul class="list-unstyled clearfix large-half">
+                                <li>
+                                    <span>设备编号</span>
+                                    <input type="text" class="equipCode">
+                                </li>
+                                <li class="text-right">
+                                    <span>设备名称</span>
+                                    <input type="text" class="equipName"/>
+                                </li>
+                                <li>
+                                    <span>设备品牌</span>
+                                    <input type="text" class="equipBrand"/>
+                                </li>                                
+                                <li class="text-right">
+                                    <span>设备位置</span>
+                                    <input type="text" class="equipLocation"/>
+                                </li>
+                                <li>
+                                    <span>采购时间</span>
+                                    <input type="text" class="calendar equipPurchase"/>
+                                </li>
+                                <li class="text-right">
+                                    <span>使用时间</span>
+                                    <input type="text" class="calendar equipUsing"/>
+                                </li>
+                                <li>
+                                    <span>设备状态</span>
+                                    <div class="dropdown areaZone equipStatus">
+                                        <a class="dropdown-toggle areaZoneList text-center" data-toggle="dropdown" ids="1"><span>运行良好</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                            <li><a ids="1">运行良好</a></li>
+                                            <li><a ids="2">设备老化</a></li>
+                                            <li><a ids="3">部件损坏</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="text-right">
+                                    <span>负&nbsp;&nbsp;责&nbsp;&nbsp;人</span>
+                                    <input type="text" class="equipResponsible"/>
+                                </li>
+                                <li>
+                                    <span>保养周期</span>
+                                    <div class="dropdown areaZone equipCycle">
+                                        <a class="dropdown-toggle areaZoneList text-center" data-toggle="dropdown" ids="1"><span>周保养</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                            <li><a ids="1">周保养</a></li>
+                                            <li><a ids="2">月保养</a></li>
+                                            <li><a ids="3">年保养</a></li>
+                                            <li><a ids="0">自定义</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="text-right">
+                                    <span>供&nbsp;&nbsp;应&nbsp;&nbsp;商</span>
+                                    <div class="dropdown areaZone equipSupplier">
+                                        <a class="dropdown-toggle areaZoneList text-center" data-toggle="dropdown" ><span>请选择</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="list-unstyled clearfix large-half defineTime" style="display:none;">
+                                <li>
+                                    <span>起始时间</span>
+                                    <input type="text" class="calendar startTime"/>
+                                </li>
+                                <li class="text-right">
+                                    <span>结束时间</span>
+                                    <input type="text" class="calendar endTime"/>
+                                </li>
+                            </ul>
+                            <ul class="list-unstyled clearfix large-half">
+                                <li class="totalLength">
+                                    <span>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</span>
+                                    <textarea class="marBotArea"></textarea>
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg toResure" data-dismiss="modal" onclick="equipMgAdd();">确定</button>
+                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--保养详情-->
+        <div class="modal fade equipMg_detail" id="equipMg_detail" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" style="margin-top: 4rem;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">保养详情</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ol style="height: 33.33rem;overflow: auto;">
+                            <li>
+                                <ul class="list-unstyled clearfix large-half">
+                                   <li>
+                                       <p>保养时间：xxxx-xx-xx</p>
+                                   </li>
+                                    <li>
+                                        <p>保养人：xxx</p>
+                                    </li>
+                                    <li>
+                                        <p>设备状态：xxxx</p>
+                                    </li>
+                                    <li class="totalLength">
+                                        <p>保养内容：xxxxxx</p>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--生成二维码-->
+        <div class="modal fade" id="equipMg_qrCode" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">二维码</h4>
+                    </div>
+                    <div class="modal-body" id="creatQr">
+                        <div class="text-center mBody_title qrCreat"></div>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg to_print" data-dismiss="modal">打印</button>
+                        <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--保养记录-->
+        <div class="modal fade addEquipMg" id="equipMg_maintenance" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">保养记录</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" role="form" enctype="multipart/form-data">
+                            <ul class="list-unstyled clearfix large-half">
+                                <li>
+                                    <span>保养时间</span>
+                                    <input type="text" class="calendar fitTime"/>
+                                </li>
+                                <li class="text-right">
+                                    <span>保&nbsp;&nbsp;养&nbsp;&nbsp;人</span>
+                                    <input type="text" class="fitMan"/>
+                                </li>
+                                <li>
+                                    <span>设备状态</span>
+                                    <div class="dropdown areaZone equipStatus">
+                                        <a class="dropdown-toggle areaZoneList text-center" data-toggle="dropdown" ids="1"><span>运行良好</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                            <li><a ids="1">运行良好</a></li>
+                                            <li><a ids="2">设备老化</a></li>
+                                            <li><a ids="3">部件损坏</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="totalLength">
+                                    <span>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</span>
+                                    <textarea class="marBotArea"></textarea>
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg determine" data-dismiss="modal">确定</button>
+                        <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--修改 -->
+        <div class="modal fade addEquipMg" id="equipMg_modify" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog" style="margin-top: 8rem;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">修改</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" role="form" enctype="multipart/form-data">
+                            <ul class="list-unstyled clearfix large-half">
+                                <li>
+                                    <span>设备编号</span>
+                                    <input type="text" class="equipCode"/>
+                                </li>
+                                <li class="text-right">
+                                    <span>设备名称</span>
+                                    <input type="text" class="equipName"/>
+                                </li>
+                                <li>
+                                    <span>设备品牌</span>
+                                    <input type="text" class="equipBrand"/>
+                                </li>
+                                <li class="text-right">
+                                    <span>设备位置</span>
+                                    <input type="text" class="equipLocation"/>
+                                </li>
+                                <li>
+                                    <span>采购时间</span>
+                                    <input type="text" class="calendar equipPurchase"/>
+                                </li>
+                                <li class="text-right">
+                                    <span>使用时间</span>
+                                    <input type="text" class="calendar equipUsing"/>
+                                </li>
+                                <li>
+                                    <span>设备状态</span>
+                                    <div class="dropdown areaZone equipStatus">
+                                        <a class="dropdown-toggle areaZoneList text-center" data-toggle="dropdown"><span>运行良好</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                            <li><a ids="1">运行良好</a></li>
+                                            <li><a ids="2">设备老化</a></li>
+                                            <li><a ids="3">部件损坏</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="text-right">
+                                    <span>负&nbsp;&nbsp;责&nbsp;&nbsp;人</span>
+                                    <input type="text" class="equipResponsible"/>
+                                </li>
+                                <li>
+                                    <span>保养周期</span>
+                                    <div class="dropdown areaZone equipCycle">
+                                        <a class="dropdown-toggle areaZoneList reactive_height text-center" data-toggle="dropdown"><span>周保养</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                            <li><a ids="1">周保养</a></li>
+                                            <li><a ids="2">月保养</a></li>
+                                            <li><a ids="3">年保养</a></li>
+                                            <li><a ids="0">自定义</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="text-right">
+                                    <span>供&nbsp;&nbsp;应&nbsp;&nbsp;商</span>
+                                    <div class="dropdown areaZone equipSupplier">
+                                        <a class="dropdown-toggle areaZoneList text-center" data-toggle="dropdown" ><span>海尔集团</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="list-unstyled clearfix large-half defineTime" style="display:none;">
+                                <li>
+                                    <span>起始时间</span>
+                                    <input type="text" class="calendar startTime"/>
+                                </li>
+                                <li class="text-right">
+                                    <span>结束时间</span>
+                                    <input type="text" class="calendar endTime"/>
+                                </li>
+                            </ul>
+                            <ul class="list-unstyled clearfix large-half">
+                                <li class="totalLength">
+                                    <span>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</span>
+                                    <textarea class="marBotArea"></textarea>
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg determine" data-dismiss="modal">确定</button>
+                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--工具管理-->
+    <div class="tab-pane" id="tab_tool_management">
+        <div class="btns pull-left">
+            <button class='btn btn-warning adding text-center' data-toggle="modal"  data-target="#addToolMg"><i></i>添加</button>
+        </div>
+        <!--列表-->
+        <div class="tab-pane tables table_scroll">
+            <table class="table table-striped table-hover table-responsive" style="width: 97rem;">
+                <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>名称</th>
+                        <th>品牌</th>
+                        <th>型号</th>
+                        <th>采购时间</th>
+                        <th>保管人</th>
+                        <th>状态</th>
+                        <th>入库时间</th>
+                        <th>借出人</th>
+                        <th>借出时间</th>
+                        <th>预计归还时间</th>
+                        <th>历史记录</th>
+                        <th>备注</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <!--添加-->
+        <div class="modal fade addEquipMg" id="addToolMg" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">添加</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" role="form" enctype="multipart/form-data">
+                            <ul class="list-unstyled clearfix large-half">
+                                <li>
+                                    <span>编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号</span>
+                                    <input type="text" class="toolCode"/>
+                                </li>
+                                <li>
+                                    <span>名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称</span>
+                                    <input type="text" class="toolName">
+                                </li>
+                                <li>
+                                    <span>品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;牌</span>
+                                    <input type="text" class="toolBrand">
+                                </li>
+                                <li>
+                                    <span>型&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号</span>
+                                    <input type="text" class="toolModel"/>
+                                </li>
+                                <li>
+                                    <span>采购时间</span>
+                                    <input type="text" class="calendar toolPurchase"/>
+                                </li>
+                                <li>
+                                    <span>保&nbsp;&nbsp;管&nbsp;&nbsp;人</span>
+                                    <input type="text" class="toolDepository"/>
+                                </li>
+                                <li>
+                                    <span>状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态</span>
+                                    <div class="dropdown areaZone toolStatus">
+                                        <a class="dropdown-toggle areaZoneList text-center" data-toggle="dropdown" ids="1"><span>入库</span><b class="caret"></b></a>
+                                        <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                            <li><a ids="1">入库</a></li>
+                                            <!--<li><a ids="2">借出</a></li>-->
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="totalLength">
+                                    <span>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</span>
+                                    <textarea class="marBotArea"></textarea>
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg determine" data-dismiss="modal">确定</button>
+                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--借出-->
+        <div class="modal fade addEquipMg" id="material_lend_out" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">借出</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-unstyled clearfix large-half">
+                            <li class="totalLength">
+                                <span>借&nbsp;&nbsp;出&nbsp;&nbsp;人</span>
+                                <input type="text" class="toolBorrow"/>
+                            </li>
+                            <li style="margin-bottom: 0;">
+                                <span>借出时间</span>
+                                <input type="text" class="calendar toolBorrowTime"/>
+                            </li>
+                            <li class="text-right">
+                                <span>预计归还</span>
+                                <input type="text" class="calendar toolReturn"/>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg determine" data-dismiss="modal">确定</button>
+                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--入库-->
+        <div class="modal fade addEquipMg" id="material_inHousing" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">入库</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-unstyled clearfix large-half">
+                            <li>
+                                <span>入库时间</span>
+                                <input type="text" class="calendar toolInTime"/>
+                            </li>
+                            <li class="totalLength">
+                                <span>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</span>
+                                <textarea class="marBotArea"></textarea>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg determine" data-dismiss="modal">确定</button>
+                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--修改-->
+        <div class="modal fade addEquipMg" id="material_tool_mg_modify" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog" style="margin-top: 8rem;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">修改</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-unstyled clearfix large-half">
+                            <li>
+                                <span>编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号</span>
+                                <input type="text" class="toolCode"/>
+                            </li>
+                            <li>
+                                <span>名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称</span>
+                                <input type="text" class="toolName">
+                            </li>
+                            <li>
+                                <span>品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;牌</span>
+                                <input type="text" class="toolBrand">
+                            </li>
+                            <li>
+                                <span>型&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号</span>
+                                <input type="text" class="toolModel"/>
+                            </li>
+                            <li>
+                                <span>采购时间</span>
+                                <input type="text" class="calendar toolPurchase"/>
+                            </li>
+                            <li>
+                                <span>保&nbsp;&nbsp;管&nbsp;&nbsp;人</span>
+                                <input type="text" class="toolDepository"/>
+                            </li>
+                            <li>
+                                <span>状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态</span>
+                                <div class="dropdown areaZone toolStatus">
+                                    <a class="dropdown-toggle areaZoneList text-center" data-toggle="dropdown" ids="1"><span>入库</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                        <li><a ids="1">入库</a></li>
+                                        <li><a ids="2">借出</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <span>入库时间</span>
+                                <input type="text" class="calendar toolInTime"/>
+                            </li>
+                            <li>
+                                <span>借&nbsp;&nbsp;出&nbsp;&nbsp;人</span>
+                                <input type="text" class="toolBorrow"/>
+                            </li>
+                            <li>
+                                <span>借出时间</span>
+                                <input type="text" class="calendar toolBorrowTime"/>
+                            </li>
+                            <li>
+                                <span>预计归还</span>
+                                <input type="text" class="calendar toolReturn"/>
+                            </li>
+                            <li class="totalLength">
+                                <span>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</span>
+                                <textarea class="marBotArea"></textarea>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg determine" data-dismiss="modal">确定</button>
+                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--删除 -->
+        <div class="modal fade" id="toolMg_delete" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">提示</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-inline mBody_title text-center">确定删除该消息?</form>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg to_delete" data-dismiss="modal">删除</button>
+                        <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--历史记录 详情 -->
+        <div class="modal fade equipMg_detail" id="toolMg_detail" aria-hidden="true">
+            <div class="modal-dialog" style="margin-top: 4rem;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center">提示</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ol style="height: 33.33rem;overflow: auto;">
+                            <li>
+                                <ul class="list-unstyled clearfix large-half">
+                                    <li>
+                                        <p>借&nbsp;&nbsp;出&nbsp;&nbsp;人：xxx</p>
+                                    </li>
+                                    <li>
+                                        <p>借出时间：xxxx-xx-xx</p>
+                                    </li>
+                                    <li>
+                                        <p>入库时间：xxxx-xx-xx</p>
+                                    </li>
+                                    <li class="totalLength">
+                                        <p>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：xxxx</p>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--删除 -->
+    <div class="modal fade" id="Mg_delete" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                    <h4 class="modal-title text-center">提示</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-inline mBody_title text-center">确定删除该消息?</form>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-warning btn-lg to_delete" data-dismiss="modal">删除</button>
+                    <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
