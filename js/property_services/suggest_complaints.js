@@ -207,6 +207,7 @@ function suggestStatusDetails(type,status){
  *给任务分页插件绑定ajax请求，根据页码任务数据
  */
 function queryTasksListByPage(pageNum,totalNum,totalPages,type,status,startTime,endTime,workType){
+    var pageComplaints = 0;
     var pageShow=5;//默认分页栏显示5
     if(totalPages>1&&totalPages<6){//如果是5页以内一页以上加载插件，显示多少页
         pageShow=totalPages;
@@ -223,30 +224,32 @@ function queryTasksListByPage(pageNum,totalNum,totalPages,type,status,startTime,
         //给分页插件绑定点击事件，page是点击选中的页码
         onPageClick: function (event, page) {
             tasksPage=page;
-        }
-    });
-    $('#'+tasksPaginationName).on('click', 'a', function(){
-        $.ajax({
-            type: "post",
-            url: zoneServerIp+"/ucotSmart/complaintOldAction!findComplaintOld.action",
-            dataType: "json",
-            data: {
-                "token": permit,
-                "pager.pages":tasksPage,
-                "pager.pagesize":pageSize,
-                "c.type":type,
-                "c.workorderType":workType,
-                "c.status":status,
-                "c.starttime":startTime,
-                "c.endtime":endTime
-            },
-            success: function (data) {
-                var list=eval(data.obj.data);
-                pageSuggestServiceLoadInformationList(list,type,status,workType);
-                $('#tasks_tips_'+type).empty();
-                $('#tasks_tips_'+type).html("当前页面共"+list.length+"条数据 总共"+totalNum+"条数据");
+            if(pageComplaints==0){
+                pageComplaints++;
+            }else{
+                $.ajax({
+                    type: "post",
+                    url: zoneServerIp+"/ucotSmart/complaintOldAction!findComplaintOld.action",
+                    dataType: "json",
+                    data: {
+                        "token": permit,
+                        "pager.pages":tasksPage,
+                        "pager.pagesize":pageSize,
+                        "c.type":type,
+                        "c.workorderType":workType,
+                        "c.status":status,
+                        "c.starttime":startTime,
+                        "c.endtime":endTime
+                    },
+                    success: function (data) {
+                        var list=eval(data.obj.data);
+                        pageSuggestServiceLoadInformationList(list,type,status,workType);
+                        $('#tasks_tips_'+type).empty();
+                        $('#tasks_tips_'+type).html("当前页面共"+list.length+"条数据 总共"+totalNum+"条数据");
+                    }
+                });
             }
-        });
+        }
     });
 }
 
@@ -590,8 +593,10 @@ function suggestModify(){
         url:zoneServerIp+"/ucotSmart/complaintOldAction!updateComplaintOld.action?token="+permit+"&c.id="+id+"&operate="+"修改",
         dataType:"json",
         success:function(data){
-            msgTips(data.success);
-            queryTasksLoadPageDataJump(1,updateType,updateStatus,1);
+            if(data.success==true){
+                msgTips(data.msg);
+                queryTasksLoadPageDataJump(1,updateType,updateStatus,1);
+            }
         }
     });
 }
@@ -1960,8 +1965,8 @@ $('#toDo_add').on('hidden.bs.modal', function (e) {
     $("#suggest_toDoModalAddress .dropdown-toggle span").text("");
     $("#suggest_toDoModalAddress .dropdown").attr({"optionid":"","modename":""});
     $("#suggest_sendMode").find(".dropdown-toggle span").text("APP派送");
-    $("#suggest_sendMode").find(".dropdown").attr({"optionid":"","modename":"APP派送"});
+    $("#suggest_sendMode").find(".dropdown").attr({"optionid":"1","modename":"APP派送"});
     $("#suggest_urgency").find(".dropdown-toggle span").text("非常严重");
-    $("#suggest_urgency").find(".dropdown").attr({"optionid":"","modename":"非常严重"});
+    $("#suggest_urgency").find(".dropdown").attr({"optionid":"1","modename":"非常严重"});
     $(":input").val("");
 })

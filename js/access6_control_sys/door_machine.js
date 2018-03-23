@@ -313,7 +313,9 @@ function machineUpdateJump(id,typeD){
 /**
  * 推送详情
  */
+var maccode;
 function machinePushDetailsJump(mac,type){
+    maccode=mac;
     machinePushAdvertShow(type);
     $.ajax({
         type: "post",
@@ -337,9 +339,8 @@ function machineUndercarriageJump(id,mac,type){
     sessionStorage.setItem("id",id);
     sessionStorage.setItem("mac",mac);
 }
-
+// 广告推送下架
 function machineUndercarriage(type){
-
     $.ajax({
         type: "post",
         url:zoneServerIp+"/ucotSmart/adAction!updatingAdToDoor.action",
@@ -356,6 +357,7 @@ function machineUndercarriage(type){
         success: function (data) {
             msgTips(data.msg);
             pagePushMachine(data.obj,type);
+            machinePushDetailsJump(maccode,type)
         }
     });
 }

@@ -1,0 +1,113 @@
+<!--人工分析-->
+<!--设备运维-->
+<div class="tablist_third">
+    <ul class="nav clearfix">
+       <li class="manual_analysis active"><a href="#tab_manual_analysis" role="tab" data-toggle="tab">人工分析</a></li>
+    </ul>
+</div>
+<div class="tab-content">
+    <!--人工分析-->
+    <div class="tab-pane active" id="tab_manual_analysis">
+        <div class="btns">
+            <button class="btn btn-warning adding" data-toggle="modal" data-target="#addManualAna"><i></i>添加</button>
+            <button class="btn btn-primary lead_in" data-toggle="modal" data-target="#importPersonnel"><i></i>导入</button>
+            <button class='btn btn-primary lead_out'><i></i>导出<a href="" download="专家系统》人工分析.xlsx" id="manAnaReportDowExl" style="display: none"></a></button>
+            <button class='btn btn-primary print'><i></i>打印</button>
+            <div class="pull-right">
+                <span>类型：</span>
+                <div class="dropdown areaZone">
+                    <a class="dropdown-toggle areaZoneList reactive_height text-center" data-toggle="dropdown"><span>请选择</span><b class="caret"></b></a>
+                    <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                        <li><a>空置率</a></li>
+                        <li><a>广告统计</a></li>
+                        <li><a>投诉建议</a></li>
+                        <li><a>物业维修</a></li>
+                        <li><a>住户报警</a></li>
+                        <li><a>公区报警</a></li>
+                        <li><a>住户能耗</a></li>
+                        <li><a>公区能耗</a></li>
+                        <li><a>设备运维</a></li>
+                    </ul>
+                </div>
+                <span>时间：</span>
+                <input type="text" class="calendar reactive_height"/>
+                <button class='btn btn-primary btn_search text-center'><i></i>查询</button>
+            </div>
+        </div>
+        <div class="tables b_set sys_info">
+            <h4 class="text-center">分析建议</h4>
+            <div class="box" style="overflow: auto;">
+                <div class="analy_sug">
+                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium deleniti dignissimos
+                        incidunt iusto maiores quae. Assumenda blanditiis distinctio, ducimus, eveniet libero obcaecati
+                        officiis qui quibusdam, quidem quis sit tempora temporibus.
+                    </span>
+                    <span>Autem debitis delectus error esse, est et fuga illum ipsam itaque magnam neque nisi odio
+                        placeat provident quaerat ullam, vel. Alias est harum iste iusto nisi ratione, sequi similique
+                        tempore!
+                    </span>
+                    <span>Aliquid amet autem dignissimos, distinctio dolore doloribus error exercitationem impedit minima
+                        nam nisi nobis optio porro quas quis rem rerum sint, suscipit veritatis voluptas. Ab asperiores
+                        non veniam veritatis voluptatibus!
+                    </span>
+                    <span>Accusantium animi asperiores cumque dignissimos dolor, dolores exercitationem harum hic illum
+                        ipsum libero magni maiores natus nesciunt nobis officiis perferendis quidem reiciendis saepe
+                        sapiente sit suscipit tempore temporibus ut veritatis!
+                    </span>
+                    <span>Accusamus aliquam architecto at atque commodi corporis dicta, ea laborum maxime nam nostrum
+                        odit officia, optio possimus quod ratione sed similique? Aut ducimus itaque laborum magni
+                        molestiae sunt unde veniam?
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!--添加-->
+        <div class="modal fade" id="addManualAna" aria-hidden="true">
+            <div class="modal-dialog" style="margin-top: 8rem">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title text-center" id="complaintsModalLabel">添加</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-unstyled clearfix large-half">
+                            <li>
+                                <span>撰&nbsp;&nbsp;写&nbsp;&nbsp;人</span>
+                                <input type="text" class="authors" placeholder="撰写人姓名">
+                            </li>
+                            <li class="text-right">
+                                <span>撰写时间</span>
+                                <input type="text" class="calendar">
+                            </li>
+                            <li>
+                                <span>类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型</span>
+                                <div class="dropdown areaZone">
+                                    <a class="dropdown-toggle areaZoneList text-center" data-toggle="dropdown"><span>请选择</span><b class="caret"></b></a>
+                                    <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                        <li><a>空置率</a></li>
+                                        <li><a>广告统计</a></li>
+                                        <li><a>投诉建议</a></li>
+                                        <li><a>物业维修</a></li>
+                                        <li><a>住户报警</a></li>
+                                        <li><a>公区报警</a></li>
+                                        <li><a>住户能耗</a></li>
+                                        <li><a>公区能耗</a></li>
+                                        <li><a>设备运维</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="totalLength">
+                                <span>分析报告</span>
+                                <textarea></textarea>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-warning btn-lg determine" data-dismiss="modal">确定</button>
+                        <button type="button" class="btn btn-default btn-lg cancel" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

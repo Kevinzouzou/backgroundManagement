@@ -20,9 +20,6 @@ $("body").on("click",".dropdown-menu a",function(){
     $("#"+prefixId+" ."+dropdownId+" a.dropdown-toggle span").addClass("option_type");
     $("#"+prefixId+" ."+dropdownId).attr("modename",modename);
     $("#"+prefixId+" ."+dropdownId+" a.dropdown-toggle span").text(modename);
-    //if(type=="address"){
-    //    searchAddress(dropdownId,prefixId,optionId,adstype);//地址筛选
-    //}else
     if(type=="charge"){
         unitAddress(dropdownId,prefixId,optionId);//费用管理
     }else if(type=="housekeeping"){//家政
@@ -73,6 +70,16 @@ $("body").on("click",".dropdown-menu a",function(){
     if(prefixId=="inquireInsDepartmentMenu"){
         inquirePersonnel(optionId,"inquireInsStaffMenu");
     }
+    //门禁系统-门禁卡
+    if(prefixId=="docarType"){
+        if(optionId=="doorcard"){
+            // 查询门禁卡
+            findDoorCardByCondition();
+        }else if(optionId=="doorcardRecord"){
+            // 查询刷卡记录
+            doorCardRecord();
+        };
+    };
 });
 //--房屋地址--
 function menuAddress(prefixId){
@@ -118,13 +125,13 @@ function unitAddress(dropdownId,prefixId,buildingCode){
         if(ids=="modalAddress"){
             $("#"+prefixId+" .unitAds .option_type,#"+prefixId+" .doorplateAds .option_type").text("");
         }else{
-            $("#"+prefixId+" .unitAds,#"+prefixId+" .doorplateAds").attr("optionid","");
+            $("#"+prefixId+" .unitAds,#"+prefixId+" .doorplateAds").attr({"optionid":"","modename":""});
             $("#"+prefixId+" .unitAds .option_type").text("全部 单元");
             $("#"+prefixId+" .doorplateAds .option_type").text("全部 房间号");
         }
         if(!buildingCode){
-            $("#"+prefixId+" .unitAds").attr("optionId","").find(".option_type").text("全部 单元");
-            $("#"+prefixId+" .doorplateAds").attr("optionId","").find(".option_type").text("全部 房间号");
+            $("#"+prefixId+" .unitAds").attr({"optionid":"","modename":""}).find(".option_type").text("全部 单元");
+            $("#"+prefixId+" .doorplateAds").attr({"optionid":"","modename":""}).find(".option_type").text("全部 房间号");
             $("#"+prefixId+" .unitAds ul,#"+prefixId+" .doorplateAds ul").empty();
             $("#"+prefixId+" .unitAds,#"+prefixId+" .doorplateAds").hide();
         }else{
@@ -165,11 +172,11 @@ function unitAddress(dropdownId,prefixId,buildingCode){
         if(ids=="modalAddress"){
             $("#" + prefixId + " .doorplateAds .option_type").text("");
         }else{
-            $("#"+prefixId+" .doorplateAds").attr("optionid","");
+            $("#"+prefixId+" .doorplateAds").attr({"optionid":"","modename":""});
             $("#"+prefixId+" .doorplateAds .option_type").text("全部 房间号");
         }
         if(!buildingCode){
-            $("#"+prefixId+" .doorplateAds").attr("optionId","").find(".option_type").text("全部 房间号");
+            $("#"+prefixId+" .doorplateAds").attr({"optionid":"","modename":""}).find(".option_type").text("全部 房间号");
             $("#"+prefixId+" .doorplateAds ul").empty();
             $("#"+prefixId+" .doorplateAds").hide();
         }else{
@@ -194,15 +201,19 @@ function unitAddress(dropdownId,prefixId,buildingCode){
                     //    数据
                     var obj = data.obj;
                     var htmlList = '<li><a codelist="">全部 房间号</a></li>';
-                    for (var i = 0; i < obj.length; i++) {
-                        var codeList = data.obj[i].code;
-                        var firstAds = codeList.indexOf("u") + 1;
-                        var lastAds = codeList.indexOf("h") + 1;
-                        var addressCode = codeList.substring(firstAds, lastAds);
-                        var addressText = addressCode.replace("f", "层").replace("h", "室");
-                        htmlList += '<li><a codeList="' + codeList + '" modename="'+addressText+'">' + addressText + '</a></li>';
-                    }
-                    $("#"+prefixId+" .doorplateAds .dropdown-menu").html(htmlList);
+                    if(obj){
+                        for (var i = 0; i < obj.length; i++) {
+                            var codeList = data.obj[i].code;
+                            var firstAds = codeList.indexOf("u") + 1;
+                            var lastAds = codeList.indexOf("h") + 1;
+                            var addressCode = codeList.substring(firstAds, lastAds);
+                            var addressText = addressCode.replace("f", "层").replace("h", "室");
+                            htmlList += '<li><a codeList="' + codeList + '" modename="'+addressText+'">' + addressText + '</a></li>';
+                        }
+                        $("#"+prefixId+" .doorplateAds .dropdown-menu").html(htmlList);
+                    }else{
+                        $("#"+prefixId+" .doorplateAds .dropdown-menu").html("");
+                    };
                     if(ids=="modalAddress"){
                         $("#"+prefixId+" .doorplateAds .dropdown-menu li:first-child").remove();
                     }
@@ -508,6 +519,8 @@ document.getElementsByTagName('html')[0].style.fontSize=document.body.clientWidt
 var myDate = new Date();
 var nowYear=myDate.getFullYear();//当前年份
 var nowMonth=myDate.getMonth()+1;//当前月份
+var nowMonthstr="";
+    nowMonth.length>1?nowMonthstr=nowMonth:nowMonthstr="0"+nowMonth;//当为一位数时，为开头加0，补齐两位数
 var nowDay = new Date(nowYear,nowMonth,0);//当前日期
 var Month=myDate.getMonth()+1<10?"0"+(myDate.getMonth()+1):myDate.getMonth()+1;
 var nowTimes=myDate.getFullYear()+"-"+Month+"-"+myDate.getDate();//当前日期 1970-00-00
@@ -679,3 +692,80 @@ function sectionalPrint(prefixId,name,html){
     $("#printBox").remove();
     return false;
 }
+// ------------------门禁系统------------------
+// 获取Mac地址
+$("body").on("focus",".inquireMac",function(){
+    let this_=$(this);
+    this_.next(".inquireMacbox").html("").show();
+    let mac=this_.val();
+    let type=this_.attr("macType");
+    inquireMac(mac,type,this_);
+    this_.next(".inquireMacbox").find("p").click(function(){
+        alert();
+        this_.val($(this).text());
+    });
+});
+$("body").on("keyup",".inquireMac",function(){
+    let this_=$(this);
+    let mac=this_.val();
+    let type=this_.attr("macType");
+    inquireMac(mac,type,this_);
+});
+$("body").on("blur",".inquireMac",function(){
+    let this_=$(this);
+    setTimeout(function(){
+        this_.next(".inquireMacbox").hide();
+    },200)
+});
+$("body").on("click",".inquireMacbox p",function(){
+    let mac=$(this).text();
+    $(this).parent().prev("input.inquireMac").val(mac);
+    $(this).parent().hide();
+});
+function inquireMac(mac,type,this_){
+    $.ajax({
+        type: "post",
+        url: zoneServerIp+"/ucotSmart/controllerAction!showmacchange.action",
+        dataType: "json",
+        data: {
+            "token":permit,
+            "mac":mac,
+            "type":type
+        },
+        success: function (data) {
+            console.log("获取Mac地址");
+            console.log(data);
+            //    数据
+            if(data.obj){
+                let html='';
+                for(let i=0;i<data.obj.length;i++){
+                    html+='<p>'+data.obj[i].mac+'</p>'
+                };
+                this_.next(".inquireMacbox").html(html);
+            }else{
+                this_.next(".inquireMacbox").html("未查询到相符的数据！");
+            };
+        },
+        error: function (data, status) {
+            //msgTips("");
+        }
+    });
+};
+// 更新机器状态
+function updateMachineStatus(){
+    $.ajax({
+        type: "post",
+        url: zoneServerIp+"/ucotSmart/controllerAction!changeCtrStatus.action",
+        dataType: "json",
+        data: {
+            "token":permit
+        },
+        success: function (data) {
+            console.log("获取Mac地址");
+            console.log(data);
+        },
+        error: function (data, status) {
+            //msgTips("");
+        }
+    });
+};

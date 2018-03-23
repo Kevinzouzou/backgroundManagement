@@ -2,7 +2,7 @@
  * Created by along on 2017/1/24. 用户报警
  */
 //--加载初始方法--
-$("a[href='#security_alarm_menu'],a[href='#tab_user_alarm']").click(function (){
+$("a[href='#tab_users_alarm']").click(function (){
     menuAddress("logoutAddress");
     userAlarm();
 });
@@ -168,4 +168,23 @@ $("#userLogoutList").on("click",".deleteBut",function(){
 $("#userLogoutSearch").click(function(){
     // 条件搜索
     userAlarm();
+});
+// 数字地图
+// 设备列表菜单
+$("#tab_number_map .manuPadding strong").click(function(){
+    let this_=$(this);
+    this_.next("ul").toggle(200,function(){
+        let display=this_.next("ul").css("display");
+        if(display=="block"){
+            this_.find("i").text("-");
+        }else if(display=="none"){
+            this_.find("i").text("+");
+        };
+    });
+});
+$("#addMapBut").click(function(){
+    $("#addMapModal").modal("show");
+});
+$(".tips").click(function(){
+    $("#detailsMapModal").modal("show");
 });

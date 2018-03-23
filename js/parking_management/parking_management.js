@@ -1,10 +1,11 @@
 //var token="15048-41200005d-1516156873552";
-//var zIp="http://192.168.1.202:8080";
+//var token=sessionStorage.getItem("token");
+//var parkingIp="http://192.168.1.202:8080";
 
 //Ajax请求
 function ajaxParkRequest(url,data,fun){
     data="token="+token+data;
-    url=zIp+"/parking/"+url;
+    url=parkingIp+"/parking/"+url;
     $.ajax({
         type: "POST",
         url: url,
@@ -220,14 +221,13 @@ function digitalMap(list){
 //查询车库区域车位信息
 function queryParkingSpace(name,ulActive){
     var liId=$(ulActive).find("li");
-    var url=zIp+"/parking/parkingInformation!queryParkingInformationTocar.action";
+    var url=parkingIp+"/parking/parkingInformation!queryParkingInformationTocar.action";
     $.ajax({
         type: "POST",
         url: url,
         data: "token="+token+"&parkingCode="+name,
         dataType: "json",
         success: function(data){
-            //console.log(data)
             if(data.obj){
                 $.each(data.obj.data,function(i, space){
                     id=space.id;
@@ -301,7 +301,6 @@ function deleteItem(id){
 }
 //删除当前区域车库及对应车位
 $("body").on("click","#digitalMapDelete .delete",function(){
-    console.log("delete")
     var areaId=$("#tab_digital_map .cont>.cars ul.active").attr("id");
     areaId=areaId.substring(1, areaId.length);
     var data="&id="+areaId;
@@ -309,15 +308,18 @@ $("body").on("click","#digitalMapDelete .delete",function(){
 });
 
 //临时收费设置 添加删除
-addChargeItem("#addChargeSetting .totalLength .add","#addChargeSetting .totalLength .delete");
-addChargeItem("#chargeSettingModify .totalLength .add","#chargeSettingModify .totalLength .delete");
-function addChargeItem(addId,deleteId){
+addChargeItem("#addChargeSetting .totalLength .add","#addChargeSetting .totalLength .delete","#addChargeSetting .large-half");
+addChargeItem("#chargeSettingModify .totalLength .add","#chargeSettingModify .totalLength .delete","#chargeSettingModify .large-half");
+function addChargeItem(addId,deleteId,increId){
     $("body").on("click",addId,function(){
         var html='<li><input type="text" class="startTo"/><span class="toTime">小时内</span><span>收费</span>' +
-            '<input type="text" class="price"/><span>元</span><a class="delete">删除</a></li>';
+            '<input type="text" class="pay"/><span>元</span><a class="delete">删除</a></li>';
         $(this).parents("ul.chargeTime").append(html);
         deleteItem(deleteId);
+        //递增验证
+        increase(increId);
     })
+
 }
 
 //车位信息 查询单个车位信息
@@ -389,7 +391,6 @@ $("body").on('click',"#tab_digital_map .cont .edits .details .edit",function(){
         $(id+" .sta .parkingState-list").attr("ids","0");
     }
     $(id+" .sta .parkingState-list span").text($(id+" .sta span.pull-right").text());
-    console.log($(id+" .sta span.pull-right").text())
     if($(id+" .attr span.pull-right").text()=="公共车位"){
         $(id+" .attr .attribute-list").attr("ids","1");
         $(id+" .private").hide();
@@ -443,7 +444,7 @@ $("body").on('click',"#tab_digital_map .cont .edits .details .done",function(){ 
     var data="token="+token+"&parking.parkingCode="+parkingCode+"&parking.carNumber="+parkingNum+"&parking.parkingStatus="+
              status+"&parking.numberplate="+parkingNum+"&parking.cameraName="+cameraName+
              "&parking.cameraId="+cameraId+"&parking.sensorName="+sensorName+"&parking.sensorId="+sensorId+
-             "&parking.remarks="+mark+"&id="+ids;
+             "&parking.remarks="+mark+"&parking.id="+ids;
     if(attributes==1){
         $(id+".private").hide();
         data=+"&parking.attributes="+attributes+data;
@@ -478,7 +479,7 @@ $("body").on('click',"#tab_digital_map .cont .edits .details .delete",function()
 function ajaxNone(url,data){
     $.ajax({
         type: "POST",
-        url: zIp+"/parking/"+url,
+        url: parkingIp+"/parking/"+url,
         data: "token="+token+data,
         dataType: "json",
         success: function(data){
@@ -491,6 +492,7 @@ function ajaxNone(url,data){
 }
 //车主管理 查询
 $(".owner_management").on('click',function(){
+    console.log(token)
     ownerMgTable();
 })
 var d=[],p=[],z=[],b=[],u=[],f=[],h=[];
@@ -499,11 +501,10 @@ function ownerMgTable(){
     var url="/parking/ownerInformation!selectByhome.action";
      $.ajax({
         type: "POST",
-        url: zIp+url,
+        url: parkingIp+url,
         data: "token="+token,
         dataType: "json",
         success: function(data){
-            console.log(data.obj)
             $.each(data.obj.home, function(i,homeItem){
                 var codes=homeItem.codearray;
                 var indexd=codes.indexOf("d");
@@ -554,12 +555,17 @@ function queryOwnerMgTable(list){
     //修改时自动赋值
     parkerMgModify();
 }
-//地址模糊查询    与后台待检测-----------------------------------------------------------------------------------------------------
-$("body").on("click","#tab_parkerMg .btns .dropdown-menu>li>a",function(){
-    var txt=$(this).text();
-    var data="&homeInformation="+txt;
+//地址模糊查询
+$("body").on('click','#tab_parkerMg .btns .btn_search',function(){
+    var id="#tab_parkerMg .btns";
+    var addTxt=$(id+" .dropdown .periodTypeList span").text()+$(id+" .dropdown .zoneTypeList span").text()+
+        $(id+" .dropdown .buildingTypeList span").text()+$(id+" .dropdown .unitTypeList span").text()+
+        $(id+" .dropdown .layerList span").text()+$(id+" .dropdown .roomNumList span").text();
+
+    addTxt=tranFormHomecode(addTxt);
+    var data="&homeInformation="+addTxt;
     queryListByParamsPark("/parking/ownerInformation!selectByhome.action",data,"ownerMgPage","queryOwnerMgTable");
-});
+})
 //修改时自动赋值
 function parkerMgModify(){
     $("#tab_parkerMg tbody td .modify").on("click",function(){
@@ -583,7 +589,7 @@ $("#tab_parkerMg .btns .adding").on("click",function(){
     p.length=0, z.length=0, b.length=0, u.length=0, f.length=0, h.length=0;
     $.ajax({
         type: "POST",
-        url: zIp+"/parking/ownerInformation!showhome.action",
+        url: parkingIp+"/parking/ownerInformation!showhome.action",
         data: "token="+token,
         dataType: "json",
         success: function(data){
@@ -643,7 +649,7 @@ $("body").on("click","#addParkerMg .determine",function(){
 
     $.ajax({
         type: "POST",
-        url: zIp+"/parking/ownerInformation!addOwnerInformation.action",
+        url: parkingIp+"/parking/ownerInformation!addOwnerInformation.action",
         data: "token="+token+data,
         dataType: "json",
         success: function(data){
@@ -701,10 +707,100 @@ function chargeSettingTable(){
     ajaxParkRequest("temporaryChargeAction!showtemporaryCharge.action","","queryChargeSettingTable")
 }
 function queryChargeSettingTable(list){
+    var html="",len=list.length;
+    $.each(list,function(i,tbodyTr){
+        var carSize,chargeStyle,chargeStyTxt;
+        if(tbodyTr.howWay==0){
+            carSize="小车";chargeStyle=1;chargeStyTxt="按次收费";
+        }else if(tbodyTr.howWay==1){
+            carSize="小车";chargeStyle=2;chargeStyTxt="按时收费";
+        }else if(tbodyTr.howWay==2){
+            carSize="小车";chargeStyle=3;chargeStyTxt="按时段收费";
+        }else if(tbodyTr.howWay==3){
+            carSize="中车";chargeStyle=1;chargeStyTxt="按次收费";
+        }else if(tbodyTr.howWay==4){
+            carSize="中车";chargeStyle=2;chargeStyTxt="按时收费";
+        }else if(tbodyTr.howWay==5){
+            carSize="中车";chargeStyle=3;chargeStyTxt="按时段收费";
+        }else if(tbodyTr.howWay==6){
+            carSize="大车";chargeStyle=1;chargeStyTxt="按次收费";
+        }else if(tbodyTr.howWay==7){
+            carSize="大车";chargeStyle=2;chargeStyTxt="按时收费";
+        }else if(tbodyTr.howWay==8){
+            carSize="大车";chargeStyle=3;chargeStyTxt="按时段收费";
+        }
+        html+='<tr ids="'+tbodyTr.id+'"><td>'+tbodyTr.chargeName+'</td><td>'+tbodyTr.chargeNum+'</td><td ids="'+tbodyTr.cartype+'">'+carSize+
+            '</td><td ids="'+chargeStyle+'">'+chargeStyTxt+'</td><td>' +
+            '<a class="detail" data-toggle="modal" data-target="#chargeSettingDetails'+chargeStyle+'" ids="'+tbodyTr.howWay+'">详情</a></td>' +
+            '<td><a class="modify" data-toggle="modal" data-target="#chargeSettingModify">修改</a>|' +
+            '<a class="delete" data-toggle="modal" data-target="#chargeSettingDelete">删除</a></td></tr>';
+    });
+    $("#tab_chargeSetting .table tbody").html(html);
+    //行数据少于10行，空行添加
+    addTr("#tab_chargeSetting .tables tbody",len,10);
+    //修改时自动赋值
+    chargeSetModify();
+}
+//收费标准 详情
+$("body").on("click","#tab_chargeSetting tbody td .detail",function(){
+    var howWay=$(this).attr("ids");
+    var data="&howWay="+howWay;
+    ajaxParkRequest("temporaryChargeAction!showtemporaryChargeByid.action",data,"chargeSetDetail");
+})
+function chargeSetDetail(list){
     console.log(list)
-    //$.each(list,function(i,tbodyTr){  //缺少车型大小，收费类型的参数。。。。。。。。。。。。。。。。。。
-    //    console.log(tbodyTr)  //-------------------------------------------------------------------
-    //})
+    var html="",li1="",li2="";
+    $.each(list,function(i,item){
+        if(item.howWay%3==0){
+            $("#chargeSettingDetails1 .list-unstyled .freeTime").text(item.freeTime);
+            $("#chargeSettingDetails1 .list-unstyled .perPrice").text(item.price);
+        }else if(item.howWay%3==1){
+            html='<li><p>每次<span class="freeTime">'+item.freeTime+'</span>分钟内免收费</p></li>';
+            var arr=item.timeY.split(",");
+            var payArr=item.pay.split(",");
+            console.log(arr.length)
+            for(var i=0;i<arr.length;i++){
+                html+='<li><p><span class="startTo">'+arr[i]+'</span>小时内 收费<span class="pay">'+payArr[i]+'</span>元</p></li>';
+            }
+            html+='<li><p>最大收费金额 <span class="maxPrice">'+item.maxprice+'</span>元</p></li>';
+            $("#chargeSettingDetails2 .list-unstyled").html(html);
+        }else if(item.howWay%3==2){
+            //var id="#chargeSettingDetails3 .list-unstyled";
+            var id="#chargeSettingDetails3";
+            $(id+" .free .freeTime").text(item.freeTime);
+            var dayArr=item.timeY.split(",")[0].split("-");
+            var nightArr=item.timeY.split(",")[1].split("-");
+            var dayPay=item.pay.split(",")[0].split("-");
+            var nightPay=item.pay.split(",")[1].split("-");
+            for(var i=0;i<dayArr.length;i++){
+                li1+='<li><p><span class="startTo">'+dayArr[i]+'</span>小时内 收费<span class="pay">'+dayPay[i]+'</span>元</p></li>';
+            }
+            $(id+" .dayTime .cont").html(li1);
+            for(var j=0;j<nightArr.length;j++){
+                li2+='<li><p><span class="startTo">'+nightArr[j]+'</span>小时内 收费<span class="pay">'+nightPay[j]+'</span>元</p></li>';
+            }
+            $(id+" .nightTime .cont").html(li2);
+            $(id+" .maxPrice").text(item.maxprice);
+            var height=parseFloat($(id+" .modal-body ul>li").css("height"));
+            $(id+" .modal-body ul>.second_time.dayTime").css("height",dayArr.length*height+'px');
+            $(id+" .modal-body ul>.dayTime>div").css("height",dayArr.length*height+'px').css("line-height",dayArr.length*height+'px');
+            $(id+" .modal-body ul>.second_time.nightTime").css("height",nightArr.length*height+'px');
+            $(id+" .modal-body ul>.second_time.nightTime .title").css("height",nightArr.length*height+'px').css("line-height",nightArr.length*height+'px');
+        }
+    })
+}
+
+//修改时自动赋值
+function chargeSetModify(){
+    $("#tab_chargeSetting tbody td .modify").on("click",function(){
+        var id="#chargeSettingModify";
+        $(id+" .chargeName").val($(this).parents("tr").children("td:first-child").text());
+        $(id+" .chargeNum").val($(this).parents("tr").children("td:nth-child(2)").text());
+        $(id+" .modelSizeList").attr("ids",$(this).parents("tr").children("td:nth-child(3)").attr("ids"));
+        $(id+" .modelSizeList>span").text($(this).parents("tr").children("td:nth-child(3)").text());
+        $(id+" .chargeTypeList").attr("ids",$(this).parents("tr").children("td:nth-child(4)").attr("ids"));
+        $(id+" .chargeTypeList>span").text($(this).parents("tr").children("td:nth-child(4)").text());
+    })
 }
 //收费类型
 chargeType("#addChargeSetting");
@@ -732,16 +828,109 @@ function chargeType(id){
 addAttrIds("#tab_chargeSetting",".modify","#chargeSettingModify .determine");
 addAttrIds("#tab_chargeSetting",".delete","#chargeSettingDelete .to_delete");
 //临时收费设置 添加 修改
-function addModifyFun(id,url){
+function addModifyFun(id){
     $("body").on("click",id+" .determine",function(){
-    //少了参数：收费名称，车型大小，收费类型没有。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。
+        var HowWay,data;
+        var freeTime,maxPrice;
+        var chargeName=$(id+" .chargeName").val();
+        var chargeNum=$(id+" .chargeNum").val();
+        var Mids=$(id+" .modelSizeList").attr("ids");
+        var CSids=$(id+" .chargeTypeList").attr("ids");
+        if(Mids==0 && CSids==1) HowWay=0;
+        else if(Mids==0 && CSids==2) HowWay=1;
+        else if(Mids==0 && CSids==3) HowWay=2;
+        else if(Mids==1 && CSids==1) HowWay=3;
+        else if(Mids==1 && CSids==2) HowWay=4;
+        else if(Mids==1 && CSids==3) HowWay=5;
+        else if(Mids==2 && CSids==1) HowWay=6;
+        else if(Mids==2 && CSids==2) HowWay=7;
+        else if(Mids==2 && CSids==3) HowWay=8;
+        data="&temp.chargeName="+chargeName+"&temp.chargeNum="+chargeNum+"&temp.Cartype="+Mids+"&temp.HowWay="+HowWay;
+        if(CSids==1){
+            freeTime=$(id+" .per-time .freeTime").val();
+            var perPrice=$(id+" .per-time .perPrice").val();
+            data="&temp.freeTime="+freeTime+"&temp.price="+perPrice+data;
+        }else if(CSids==2){
+            var timeYStr="",payStr="";
+            freeTime=$(id+" .times-both .freeTime").val();
+            maxPrice=$(id+" .a-time .maxPrice").val();
+            var aTStartTxt=$(id+" .a-time").find(".startTo");
+            var aTPayTxt=$(id+" .a-time").find(".pay");
+            for(var i=0;i<aTStartTxt.length;i++){
+                timeYStr+=aTStartTxt.eq(i).val()+",";
+                payStr+=aTPayTxt.eq(i).val()+",";
+            }
+            timeYStr=(timeYStr.substring(timeYStr.length-1)==',')?timeYStr.substring(0,timeYStr.length-1):timeYStr;
+            payStr=(payStr.substring(payStr.length-1)==',')?payStr.substring(0,payStr.length-1):payStr;
+            data="&temp.freeTime="+freeTime+"&temp.TimeY="+timeYStr+"&temp.pay="+payStr+"&temp.maxprice="+maxPrice+data;
+        }else if(CSids==3){
+            var dayStr="",nightStr="",dayPayStr="",nightPayStr="";
+            freeTime=$(id+" .times-both .freeTime").val();
+            maxPrice=$(id+" .period-time .maxPrice").val();
+            var dayTxt=$(id+" .dayTime").find(".startTo");
+            var dayPayTxt=$(id+" .dayTime").find(".pay");
+            var nightTxt=$(id+" .nightTime").find(".startTo");
+            var nightPayTxt=$(id+" .nightTime").find(".pay");
+            for(var i=0;i<dayTxt.length;i++){
+                dayStr+=dayTxt.eq(i).val()+"-";
+                dayPayStr+=dayPayTxt.eq(i).val()+"-";
+            }
+            for(var i=0;i<nightTxt.length;i++){
+                nightStr+=nightTxt.eq(i).val()+"-";
+                nightPayStr+=nightPayTxt.eq(i).val()+"-";
+            }
+            dayStr=(dayStr.substring(dayStr.length-1)=='-')?dayStr.substring(0,dayStr.length-1):dayStr;
+            dayPayStr=(dayPayStr.substring(dayPayStr.length-1)=='-')?dayPayStr.substring(0,dayPayStr.length-1):dayPayStr;
+            nightStr=(nightStr.substring(nightStr.length-1)=='-')?nightStr.substring(0,nightStr.length-1):nightStr;
+            nightPayStr=(nightPayStr.substring(nightPayStr.length-1)=='-')?nightPayStr.substring(0,nightPayStr.length-1):nightPayStr;
+            var timeX="8-20"+","+"20-8";
+            var TY=dayStr+","+nightStr, PStr=dayPayStr+","+nightPayStr;
+            data="&temp.freeTime="+freeTime+"&temp.TimeX="+timeX+"&temp.TimeY="+TY+"&temp.pay="+PStr+"&temp.maxprice="+maxPrice+data;
+        }
+        if($(this).attr("ids")){
+            var ids=$(this).attr("ids");
+            data="$temp.id="+ids+data;
+        }
+        ajaxParkRequest("temporaryChargeAction!addtemporarycharge.action",data,"chargeSettingTable");
+        $(id+" input").val("");
+        $(id+" .areaZoneList span").text("请选择");
     })
 }
-//临时收费设置 删除 -----接口与添加的接口一样，估计后台没更正名称--改为delete如下，结果报错，需后台检查---------------------------------------
+addModifyFun("#addChargeSetting");//添加
+addModifyFun("#chargeSettingModify");//修改
+//递增验证
+function increase(id){
+    $(id+" .startTo").on("blur",function(){
+        var th=parseFloat($(this).val());
+        if($(id+" .chargeTypeList").attr("ids")==2){
+            if(th>24){
+                alert("按时收费时长不能超过24小时！");
+                return $(this).val("");
+            }
+        }else if($(id+" .chargeTypeList").attr("ids")==3){
+            if(th>12){
+                alert("按时段收费时长不能超过12小时！");
+                return $(this).val("");
+            }
+        }
+        var stTxt=$(id).find(".startTo");
+        if(stTxt.length>=2){
+            if($(this).parent().prev("li").children(".startTo")){
+                var prevTh=parseFloat($(this).parent().prev("li").children(".startTo").val());
+                if(th<=prevTh){
+                    //msgTips("输入的小时数为递增形式，必须大于上一个小时数！");
+                    alert("输入的小时数为递增形式，必须大于上一个小时数！");
+                    return $(this).val("");
+                }
+            }
+        }
+    })
+}
+//临时收费设置 删除
 $("body").on("click","#chargeSettingDelete .to_delete",function(){
     var ids=$(this).attr("ids");
     var data="&id="+ids;
-    ajaxNone("temporaryChargeAction!deletetemporarycharge.action",data);
+    ajaxParkRequest("temporaryChargeAction!deletetemporaryCharge.action",data,"chargeSettingTable");
 });
 
 //车辆闲时出租  查询    //展示的接口有bug
@@ -749,12 +938,11 @@ $(".rent_at_leisure").on('click',function(){
     queryRentLeisure();
 });
 function queryRentLeisure(){
-    var url;
-    ajaxParkRequest(url,"","addRentLeisure");
+    ajaxParkRequest("parkingRentSetAtion!showparkingrenset.action","","addRentLeisure");
 }
 //车辆闲时出租 
 function addRentLeisure(list){
-    console.log(list);
+    //console.log(list);
     //$.each(list,function(i,sysItem){
     //    console.log(sysItem);
     //    -----------------------------------------------------------------
@@ -850,6 +1038,31 @@ function prevNextStep(id){
 prevNextStep("#tab_entranceLane");
 prevNextStep("#tab_exportLane");
 
+//反向寻车展示
+$("body").on("click",".reverse_unusual",function(){
+   reverseUnusualTable();
+});
+function reverseUnusualTable(){
+    queryListByParamsPark("/parking/findcaraction!findcar.action","","reverseUnPage","queryReverseUnTable");
+}
+function queryReverseUnTable(list){
+    var html="",len=list.length;
+    $.each(list,function(i,tbodyTr){
+        html+='<tr ids="'+tbodyTr.id+'"><td>'+tbodyTr.numberplate+'</td><td>'+tbodyTr.parkingCode+'</td>' +
+            '<td>'+tbodyTr.carNumber+'</td></tr>';
+    });
+    $("#tab_reverse_car .table tbody").html(html);
+    //行数据少于10行，空行添加
+    addTr("#tab_reverse_car .tables tbody",len,10);
+}
+//车牌号 精确查询
+$("body").on("click","#tab_reverse_car .btns .btn_search",function(){
+    var txt=$(this).siblings("input").val();
+    var data="&numberplate="+txt;
+    ajaxParkRequest("findcaraction!findcarBynumberplate.action",data,"queryReverseUnTable");
+    $("#all_paging").css("display","none");
+});
+
 
 //车辆分析默认表格显示
 $("body").on("click",".vehicle_analysis",function(){
@@ -872,7 +1085,7 @@ function trafficAna(da){
     dataTitle.length=0,dataIn.length=0,dataOut.length=0;
     $.ajax({
         type:'POST',
-        url: zIp+"/parking/countparkingaction!Carcount.action",
+        url: parkingIp+"/parking/countparkingaction!Carcount.action",
         data: "token="+token+da,
         dataType: "json",
         success: function(data){
@@ -887,9 +1100,6 @@ function trafficAna(da){
             //行数据少于10行，空行添加
             addTr("#tab_traffic_analysis .tables tbody",len,10);
             //对应柱状图
-            console.log(dataTitle)
-            console.log(dataIn)
-            console.log(dataOut)
             barGraph(dataTitle,dataIn,dataOut)
         },
         error: function(){
@@ -931,6 +1141,15 @@ function barGraph(dataTitle,dataIn,dataOut){
             data: dataIn, //[800, 820, 850, 980, 970, 710, 630, 750, 890, 901, 922, 880],
             itemStyle:{
                 normal:{
+                    label:{
+                        show:true,
+                        textStyle:{
+                            fontWeight:'bolder',
+                            fontSize:'14',
+                            fontFamily: '微软雅黑'
+                        },
+                        position:"top"
+                    },
                     color:color1//'#69c'  //柱子颜色
                 }
             },
@@ -939,6 +1158,15 @@ function barGraph(dataTitle,dataIn,dataOut){
             data: dataOut, //[910, 960, 881, 722, 723, 645, 656, 500, 900, 980, 850, 540],
             itemStyle:{
                 normal:{
+                    label:{
+                        show:true,
+                        textStyle:{
+                            fontWeight:'bolder',
+                            fontSize:'14',
+                            fontFamily: '微软雅黑'
+                        },
+                        position:"top"
+                    },
                     color: color2 //'#f19149'
                 }
             },
@@ -983,7 +1211,7 @@ $("body").on("click","#tab_blackListMg .btns .btn_search",function(){
     var data="&carnum="+txt;
     $.ajax({
         type:'POST',
-        url: zIp+"/parking/blacklistaction!findblacklist.action",
+        url: parkingIp+"/parking/blacklistaction!findblacklist.action",
         data: "token="+token+data,
         dataType: "json",
         success: function(data){
@@ -1003,7 +1231,7 @@ $("body").on("click","#tab_blackListMg .btns .btn_search",function(){
             msgTips("请求失败！")
         }
     })
-
+    $("#all_paging").css("display","none");
 });
 //修改时自动赋值
 function blacklistMgModify(){

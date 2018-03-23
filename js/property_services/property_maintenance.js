@@ -163,6 +163,7 @@ function propertySearch(type,status){
  *给任务分页插件绑定ajax请求，根据页码任务数据
  */
 function queryMaintenanceListByPage(pageNum,totalNum,totalPages,type,status,startTime,endTime,workType){
+    var pageMaintenance = 0;
     var pageShow=5;//默认分页栏显示5
     if(totalPages>1&&totalPages<6){//如果是5页以内一页以上加载插件，显示多少页
         pageShow=totalPages;
@@ -179,30 +180,32 @@ function queryMaintenanceListByPage(pageNum,totalNum,totalPages,type,status,star
         //给分页插件绑定点击事件，page是点击选中的页码
         onPageClick: function (event, page) {
             propertyPage=page;
-        }
-    });
-    $('#'+propertyPaginationName).on('click', 'a', function(){
-        $.ajax({
-            type: "post",
-            url: zoneServerIp+"/ucotSmart/complaintOldAction!findComplaintOld.action",
-            dataType: "json",
-            data: {
-                "token": permit,
-                "pager.pages":propertyPage,
-                "pager.pagesize":pageSize,
-                "c.type":type,
-                "c.workorderType":workType,
-                "c.status":status,
-                "c.starttime":startTime,
-                "c.endtime":endTime
-            },
-            success: function (data) {
-                var list=eval(data.obj.data);
-                pagePropertyServiceLoadInformationList(list,type,status,workType);
-                $('#property_tips_'+type).empty();
-                $('#property_tips_'+type).html("当前页面共"+list.length+"条数据 总共"+totalNum+"条数据");
+            if(pageMaintenance==0){
+                pageMaintenance++;
+            }else{
+                $.ajax({
+                    type: "post",
+                    url: zoneServerIp+"/ucotSmart/complaintOldAction!findComplaintOld.action",
+                    dataType: "json",
+                    data: {
+                        "token": permit,
+                        "pager.pages":propertyPage,
+                        "pager.pagesize":pageSize,
+                        "c.type":type,
+                        "c.workorderType":workType,
+                        "c.status":status,
+                        "c.starttime":startTime,
+                        "c.endtime":endTime
+                    },
+                    success: function (data) {
+                        var list=eval(data.obj.data);
+                        pagePropertyServiceLoadInformationList(list,type,status,workType);
+                        $('#property_tips_'+type).empty();
+                        $('#property_tips_'+type).html("当前页面共"+list.length+"条数据 总共"+totalNum+"条数据");
+                    }
+                });
             }
-        });
+        }
     });
 }
 
@@ -1920,8 +1923,8 @@ $('#property_add').on('hidden.bs.modal', function (e) {
     $("#property_toDoModalAddress .dropdown-toggle span").text("");
     $("#property_toDoModalAddress .dropdown").attr({"optionid":"","modename":""});
     $("#property_sendMode").find(".dropdown-toggle span").text("APP派送");
-    $("#property_sendMode").find(".dropdown").attr({"optionid":"","modename":"APP派送"});
+    $("#property_sendMode").find(".dropdown").attr({"optionid":"1","modename":"APP派送"});
     $("#property_urgency").find(".dropdown-toggle span").text("非常严重");
-    $("#property_urgency").find(".dropdown").attr({"optionid":"","modename":"非常严重"});
+    $("#property_urgency").find(".dropdown").attr({"optionid":"1","modename":"非常严重"});
     $(":input").val("");
 })

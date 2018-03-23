@@ -15,7 +15,7 @@
 
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
+    <script src="js/respond.min.js"></script>    
     <![endif]-->
 </head>
 
@@ -87,16 +87,16 @@
                 <li class="database"><a role="tab" data-toggle="tab" href="#tab_database"><b></b>数据库备份</a></li>
             </ul>
         </li>
-        <li class="access6_control_system">
-            <a class="collapsed" href="#access6_control_menu" data-toggle="collapse">
-                <i></i><span>门禁666</span>
-            </a>
-            <ul class="collapse tablist_second" id="access6_control_menu">
-                <li class="device6_configuration active"><a role="tab" data-toggle="tab" href="#tab_device6_configuration"><b></b>设备配置</a></li>
-                <li class="information6_push"><a role="tab" data-toggle="tab" href="#tab_information6_push"><b></b>信息推送</a></li>
-                <li class="remote6_upgrade"><a role="tab" data-toggle="tab" href="#tab_remote6_upgrade"><b></b>远程升级</a></li>
-            </ul>
-        </li>
+        <!--<li class="access6_control_system">-->
+            <!--<a class="collapsed" href="#access6_control_menu" data-toggle="collapse">-->
+                <!--<i></i><span>门禁666</span>-->
+            <!--</a>-->
+            <!--<ul class="collapse tablist_second" id="access6_control_menu">-->
+                <!--<li class="device6_configuration active"><a role="tab" data-toggle="tab" href="#tab_device6_configuration"><b></b>设备配置</a></li>-->
+                <!--<li class="information6_push"><a role="tab" data-toggle="tab" href="#tab_information6_push"><b></b>信息推送</a></li>-->
+                <!--<li class="remote6_upgrade"><a role="tab" data-toggle="tab" href="#tab_remote6_upgrade"><b></b>远程升级</a></li>-->
+            <!--</ul>-->
+        <!--</li>-->
         <li class="smart_home">
             <a class="collapsed" href="#smart_home_menu" data-toggle="collapse">
                 <i></i><span>智能家居</span>
@@ -113,17 +113,42 @@
             </a>
             <ul class="collapse tablist_second" id="security_alarm_menu">
                 <li class="set_alarm active"><a role="tab" data-toggle="tab" href="#tab_set_alarm"><b></b>报警设置</a></li>
-                <li class="device_state active"><a role="tab" data-toggle="tab" href="#tab_user_alarm"><b></b>用户报警</a></li>
                 <li class="house_alarm"><a role="tab" data-toggle="tab" href="#tab_house_alarm"><b></b>小区报警</a></li>
+                <li class="device_state"><a role="tab" data-toggle="tab" href="#tab_user_alarm"><b></b>用户报警</a></li>
                 <!--<li class="machine_monitoring"><a role="tab" data-toggle="tab" href="#tab_machine_monitoring"><b></b>机房监控</a></li>-->
             </ul>
         </li>
-        <li class="automatic_meter_reading"><a href="#tab_automatic_meter_reading" role="tab" data-toggle="tab"><i></i><span>自动抄表</span></a></li>
+        <li class="automatic_meter_reading">
+            <a class="collapsed" href="#tab_automatic_meterReading" data-toggle="collapse">
+                <i></i><span>自动抄表</span>
+            </a>
+            <ul class="collapse tablist_second" id="tab_automatic_meterReading">
+                <li class="set_meterReading active"><a role="tab" data-toggle="tab" href="#tab_set_meterReading"><b></b>抄表设置</a></li>
+                <li class="house_meterReading"><a role="tab" data-toggle="tab" href="#tab_house_meterReading"><b></b>业户抄表</a></li>
+                <li class="publicArea_meterReading"><a role="tab" data-toggle="tab" href="#tab_publicArea_meterReading"><b></b>公区抄表</a></li>
+            </ul>
+        </li>
         <li class="energy_consumption_monitoring"><a href="#tab_energy_consumption_monitoring" role="tab" data-toggle="tab"><i></i><span>能耗监控</span></a></li>
         <!--<li class="car_park_management"><a  onclick="window.open('parking_management.html')"><i></i><span>停车场管理</span></a></li>-->
         <li class="community_mall"><a href="#tab_community_mall" role="tab" data-toggle="tab"><i></i><span>社区商城</span></a></li>
-        <li class="expert_system"><a href="#tab_expert_system" role="tab" data-toggle="tab"><i></i><span>专家系统</span></a></li>
-        <li class="ucot_cloud"><a href="#tab_ucot_cloud" role="tab" data-toggle="tab"><i></i><span>物联云</span></a></li>
+        <li class="expert_system">
+            <a class="collapsed" href="#tab_expertMenu" data-toggle="collapse">
+                <i></i><span>专家系统</span>
+            </a>
+            <ul class="collapse tablist_second" id="tab_expertMenu">
+                <li class="vacancy_rate active"><a role="tab" data-toggle="tab" href="#tab_vacancy_rate"><b></b>空置率</a></li>
+                <li class="ads_statistics"><a role="tab" data-toggle="tab" href="#tab_ads_statistics"><b></b>广告统计</a></li>
+                <li class="com_suggest"><a role="tab" data-toggle="tab" href="#tab_com_suggest"><b></b>投诉建议</a></li>
+                <li class="pro_mainten"><a role="tab" data-toggle="tab" href="#tab_pro_mainten"><b></b>物业维修</a></li>
+                <li class="household_alarm"><a role="tab" data-toggle="tab" href="#tab_household_alarm"><b></b>住户报警</a></li>
+                <li class="pub_alarm"><a role="tab" data-toggle="tab" href="#tab_pub_alarm"><b></b>公区报警</a></li>
+                <li class="household_energy"><a role="tab" data-toggle="tab" href="#tab_household_energy"><b></b>住户能耗</a></li>
+                <li class="pub_energy"><a role="tab" data-toggle="tab" href="#tab_pub_energy"><b></b>公区能耗</a></li>
+                <li class="equip_opera"><a role="tab" data-toggle="tab" href="#tab_equip_opera"><b></b>设备运维</a></li>
+                <li class="man_analysis"><a role="tab" data-toggle="tab" href="#tab_man_analysis"><b></b>人工分析</a></li>
+            </ul>
+        </li>
+        <li class="ucot_cloud"><a href="#tab_ucot_cloud" role="tab" data-toggle="tab"><i></i><span>物联云平台</span></a></li>
     </ul>
 </div>
 
@@ -213,7 +238,7 @@
                         </ul>
                     </div>
                     <div class="tab-content">
-                        <div class="tab-pane active myclick" id="tab_community"></div>
+                        <div class="tab-pane active myclick" id="tab_community">小区</div>
                         <div class="tab-pane" id="tab_indoor_machine">室内机</div>
                         <div class="tab-pane myclick" id="tab_door_machine">门口机</div>
                         <div class="tab-pane myclick" id="tab_fence_machine">围墙机</div>
@@ -279,17 +304,17 @@
                 </div>
             </div>
         </div>
-        <!--门禁666-->
-        <div class="tab-pane" id="tab_access6_control_system">
-            <div class="tab-content">
-                <!--设备配置-->
-                <div class="tab-pane active" id="tab_device6_configuration"></div>
-                <!--信息推送-->
-                <div class="tab-pane" id="tab_information6_push"></div>
-                <!--远程升级-->
-                <div class="tab-pane" id="tab_remote6_upgrade"></div>
-            </div>
-        </div>
+        <!--&lt;!&ndash;门禁666&ndash;&gt;-->
+        <!--<div class="tab-pane" id="tab_access6_control_system">-->
+            <!--<div class="tab-content">-->
+                <!--&lt;!&ndash;设备配置&ndash;&gt;-->
+                <!--<div class="tab-pane active" id="tab_device6_configuration"></div>-->
+                <!--&lt;!&ndash;信息推送&ndash;&gt;-->
+                <!--<div class="tab-pane" id="tab_information6_push"></div>-->
+                <!--&lt;!&ndash;远程升级&ndash;&gt;-->
+                <!--<div class="tab-pane" id="tab_remote6_upgrade"></div>-->
+            <!--</div>-->
+        <!--</div>-->
         <!--智能家居-->
         <div class="tab-pane" id="tab_smart_home">
             <div class="tab-content">
@@ -310,11 +335,11 @@
                 <div class="tab-pane active" id="tab_set_alarm">
                     报警设置
                 </div>
-                <div class="tab-pane" id="tab_user_alarm">
-                    用户报警
-                </div>
                 <div class="tab-pane" id="tab_house_alarm">
                     小区报警
+                </div>
+                <div class="tab-pane" id="tab_user_alarm">
+                    用户报警
                 </div>
                 <!--<div class="tab-pane" id="tab_machine_monitoring">-->
                     <!--机房监控-->
@@ -323,7 +348,17 @@
         </div>
         <!--自动抄表-->
         <div class="tab-pane" id="tab_automatic_meter_reading">
-            自动抄表
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab_set_meterReading">
+                    抄表设置
+                </div>
+                <div class="tab-pane" id="tab_house_meterReading">
+                    业户抄表
+                </div>
+                <div class="tab-pane" id="tab_publicArea_meterReading">
+                    公区抄表
+                </div>
+            </div>
         </div>
         <!--能耗监控-->
         <div class="tab-pane" id="tab_energy_consumption_monitoring">
@@ -339,7 +374,28 @@
         </div>
         <!--专家系统-->
         <div class="tab-pane" id="tab_expert_system">
-            专家系统
+            <div class="tab-content">
+                <!--空置率-->
+                <div class="tab-pane active" id="tab_vacancy_rate">空置率</div>
+                <!--广告统计-->
+                <div class="tab-pane" id="tab_ads_statistics">广告统计</div>
+                <!--投诉建议-->
+                <div class="tab-pane" id="tab_com_suggest">投诉建议</div>
+                <!--物业维修-->
+                <div class="tab-pane" id="tab_pro_mainten">物业维修</div>
+                <!--住户报警-->
+                <div class="tab-pane" id="tab_household_alarm">住户报警</div>
+                <!--公区报警-->
+                <div class="tab-pane" id="tab_pub_alarm">公区报警</div>
+                <!--住户能耗-->
+                <div class="tab-pane" id="tab_household_energy">住户能耗</div>
+                <!--公区能耗-->
+                <div class="tab-pane" id="tab_pub_energy">公区能耗</div>
+                <!--设备运维-->
+                <div class="tab-pane" id="tab_equip_opera">设备运维</div>
+                <!--人工分析-->
+                <div class="tab-pane" id="tab_man_analysis">人工分析</div>
+            </div>
         </div>
         <!--物联云-->
         <div class="tab-pane" id="tab_ucot_cloud">
@@ -392,7 +448,7 @@
     </div>
 </div>
 <!--选择门口机-->
-<div class="modal fade tab-content" id="doorPhonebookModal" aria-hidden="true">
+<div class="modal fade" id="doorPhonebookModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -429,6 +485,27 @@
             <div class="modal-footer text-center">
                 <button type="button" class="btn btn-warning btn-lg to_delete" id="doorPhonebookBut">确认</button>
                 <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--抄表时间-->
+<div class="modal fade" id="meterReadTimeModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">抄表时间</h4>
+            </div>
+            <div class="modal-body" id="meterReadTimeForm">
+                <p class="units text-right">单位：m<sup>3</sup></p>
+                <ul class="list-unstyled meterReadTimeList">
+                    <li><span class="pull-left">抄表时间：08:00</span><span class="pull-right">度数：110m<sup>3</sup></span></li>
+                    <li><span class="pull-left">抄表时间：08:00</span><span class="pull-right">度数：110m<sup>3</sup></span></li>
+                    <li><span class="pull-left">抄表时间：08:00</span><span class="pull-right">度数：110m<sup>3</sup></span></li>
+                    <li><span class="pull-left">抄表时间：08:00</span><span class="pull-right">度数：110m<sup>3</sup></span></li>
+                    <li><span class="pull-left">抄表时间：08:00</span><span class="pull-right">度数：110m<sup>3</sup></span></li>
+                </ul>
             </div>
         </div>
     </div>

@@ -3,6 +3,7 @@ body,ul,header,footer,h1,h2,h3,h4,h5,h6{
     margin: 0;
     padding: 0;
 }
+ul{list-style: none;}
 a{
     text-decoration: none;
     color: #97b9b0;
@@ -32,6 +33,18 @@ body .modal {
 .modal #previewContent{min-height:0;padding: 2.875rem 2rem;}
 .dropdown-menu{max-height:360px;overflow-y:auto;}
 .dowExlName{display:none;}
+/*modal*/
+.modal table.table tbody {
+    font-size: 0.73rem;
+    border: 0;
+}
+.modal table.table thead tr{
+    background: #fff;
+    color: #000;
+}
+.modal table.table tr {
+    border-bottom: 1px solid #ccc;
+}
 /*左侧菜单部分*/
 .left_aside{
     width: 15.6%;
@@ -848,8 +861,19 @@ input:-ms-input-placeholder,textarea:-ms-input-placeholder {
 #doorPhonebookModal tr,#homePhonebookForm tr{height:2rem !important;}
 #doorPhonebookModal td,#homePhonebookForm td{padding:0 5px !important;}
 #homeContrast,#doorContrast{margin-top: -25px;}
+.inquireMacli{position:relative;}
+.inquireMacbox{width:29.86rem;max-height:200px;overflow-y:auto;position:absolute;top:1.56rem;left:3.9rem;border:1px solid #ccc;background:#fff;box-shadow:0px 3px 6px #ccc;display:none;}
+.inquireMacbox p{width:100%;padding:5px;margin: 0 0 5px;cursor:pointer;}
+.inquireMacbox p:hover{background:#ccc;}
 /*门口机*/
 #menuDoorMachine .dropdown-menu{max-height:360px;overflow: auto;}
+/*门禁卡*/
+#entrance_card-modal-add #indate input.date{width:11.42rem;}
+#entrance_card-modal-add #indate input.time{width:6rem;padding:0.2rem 0.5rem;}
+#doorcardRecordList tr{height:2.2rem;}
+#doorcardRecordForm{padding:0.5rem 2rem 1.875rem;}
+#docarType .docarType a.dropdown-toggle{background: #69c;color: #fff;}
+#docarType .docarType b.caret{border-top: 0.32rem solid #fff;}
 /*物业服务*/
 .areaZone{
     display: inline-block;
@@ -1173,6 +1197,96 @@ body .blue{cursor:pointer;color: #6699cc !important;}
 #upload_personnel label{height:40px;line-height:40px;}
 #upload_personnel button{border-top-left-radius:0;border-bottom-left-radius:0;}
 .modal input{vertical-align:middle !important;}
+/*---------------------安防报警---------------------*/
+/*视屏监控*/
+.houseAlarmVideo .portraitUp{display: inline-block;}
+.houseAlarmVideo .portraitUp label{width:52px;overflow:hidden;cursor: pointer;text-align: center;}
+.houseAlarmVideo .portraitUp .upfileName{width:9.42rem;border-top-right-radius:0;border-bottom-right-radius:0;}
+.houseAlarmVideo .portraitUp label input{display: none;}
+.houseAlarmVideo .portraitUp .btn{padding:5px 12px;border-top-left-radius:0;border-bottom-left-radius:0;}
+#aisleForm strong.title{
+    display: inline-block;
+    text-align: right;
+    width: 3.2rem;
+    vertical-align: top;
+    height: 1.56rem;
+    line-height: 1.56rem;
+    margin-right: 0.52rem;
+    font-size: 0.8rem;
+}
+#aisleForm li{margin-bottom: 0.6rem;}
+.videoMonitoring{margin-top:1.875rem;color:#fff;}
+.videoMonitoring .clearfix{width:100%;padding:10px 26px 0;background:#59A294;border-top-left-radius: 5px;border-top-right-radius: 5px;}
+.videoMonitoring .clearfix li{width:86px;height:30px;display: inline-block;text-align: center;float: left;border-top-left-radius: 5px;border-top-right-radius: 5px;}
+.videoMonitoring .clearfix li:hover a{background:#77C2B3;}
+.videoMonitoring .clearfix .active,.videoMonitoring .clearfix .active a{background:#77C2B3;}
+.videoMonitoring .clearfix li a{width:100%;height:100%;display: inline-block;line-height:1.875rem;padding:0;color:#ffffffad;font-weight: bold;text-decoration:none;border-top-left-radius: 5px;border-top-right-radius: 5px;}
+.videoMonitoring .tab-content{height:660px;padding:20px 26px;background:#fff;overflow: hidden;border-left:1px solid #999999;border-right:1px solid #999999;border-bottom:1px solid #999999;}
+.videoMonitoring .tab-content .tab-pane{height:100%;background:#666666;overflow: hidden;}
+.videoList,.videoAdjust{width:25%;height:100%;float: left;}
+.videoBox{width:50%;height:100%;float: left;border-left:6px solid #fff;border-right:6px solid #fff;}
+.videoBox .videoControl{height:18px;background:#333333;}
+.videoBox .videoArea{height:550px;background:#000000;}
+.videoBox .videoScreen{height:52px;padding:8px 0;border-top:6px solid #fff;}
+/*videoList*/
+.videoList p.title{height:26px;line-height:26px;padding:0 10px;margin:0;background:#333333;}
+.videoList li{list-style-type:none;}
+.videoList .manuBox{padding:15px 0 0 15px;height:100%;overflow-y:auto;}
+.videoList .manuPadding{overflow:hidden;}
+.videoList .manuPadding strong{height:30px;line-height:30px;cursor:pointer;}
+.videoList .manuPadding strong{display:inline-block;position:relative;}
+.videoList .manuPadding strong{padding-left:30px;}
+.videoList .manuPadding strong.menuAll em{width:15px;}
+.videoList .manuPadding .mainManu strong{padding-left:40px;}
+.videoList .manuPadding .mainManu strong em{width:25px;}
+.videoList .manuPadding strong span{height:15px;line-height:15px;display:inline-block;position:absolute;left:0;top:8px;}
+.videoList .manuPadding strong span *{float:left;}
+.videoList .manuPadding strong span i{width:15px;height:15px;line-height:12px;text-align:center;display: inline-block;border:1px solid #fff;font-size:19px;font-style:normal;font-weight:lighter;}
+.videoList .manuPadding strong span em{height:0;border-top:1px dotted #fff;margin-top:7px;}
+.videoList .mainManu{margin:-7px 0 0 7px;}
+.videoList .sonManu{margin:-6px 0 -6px 32px;}
+.videoList .manuPadding ul{display:none;}
+.videoList .manuPadding .mainManu>li{position:relative;}
+.videoList .manuPadding .mainManu>li:last-child>.linellae{height:15px;}
+.videoList .manuPadding .mainManu>li:last-child>.sonManu>li:last-child>.linellae{height:20px;}
+.videoList .manuPadding .linellae{position:absolute;top:0px;left:0;width:0;height:100%;display:block;border-left:1px dotted #fff;}
+.videoList .manuPadding .sonManu li{height:40px;line-height:40px;margin-top:1px;position:relative;padding-left:50px;}
+.videoList .manuPadding .sonManu em{width:50px;height:0;border-top:1px dotted #fff;position:absolute;top:20px;left:0;}
+/*videoBox*/
+.videoScreen span{width:30px;height:30px;display:inline-block;margin-left:12px;cursor:pointer;}
+.videoScreen span.one{background: url("../img/one.png") center no-repeat;background-size:100%;}
+.videoScreen span.four{background: url("../img/four.png") center no-repeat;background-size:100%;}
+.videoScreen span.nine{background: url("../img/nine.png") center no-repeat;background-size:100%;}
+.videoBox .videoArea{overflow:hidden;}
+.videoBox video{width:100%;height:100%;float:left;}
+/*videoAdjust*/
+.videoAdjust{padding:20px;font-weight:bold;}
+.videoAdjust p.title{padding:10px 0;border-bottom:1px solid #999999;}
+.videoAdjust p.icon{width:100%;height:20px;line-height:20px;margin:0;}
+.videoAdjust p.icon i{width:20px;height:100%;display:inline-block;float:left;margin-right:15px;}
+.videoAdjust p.icon span{margin-left:10px;}
+.videoAdjust p.icon .luminance{background:url("../img/luminance.png") center no-repeat;background-size:100%;}
+.videoAdjust p.icon .contrast_ratio{background:url("../img/contrast_ratio.png") center no-repeat;background-size:100%;}
+.videoAdjust p.icon .chroma{background:url("../img/chroma.png") center no-repeat;background-size:100%;}
+.videoAdjust p.icon .saturation{background:url("../img/saturation.png") center no-repeat;background-size:100%;}
+.videoAdjust p.icon .icon_image{background:url("../img/icon_image.png") center no-repeat;background-size:100%;}
+.videoAdjust .valve{width:100%;height:50px;line-height:10px;padding:20px 35px 20px 20px;position:relative;}
+.videoAdjust .valve span{position:absolute;top:20px;}
+.videoAdjust .valve span.left{left:0;}
+.videoAdjust .valve span.right{right:0;}
+.videoAdjust .progressBox,.videoAdjust progress{width:100%;height:100%;position:relative;border-radius:100%;}
+.videoAdjust progress{cursor:pointer;padding:0 5px;}
+.videoAdjust .progressBox i{width:15px;height:15px;cursor:pointer;border-radius:100%;background:#fff;position:absolute;top:-2.5px;left:50%;}
+.videoAdjust .time li{height:30px;line-height:30px;margin-top:10px;}
+.videoAdjust .time span{margin-right:10px;}
+.videoAdjust .time input{width:10.42rem;height:100%;border-radius:5px;border: 1px solid #e2e2e2;background:url(../img/icon_calendar_blue.png) no-repeat 8.8rem center #ffffff00;}
+/*用户报警*/
+/*数字地图*/
+.doorBox table td span.door{width:50%;height:60%;display:inline-block;position:relative;background:url("../img/img_door.png") no-repeat center;background-size:100% 100%;}
+/*自动抄表*/
+#meterReadTimeModal .modal-dialog{width:600px;}
+#meterReadTimeForm .units{padding-right:0;}
+.meterReadTimeList li{width:100%;height:30px;line-height:30px;}
 /*添加任务详情*/
 .task_detail .modal-body ul{
     margin-bottom: 1rem;
@@ -1921,6 +2035,8 @@ body .blue{cursor:pointer;color: #6699cc !important;}
     right:-15px;
 }
 #dateButBox,#insDateButBox{overflow: hidden;display: none;}
+#inquiretitBox,#insInquiretitBox{position:relative;}
+#inquiretitBox span.namebox,#insInquiretitBox span.namebox{position: absolute;left: 20px;}
 #scheduleBox .date,#scheduleBox .weekbox,#monthbox .monthbox,#insPlanBox .date,#insPlanBox .weekbox,#insMonthbox .monthbox{display: none;}
 #scheduleBox .title,#inquireBox .title,#insPlanBox .title,#insInquireBox .title{width:100%;height: 40px;text-align: center;line-height: 40px;border-top-left-radius: 10px;border-top-right-radius: 10px;background: #57a291;color:#ffffff;font-size: 14px;font-weight: bold;}
 #scheduleBox .weekbox,.monthbox,#insPlanBox .weekbox{padding:20px;border-left:1px solid #C5C6C8;border-right:1px solid #C5C6C8;border-bottom:1px solid #C5C6C8;background:#ffffff;position: relative;}
@@ -2320,8 +2436,39 @@ li.but .edit,li.but .delete,li.but .add,li.but .code{display:none;}
 }
 .b_set .b_contain .large-half li.dateSet{display: none;}
 
+.tab-content .table tr td>.rate{
+    color: #666;
+}
+.tab-content .table tr td .arrow{
+    width: 10px;
+    border: 0;
+    background: url(../img/icon_rise.png) no-repeat left top;
+    display: inline-block;
+    padding: 0.52rem 0;
+    vertical-align: middle;
+}
+.tab-content .table tr td .down{
+    background-position: -19px top;
+}
+.b_set .box .analy_sug{
+    width: 100%;
+    padding: 1.875rem 2.6rem;
+    text-align: justify;
+    text-indent: 1.67rem;
+}
 
 
+
+
+
+
+
+
+
+
+
+
+/*页面加载缓冲图-----还未最终确定*/
 .loading{
     display: none;
     position: absolute;
@@ -2344,5 +2491,6 @@ li.but .edit,li.but .delete,li.but .add,li.but .code{display:none;}
     display: block;
     margin: 1px auto;
 }
+
 
 

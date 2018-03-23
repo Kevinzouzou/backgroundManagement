@@ -6,10 +6,10 @@
 $(".calendar").click(function(){
     $(this).blur();
 });
-$("#dateTimes").text(nowYear+"-"+nowMonth).attr({"year":nowYear,"month":nowMonth});
+$("#dateTimes").text(nowYear+"-"+nowMonthstr).attr({"year":nowYear,"month":nowMonthstr});
 var month="";
 var deptid="";
-function schedulingManagementInitialize(schedulingType){
+function schedulingInitialize(schedulingType){
     pageDataScheduling(schedulingType);
 };
 $("#property_management_menu .scheduling_management a").click(function (){
@@ -114,11 +114,12 @@ function pageDataScheduling(schedulingType){
     }else if(schedulingType=="inquire"){
         $("#inquireDepartmentMenu .inquireDepartmentMenu").attr({"optionid":"","modename":"全部部门"}).find("a.dropdown-toggle span").text("全部部门");
         $("#inquireStaffMenu .inquireStaffMenu").attr({"optionid":"","modename":"全部员工"}).find("a.dropdown-toggle span").text("全部员工");
-        let Month;
-        if(nowMonth<10){
-            Month="0"+nowMonth;
-        }else{Month=nowMonth;}
-        $("#dateTimes").attr({"year":nowYear,"month":Month}).text(nowYear+"-"+Month);
+        $("#inquiretitBox span.namebox").text("全部部门-排班管理日程");
+        // let Month;
+        // if(nowMonth<10){
+        //     Month="0"+nowMonth;
+        // }else{Month=nowMonth;}
+        $("#dateTimes").attr({"year":nowYear,"month":nowMonthstr}).text(nowYear+"-"+nowMonthstr);
         $("#dateTimes").removeAttr("empname empid deptid");
         departmentMenu("inquireDepartmentMenu");
         schedulingInquire();
@@ -672,7 +673,7 @@ $("#addSchedulingScheduleBut").click(function(){
 function scheduleModal(){
     //调用添加排班日程modal
     $("#SchedulingScheduleForm input").val("");
-    $("#SchedulingScheduleForm .workMonth").val(nowYear+"-"+nowMonth);
+    $("#SchedulingScheduleForm .workMonth").val(nowYear+"-"+nowMonthstr);
     $("#SchedulingScheduleForm .dropdown").attr({"optionid":"","modename":""}).find(".dropdown-toggle span").empty();
     $("#pitchOn").empty();
     $("#addSchedulingScheduleModal").modal("show");
@@ -1213,8 +1214,15 @@ $("#tab_scheduling_management").on("click",".deleteBut",function(){
 //搜索
 $("#schedulingSearch,#inquiretitBox .arrowsleft,#inquiretitBox .arrowsright").click(function(){
     let this_id=$(this).attr("id");
+    let departmentNm=$("#inquireDepartmentMenu .inquireDepartmentMenu").attr("modename");
+    let StaffNm=$("#inquireStaffMenu .inquireStaffMenu").attr("modename");
     if(this_id=="schedulingSearch"){
         $("#dateTimes").removeAttr("empname empid deptid");
+        if(StaffNm=="全部员工"||!StaffNm){
+            $("#inquiretitBox span.namebox").text(departmentNm+"-排班管理日程");
+        }else{
+            $("#inquiretitBox span.namebox").text(StaffNm+"-排班管理日程");
+        };
     };
     let month=$("#dateTimes").text()+"-01";
     let department=$("#inquireDepartmentMenu .inquireDepartmentMenu").attr("optionid");

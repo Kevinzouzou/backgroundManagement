@@ -1,16 +1,87 @@
 <!--Created by along on 2018/1/24 安防报警-->
 <!--小区报警-->
 <style>
-    .houseAlarmVideo .portraitUp{display: inline-block;}
-    .houseAlarmVideo .portraitUp label{width:52px;overflow:hidden;cursor: pointer;text-align: center;}
-    .houseAlarmVideo .portraitUp .upfileName{width:9.42rem;border-top-right-radius:0;border-bottom-right-radius:0;}
-    .houseAlarmVideo .portraitUp label input{display: none;}
-    .houseAlarmVideo .portraitUp .btn{padding:5px 12px;border-top-left-radius:0;border-bottom-left-radius:0;}
+    /*.houseAlarmVideo .portraitUp{display: inline-block;}*/
+    /*.houseAlarmVideo .portraitUp label{width:52px;overflow:hidden;cursor: pointer;text-align: center;}*/
+    /*.houseAlarmVideo .portraitUp .upfileName{width:9.42rem;border-top-right-radius:0;border-bottom-right-radius:0;}*/
+    /*.houseAlarmVideo .portraitUp label input{display: none;}*/
+    /*.houseAlarmVideo .portraitUp .btn{padding:5px 12px;border-top-left-radius:0;border-bottom-left-radius:0;}*/
+    /*#aisleForm strong.title{*/
+        /*display: inline-block;*/
+        /*text-align: right;*/
+        /*width: 3.2rem;*/
+        /*vertical-align: top;*/
+        /*height: 1.56rem;*/
+        /*line-height: 1.56rem;*/
+        /*margin-right: 0.52rem;*/
+        /*font-size: 0.8rem;*/
+    /*}*/
+    /*#aisleForm li{margin-bottom: 0.6rem;}*/
+    /*.videoMonitoring{margin-top:1.875rem;color:#fff;}*/
+    /*.videoMonitoring .clearfix{width:100%;padding:10px 26px 0;background:#59A294;border-top-left-radius: 5px;border-top-right-radius: 5px;}*/
+    /*.videoMonitoring .clearfix li{width:86px;height:30px;display: inline-block;text-align: center;float: left;border-top-left-radius: 5px;border-top-right-radius: 5px;}*/
+    /*.videoMonitoring .clearfix li:hover a{background:#77C2B3;}*/
+    /*.videoMonitoring .clearfix .active,.videoMonitoring .clearfix .active a{background:#77C2B3;}*/
+    /*.videoMonitoring .clearfix li a{width:100%;height:100%;display: inline-block;line-height:1.875rem;padding:0;color:#ffffffad;font-weight: bold;text-decoration:none;border-top-left-radius: 5px;border-top-right-radius: 5px;}*/
+    /*.videoMonitoring .tab-content{height:660px;padding:20px 26px;background:#fff;overflow: hidden;border-left:1px solid #999999;border-right:1px solid #999999;border-bottom:1px solid #999999;}*/
+    /*.videoMonitoring .tab-content .tab-pane{height:100%;background:#666666;overflow: hidden;}*/
+    /*.videoList,.videoAdjust{width:25%;height:100%;float: left;}*/
+    /*.videoBox{width:50%;height:100%;float: left;border-left:6px solid #fff;border-right:6px solid #fff;}*/
+    /*.videoBox .videoControl{height:18px;background:#333333;}*/
+    /*.videoBox .videoArea{height:550px;background:#000000;}*/
+    /*.videoBox .videoScreen{height:52px;padding:8px 0;border-top:6px solid #fff;}*/
+    /*!*videoList*!*/
+    /*.videoList p.title{height:26px;line-height:26px;padding:0 10px;margin:0;background:#333333;}*/
+    /*.videoList li{list-style-type:none;}*/
+    /*.videoList .manuBox{padding:15px 0 0 15px;height:100%;overflow-y:auto;}*/
+    /*.videoList .manuPadding{overflow:hidden;}*/
+    /*.videoList .manuPadding strong{height:30px;line-height:30px;cursor:pointer;}*/
+    /*.videoList .manuPadding strong{display:inline-block;position:relative;}*/
+    /*.videoList .manuPadding strong{padding-left:30px;}*/
+    /*.videoList .manuPadding strong.menuAll em{width:15px;}*/
+    /*.videoList .manuPadding .mainManu strong{padding-left:40px;}*/
+    /*.videoList .manuPadding .mainManu strong em{width:25px;}*/
+    /*.videoList .manuPadding strong span{height:15px;line-height:15px;display:inline-block;position:absolute;left:0;top:8px;}*/
+    /*.videoList .manuPadding strong span *{float:left;}*/
+    /*.videoList .manuPadding strong span i{width:15px;height:15px;line-height:12px;text-align:center;display: inline-block;border:1px solid #fff;font-size:19px;font-style:normal;font-weight:lighter;}*/
+    /*.videoList .manuPadding strong span em{height:0;border-top:1px dotted #fff;margin-top:7px;}*/
+    /*.videoList .mainManu{margin:-7px 0 0 7px;}*/
+    /*.videoList .sonManu{margin:-6px 0 -6px 32px;}*/
+    /*.videoList .manuPadding ul{display:none;}*/
+    /*.videoList .manuPadding .mainManu>li{position:relative;}*/
+    /*.videoList .manuPadding .mainManu>li:last-child>.linellae{height:15px;}*/
+    /*.videoList .manuPadding .mainManu>li:last-child>.sonManu>li:last-child>.linellae{height:20px;}*/
+    /*.videoList .manuPadding .linellae{position:absolute;top:0px;left:0;width:0;height:100%;display:block;border-left:1px dotted #fff;}*/
+    /*.videoList .manuPadding .sonManu li{height:40px;line-height:40px;margin-top:1px;position:relative;padding-left:50px;}*/
+    /*.videoList .manuPadding .sonManu em{width:50px;height:0;border-top:1px dotted #fff;position:absolute;top:20px;left:0;}*/
+    /*!*videoBox*!*/
+    /*.videoScreen span{width:30px;height:30px;display:inline-block;margin-left:12px;cursor:pointer;}*/
+    /*!*.videoScreen span.one{background: url("../../img/one.png") center no-repeat;background-size:100%;}*!*/
+    /*!*.videoScreen span.four{background: url("../../img/four.png") center no-repeat;background-size:100%;}*!*/
+    /*!*.videoScreen span.nine{background: url("../../img/nine.png") center no-repeat;background-size:100%;}*!*/
+    /*.videoBox .videoArea{overflow:hidden;}*/
+    /*.videoBox video{width:100%;height:100%;float:left;}*/
+    /*!*videoAdjust*!*/
+    /*.videoAdjust{padding:20px;font-weight:bold;}*/
+    /*.videoAdjust p.title{padding:10px 0;border-bottom:1px solid #999999;}*/
+    /*.videoAdjust p.icon{width:100%;height:20px;line-height:20px;margin:0;}*/
+    /*.videoAdjust p.icon i{width:20px;height:100%;display:inline-block;float:left;margin-right:15px;}*/
+    /*.videoAdjust p.icon span{margin-left:10px;}*/
+    /*.videoAdjust .valve{width:100%;height:50px;line-height:10px;padding:20px 35px 20px 20px;position:relative;}*/
+    /*.videoAdjust .valve span{position:absolute;top:20px;}*/
+    /*.videoAdjust .valve span.left{left:0;}*/
+    /*.videoAdjust .valve span.right{right:0;}*/
+    /*.videoAdjust .progressBox,.videoAdjust progress{width:100%;height:100%;position:relative;border-radius:100%;}*/
+    /*.videoAdjust progress{cursor:pointer;padding:0 5px;}*/
+    /*.videoAdjust .progressBox i{width:15px;height:15px;cursor:pointer;border-radius:100%;background:#fff;position:absolute;top:-2.5px;left:50%;}*/
+    /*.videoAdjust .time li{height:30px;line-height:30px;margin-top:10px;}*/
+    /*.videoAdjust .time span{margin-right:10px;}*/
+    /*!*.videoAdjust .time input{width:10.42rem;height:100%;border-radius:5px;border: 1px solid #e2e2e2;background:url(../img/icon_calendar_blue.png) no-repeat 8.8rem center #ffffff00;}*!*/
 </style>
 <div class="tablist_third">
     <ul class="nav clearfix" role="tablist_third">
         <li class="equipment_management active"><a href="#tab_equipment_management" role="tab" data-toggle="tab" onclick="houseAlarmInitialize('equipment')">设备管理</a></li>
-        <li class="video_monitoring"><a href="#tab_video_monitorings" role="tab" data-toggle="tab" onclick="houseAlarmInitialize('video')">视屏监控</a></li>
+        <li class="video_monitoring"><a href="#tab_video_monitorings" role="tab" data-toggle="tab" onclick="houseAlarmInitialize('video')">视频监控</a></li>
     </ul>
 </div>
 <div class="tab-content">
@@ -21,16 +92,24 @@
                 <table class="table table-striped text-center">
                     <thead>
                     <tr>
+                        <th>品牌</th>
                         <th>设备名称</th>
+                        <th>用户名</th>
+                        <th>设备IP地址</th>
+                        <th>设备端口</th>
                         <th>操作</th>
                     </tr>
                     </thead>
                     <tbody id="equipmentList">
                         <tr>
-                            <td>设备名称001</td>
+                            <td>华大</td>
+                            <td>摄像头001</td>
+                            <td>华大科技</td>
+                            <td>https://192.168.1.111.com</td>
+                            <td>265:566:555:001</td>
                             <td>
-                                <a class="modifyBut" ids="6" type="alarmRank">修改</a>|
-                                <a class="deleteBut" ids="6" type="alarmRank">删除</a>
+                                <a class="modifyBut" ids="6" type="equipment" name="设备名称001">修改</a>|
+                                <a class="deleteBut" ids="6" type="equipment">删除</a>
                             </td>
                         </tr>
                     </tbody>
@@ -44,67 +123,249 @@
             </div>
     </div>
     <div class="tab-pane" id="tab_video_monitorings">
-        <div class="btns menuBox" id="houseAlarmMenu" type="charge">
-                <span>监控区域</span>
-                <div class="property_type_tasks dropdown areaZone" ids="property_type_tasks" optionid="" modename="">
-                <a class="dropdown-toggle areaZoneList reactive_height text-center" data-toggle="dropdown"><span class="option_type">全部</span><b class="caret"></b></a>
-                <ul class="dropdown-menu areaZoneList-menu" role="menu">
-                    <li><a codelist="" modename="全部">全部</a></li>
-                    <li><a codelist="1" modename="监控区域001">监控区域001</a></li>
-                    <li><a codelist="2" modename="监控区域002">监控区域002</a></li>
-                    <li><a codelist="3" modename="监控区域003">监控区域003</a></li>
-                </ul>
+        <div class="videoMonitoring">
+            <ul class="nav clearfix" role="tablist_third">
+                <li class="video_preview active"><a href="#tab_preview" role="tab" data-toggle="tab">预览</a></li>
+                <li class="video_playback"><a href="#tab_playback" role="tab" data-toggle="tab">回放</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab_preview">
+                    <!--预览-->
+                    <div class="videoList">
+                        <p class="title">设备列表</p>
+                        <div class="manuBox">
+                            <div class="manuPadding">
+                                <strong class="menuAll"><span><i>+</i><em></em></span>全部</strong>
+                                <ul class="mainManu">
+                                    <li>
+                                        <p class="linellae"></p>
+                                        <strong><span><em></em><i>+</i></span>&nbsp;&nbsp;&nbsp;&nbsp;区域名称01</strong>
+                                        <ul class="sonManu">
+                                            <li><p class="linellae"></p><em></em><span>通道名称01</span></li>
+                                            <li><p class="linellae"></p><em></em><span>通道名称02</span></li>
+                                            <li><p class="linellae"></p><em></em><span>通道名称03</span></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <p class="linellae"></p>
+                                        <strong><span><em></em><i>+</i></span>&nbsp;&nbsp;&nbsp;&nbsp;区域名称02</strong>
+                                        <ul class="sonManu">
+                                            <li><p class="linellae"></p><em></em><span>通道名称01</span></li>
+                                            <li><p class="linellae"></p><em></em><span>通道名称02</span></li>
+                                            <li><p class="linellae"></p><em></em><span>通道名称03</span></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <p class="linellae"></p>
+                                        <strong><span><em></em><i>+</i></span>&nbsp;&nbsp;&nbsp;&nbsp;区域名称03</strong>
+                                        <ul class="sonManu">
+                                            <li><p class="linellae"></p><em></em><span>通道名称01</span></li>
+                                            <li><p class="linellae"></p><em></em><span>通道名称02</span></li>
+                                            <li><p class="linellae"></p><em></em><span>通道名称03</span></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="videoBox">
+                        <div class="videoControl"></div>
+                        <div class="videoArea" id="previewVideo">
+                            <video src="http://pgccdn.v.baidu.com/3846147858_3884747892_20170815193729.mp4?authorization=bce-auth-v1%2Fc308a72e7b874edd9115e4614e1d62f6%2F2017-08-15T11%3A37%3A34Z%2F-1%2F%2F4c18bbc19e3cdf8bd325fd970a64f3abf2e663de45037aa6c3fce0317b6f4b13&responseCacheControl=max-age%3D8640000&responseExpires=Thu%2C+23+Nov+2017+19%3A37%3A34+GMT&xcode=aa39e00b6be742f82fb4ffdd3c1f9f851d3bc1e53297489c&time=1520047544&_=1519961161025.wmv" controls="controls">
+                                您的浏览器不支持 video 标签。
+                            </video>
+                        </div>
+                        <div class="videoScreen" id="previewVideoScreen">
+                            <span class="one"></span>
+                            <span class="four"></span>
+                            <span class="nine"></span>
+                        </div>
+                    </div>
+                    <div class="videoAdjust">
+                        <p class="title">色彩调节</p>
+                        <ul class="list-unstyled">
+                            <li class="luminance">
+                                <p class="icon"><i class="luminance"></i>亮度<span class="">127.5</span></p>
+                                <div class="valve">
+                                    <span class="left">0</span>
+                                    <div class="progressBox">
+                                        <progress value="127.5" max="255"></progress><i title="127.5"></i>
+                                    </div>
+                                    <span class="right">255</span>
+                                </div>
+                            </li>
+                            <li class="contrast_ratio">
+                                <p class="icon"><i class="contrast_ratio"></i>对比度<span class="">127.5</span></p>
+                                <div class="valve">
+                                    <span class="left">0</span>
+                                    <div class="progressBox">
+                                        <progress value="127.5" max="255"></progress><i title="127.5"></i>
+                                    </div>
+                                    <span class="right">255</span>
+                                </div>
+                            </li>
+                            <li class="chroma">
+                                <p class="icon"><i class="chroma"></i>色度<span class="">127.5</span></p>
+                                <div class="valve">
+                                    <span class="left">0</span>
+                                    <div class="progressBox">
+                                        <progress value="127.5" max="255"></progress><i title="127.5"></i>
+                                    </div>
+                                    <span class="right">255</span>
+                                </div>
+                            </li>
+                            <li class="saturation">
+                                <p class="icon"><i class="saturation"></i>饱和度<span class="">127.5</span></p>
+                                <div class="valve">
+                                    <span class="left">0</span>
+                                    <div class="progressBox">
+                                        <progress value="127.5" max="255"></progress><i title="127.5"></i>
+                                    </div>
+                                    <span class="right">255</span>
+                                </div>
+                            </li>
+                            <li class="icon_image">
+                                <p class="icon"><i class="icon_image"></i>图像等级<span class="">3</span></p>
+                                <div class="valve">
+                                    <span class="left">0</span>
+                                    <div class="progressBox">
+                                        <progress value="3" max="6"></progress><i title="3"></i>
+                                    </div>
+                                    <span class="right">6</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tab-pane" id="tab_playback">
+                    <!--回放-->
+                    <div class="videoList">
+                        <p class="title">设备列表</p>
+                        <div class="manuBox">
+                            <div class="manuPadding">
+                                <strong class="menuAll"><span><i>+</i><em></em></span>全部</strong>
+                                <ul class="mainManu">
+                                    <li>
+                                        <p class="linellae"></p>
+                                        <strong><span><em></em><i>+</i></span>&nbsp;&nbsp;&nbsp;&nbsp;区域名称01</strong>
+                                        <ul class="sonManu">
+                                            <li><p class="linellae"></p><em></em><span>通道名称01</span></li>
+                                            <li><p class="linellae"></p><em></em><span>通道名称02</span></li>
+                                            <li><p class="linellae"></p><em></em><span>通道名称03</span></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <p class="linellae"></p>
+                                        <strong><span><em></em><i>+</i></span>&nbsp;&nbsp;&nbsp;&nbsp;区域名称02</strong>
+                                        <ul class="sonManu">
+                                            <li><p class="linellae"></p><em></em><span>通道名称01</span></li>
+                                            <li><p class="linellae"></p><em></em><span>通道名称02</span></li>
+                                            <li><p class="linellae"></p><em></em><span>通道名称03</span></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <p class="linellae"></p>
+                                        <strong><span><em></em><i>+</i></span>&nbsp;&nbsp;&nbsp;&nbsp;区域名称03</strong>
+                                        <ul class="sonManu">
+                                            <li><p class="linellae"></p><em></em><span>通道名称01</span></li>
+                                            <li><p class="linellae"></p><em></em><span>通道名称02</span></li>
+                                            <li><p class="linellae"></p><em></em><span>通道名称03</span></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="videoBox">
+                        <div class="videoControl"></div>
+                        <div class="videoArea" id="playbackVideo">
+                            <video src="http://pgccdn.v.baidu.com/3846147858_3884747892_20170815193729.mp4?authorization=bce-auth-v1%2Fc308a72e7b874edd9115e4614e1d62f6%2F2017-08-15T11%3A37%3A34Z%2F-1%2F%2F4c18bbc19e3cdf8bd325fd970a64f3abf2e663de45037aa6c3fce0317b6f4b13&responseCacheControl=max-age%3D8640000&responseExpires=Thu%2C+23+Nov+2017+19%3A37%3A34+GMT&xcode=aa39e00b6be742f82fb4ffdd3c1f9f851d3bc1e53297489c&time=1520047544&_=1519961161025.wmv" controls="controls">
+                                您的浏览器不支持 video 标签。
+                            </video>
+                        </div>
+                        <div class="videoScreen" id="playbackVideoScreen">
+                            <span class="one"></span>
+                            <span class="four"></span>
+                            <span class="nine"></span>
+                        </div>
+                    </div>
+                    <div class="videoAdjust">
+                        <ul class="list-unstyled time">
+                            <li><span class="">开始时间</span><input type="text" class="calendar text-center beginTime" value=""></li>
+                            <li><span class="">结束时间</span><input type="text" class="calendar text-center endtime" value=""></li>
+                        </ul>
+                        <p class="title">色彩调节</p>
+                        <ul class="list-unstyled">
+                            <li class="luminance">
+                                <p class="icon"><i class="luminance"></i>亮度<span class="">127.5</span></p>
+                                <div class="valve">
+                                    <span class="left">0</span>
+                                    <div class="progressBox">
+                                        <progress value="127.5" max="255"></progress><i title="127.5"></i>
+                                    </div>
+                                    <span class="right">255</span>
+                                </div>
+                            </li>
+                            <li class="contrast_ratio">
+                                <p class="icon"><i class="contrast_ratio"></i>对比度<span class="">127.5</span></p>
+                                <div class="valve">
+                                    <span class="left">0</span>
+                                    <div class="progressBox">
+                                        <progress value="127.5" max="255"></progress><i title="127.5"></i>
+                                    </div>
+                                    <span class="right">255</span>
+                                </div>
+                            </li>
+                            <li class="chroma">
+                                <p class="icon"><i class="chroma"></i>色度<span class="">127.5</span></p>
+                                <div class="valve">
+                                    <span class="left">0</span>
+                                    <div class="progressBox">
+                                        <progress value="127.5" max="255"></progress><i title="127.5"></i>
+                                    </div>
+                                    <span class="right">255</span>
+                                </div>
+                            </li>
+                            <li class="saturation">
+                                <p class="icon"><i class="saturation"></i>饱和度<span class="">127.5</span></p>
+                                <div class="valve">
+                                    <span class="left">0</span>
+                                    <div class="progressBox">
+                                        <progress value="127.5" max="255"></progress><i title="127.5"></i>
+                                    </div>
+                                    <span class="right">255</span>
+                                </div>
+                            </li>
+                            <li class="icon_image">
+                                <p class="icon"><i class="icon_image"></i>图像等级<span class="">3</span></p>
+                                <div class="valve">
+                                    <span class="left">0</span>
+                                    <div class="progressBox">
+                                        <progress value="3" max="6"></progress><i title="3"></i>
+                                    </div>
+                                    <span class="right">6</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-                <span>通道名称</span>
-                <div class="property_type_tasks dropdown areaZone" ids="property_type_tasks" optionid="" modename="">
-                <a class="dropdown-toggle areaZoneList reactive_height text-center" data-toggle="dropdown"><span class="option_type">全部</span><b class="caret"></b></a>
-                <ul class="dropdown-menu areaZoneList-menu" role="menu">
-                    <li><a codelist="" modename="全部">全部</a></li>
-                    <li><a codelist="1" modename="通道名称001">通道名称001</a></li>
-                    <li><a codelist="2" modename="通道名称002">通道名称002</a></li>
-                    <li><a codelist="3" modename="通道名称003">通道名称003</a></li>
-                </ul>
-            </div>
-                <button class="btn btn-warning btn_search btnSearch" id="houseAlarmSearch" type="button"><i></i>查询</button>
-        </div>
-        <!--table-->
-        <div class="tables">
-            <table class="table table-striped text-center">
-                    <thead>
-                    <tr>
-                        <th>监控区域</th>
-                        <th>监控视频</th>
-                    </tr>
-                    </thead>
-                    <tbody id="userLogoutList">
-                    <tr>
-                        <td>监控区域001</td>
-                        <td>监控视频001</td>
-                    </tr>
-                    </tbody>
-                </table>
-            <!--分页-->
-            <div class="pagingImplement tab-pane inner clearfix">
-                <div class="pageList pull-right"></div>
-                <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
-            </div>
-            <!--end homeList-paging-->
         </div>
     </div>
 </div>
 <!--modal-->
-<!--家电状态详情-->
-<div class="modal fade" id="addHouseAlarmModal" aria-hidden="true">
+<!--添加设备管理-->
+<div class="modal fade" id="addEquipmentModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
-                <h4 class="modal-title text-center">添加小区报警</h4>
+                <h4 class="modal-title text-center">添加设备</h4>
             </div>
             <div class="modal-body" id="houseAlarmForm">
-                <ul class="list-unstyled clearfix large-half">
+                <ul class="list-unstyled clearfix large-half" id="addequipment">
                     <li class="menuBox">
-                        <span>监控区域</span>
+                        <span>品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;牌</span>
                         <div class="chargetype dropdown areaZone" ids="chargetype" optionid="">
                             <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
                             <ul class="dropdown-menu areaZoneList-menu" role="menu">
@@ -116,23 +377,18 @@
                         </div>
                     </li>
                     <li>
-                        <span>监控事件</span>
-                        <input type="text">
-                    </li>
-                    <li>
                         <span>设备名称</span>
                         <input type="text">
                     </li>
                     <li>
-                        <span>设备型号</span>
+                        <span>用&nbsp;&nbsp;户&nbsp;&nbsp;名</span>
                         <input type="text">
                     </li>
                     <li>
-                        <span>设备编号</span>
+                        <span>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</span>
                         <input type="text">
                     </li>
                     <li>
-                        <!--class="totalLength"-->
                         <span>设&nbsp;&nbsp;备&nbsp;&nbsp;IP</span>
                         <input type="text">
                     </li>
@@ -140,25 +396,76 @@
                         <span>设备端口</span>
                         <input type="text">
                     </li>
-                    <li>
-                        <span>品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;牌</span>
-                        <input type="text">
-                    </li>
-                    <li class="houseAlarmVideo">
-                        <span>监控视频</span>
-                        <div class="portraitUp">
-                            <label>
-                                <strong class="btn btn-primary">上传</strong>
-                                <input type="file" name="upfile" class="uploadingImg" placeholder="图片名称">
-                            </label>
-                            <input class="pull-left upfileName" type="text">
-                        </div>
+                </ul>
+                <ul class="list-unstyled clearfix large-half" id="modifyequipment">
+                    <li class="totalLength">
+                        <span>设备名称</span>
+                        <input type="text" class="equipmentName">
                     </li>
                 </ul>
             </div>
             <div class="modal-footer text-center">
-                <button type="button" class="btn btn-warning btn-lg toResure" id="houseAlarmModalBut">添加</button>
-                <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-warning" id="equipmentModalBut">添加</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--通道设置-->
+<div class="modal fade" id="addAisleModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">通道设置</h4>
+            </div>
+            <div class="modal-body" id="aisleForm">
+                <div>
+                    <strong class="title">通道1&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                    <ul class="list-unstyled clearfix large-half">
+                    <li class="menuBox">
+                        <span>区域名称</span>
+                        <div class="chargetype dropdown areaZone" ids="chargetype" optionid="">
+                            <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                            <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                <li><a codelist="0" modename="大门">大门</a></li>
+                                <li><a codelist="1" modename="活动中心">活动中心</a></li>
+                                <li><a codelist="2" modename="停车场">停车场</a></li>
+                                <li><a codelist="3" modename="应急通道">应急通道</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <span>通道名称</span>
+                        <input type="text">
+                    </li>
+                </ul>
+                </div>
+                <div>
+                    <strong class="title">通道2&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                    <ul class="list-unstyled clearfix large-half">
+                        <li class="menuBox">
+                            <span>区域名称</span>
+                            <div class="chargetype dropdown areaZone" ids="chargetype" optionid="">
+                                <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                    <li><a codelist="0" modename="大门">大门</a></li>
+                                    <li><a codelist="1" modename="活动中心">活动中心</a></li>
+                                    <li><a codelist="2" modename="停车场">停车场</a></li>
+                                    <li><a codelist="3" modename="应急通道">应急通道</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <span>通道名称</span>
+                            <input type="text">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning" id="aisleModalBut">确认</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
             </div>
         </div>
     </div>

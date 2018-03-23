@@ -11,6 +11,7 @@
     #owner_telephone_box_ul li{margin-bottom:0;float: left}
     #owner_telephone_box_ul_add{width:100%;overflow: hidden}
     #owner_telephone_box_ul_add li{margin-bottom:0;float: left}
+
     #tenant_telephone_box_ul_add{width:100%;overflow: hidden}
     #tenant_telephone_box_ul_add li{margin-bottom:0;float: left}
     #tenant_telephone_box_ul_update{width:100%;overflow: hidden}
@@ -180,25 +181,25 @@
             </div>
         </div>
         <!--列表-->
-        <div class="tables">
-            <table class="table table-striped">
+        <div class="tables table_scroll">
+            <table class="table table-striped" style="width: 86rem;">
                 <thead>
-                <tr>
-                    <!--<th>已选择</th>-->
-                    <th>房号</th>
-                    <th>业主姓名</th>
-                    <th>业主身份证</th>
-                    <th>业主性别</th>
-                    <th>业主手机号</th>
-                    <th>家庭成员</th>
-                    <th>建筑面积</th>
-                    <th>套内面积</th>
-                    <th>房屋状态</th>
-                    <th>收费项目</th>
-                    <th>缴费情况</th>
-                    <th>备注</th>
-                    <th>操作</th>
-                </tr>
+                    <tr>
+                        <!--<th>已选择</th>-->
+                        <th>房号</th>
+                        <th>业主姓名</th>
+                        <th>业主身份证</th>
+                        <th>业主性别</th>
+                        <th>业主手机号</th>
+                        <th>家庭成员</th>
+                        <th>建筑面积</th>
+                        <th>套内面积</th>
+                        <th>房屋状态</th>
+                        <th>收费项目</th>
+                        <th>缴费情况</th>
+                        <th>备注</th>
+                        <th>操作</th>
+                    </tr>
                 </thead>
                 <tbody id="house_hold_body_house_hold"></tbody>
             </table>
@@ -269,7 +270,7 @@
                                 <th>计费周期</th>
                                 <th>金额</th>
                                 <th>备注</th>
-                                <th>操作<input type="checkbox" id="chargeItemCheckBox"></th>
+                                <th>操作</th>
                             </tr>
                             </thead>
                             <tbody id="charge_item_new_vo_body"></tbody>
@@ -341,7 +342,7 @@
                                 </li>-->
                                 <li class="totalLength" id="owner_update_cellphone_add">
                                     <span>手机号码</span>
-                                    <input type="text" id="updateCellphone" class="text-center" style="width: 9.31rem;margin-bottom: 0.856rem;"/><span class="add telephoneUpdate" style="text-align: left;padding-left: 10px;color: #69c;">添加</span>
+                                    <input type="text" id="updateCellphone" name="owner.cellphone" class="text-center" style="width: 9.31rem;margin-bottom: 0.856rem;"/><span class="add telephoneUpdate" style="text-align: left;padding-left: 10px;color: #69c;">添加</span>
                                     <div id="owner_telephone_box">
                                         <ul class="list-unstyled" id="owner_telephone_box_ul">
 
@@ -538,7 +539,7 @@
                                 </li>
                                 <li id="tenant_telephone_add">
                                     <span>手机号码</span>
-                                    <input type="text" id="tenant_telephone" class="text-center" name="t.telephone" style="width: 11.38rem;margin-bottom: 0.856rem;"/><span class="add" style="text-align: left;padding-left: 10px;color: #69c;">添加</span>
+                                    <input type="text" id="tenant_telephone" class="text-center" name="t.telephone" style="width: 11.38rem;margin-bottom: 0.856rem;"/><span class="tenant_add" style="text-align: left;padding-left: 10px;color: #69c;">添加</span>
                                     <div id="tenant_telephone_box_add">
                                         <ul class="list-unstyled" id="tenant_telephone_box_ul_add">
 
@@ -575,8 +576,8 @@
             </div>
         </div>
         <!--列表-->
-        <div class="tables">
-            <table class="table table-striped">
+        <div class="tables table_scroll">
+            <table class="table table-striped" style="width: 86rem;">
                 <thead>
                     <tr>
                         <!--<th>已选择</th>-->
@@ -692,7 +693,7 @@
                                 <th>计费周期</th>
                                 <th>金额</th>
                                 <th>备注</th>
-                                <th>操作<input type="checkbox" id="tenantInfoCheckBox"></th>
+                                <th>操作</th>
                             </tr>
                             </thead>
                             <tbody id="tenant_info_new_vo_body"></tbody>
@@ -763,7 +764,7 @@
                                 </li>
                                 <li id="tenant_telephone_update">
                                     <span>手机号码</span>
-                                    <input type="text" id="tenant_update_telephone" name="t.telephone" class="text-center" style="width: 11.38rem;margin-bottom: 0.856rem;"/><span class="add" style="text-align: left;padding-left: 10px;color: #69c;">添加</span>
+                                    <input type="text" id="tenant_update_telephone" name="t.telephone" class="text-center" style="width: 11.38rem;margin-bottom: 0.856rem;"/><span class="tenant_add" style="text-align: left;padding-left: 10px;color: #69c;">添加</span>
                                     <div id="tenant_telephone_box_update">
                                         <ul class="list-unstyled" id="tenant_telephone_box_ul_update">
 

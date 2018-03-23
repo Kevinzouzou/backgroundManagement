@@ -12,7 +12,19 @@ $('.indoor_machine').click(function(){
     queryHomeController(1,null);
     sessionStorage.removeItem("buildingcode");
 });
-
+// 条件查询
+function homecontroller(){
+    let parentBox=$("#homecontroller_select_search_condition");
+    let code=parentBox.find(".codeH option:selected").val();
+    if(code=="0"||code==null){
+        code=parentBox.find(".codeU").val();
+    }
+    if(code=="0"||code==null){
+        code=parentBox.find(".codeD").val();
+    }
+    code==0||code==null?code="":"";
+    queryHomeController(1,code);
+};
 //1.点击室内机时应该刚开始是查询第一页的数据并显示分页插件
 function queryHomeController(currentPage,homecontrollercode){
     $.ajax({
@@ -86,15 +98,16 @@ function queryBuildingForHomecontroller_add(){
         },
         dataType: "json",
         success: function (data) {
-            $(".codeD_add").empty();
-            $(".codeD_add").append("<option value=0>全部房屋</option>");
+            $("#homecontroller-add-form .codeD_add").empty();
+            var html="<option value=0>全部房屋</option>";
             for(var i=0;i<data.obj.length;i++){
                 var newcode = data.obj[i].code.replace("d","街区").replace("p","期").replace("z","区").replace("b","栋");
-                $(".codeD_add").append("<option value="+data.obj[i].code+">"+newcode+"</option>");
+                html+="<option value="+data.obj[i].code+">"+newcode+"</option>";
             }
+            $("#homecontroller-add-form .codeD_add").html(html);
             //默认选中
-            var buildingcode = sessionStorage.getItem("buildingcode");
-            $(".codeD_add option[value="+buildingcode+"]").attr("selected",true);
+            // var buildingcode = sessionStorage.getItem("buildingcode");
+            // $(".codeD_add option[value="+buildingcode+"]").attr("selected",true);
 
         }
 
@@ -147,10 +160,12 @@ function showHomecontrollerPagePlugin(pageNum,totalNum,totalPages){
 
 //添加框
 function load_add_homecontroller_window(){
+    queryBuildingForHomecontroller_add();
+    $("#homecontroller-modal-add :input").val("");
+    $("#homecontroller-modal-add select.codeD_add").find("option").removeAttr("selected");
     $("#homecontroller-modal-add").modal();
     $('.findCodeU_add').hide();
     $('.findCodeH_add').hide();
-    queryBuildingForHomecontroller_add();
 }
 
 //导入
@@ -259,7 +274,8 @@ function queryHomeByUnitcode(unitcode){
             for(var x=0;x<arr.length;x++){
                 var u = arr[x].code.replace('d','街区').replace('p','期').replace('z','区').replace('b','栋')
                     .replace('u','单元').replace('f','层').replace('h','室');
-                var opt1 = '<option value='+(x+1)+'>'+u+'</option>';
+                // var opt1 = '<option value='+(x+1)+'>'+u+'</option>';
+                var opt1 = '<option value='+arr[x].code+'>'+u+'</option>';
                 $('.codeH').append(opt1);
             }
         }
@@ -267,13 +283,13 @@ function queryHomeByUnitcode(unitcode){
 }
 
 //根据得到的房间号进行条件查询//200002d1p1z1b1u1f1h//doorCtrollerAction!findDoorContrller.action
-function selectCodeH(){
-    var codeHOpt = $('.codeH option:selected').text();
-    var homecontrollercode = codeHOpt.replace('街区','d').replace('期','p').replace('区','z').replace('栋','b')
-        .replace('单元','u').replace('层','f').replace('室','h');
-    queryHomeController(1,homecontrollercode);
-    sessionStorage.setItem("homecontrollercode",homecontrollercode);
-}
+// function selectCodeH(){
+//     var codeHOpt = $('.codeH option:selected').text();
+//     var homecontrollercode = codeHOpt.replace('街区','d').replace('期','p').replace('区','z').replace('栋','b')
+//         .replace('单元','u').replace('层','f').replace('室','h');
+//     queryHomeController(1,homecontrollercode);
+//     sessionStorage.setItem("homecontrollercode",homecontrollercode);
+// }
 
 
 

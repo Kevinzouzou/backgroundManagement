@@ -175,8 +175,9 @@ function showAppPagePlugin(totalNum) {
 	}
 	var updateAppPage;
 	$('#appupdateList-paging').empty();
-	$('#appupdateList-paging').append(
-			'<ul id="updateApplist_pagination" class="pagination-sm"></ul>');
+	if(pageNum>1){
+		$('#appupdateList-paging').append('<ul id="updateApplist_pagination" class="pagination-sm"></ul>');
+    };
 	$('#updateApplist_pagination').twbsPagination({
 		totalPages : pageNum,
 		visiblePages : pageSize,

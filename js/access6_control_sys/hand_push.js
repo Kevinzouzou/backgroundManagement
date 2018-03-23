@@ -1,6 +1,7 @@
 ﻿/**
  * Created by GIGA on 2017/9/8.
- *1.门口机和围墙机屏亮设置共用一个接口2.timeString是点击推送后弹出框中设置吗？
+ *1.门口机和围墙机屏亮设置共用一个接口
+ *2.timeString是点击推送后弹出框中设置吗？
  */
 //天气时间推送
 function handPushWeather(){

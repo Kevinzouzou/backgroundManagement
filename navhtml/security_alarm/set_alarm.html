@@ -1,50 +1,56 @@
 <!--Created by along on 2018/1/24 安防报警-->
 <!--报警设置-->
+<style>
+    .ranktitle,.rankbox li{width:100%;height:1.56rem;line-height:1.56rem;margin:0 0 10px;}
+    .ranktitle{border-bottom:1px solid #ccc;font-size: 0.73rem;}
+    .ranktitle span,.rankbox span{width:50%;height:100%;float:left;display:inline-block;}
+    .radiobox label{width:33.333%;height:100%;display:inline-block;margin-bottom:0;font-weight:inherit;vertical-align: middle;cursor: pointer;}
+    .radiobox label input{width:0.8rem;height:0.8rem;margin:0 10px 0 0;}
+</style>
 <div class="tablist_third">
     <ul class="nav clearfix" role="tablist_third">
-        <li class="setAlarm_rank active"><a href="#tab_setAlarm_rank" role="tab" data-toggle="tab" onclick="setAlarmInitialize('alarmRank')">报警级别设置</a></li>
-        <li class="setAlarm_area"><a href="#tab_setAlarm_area" role="tab" data-toggle="tab" onclick="setAlarmInitialize('alarmArea')">小区报警区域</a></li>
+        <!--<li class="setAlarm_rank active"><a href="#tab_setAlarm_rank" role="tab" data-toggle="tab" onclick="setAlarmInitialize('alarmRank')">报警级别设置</a></li>-->
+        <li class="setAlarm_area active"><a href="#tab_setAlarm_area" role="tab" data-toggle="tab" onclick="setAlarmInitialize('alarmArea')">小区报警区域</a></li>
         <li class="setAlarm_number"><a href="#tab_setAlarm_number" role="tab" data-toggle="tab" onclick="setAlarmInitialize('alarmNumber')">绑定物管账号</a></li>
         <li class="setAlarm_time"><a href="#tab_setAlarm_time" role="tab" data-toggle="tab" onclick="setAlarmInitialize('alarmTime')">保存时间设置</a></li>
     </ul>
 </div>
 <div class="tab-content">
     <!--报警级别设置-->
-    <div class="tab-pane active" id="tab_setAlarm_rank">
-        <div class="btns">
-            <button class="btn btn-warning SetAlarmBut" ids="alarmRank"><i></i>添加</button>
-        </div>
-        <!--table-->
-        <div class="tables">
-            <table class="table table-striped text-center">
-                <thead>
-                <tr>
-                    <th>报警类型</th>
-                    <th>报警级别</th>
-                    <th>操作</th>
-                </tr>
-                </thead>
-                <tbody id="setAlarmRankList">
-                    <tr>
-                        <td>防盗报警</td>
-                        <td>一般</td>
-                        <td>
-                            <a class="modifyBut" ids="6" type="alarmRank">修改</a>|
-                            <a class="deleteBut" ids="6" type="alarmRank">删除</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <!--分页-->
-            <div class="pagingImplement tab-pane inner clearfix">
-                <div class="pageList pull-right"></div>
-                <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
-            </div>
-            <!--end homeList-paging-->
-        </div>
-    </div>
+    <!--<div class="tab-pane active" id="tab_setAlarm_rank">-->
+        <!--<div class="btns">-->
+            <!--<button class="btn btn-primary SetAlarmBut" ids="alarmRank">设置</button>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;table&ndash;&gt;-->
+        <!--<div class="tables">-->
+            <!--<table class="table table-striped text-center">-->
+                <!--<thead>-->
+                <!--<tr>-->
+                    <!--<th>报警类型</th>-->
+                    <!--<th>报警级别</th>-->
+                    <!--<th>操作</th>-->
+                <!--</tr>-->
+                <!--</thead>-->
+                <!--<tbody id="setAlarmRankList">-->
+                    <!--<tr>-->
+                        <!--<td>防盗报警</td>-->
+                        <!--<td>一般</td>-->
+                        <!--<td>-->
+                            <!--<a class="modifyBut" ids="2" type="alarmRank" name="防盗报警">修改</a>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                <!--</tbody>-->
+            <!--</table>-->
+            <!--&lt;!&ndash;分页&ndash;&gt;-->
+            <!--<div class="pagingImplement tab-pane inner clearfix">-->
+                <!--<div class="pageList pull-right"></div>-->
+                <!--<div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;end homeList-paging&ndash;&gt;-->
+        <!--</div>-->
+    <!--</div>-->
     <!--小区报警区域-->
-    <div class="tab-pane" id="tab_setAlarm_area">
+    <div class="tab-pane active" id="tab_setAlarm_area">
         <div class="btns">
             <button class="btn btn-warning SetAlarmBut" ids="alarmArea"><i></i>添加</button>
         </div>
@@ -54,7 +60,7 @@
                 <thead>
                 <tr>
                     <th>区域名称</th>
-                    <th>区域位置</th>
+                    <th>备注</th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -116,73 +122,84 @@
     </div>
     <!--保存时间设置-->
     <div class="tab-pane" id="tab_setAlarm_time">
-        <div class="btns"></div>
-        <!--table-->
-        <div class="tables">
-            <table class="table table-striped text-center">
-                <thead>
-                <tr>
-                    <th>***</th>
-                    <th>***</th>
-                    <th>***</th>
-                    <th>***</th>
-                    <th>操作</th>
-                </tr>
-                </thead>
-                <tbody id="setAlarmTimeList">
-                <tr>
-                    <td>***</td>
-                    <td>***</td>
-                    <td>***</td>
-                    <td>***</td>
-                    <td>
-                        <a class="modifyBut" ids="6">***</a>
-                        <!--| <a class="deleteBut" ids="6">删除</a>|-->
-                        <!--<a class="pushBut" ids="6" type="costItem">推送</a>-->
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            <!--分页-->
-            <div class="pagingImplement tab-pane inner clearfix">
-                <div class="pageList pull-right"></div>
-                <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
+        <div class="btns">
+            <span>保存时间设置</span>
+        </div>
+        <div class="tables b_set">
+            <h4 class="text-center">时间设置</h4>
+            <div class="box">
+                <div class="b_contain">
+                    <ul class="list-unstyled large-half">
+                        <li class="title"><span>时间设置</span></li>
+                        <li class="menuBox" id="pushtype">
+                            <span>保存年限</span>
+                            <div class="pushtype dropdown areaZone" ids="pushtype" optionid="1">
+                                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">1年</span><b class="caret"></b></a>
+                                <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                    <li><a codelist="1">1年</a></li>
+                                    <li><a codelist="2">2年</a></li>
+                                    <li><a codelist="3">3年</a></li>
+                                    <li><a codelist="4">4年</a></li>
+                                    <li><a codelist="5">5年</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="b_footer text-center">
+                    <button type="button" class="addBut btn btn-warning btn-lg toResure" id="submitBillBut" ids="5">确认</button>
+                    <button type="button" class="reset btn btn-default btn-lg to_reset">重置</button>
+                </div>
             </div>
-            <!--end homeList-paging-->
         </div>
     </div>
 </div>
 <!--modal-->
-<!--添加报警级别-->
+<!--设置报警级别-->
 <div class="modal fade" id="addSetAlarmRankModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
-                <h4 class="modal-title text-center">添加报警级别</h4>
+                <h4 class="modal-title text-center">报警级别设置</h4>
             </div>
             <div class="modal-body" id="setAlarmRankForm">
+                <p class="ranktitle"><span>报警类型</span><span>报警级别</span></p>
+                <ul class="list-unstyled rankbox">
+                    <li><span class="name">防盗报警</span><span class="radiobox"><label rank="0"><input type="radio" name="rank0">严重</label><label rank="1"><input type="radio" name="rank0">紧急</label><label rank="2"><input type="radio" name="rank0">一般</label></span></li>
+                    <li><span class="name">防盗报警</span><span class="radiobox"><label rank="0"><input type="radio" name="rank1">严重</label><label rank="1"><input type="radio" name="rank1">紧急</label><label rank="2"><input type="radio" name="rank1">一般</label></span></li>
+                </ul>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning" id="setAlarmRankModalBut">确认</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--添加报警区域-->
+<div class="modal fade" id="addAlarmAreaModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">添加报警区域</h4>
+            </div>
+            <div class="modal-body" id="AlarmAreaForm">
                 <ul class="list-unstyled clearfix large-half">
-                    <li style="margin-top:1.875rem">
-                        <span>报警类型</span>
+                    <li class="totalLength">
+                        <span>区域名称</span>
                         <input type="text">
                     </li>
-                    <li class="menuBox" id="alarmRank" style="margin-top:1.875rem">
-                        <span>报警级别</span>
-                        <div class="alarmRank dropdown areaZone" ids="alarmRank" optionid="">
-                            <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
-                            <ul class="dropdown-menu areaZoneList-menu" role="menu">
-                                <li><a codelist="0" modename="一般">一般</a></li>
-                                <li><a codelist="1" modename="紧急">紧急</a></li>
-                                <li><a codelist="2" modename="严重">严重</a></li>
-                            </ul>
-                        </div>
+                    <li class="totalLength">
+                        <span>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</span>
+                        <textarea type="text"></textarea>
                     </li>
                 </ul>
             </div>
             <div class="modal-footer text-center">
-                <button type="button" class="btn btn-warning btn-lg to_delete" id="setAlarmRankModalBut">确认</button>
-                <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-warning" id="AlarmAreaModalBut">确认</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
             </div>
         </div>
     </div>
@@ -219,8 +236,8 @@
                 </ul>
             </div>
             <div class="modal-footer text-center">
-                <button type="button" class="btn btn-warning btn-lg to_delete" id="addAlarmNumberModalBut">确认</button>
-                <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-warning" id="addAlarmNumberModalBut">确认</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
             </div>
         </div>
     </div>
@@ -254,8 +271,8 @@
                 <!--end homeList-paging-->
             </div>
             <div class="modal-footer text-center">
-                <button type="button" class="btn btn-warning btn-lg toResure" id="insStaffModalBut">确认</button>
-                <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-warning" id="insStaffModalBut">确认</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
             </div>
         </div>
     </div>

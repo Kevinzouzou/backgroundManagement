@@ -5,6 +5,19 @@
     <meta charset="UTF-8">
     <title></title>
     <script src="js/xlsx.full.min.js"></script>
+    <style>
+        .gray {
+            -webkit-filter: grayscale(100%);
+            -moz-filter: grayscale(100%);
+            -ms-filter: grayscale(100%);
+            -o-filter: grayscale(100%);
+
+            filter: grayscale(100%);
+
+            filter: gray;
+            filter: progid:DXImageTransform.Microsoft.BasicImage(grayscal=1);
+        }
+    </style>
 </head>
 
 <body>
@@ -16,6 +29,10 @@
         以下a标签不需要内容
     -->
 <a href="" download="这里是下载的文件名.xlsx" id="hf"></a>
+
+<br/>
+<img src="img/icon-floor.png" alt=""/>
+<img src="img/icon-floor.png" class="gray" alt=""/>
 <script>
     var jsono = [
         { //测试数据

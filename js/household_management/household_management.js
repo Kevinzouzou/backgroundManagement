@@ -82,6 +82,7 @@ function queryHouseHoldLoadPageDataJump(page,code){
             $("#house_hold_body_house_hold").empty();
             if(data.obj==null){
                 $("#house_hold_body_house_hold").append('<h2>没有查询到数据</h2>');
+                $('#house_hold_tips_house_hold').html("当前页面共0条数据 总共0条数据");
             }else{
                 var list = eval(data.obj.data);
                 pageHouseHoldServiceLoadInformationList(list);
@@ -117,6 +118,7 @@ function ownerInfoSearch(code){
             $("#house_hold_body_house_hold").empty();
             if(data.obj==null){
                 $("#house_hold_body_house_hold").append('<h2>没有查询到数据</h2>');
+                $('#house_hold_tips_house_hold').html("当前页面共0条数据 总共0条数据");
             }else{
                 var list = eval(data.obj.data);
                 pageHouseHoldServiceLoadInformationList(list);
@@ -138,6 +140,7 @@ function ownerInfoSearch(code){
  *给住户管理分页插件绑定ajax请求，根据页码任务数据
  */
 function queryHouseHoldListByPage(pageNum,totalNum,totalPages,code){
+    var pageOwner = 0;
     var pageShow=5;//默认分页栏显示5
     if(totalPages>1&&totalPages<6){//如果是5页以内一页以上加载插件，显示多少页
         pageShow=totalPages;
@@ -152,26 +155,28 @@ function queryHouseHoldListByPage(pageNum,totalNum,totalPages,code){
         //给分页插件绑定点击事件，page是点击选中的页码
         onPageClick: function (event, page) {
             houseHoldPage=page;
-        }
-    });
-    $('#pagination_ll_house_hold').on('click', 'a', function(){
-        $.ajax({
-            type: "post",
-            url: zoneServerIp+"/ucotSmart/ownerInfoAction!findOwnerInfo.action",
-            dataType:"json",
-            data:{
-                "token":permit,
-                "pager.pages":houseHoldPage,
-                "pager.pagesize":pageSize,
-                "ownerInfoVo.code":code
-            },
-            success: function (data) {
-                var list=eval(data.obj.data);
-                pageHouseHoldServiceLoadInformationList(list);
-                $('#house_hold_tips_house_hold').empty();
-                $('#house_hold_tips_house_hold').html("当前页面共"+list.length+"条数据 总共"+totalNum+"条数据");
+            if(pageOwner==0){
+                pageOwner++;
+            }else{
+                $.ajax({
+                    type: "post",
+                    url: zoneServerIp+"/ucotSmart/ownerInfoAction!findOwnerInfo.action",
+                    dataType:"json",
+                    data:{
+                        "token":permit,
+                        "pager.pages":houseHoldPage,
+                        "pager.pagesize":pageSize,
+                        "ownerInfoVo.code":code
+                    },
+                    success: function (data) {
+                        var list=eval(data.obj.data);
+                        pageHouseHoldServiceLoadInformationList(list);
+                        $('#house_hold_tips_house_hold').empty();
+                        $('#house_hold_tips_house_hold').html("当前页面共"+list.length+"条数据 总共"+totalNum+"条数据");
+                    }
+                });
             }
-        });
+        }
     });
 }
 
@@ -609,31 +614,34 @@ $("#houseOwnerNewProject").on('click',function(){
 
 //确认添加收费项目
 $("#chargeItemPushBut").click(function(){
-    $("#ownerAddPro").empty();
     var inputs=$("#charge_item_new_vo_body input");
     var html="";
     inputs.each(function(){
-        if($(this).is(":checked")){
+        if($(this).is(":checked")&&$(this).attr("disabled")!="disabled"){
             var id=$(this).attr("id");
+            var ids=$(this).attr("ids");
             var name=$(this).attr("name");
             var unitId = $(this).attr("names");
             if(unitId=="4"){
-                html+='<li id="'+id+'" name="'+name+'" number="">';
+                html+='<li id="'+id+'" ids="'+ids+'" name="'+name+'" number="">';
             }else{
-                html+='<li id="'+id+'" name="'+name+'" number="0">';
+                html+='<li id="'+id+'" ids="'+ids+'" name="'+name+'" number="0">';
             }
             html+='<input type="text" value="'+name+'" disabled="disabled"/>';
             html+='<span class="icon"></span>';
             if(unitId=="4"){
-                html+='<input type="text" id="valueId" value=""/>';
+                html+='<input type="text" class="number"/>';
             }else{
-                html+='<input type="text" id="valueId" value="0" disabled="disabled"/>';
+                html+='<input type="text" class="number" value="0" disabled="disabled"/>';
             }
             html+='<a class="delete">删除</a>';
             html+='</li>';
         };
     });
     $("#ownerAddPro").append(html);
+    $("#ownerAddPro").on("blur",".number",function(){
+        $(this).parent("li").attr("number",$(this).val());
+    });
     removeClass(".delete");
     $("#chargeable_item").modal("hide");
 });
@@ -649,45 +657,48 @@ function houseHoldAddChargesJump(houseHoldJson){
     $(".ids").attr("ids",houseHoldJson.itemIdStr);
     var ids = houseHoldJson.itemIdStr;
     if(ids==null){
-            return;
-        }else{
-            $.ajax({
-                type:"post",
-                url:zoneServerIp+"/ucotSmart/chargeitemnewVoAction!getChargeitemnewVoByid.action",
-                data:{
-                    "token":permit,
-                    "pager.pages":1,
-                    "pager.pagesize":10,
-                    "ids":houseHoldJson.itemIdStr,
-                    "ownercode":houseHoldJson.code
-                },
-                dataType:"json",
-                success:function(data){
-                    if(data.obj==null){
-                        $("#charge_item_new_vo_body").append("<h2>没有查询到数据</h2>");
-                    }else{
-                        var list = eval(data.obj.data);
-                        var html="";
-                        for(var i=0;i<list.length;i++){
-                            if(!list[i].equipCode){
-                                html+= '<li id="' + list[i].id + '" ids="' + list[i].itemcode + '" name="' + list[i].itemname + '" number="0">';
-                            }else{
-                                html+= '<li id="' + list[i].id + '" ids="' + list[i].itemcode + '" name="' + list[i].itemname + '" number="'+list[i].equipCode+'">';
-                            }
-                            html+='<input type="text" value="'+list[i].itemname+'" disabled="disabled"/>';
-                            html+='<span class="icon"></span>';
-                            if(list[i].unitid=="4"){
-                                html += '<input type="text" id="valueId" value="'+list[i].equipCode+'" />';
-                            }else{
-                                html += '<input type="text" id="valueId" value="0" disabled="disabled" />';
-                            }
-                            html+='<a class="delete">删除</a>';
-                            html+='</li>';
+        return;
+    }else{
+        $.ajax({
+            type:"post",
+            url:zoneServerIp+"/ucotSmart/chargeitemnewVoAction!getChargeitemnewVoByid.action",
+            data:{
+                "token":permit,
+                "pager.pages":1,
+                "pager.pagesize":10,
+                "ids":houseHoldJson.itemIdStr,
+                "ownercode":houseHoldJson.code
+            },
+            dataType:"json",
+            success:function(data){
+                if(data.obj==null){
+                    $("#charge_item_new_vo_body").append("<h2>没有查询到数据</h2>");
+                }else{
+                    var list = eval(data.obj.data);
+                    var html="";
+                    for(var i=0;i<list.length;i++){
+                        if(!list[i].equipCode){
+                            html+= '<li id="' + list[i].id + '" ids="' + list[i].itemcode + '" name="' + list[i].itemname + '" number="0">';
+                        }else{
+                            html+= '<li id="' + list[i].id + '" ids="' + list[i].itemcode + '" name="' + list[i].itemname + '" number="'+list[i].equipCode+'">';
                         }
-                        $("#ownerAddPro").append(html);
-                        removeClass(".delete");
+                        html+='<input type="text" value="'+list[i].itemname+'" disabled="disabled"/>';
+                        html+='<span class="icon"></span>';
+                        if(list[i].unitid=="4"){
+                            html += '<input type="text" class="number" value="'+list[i].equipCode+'" />';
+                        }else{
+                            html += '<input type="text" class="number" value="0" disabled="disabled" />';
+                        }
+                        html+='<a class="delete">删除</a>';
+                        html+='</li>';
                     }
+                    $("#ownerAddPro").append(html);
+                    $("#ownerAddPro").on("blur",".number",function(){
+                        $(this).parent("li").attr("number",$(this).val());
+                    });
+                    removeClass(".delete");
                 }
+            }
         });
     }
 }
@@ -699,7 +710,6 @@ function houseHoldAddCharges(){
     var id = $(".ids").attr("ids");
     var data = $("#ownerInfoAddChargesFormId").serialize;
     data = decodeURIComponent(data,true);
-    console.log(data);
     var itemlist = "";
     var itemids="";
     var listLi=$("#ownerAddPro li");
@@ -707,14 +717,12 @@ function houseHoldAddCharges(){
         var id=$(this).attr("id");
         itemids=itemids+","+id;
         var name=$(this).attr("name");
-        itemlist+=id+":"+$("#valueId").val()+",";
+        itemlist+=id+":"+$(this).find(".number").val()+",";
     });
     itemids = itemids.substr(1,itemids.length);
     itemlist = itemlist.substr(0,itemlist.length-1);
-    console.log("itemlist:"+itemlist);
     data = data+"&csetting.ownercode="+ownerCode+"&itemlist="+itemlist
             +"&csetting.itemids="+itemids;
-    console.log(data);
     $.ajax({
         type:"post",
         url:zoneServerIp+"/ucotSmart/ownerInfoAction!addChargerItem.action?token="+permit,
@@ -723,6 +731,7 @@ function houseHoldAddCharges(){
         success:function(data){
             msgTips(data.msg);
             queryHouseHoldLoadPageDataJump(1,"");
+            $("#ownerAddPro").empty();
         }
     })
 }
@@ -1055,9 +1064,9 @@ function ownerInfoUpdateJump(houseHoldJson){
                         html+='<input type="text" value="'+list[i].itemname+'" disabled="disabled"/>';
                         html+='<span class="icon"></span>';
                         if(list[i].unitid=="4"){
-                            html += '<input type="text" id="valueId" value="'+list[i].equipCode+'" />';
+                            html += '<input type="text" class="number" value="'+list[i].equipCode+'" />';
                         }else{
-                            html += '<input type="text" id="valueId" value="0" disabled="disabled" />';
+                            html += '<input type="text" class="number" value="0" disabled="disabled" />';
                         }
                         html+='<a class="delete">删除</a>';
                         html+='</li>';
@@ -1082,10 +1091,21 @@ function ownerInfoUpdate(){
     var gender=$("#update_familyGender .update_familyGender");
     var relation=$(".update_familyRelation");
     var phoneNum=$(".update_familyPhoneNum");
+    var itemlist = "";
+    var itemids="";
+    var listLi=$("#ownerUpdatePro li");
+    listLi.each(function(){
+        var id=$(this).attr("id");
+        itemids=itemids+","+id;
+        var name=$(this).attr("name");
+        itemlist+=id+":"+$(this).find(".number").val()+",";
+    });
+    itemids = itemids.substr(1,itemids.length);
+    itemlist = itemlist.substr(0,itemlist.length-1);
     if(names.length==0){
         var temp1="";
         jsonData="familyJson="+temp1+"&"+data+"&home.code="+floorRoom
-            +"&owner.gender="+ownerGender;
+            +"&owner.gender="+ownerGender+"&itemlist="+itemlist+"&csetting.itemids="+itemids;
     }else{
         var temp='{"family": [';
         for(var i=0;i<names.length;i++){
@@ -1093,7 +1113,7 @@ function ownerInfoUpdate(){
         }
         temp=temp.substring(0,temp.length-1)+']'+',"number":'+names.length+"}";
         jsonData="familyJson="+temp+"&"+data+"&home.code="+floorRoom
-            +"&owner.gender="+ownerGender;
+            +"&owner.gender="+ownerGender+"&itemlist="+itemlist+"&csetting.itemids="+itemids;
     }
     $.ajax({
         type:"post",
@@ -1225,6 +1245,7 @@ function tenantInfoSearch(code){
  *给住户管理分页插件绑定ajax请求，根据页码任务数据
  */
 function queryTenantInfoListByPage(pageNum,totalNum,totalPages,code){
+    var pageTenant = 0;
     var pageShow=5;//默认分页栏显示5
     if(totalPages>1&&totalPages<6){//如果是5页以内一页以上加载插件，显示多少页
         pageShow=totalPages;
@@ -1239,26 +1260,28 @@ function queryTenantInfoListByPage(pageNum,totalNum,totalPages,code){
         //给分页插件绑定点击事件，page是点击选中的页码
         onPageClick: function (event, page) {
             tenantInfoPage=page;
-        }
-    });
-    $('#pagination_ll_tenant_info').on('click', 'a', function(){
-        $.ajax({
-            type: "post",
-            url: zoneServerIp+"/ucotSmart/tenementInfoAction!findTenementInfo.action",
-            dataType:"json",
-            data:{
-                "token":permit,
-                "pager.pages":tenantInfoPage,
-                "pager.pagesize":pageSize,
-                "tvo.code":code
-            },
-            success: function (data) {
-                var list=eval(data.obj.data);
-                pageTenantInfoServiceLoadInformationList(list);
-                $('#tenant_info_tips_tenant_info').empty();
-                $('#tenant_info_tips_tenant_info').html("当前页面共"+list.length+"条数据 总共"+totalNum+"条数据");
+            if(pageTenant==0){
+                pageTenant++;
+            }else{
+                $.ajax({
+                    type: "post",
+                    url: zoneServerIp+"/ucotSmart/tenementInfoAction!findTenementInfo.action",
+                    dataType:"json",
+                    data:{
+                        "token":permit,
+                        "pager.pages":tenantInfoPage,
+                        "pager.pagesize":pageSize,
+                        "tvo.code":code
+                    },
+                    success: function (data) {
+                        var list=eval(data.obj.data);
+                        pageTenantInfoServiceLoadInformationList(list);
+                        $('#tenant_info_tips_tenant_info').empty();
+                        $('#tenant_info_tips_tenant_info').html("当前页面共"+list.length+"条数据 总共"+totalNum+"条数据");
+                    }
+                });
             }
-        });
+        }
     });
 }
 
@@ -1454,23 +1477,24 @@ function tenantDoorplate(unitCode){
     });
 }
 
-$(".add").on('click',function(){
+$(".tenant_add").on('click',function(){
     var li='';
     li+='<li class="totalLength addNumber_tenant">'+
-        '<input type="text" name="t.telephone" class="text-center"><span class="delete" style="text-align: left;padding-left: 10px;color: #69c;">删除</span></li>';
+        '<input type="text" name="t.telephone" class="text-center" style="width: 11.38rem;margin-bottom: 0.856rem;"><span class="delete" style="text-align: left;padding-left: 10px;color: #69c;">删除</span></li>';
     $("#tenant_telephone_box_ul_add").append(li);
     removeClass(".delete");
 });
 
-$(".add").on('click',function(){
+$(".tenant_add").on('click',function(){
     var li='';
     li+='<li class="totalLength addNumber_tenant">'+
-        '<input type="text" name="t.telephone" class="text-center"><span class="delete" style="text-align: left;padding-left: 10px;color: #69c;">删除</span></li>';
+        '<input type="text" name="t.telephone" class="text-center" style="width: 11.38rem;margin-bottom: 0.856rem;"><span class="delete" style="text-align: left;padding-left: 10px;color: #69c;">删除</span></li>';
     $("#tenant_telephone_box_ul_update").append(li);
     removeClass(".delete");
 });
 
 function AddTenant(){
+    var data = $("#tenantInfoAddFormId").serialize();
     var building = $("#tenant_toDoModalAddress .tenantChargingAds").attr("optionid");
     var unit = $("#tenant_toDoModalAddress .tenantUnitAds").attr("optionid");
     var floorRoom = $("#tenant_toDoModalAddress .tenantDoorplateAds").attr("optionid");
@@ -1493,21 +1517,11 @@ function AddTenant(){
         msgTips("请选择获取房屋地址下拉框的值!");
         return;
     }else{
+        data = decodeURIComponent(data,true);
+        data = data+"&t.code="+floorRoom+"&t.gendar="+gendar;
         $.ajax({
             type:"post",
-            data:{
-                "token":permit,
-                "t.code":floorRoom,
-                "t.name":name,
-                "t.identity":identity,
-                "t.gendar":gendar,
-                "t.membernum":memberNum,
-                "t.telephone":telephone,
-                "t.starttime":startTime,
-                "t.endtime":endTime,
-                "t.contract":contract,
-                "t.mark":mark
-            },
+            data:data,
             url:zoneServerIp+"/ucotSmart/tenementInfoAction!addTenementInfo.action",
             dataType:"json",
             success:function(data){
@@ -1637,6 +1651,7 @@ function queryTenantInfoNewVoLoadPageDataJump(page,chargeId,ulStr){
  *给收费项分页插件绑定ajax请求，根据页码任务数据
  */
 function queryTenantInfoNewVoListByPage(pageNum,totalNum,totalPages,chargeId){
+    var pageTenant = 0;
     var pageShow=5;//默认分页栏显示5
     if(totalPages>1&&totalPages<6){//如果是5页以内一页以上加载插件，显示多少页
         pageShow=totalPages;
@@ -1651,26 +1666,28 @@ function queryTenantInfoNewVoListByPage(pageNum,totalNum,totalPages,chargeId){
         //给分页插件绑定点击事件，page是点击选中的页码
         onPageClick: function (event, page) {
             tenantInfoPage=page;
-        }
-    });
-    $('#pagination_ll_charge_tenant_info').on('click', 'a', function(){
-        $.ajax({
-            type: "post",
-            url: zoneServerIp+"/ucotSmart/chargeitemnewVoAction!queryChargeitemnewVo.action",
-            dataType:"json",
-            data:{
-                "token":permit,
-                "pager.pages":tenantInfoPage,
-                "pager.pagesize":pageSize,
-                "chargemode.id":chargeId
-            },
-            success: function (data) {
-                var list=eval(data.obj.data);
-                pageTenantInfoNewVoServiceLoadInformationList(list);
-                $('#charge_item_tips_tenant_info').empty();
-                $('#charge_item_tips_tenant_info').html("当前页面共"+list.length+"条数据 总共"+totalNum+"条数据");
+            if(pageTenant==0){
+                pageTenant++;
+            }else{
+                $.ajax({
+                    type: "post",
+                    url: zoneServerIp+"/ucotSmart/chargeitemnewVoAction!queryChargeitemnewVo.action",
+                    dataType:"json",
+                    data:{
+                        "token":permit,
+                        "pager.pages":tenantInfoPage,
+                        "pager.pagesize":pageSize,
+                        "chargemode.id":chargeId
+                    },
+                    success: function (data) {
+                        var list=eval(data.obj.data);
+                        pageTenantInfoNewVoServiceLoadInformationList(list);
+                        $('#charge_item_tips_tenant_info').empty();
+                        $('#charge_item_tips_tenant_info').html("当前页面共"+list.length+"条数据 总共"+totalNum+"条数据");
+                    }
+                });
             }
-        });
+        }
     });
 }
 
@@ -1704,31 +1721,34 @@ $("#tenantNewProject").on('click',function(){
 
 //确认添加收费项目
 $("#tenantItemPushBut").click(function(){
-    $("#tenantAddPro").empty();
     var inputs=$("#tenant_info_new_vo_body input");
     var html="";
     inputs.each(function(){
-        if($(this).is(":checked")){
+        if($(this).is(":checked")&&$(this).attr("disabled")!="disabled"){
             var id=$(this).attr("id");
+            var ids=$(this).attr("ids");
             var name=$(this).attr("name");
             var unitId = $(this).attr("names");
             if(unitId=="4"){
-                html+='<li id="'+id+'" name="'+name+'" number="">';
+                html+='<li id="'+id+'" ids="'+ids+'" name="'+name+'" number="">';
             }else{
-                html+='<li id="'+id+'" name="'+name+'" number="0">';
+                html+='<li id="'+id+'" ids="'+ids+'" name="'+name+'" number="0">';
             }
             html+='<input type="text" value="'+name+'" disabled="disabled"/>';
             html+='<span class="icon"></span>';
             if(unitId=="4"){
-                html+='<input type="text" id="valueId" value=""/>';
+                html+='<input type="text" class="number"/>';
             }else{
-                html+='<input type="text" id="valueId" value="0" disabled="disabled"/>';
+                html+='<input type="text" class="number" value="0" disabled="disabled"/>';
             }
             html+='<a class="delete">删除</a>';
             html+='</li>';
         };
     });
     $("#tenantAddPro").append(html);
+    $("#tenantAddPro").on("blur",".number",function(){
+        $(this).parent("li").attr("number",$(this).val());
+    });
     $("#tenantInfo_addItem").modal("hide");
     removeClass(".delete");
 });
@@ -1764,18 +1784,25 @@ function tenantInfoAddChargesJump(tenantInfoJson){
                     var list = eval(data.obj.data);
                     var html="";
                     for(var i=0;i<list.length;i++){
-                        html+= '<li id="' + list[i].id + '" ids="' + list[i].itemcode + '" name="' + list[i].itemname + '" number="'+list[i].equipCode+'">';
+                        if(!list[i].equipCode){
+                            html+= '<li id="' + list[i].id + '" ids="' + list[i].itemcode + '" name="' + list[i].itemname + '" number="0">';
+                        }else{
+                            html+= '<li id="' + list[i].id + '" ids="' + list[i].itemcode + '" name="' + list[i].itemname + '" number="'+list[i].equipCode+'">';
+                        }
                         html+='<input type="text" value="'+list[i].itemname+'" disabled="disabled"/>';
                         html+='<span class="icon"></span>';
                         if(list[i].unitid=="4"){
                             html += '<input type="text" class="number" value="'+list[i].equipCode+'" />';
                         }else{
-                            html += '<input type="text" class="number" value="0" disabled="disabled"/>';
+                            html += '<input type="text" class="number" value="0" disabled="disabled" />';
                         }
                         html+='<a class="delete">删除</a>';
                         html+='</li>';
                     }
                     $("#tenantAddPro").append(html);
+                    $("#tenantAddPro").on("blur",".number",function(){
+                        $(this).parent("li").attr("number",$(this).val());
+                    });
                     removeClass('.delete');
                 }
             }
@@ -1787,11 +1814,9 @@ function tenantInfoAddCharges(){
     var code = $(".form-horizontal").attr("code");
     var startTime = $("#start_time").val();
     var id = $(".ids").attr("ids");
-    console.log("id:"+id);
     var endTime = $("#end_time").val();
     var data = $("#tenantInfoAddChargesFormId").serialize;
     data = decodeURIComponent(data,true);
-    console.log(data);
     var itemlist = "";
     var itemids="";
     var listLi=$("#tenantAddPro li");
@@ -1799,12 +1824,11 @@ function tenantInfoAddCharges(){
         var id=$(this).attr("id");
         itemids=itemids+","+id;
         var name=$(this).attr("name");
-        itemlist+=id+":"+$("#valueId").val()+",";
+        itemlist+=id+":"+$(this).find(".number").val()+",";
     });
     itemids = itemids.substr(1,itemids.length);
     itemlist = itemlist.substr(0,itemlist.length-1);
     data = data+"&csetting.ownercode="+code+"&itemlist="+itemlist+"&csetting.itemids="+itemids;
-    console.log(data);
     $.ajax({
         type:"post",
         url:zoneServerIp+"/ucotSmart/ownerInfoAction!addChargerItem.action?token="+permit,
@@ -1940,23 +1964,22 @@ function tenantInfoUpdateJump(tenantInfoJson){
     $("#tenant_update_identity").val(tenantInfoJson.identity);
     $("#tenant_unitType-update-gender .tenant_unitType-update-gender").attr({"optionid":tenantInfoJson.gendar,"modename":genDarText}).find("a.dropdown-toggle span").text(genDarText);
     $("#tenant_update_memberNum").val(tenantInfoJson.membernum);
-    //$("#tenant_update_telephone").val();
     $("#tenant_update_start_time").val(tenantInfoJson.starttime);
     $("#tenant_update_end_time").val(tenantInfoJson.endtime);
     $("#tenant_update_contract").val(tenantInfoJson.contract);
     $("#tenant_update_mark").val(tenantInfoJson.mark);
     tenantUpdateBuilding();
-    var telephone = tenantInfoJson.telephone.split(',');
+    var telephoneVal = tenantInfoJson.ownerphone.split(',');
     var telephoneHtml = '';
-    for(var i in telephone){
+    for(var i in telephoneVal){
         if(i==0){
-            $("#tenant_update_telephone").val(telephone[0]);
+            $("#tenant_update_telephone").val(telephoneVal[0]);
         }else{
-            telephoneHtml+='<li class="totalLength addNumber"><input type="text" class="text-center" name="t.telephone" value="'+telephone[i]+'" style="width: 9.31rem;margin-bottom: 0.856rem;"/><span class="delete" style="text-align: left;padding-left: 10px;color: #69c;">删除</span></li>';
+            telephoneHtml+='<li class="totalLength addNumber"><input type="text" class="text-center" name="t.telephone" value="'+telephoneVal[i]+'" style="width: 11.38rem;margin-bottom: 0.856rem;"/><span class="tenant_delete" style="text-align: left;padding-left: 10px;color: #69c;">删除</span></li>';
         }
     }
-    $("#owner_telephone_box_ul").html(telephoneHtml);
-    removeClass(".delete");
+    $("#tenant_telephone_box_ul_update").html(telephoneHtml);
+    removeClass(".tenant_delete");
     var ids = tenantInfoJson.itemIdStr;
     if(ids==null){
         return;
@@ -1987,9 +2010,9 @@ function tenantInfoUpdateJump(tenantInfoJson){
                         html+='<input type="text" value="'+list[i].itemname+'" disabled="disabled"/>';
                         html+='<span class="icon"></span>';
                         if(list[i].unitid=="4"){
-                            html += '<input type="text" id="valueId" value="'+list[i].equipCode+'" />';
+                            html += '<input type="text" class="number" value="'+list[i].equipCode+'" />';
                         }else{
-                            html += '<input type="text" id="valueId" value="0" disabled="disabled" />';
+                            html += '<input type="text" class="number" value="0" disabled="disabled" />';
                         }
                         html+='<a class="delete">删除</a>';
                         html+='</li>';
@@ -2018,7 +2041,19 @@ function tenantInfoUpdate(){
     var endTime = $("#tenant_update_end_time").val();//结束时间
     var contract = $("#tenant_update_contract").val();//合同编号
     var mark = $("#tenant_update_mark").val();//备注
-    data = data+"&t.gendar="+gendar+"&token="+permit;
+    var itemlist = "";
+    var itemids="";
+    var listLi=$("#tenantUpdatePro li");
+    listLi.each(function(){
+        var id=$(this).attr("id");
+        itemids=itemids+","+id;
+        var name=$(this).attr("name");
+        itemlist+=id+":"+$(this).find(".number").val()+",";
+    });
+    itemids = itemids.substr(1,itemids.length);
+    itemlist = itemlist.substr(0,itemlist.length-1);
+    data = data+"&t.code="+floorRoom+"&t.gendar="+gendar+"&itemlist="+itemlist
+            +"&csetting.itemids="+itemids+"&token="+permit;
     $.ajax({
         type:"post",
         url:zoneServerIp+"/ucotSmart/tenementInfoAction!updateTenementInfo.action?t.id="+id,
@@ -2159,9 +2194,9 @@ $('#addOwnerInfo').on('hidden.bs.modal', function (e) {
 /**
  * 业主收费项清空添加模态框
  */
-$('#ownerInfo_addCharges').on('hidden.bs.modal', function (e) {
+/*$('#ownerInfo_addCharges').on('hidden.bs.modal', function (e) {
     $(":input").val("");
-})
+})*/
 
 /**
  * 租户清空添加模态框
@@ -2176,6 +2211,6 @@ $('#addTenantInfo').on('hidden.bs.modal', function (e) {
 /**
  * 租户收费项清空添加模态框
  */
-$('#tenantInfo_addCharges').on('hidden.bs.modal', function (e) {
+/*$('#tenantInfo_addCharges').on('hidden.bs.modal', function (e) {
     $(":input").val("");
-})
+})*/

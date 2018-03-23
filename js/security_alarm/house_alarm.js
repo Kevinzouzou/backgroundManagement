@@ -6,160 +6,116 @@ $("a[href='#tab_house_alarm']").click(function (){
 
 });
 function houseAlarmInitialize(parameters){};
-$("#addHouseAlarmBut").click(function(){
-    $("#addHouseAlarmModal").modal("show");
+$("#addEquipmentBut").click(function(){
+    $("#addEquipmentModal .modal-title").text("添加设备");
+    $("#equipmentModalBut").text("添加").attr("type","add");
+    $("#addequipment").show();
+    $("#modifyequipment").hide();
+    $("#addEquipmentModal").modal("show");
 });
-// function userAlarm(page,type){
-//     ownercodeGetSelected("logoutAddress");
-//     //查询用户报警
-//     let ownercode=$("#userLogoutSearch").attr("ownercode");
-//     if(!ownercode){
-//         let lastOf=permit.indexOf("d")+1;
-//         ownercode=permit.substring(lastOf-7,lastOf);
-//     };
-//     let starttime=$("#userLogoutSearch").attr("time0");
-//     if(!starttime){starttime=""};
-//     let endtime=$("#userLogoutSearch").attr("time1");
-//     if(!endtime){endtime=""};
-//     let status=$("#logoutAddress .logoutTypeMenu").attr("optionid");
-//     if(!status){status=""};
-//     $.ajax({
-//         type: "post",
-//         url: zoneServerIp+"/ucotSmart/waringAction!findWarning.action",
-//         dataType: "json",
-//         data: {
-//             "token":permit,
-//             "pager.pages":page,
-//             "pager.pagesize":pageListSize,
-//             "code":ownercode,
-//             "w.id":"",
-//             "starttime":starttime,
-//             "endtime":endtime,
-//             "w.status":status,
-//             "w.name":name,
-//             "w.mac":""
-//         },
-//         success: function (data) {
-//             console.log("查询用户报警");
-//             console.log(data);
-//             //    数据
-//             if(data.obj){
-//                 var obj=data.obj.data;
-//                 var pageList=obj.length;
-//                 var totalNum=data.obj.data_count;
-//                 $("#tab_user_alarm .pagingImplement .pageTips").text("当前页面共"+pageList+"条数据 总共"+totalNum+"条数据");
-//             };
-//             if(totalNum==0){
-//                 $("#tab_user_alarm .pagingImplement .pageList").hide();
-//                 $("#userLogoutList").html("<p>暂无数据</p>");
-//                 $("#tab_user_alarm .pagingImplement .pageList").text("当前页面共0条数据 总共0条数据");
-//             }else if(obj){
-//                 if(!type||type!="paging"){
-//                     pagingPlugin(pageList,totalNum,"tab_user_alarm",{"functions":"userAlarm(homelistPage,'paging')"});
-//                 };
-//                 let htmlList='',lth=20;
-//                 for(let i=0;i<10;i++){
-//                     if(obj[i]) {
-//                         let status,statusCor="",owner=obj[i].owner,ownerName="",cellphone="",warninglevel,warninglevelCor="";
-//                         let adscode=obj[i].homecode;
-//                         let address=adsText(adscode);
-//                         switch (obj[i].status){
-//                             case 0:
-//                                 status="未响应";
-//                                 statusCor="#ff0000";
-//                                 break;
-//                             case 1:
-//                                 status="已响应";
-//                                 statusCor="";
-//                                 break;
-//                             default:
-//                                 status="";
-//                                 statusCor="";
-//                         };
-//                         switch (obj[i].warninglevel){
-//                             case 0:warninglevel="一般";
-//                                 break;
-//                             case 1:warninglevel="较严重";
-//                                 warninglevelCor="#f19149";
-//                                 break;
-//                             case 2:warninglevel="严重";
-//                                 warninglevelCor="#ff0000";
-//                                 break;
-//                             default:
-//                                 warninglevel="一般";
-//                         };
-//                         if(owner){
-//                             ownerName=obj[i].owner.name;
-//                             cellphone=obj[i].owner.cellphone;
-//                         }
-//                         htmlList+='<tr>';
-//                         htmlList+='<td>'+address+'</td>';
-//                         htmlList+='<td>'+ownerName+'</td>';
-//                         htmlList+='<td>'+cellphone+'</td>';
-//                         // htmlList+='<td></td>';
-//                         // htmlList+='<td></td>';
-//                         if(obj[i].name.length>lth){
-//                             let namekTex=obj[i].name.substring(0,lth);
-//                             htmlList+= '<td content="'+obj[i].name+'"><span>'+namekTex+'...'+'</span><span class="blue" onclick=previewModal("报警设备","'+obj[i].name.replace(/(\s*)/g,'')+'")>详细</span></td>';
-//                         }else{
-//                             htmlList+= '<td content="'+obj[i].name+'">'+obj[i].name+'</td>';
-//                         }
-//                         // if(obj[i].picname.length>lth){
-//                         //     let picnamekTex=obj[i].picname.substring(0,lth);
-//                         //     htmlList+= '<td content="'+obj[i].picname+'"><span>'+picnamekTex+'...'+'</span><span class="blue" onclick=previewModal("报警方式","'+obj[i].picname.replace(/(\s*)/g,'')+'")>详细</span></td>';
-//                         // }else{
-//                         //     htmlList+= '<td content="'+obj[i].picname+'">'+obj[i].picname+'</td>';
-//                         // }
-//                         // if(obj[i].picname){
-//                         //     htmlList+= '<td><img src="'+obj[i].picname+'" alt="图片加载失败"></td>';
-//                         // }else{
-//                         //     htmlList+= '<td></td>';
-//                         // }
-//                         htmlList+='<td>'+obj[i].starttime+'</td>';
-//                         htmlList+='<td style="color:'+warninglevelCor+'">'+warninglevel+'</td>';
-//                         htmlList+='<td style="color:'+statusCor+'">'+status+'</td>';
-//                         htmlList+='<td>'+obj[i].endtime+'</td>';
-//                     // <a class="dispose" ids="'+obj[i].id+'">处理</a>|
-//                         if(obj[i].status==0){
-//                             htmlList+='<td><a class="response" mac="'+obj[i].mac+'" id1="'+obj[i].id_1+'" status="'+obj[i].status+'">响应</a>| <a class="deleteBut" ids="'+obj[i].id+'">删除</a> </td>';
-//                         }else if(obj[i].status==1){
-//                             htmlList+='<td><a class="deleteBut" ids="'+obj[i].id+'">删除</a> </td>';
-//                         }
-//                         htmlList+='</tr>';
-//                     }else{
-//                         htmlList+='<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>';
-//                     };
-//                 };
-//                 $("#userLogoutList").html(htmlList);
-//                 wipeNull("userLogoutList");
-//             };
-//         },
-//         error: function (data, status) {
-//             //msgTips("");
-//         }
-//     });
-// };
-// $("#userLogoutList").on("click",".response",function(){
-//     // 响应
-//     let id1=$(this).attr("id1");
-//     let mac=$(this).attr("mac");
-//     let status=$(this).attr("status");
-//     let dataObj={"token":permit,"w.mac":mac,"w.id_1":id1,"w.status":status};
-//     let callBack="userAlarm()";
-//     let ajaxURL="/ucotSmart/waringAction!edit.action";
-//     deletePubModal(dataObj,callBack,ajaxURL);
-//     $("#deletePubModal .modal-title").text("报警响应");
-//     $("#deletePubModal .mBody_title").text("确认是否要进行响应！");
-// });
-// $("#userLogoutList").on("click",".deleteBut",function(){
-//     // 删除
-//     let ids=$(this).attr("ids");
-//     let dataObj={"token":permit,"idList":ids};
-//     let callBack="userAlarm()";
-//     let ajaxURL="/ucotSmart/waringAction!del.action";
-//     deletePubModal(dataObj,callBack,ajaxURL);
-// });
-// $("#userLogoutSearch").click(function(){
-//     // 条件搜索
-//     userAlarm();
-// });
+$("#equipmentModalBut").click(function(){
+    if($("#equipmentModalBut").attr("type")=="add"){
+    // 添加通道
+        $("#addEquipmentModal").modal("hide");
+        $("#addAisleModal").modal("show");
+    }else{
+        // 修改设备
+    }
+});
+// 修改
+$("#tab_house_alarm").on("click",".modifyBut",function(){
+    let this_=$(this);
+    let type=this_.attr("type");
+    let ids=$(this).attr("ids");
+    if(type=="equipment"){
+        // 设备管理
+        $("#addEquipmentModal .modal-title").text("修改设备");
+        $("#equipmentModalBut").text("修改").attr("type","modify");
+        $("#addequipment").hide();
+        $("#modifyequipment").show();
+        let name=this_.attr("name");
+        if(name){
+            $("#modifyequipment .equipmentName").val(name);
+        };
+        echoEchoAlarmRank("setAlarmRankForm",this_);
+        $("#addEquipmentModal").modal("show");
+    }
+});
+// 删除
+$("#tab_house_alarm").on("click",".deleteBut",function(){
+    let type=$(this).attr("type");
+    let ids=$(this).attr("ids");
+    if(type=="equipment"){
+        // 设备管理
+        let dataObj={"token":permit,"idList":ids};
+        let callBack="alarmArea()";
+        let ajaxURL="/ucotSmart/";
+        deletePubModal(dataObj,callBack,ajaxURL);
+    }
+});
+//-----------------------------------------------------
+// 设备列表菜单
+$("#tab_video_monitorings .manuPadding strong").click(function(){
+    let this_=$(this);
+    this_.next("ul").toggle(200,function(){
+        let display=this_.next("ul").css("display");
+        if(display=="block"){
+            this_.find("i").text("-");
+        }else if(display=="none"){
+            this_.find("i").text("+");
+        };
+    });
+});
+// 色彩调节器
+$(".progressBox progress").click(function(e){
+    let this_=$(this);
+    valve(this_,e);
+});
+$(".progressBox i").mousedown(function(){
+    $(this).parents(".valve").on("mousemove",function(e){
+        let this_=$(this).find("progress");
+        valve(this_,e);
+    });
+});
+$("progress,.progressBox i").mouseup(function(){
+    $(this).parents(".valve").off("mousemove");
+});
+$(".valve").mouseenter(function(){
+    $(this).off("mousemove");
+});
+function valve(this_,e){
+    let proSize=this_.width();
+    let X1=e.pageX;
+    let X2=this_.offset().left;
+    let max=255;
+    if(this_.parents("li").attr("class")=="icon_image"){
+        max=6;
+    };
+    let sizeX=Math.floor(((X1-X2)/proSize)*max);
+    let percentage=Math.floor(sizeX/max*100);
+    sizeX<0?sizeX=0:sizeX>max?sizeX=max:"";
+    percentage<0?percentage=0:percentage>98?percentage=98:percentage=percentage-1;
+    let SliderBut=this_.next("i");
+    SliderBut.css("left",percentage+"%").attr("title",sizeX);
+    this_.attr("value",sizeX);
+    this_.parents("li").find(".icon span").text(sizeX);
+};
+// 切屏操作
+let srctext="http://pgccdn.v.baidu.com/3846147858_3884747892_20170815193729.mp4?authorization=bce-auth-v1%2Fc308a72e7b874edd9115e4614e1d62f6%2F2017-08-15T11%3A37%3A34Z%2F-1%2F%2F4c18bbc19e3cdf8bd325fd970a64f3abf2e663de45037aa6c3fce0317b6f4b13&responseCacheControl=max-age%3D8640000&responseExpires=Thu%2C+23+Nov+2017+19%3A37%3A34+GMT&xcode=aa39e00b6be742f82fb4ffdd3c1f9f851d3bc1e53297489c&time=1520047544&_=1519961161025.wmv";
+$("#previewVideoScreen .one").click(function(){
+    let html='<video src="'+srctext+'" controls="controls" autoplay="autoplay" style="width:100%;height:100%;">您的浏览器不支持 video 标签。</video>';
+    $("#previewVideo").html(html);
+});
+$("#previewVideoScreen .four").click(function(){
+    let html='<video src="'+srctext+'" controls="controls" autoplay="autoplay" style="width:50%;height:50%;">您的浏览器不支持 video 标签。</video><video src="'+srctext+'" controls="controls" autoplay="autoplay" style="width:50%;height:50%;">您的浏览器不支持 video 标签。</video><video src="'+srctext+'" controls="controls" autoplay="autoplay" style="width:50%;height:50%;">您的浏览器不支持 video 标签。</video><video src="'+srctext+'" controls="controls" autoplay="autoplay" style="width:50%;height:50%;">您的浏览器不支持 video 标签。</video>';
+    $("#previewVideo").html(html);
+    $("#previewVideo video:nth-child(2n)").css("border-left","1px solid #ccc");
+});
+$("#previewVideoScreen .nine").click(function(){
+    let html='<video src="'+srctext+'" controls="controls" autoplay="autoplay" style="width:33.333%;height:33.333%;">您的浏览器不支持 video 标签。</video><video src="'+srctext+'" controls="controls" autoplay="autoplay" style="width:33.333%;height:33.333%;">您的浏览器不支持 video 标签。</video><video src="'+srctext+'" controls="controls" autoplay="autoplay" style="width:33.333%;height:33.333%;">您的浏览器不支持 video 标签。</video><video src="'+srctext+'" controls="controls" autoplay="autoplay" style="width:33.333%;height:33.333%;">您的浏览器不支持 video 标签。</video><video src="'+srctext+'" controls="controls" autoplay="autoplay" style="width:33.333%;height:33.333%;">您的浏览器不支持 video 标签。</video><video src="'+srctext+'" controls="controls" autoplay="autoplay" style="width:33.333%;height:33.333%;">您的浏览器不支持 video 标签。</video><video src="'+srctext+'" controls="controls" autoplay="autoplay" style="width:33.333%;height:33.333%;">您的浏览器不支持 video 标签。</video><video src="'+srctext+'" controls="controls" autoplay="autoplay" style="width:33.333%;height:33.333%;">您的浏览器不支持 video 标签。</video><video src="'+srctext+'" controls="controls" autoplay="autoplay" style="width:33.333%;height:33.333%;">您的浏览器不支持 video 标签。</video>';
+    $("#previewVideo").html(html);
+    for(var i=1;i<=3;i++){
+        let a=2+(i-1)*3;
+        $("#previewVideo video:nth-child("+a+")").css({"border-left":"1px solid #ccc","border-right":"1px solid #ccc",});
+    };
+});

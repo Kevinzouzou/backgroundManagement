@@ -2,14 +2,14 @@
  *给住户管理加载信息列表
  */
 function pageHouseHoldServiceLoadInformationList(list){
-    $('#house_hold_body_house_hold').empty();
+    $("#house_hold_body_house_hold").empty();
     if(list.length==0){
-        $("#house_hold_body_house_hold").append('<h2>没有查询到数据</h2>');
+        $("#house_hold_body_house_hold").append("<h2>没有查询到数据</h2>");
     }else{
-        $.each(list,function(key,value) {
+        $.each(list,function(key,value){
             var houseHoldJson = JSON.stringify(value).replace(/\"/g,"'");
-            var houseHoldHtml = '';
-            houseHoldHtml += '<tr>'+'<td>'+houseHoldCheckNull(tranUnitOwnerTenant(value.code))+'</td>'
+            var houseHoldHtml = "";
+            houseHoldHtml += '<tr><td>'+houseHoldCheckNull(tranUnitOwnerTenant(value.code))+'</td>'
                 +'<td>'+houseHoldCheckNull(value.name)+'</td>'
                 +'<td>'+houseHoldCheckNull(value.identity)+'</td>'
                 +'<td>'+houseHoldCheckNull(value.gender)+'</td>'
@@ -17,11 +17,11 @@ function pageHouseHoldServiceLoadInformationList(list){
                 +'<td>'+houseHoldCheckNull(value.familynum)+'</td>'
                 +'<td>'+houseHoldCheckNull(value.coveredarea)+'</td>'
                 +'<td>'+houseHoldCheckNull(value.usearea)+'</td>'
-                +'<td>'+houseHoldCheckNull(value.checkinstatus)+'</td>';
-            if(value.chargeitem==''){
-                houseHoldHtml +='<td></td>';
+                +'<td>'+houseHoldCheckNull(value.checkinstatus)+'</td>'
+            if(value.chargeitem == ''){
+                houseHoldHtml += '<td></td>';
             }else{
-                houseHoldHtml +='<td>'+'<a href="#" onclick="houseHoldChargeItemJump(\''+houseHoldCheckNull(value.chargeitem)+'\')">详情</a>'+'</td>';
+                houseHoldHtml += '<td>'+'<a href="#" onclick="houseHoldChargeItemJump(\''+houseHoldCheckNull(value.chargeitem)+'\')">详情</a>'+'</td>';
             }
             houseHoldHtml +='<td>'+houseHoldCheckNull(value.ispay>1?"欠费":"不欠费")+'</td>'
                 +'<td>'+'<a href="#" onclick="houseHoldRemark(\''+houseHoldCheckNull(value.mark)+'\')">详情</a>'+'</td>'
@@ -29,7 +29,7 @@ function pageHouseHoldServiceLoadInformationList(list){
                 +'|<a href="#" onclick="ownerInfoUpdateJump('+houseHoldJson+')">修改</a>'
                 +'|<a href="#" onclick="ownerInfoDeleteJump(\''+value.code+'\')">删除</a>'+'</td>'+'</tr>';
             $('#house_hold_body_house_hold').append(houseHoldHtml);
-        });
+        })
         var tds=$("#house_hold_body_house_hold tr:first-child td").length;
         if(list.length<10){
             for(i=0;i<10-list.length;i++){
@@ -93,7 +93,7 @@ function pageChargeItemNewVoServiceLoadInformationList(list,ulStr){
                     +'<td>'+houseHoldCheckNull(houseHoldChargeCycle(value.chargecycle))+'</td>'
                     +'<td>'+houseHoldCheckNull(value.price)+'</td>'
                     +'<td>'+houseHoldCheckNull(value.remark)+'</td>'
-                    +'<td><input id="'+value.id+'" names="'+value.unitid+'" name="'+houseHoldCheckNull(value.itemname)+'" type="checkbox"></td>'+'</tr>');
+                    +'<td><input id="'+value.id+'" ids="'+value.itemcode+'" names="'+value.unitid+'" name="'+houseHoldCheckNull(value.itemname)+'" type="checkbox"></td>'+'</tr>');
             }else{
                 $('#charge_item_new_vo_body').append('<tr>'
                     +'<td>'+houseHoldCheckNull(value.itemcode)+'</td>'
@@ -104,7 +104,7 @@ function pageChargeItemNewVoServiceLoadInformationList(list,ulStr){
                     +'<td>'+houseHoldCheckNull(houseHoldChargeCycle(value.chargecycle))+'</td>'
                     +'<td>'+houseHoldCheckNull(value.price)+'</td>'
                     +'<td>'+houseHoldCheckNull(value.remark)+'</td>'
-                    +'<td><input id="'+value.id+'" names="'+value.unitid+'" name="'+houseHoldCheckNull(value.itemname)+'" type="checkbox" disabled="disabled" checked="checked"></td>'+'</tr>');
+                    +'<td><input id="'+value.id+'" ids="'+value.itemcode+'" names="'+value.unitid+'" name="'+houseHoldCheckNull(value.itemname)+'" type="checkbox" disabled="disabled" checked="checked"></td>'+'</tr>');
             }
         });
     }
@@ -131,7 +131,7 @@ function pageTenantInfoServiceLoadInformationList(list){
                 +'<td>'+tenantInfoSubStr(value.starttime)+'</td>'
                 +'<td>'+tenantInfoSubStr(value.endtime)+'</td>';
             if(value.itemname=='还没有添加费项'){
-                tenantInfoHtml += '<td>'+tenantInfoCheckNull(value.itemname)+'</td>';
+                tenantInfoHtml += '<td></td>';
             }else{
                 tenantInfoHtml +='<td>'+'<a href="#" onclick="tenantInfoChargeItemJump(\''+houseHoldCheckNull(value.itemname)+'\')">详情</a>'+'</td>';
             }
@@ -205,7 +205,7 @@ function pageTenantInfoNewVoServiceLoadInformationList(list,ulStr){
                     +'<td>'+tenantInfoCheckNull(houseHoldChargeCycle(value.chargecycle))+'</td>'
                     +'<td>'+tenantInfoCheckNull(value.price)+'</td>'
                     +'<td>'+tenantInfoCheckNull(value.remark)+'</td>'
-                    +'<td><input id="'+value.id+'" names="'+value.unitid+'" name="'+tenantInfoCheckNull(value.itemname)+'" type="checkbox"></td>'+'</tr>');
+                    +'<td><input id="'+value.id+'" ids="'+value.itemcode+'" names="'+value.unitid+'" name="'+tenantInfoCheckNull(value.itemname)+'" type="checkbox"></td>'+'</tr>');
             }else{
                 $('#tenant_info_new_vo_body').append('<tr>'
                     +'<td>'+tenantInfoCheckNull(value.itemcode)+'</td>'
@@ -216,7 +216,7 @@ function pageTenantInfoNewVoServiceLoadInformationList(list,ulStr){
                     +'<td>'+tenantInfoCheckNull(houseHoldChargeCycle(value.chargecycle))+'</td>'
                     +'<td>'+tenantInfoCheckNull(value.price)+'</td>'
                     +'<td>'+tenantInfoCheckNull(value.remark)+'</td>'
-                    +'<td><input id="'+value.id+'" names="'+value.unitid+'" name="'+tenantInfoCheckNull(value.itemname)+'" type="checkbox" disabled="disabled" checked="checked"></td>'+'</tr>');
+                    +'<td><input id="'+value.id+'" ids="'+value.itemcode+'" names="'+value.unitid+'" name="'+tenantInfoCheckNull(value.itemname)+'" type="checkbox" disabled="disabled" checked="checked"></td>'+'</tr>');
             }
         });
     }

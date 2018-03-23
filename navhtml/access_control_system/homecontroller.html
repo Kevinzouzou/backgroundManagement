@@ -1,3 +1,4 @@
+<!--加室内机-->
 <div class="tab-pane" id="homecontroller_div1">
     <div class="tab-pane" id="homecontroller_headbar">
         <div class="btns">
@@ -12,6 +13,7 @@
             <button class="btn btn-primary" id="header_right_middle_btn3" onclick="exportHomeController()">
                 <img src="img/export.png">导出
             </button>
+            <button class="btn btn-primary pull-right" onclick="updateMachineStatus()">更新机器状态</button>
         </div>
         <div id="homecontroller_select_search_condition"  class="btns">
             <span>地址：</span>
@@ -22,8 +24,10 @@
                 <select onchange="selectCodeU(this.value)"  class="form-control reactive_height codeU" style="width: 9.89rem;"></select>
             </div>
             <div class="findCodeH">
-                <select onchange="selectCodeH()" class="form-control reactive_height codeH" style="width: 15.1rem;"></select>
+                <select class="form-control reactive_height codeH" style="width: 15.1rem;"></select>
+                <!--onchange="selectCodeH()"-->
             </div>
+            <button class="btn btn-primary btn_search text-center" id="machine_search_D" type="button" onclick="homecontroller()"><i></i>查询</button>
         </div>
     </div><!--end headbar-->
 
@@ -66,9 +70,10 @@
             <div class="modal-body">
                 <form class="form-horizontal" role="form" id="homecontroller-add-form">
                     <ul class="list-unstyled clearfix large-half">
-                        <li class="totalLength">
+                        <li class="totalLength inquireMacli">
                             <span>Mac地址</span>
-                            <input type="text" id="homecontroller-mac" placeholder="Mac地址格式如：161843c20590902a5e8">
+                            <input type="text" class="inquireMac" macType="H" id="homecontroller-mac" placeholder="Mac地址格式如：161843c20590902a5e8" autocomplete="off">
+                            <div class="inquireMacbox"></div>
                         </li>
                         <li>
                             <span>房间编号</span>

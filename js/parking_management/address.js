@@ -1,8 +1,8 @@
 /**
  * Created by GIGA on 2018-02-03.
  */
-var token="15048-41200005d-1516156873552";
-var zIp="http://192.168.1.202:8080";
+var token=sessionStorage.getItem("token");
+//var parkingIp="http://192.168.1.202:8080";
 
 //var a=[
 //    "902d1p2z1b1u1f1h",
@@ -36,7 +36,7 @@ function queryListByParamsPark(url,senddata,pageid,fnName){//data 的格式是to
     senddata="token="+token+senddata;
     $.ajax({
         type: "post",
-        url: zIp+url,
+        url: parkingIp+url,
         //data: "para="+para,  此处data可以为 a=1&b=2类型的字符串 或 json数据。
         data: senddata,
         dataType: "json",
@@ -93,7 +93,7 @@ function showlistPagePluginPark(totalNum,url,senddata,pageid,fnName){
 function queryListByPagePark(page,url,senddata,fnName){
     $.ajax({
         type: "post",
-        url: zIp+url,
+        url: parkingIp+url,
         //data: "para="+para,  此处data可以为 a=1&b=2类型的字符串 或 json数据。
         data: senddata+"&pager.pages="+page,
         dataType: "json",

@@ -1,7 +1,4 @@
 ﻿/**
- * Created by GIGA on 2017/9/7.
- */
-/**
  * Created by GIGA on 2017/9/4. 门禁卡
  */
 var pageSize = 10;
@@ -13,20 +10,24 @@ $('.entrance_card').click(function(){
     $('#doorcardMainPage').show();
     map.splice(0,map.length);
     map.push('backmethod'+(parseInt(map.length)+1)+'\:'+'queryAllDoorCardJump');
-    queryAllDoorCardJump();
+    // queryAllDoorCardJump();
+    findDoorCardByCondition();
+    $('#entrance_card_tableList2').hide();
+  $('#doorcardMainPage').show();
+  loadSelectDoorCard();
 });
 
-function queryAllDoorCardJump(){
-    $('#entrance_card_tableList2').hide();
-    $('#doorcardMainPage').show();
-    loadSelectDoorCard();
-    var url = "/ucotSmart/doorCardAction!findAllDoorCard.action";
-    var senddata ="";
-    var pageid = "doorcard_page";
-    var fnname = "showDoorCardTableList";
-    queryListByParams(url,senddata,pageid,fnname);
-
-}
+// function queryAllDoorCardJump(){
+//     $('#entrance_card_tableList2').hide();
+//     $('#doorcardMainPage').show();
+//     loadSelectDoorCard();
+//     var url = "/ucotSmart/doorCardAction!findAllDoorCard.action";
+//     var senddata ="";
+//     var pageid = "doorcard_page";
+//     var fnname = "showDoorCardTableList";
+//     queryListByParams(url,senddata,pageid,fnname);
+//
+// }
 //加载select
 function loadSelectDoorCard(){
     $('.input').val("");
@@ -55,7 +56,7 @@ function loadSelectDoorCard(){
 }
 
 function selectDoorCardCodeD(buildingcode){
-    $("#doorcard-codeU").empty();
+    $("#doorcard-codeU,#doorcard-codeH").empty();
     $.ajax({
         type: "post",
         url: zoneServerIp+"/ucotSmart/building!queryUnit.action",
@@ -106,19 +107,19 @@ function selectDoorCardCodeU(unitcode){
     });
 }
 
-//条件查询
+//门禁卡条件查询
 function findDoorCardByCondition(){
     var identity = $("#identity-doorcard").val();
     var cardid = $("#cardid").val();
     var doorcardD =  $("#doorcard-codeD").find("option:selected").val();
-    var doorcardH = "";
-    if(doorcardD==0){
-        doorcardH = "";
-    }else{
-        doorcardH = $("#doorcard-codeH").find("option:selected").val();
-    }
+    var doorcardU= $("#doorcard-codeU").find("option:selected").val();
+    var doorcardH = $("#doorcard-codeH").find("option:selected").val();
+    var homecode;
+    doorcardH==0||!doorcardH?doorcardU==0||!doorcardU?doorcardD==0||!doorcardD?homecode="":homecode=doorcardD:homecode=doorcardU:homecode=doorcardH;
+    var guardType = $("#docarType .guardType").attr("optionid");
     $.ajax({
         type: "post",
+        
         url: zoneServerIp+"/ucotSmart/doorCardAction!findAllDoorCard.action",
         data: {
             'token':permit,
@@ -126,7 +127,8 @@ function findDoorCardByCondition(){
             'pager.pagesize':pageSize,
             'doorcard.identity':identity,
             'doorcard.cardid':cardid,
-            'doorcard.code':doorcardH
+            'doorcard.type':guardType,
+            'doorcard.code':homecode
         },
         dataType: "json",
         success: function (data) {
@@ -143,34 +145,80 @@ function findDoorCardByCondition(){
         }
     });
 }
-
-
-/*function queryDoorCardByPage(page,identity,cardid,doorcardH){
+//门禁卡刷卡记录
+function doorCardRecord(){
+ $("#doorcardRecordModal").modal("show");
+    CardRecord();
+};
+function CardRecord(page,type){
+    var doorCardId = $("#cardid").val();
+    doorCardId?'':doorCardId='';
+    var doorcardD =  $("#doorcard-codeD").find("option:selected").val();
+    var doorcardU= $("#doorcard-codeU").find("option:selected").val();
+    var doorcardH = $("#doorcard-codeH").find("option:selected").val();
+    var homecode;
+    doorcardH==0||!doorcardH?doorcardU==0||!doorcardU?doorcardD==0||!doorcardD?homecode="":homecode=doorcardD:homecode=doorcardU:homecode=doorcardH;
+    var guardType = $("#docarType .guardType").attr("optionid");
     $.ajax({
         type: "post",
-        url: zoneServerIp+"/ucotSmart/doorCardAction!findAllDoorCard.action",
+        url: zoneServerIp+"/ucotSmart/doorCardAction!showDoorCardRecord.action",
         data: {
             'token':permit,
-            'pager.pages':page,
-            'pager.pagesize':pageSize,
-            'doorcard.identity':identity,
-            'doorcard.cardid':cardid,
-            'doorcard.code':doorcardH
+            "pager.pages":page,
+            "pager.pagesize":pageListSize,
+            'doorCardId':doorCardId,
+            'doorcardType':guardType,
+            'homecode':homecode
         },
         dataType: "json",
         success: function (data) {
-            var list=data.obj.data;
-            showDoorCardTableList(list);
-            $('#entrance_card_paging-tips').empty();
-            $('#entrance_card_paging-tips').html("当前页面共" + list.length + "条数据 总共" + data.obj.data_count + "条数据");
+            console.log(data);
+            if(data.obj){
+                var obj=data.obj.data;
+                var pageList=obj.length;
+                var totalNum=data.obj.data_count;
+                $("#doorcardRecordModal .pagingImplement .pageTips").text("当前页面共"+pageList+"条数据 总共"+totalNum+"条数据");
+            };
+            if(totalNum==0){
+                $("#doorcardRecordModal .pagingImplement .pageList").hide();
+                $("#doorcardRecordList").html("<p>暂无数据</p>");
+                $("#doorcardRecordModal .pagingImplement .pageList").text("当前页面共0条数据 总共0条数据");
+            }else if(obj){
+                if(!type||type!="paging"){
+                    pagingPlugin(pageList,totalNum,"doorcardRecordModal",{"functions":"CardRecord(homelistPage,'paging')"});
+                };
+                let htmlList='';
+                for(let i=0;i<obj.length;i++){
+                    if(obj[i]) {
+                        let adscode=obj[i].macToaddress;
+                        let address;
+                        if(adscode){
+                            address=adsText(adscode);
+                        }else{
+                            address="";
+                        }
+                        address.indexOf("-")==0&&address.indexOf("w")==-1?address=address.substr(1,address.lenght):"";
+                        htmlList+='<tr>';
+                        htmlList+='<td>'+obj[i].cardid+'</td>';
+                        htmlList+='<td>'+obj[i].mac+'</td>';
+                        htmlList+='<td>'+address+'</td>';
+                        htmlList+='<td>'+obj[i].unlocktime+'</td>';
+                        htmlList+='</tr>';
+                    }else{
+                        htmlList+='<tr><td></td><td></td><td></td><td></td></tr>';
+                    };
+                };
+                $("#doorcardRecordList").html(htmlList);
+                wipeNull("doorcardRecordList");
+            };
         }
     });
-}*/
+}
 
-//200002d1p1z1b//200002d1p1z2b
 function loadAddDoorCard(){
+    $("#entrance_card-modal-add").find("input,textarea").val("");
+    $("#indate input.time").val("00:00");
     var zoneCode = getZoneCodeByToken(permit);
-    resetAddDoorCard();
     $.ajax({
         type: "post",
         url: zoneServerIp+"/ucotSmart/building!queryBuilding.action",
@@ -222,7 +270,6 @@ function changeDoorcarddpb(val){
         }
     });
 }
-
 function changeDoorcarddpbu(val){
     $.ajax({
         type: "post",
@@ -250,7 +297,6 @@ function changeDoorcarddpbu(val){
         }
     });
 }
-
 function changedoorcarddpbufh(val){
     var homecode = val.substring(0,val.indexOf("u")+1);
     $.ajax({
@@ -270,36 +316,18 @@ function changedoorcarddpbufh(val){
                 html+="<li><input type='checkbox' name='checkbox' value="+data.obj[i].id+" id='e"+data.obj[i].id+"'>" +
                     "<label for='e"+data.obj[i].id+"'>"+newhomecode+"&nbsp;&nbsp;&nbsp;</label></li>";
                 $("#allDoorcontrollerInfo").html(html);
-                //if((i+1)%2==0){
-                //    $("#allDoorcontrollerInfo").append("<br>");
-                //}
             }
         }
     });
 }
-
-/*//验证门禁卡长度
-function validateCardid(val){
-    var flag = true;
-    var arr = val.split("、");
-    var reg = /^[a-zA-Z0-9]{10}$/;
-    for(var i = 0;i<arr.length;i++){
-        if(reg.test(arr[i])){
-            $("#cardidMsg").text("门禁卡号输入正确").css("color","green");
-        }else{
-            $("#cardidMsg").text("必须是10位数字").css("color","red");
-            flag = false;
-        }
-    }
-    return flag;
-}*/
-
 function changeDoorCardType(val){
-    if(val==2){
-        $("#doorcard-roomid").css("display","none");
-    }else{
-        $("#doorcard-roomid").css("display","");
-    }
+    switch(val){
+        case "2":
+            $("#doorcard-roomid").css("display","none");
+            break;
+        default:
+            $("#doorcard-roomid").css("display","block");
+    };
 }
 
 function selectAllDoorcontroller(){
@@ -331,6 +359,12 @@ function choiceAllDoorCard(){
 //手动添加门禁卡
 function addentrance_card(){
     var controlleridarray = selectAllDoorcontroller();
+    var dates=$("#indate .date").val();
+    var times=$("#indate .time").val()+":00";
+    var endtime="";
+    if(dates){
+        endtime=dates+" "+times;
+    };
     var cardidarr = $("#doorcard-cardid").val();
     var identity = $("#doorcard-identity").val();
     var type = $("#doorcard-type").val();
@@ -359,40 +393,17 @@ function addentrance_card(){
             'doorcard.identity':identity,
             'doorcard.code':doorcard_code,
             'doorcard.type':type,
+            'doorcard.endtime':endtime,
             'doorcard.controlleridarray':controlleridarray
         },
         dataType: "json",
         success: function (data) {
-            msgTips(data.msg);
-            queryAllDoorCardJump();
+            // msgTips(data.msg);
+            // queryAllDoorCardJump();
+            findDoorCardByCondition();
         }
     });
     $("#entrance_card-modal-add").modal('hide');
-}
-
-//数组去重复
-function unique(){
-    if(event.keyCode==13){
-        alert('click enter');
-    }
-
-    /*var cardidarr = $("#doorcard-cardid").val();
-    var cardid = cardidarr.split("\n");
-    var result = [],isRepeated;
-        for (var i = 0; i < arr.length; i++) {
-            isRepeated = false;
-                 for (var j = 0;j < arr.length; j++) {
-                     if (arr[i] == result[j]) {
-                             isRepeated = true;
-                             break;
-                     }
-                 }
-                 if (!isRepeated) {
-                     result.push(arr[i]);
-                 }
-        }
-    var newCardId = result.join("\n");
-    $("#doorcard-cardid").val(newCardId);*/
 }
 
 //是否选中，切换图片
@@ -447,7 +458,8 @@ function confirmdeldoorcardsingle(){
         dataType: "json",
         success: function (data) {
             $("#del_door_card_single_Modal").modal("hide");
-            queryAllDoorCardJump();
+            // queryAllDoorCardJump();
+            findDoorCardByCondition();
         }
     });
 }
@@ -463,7 +475,8 @@ function confirmdeldoorcard(cardidList) {
         dataType: "json",
         success: function (data) {
             $("#del_door_card_Modal").modal("hide");
-            queryAllDoorCardJump();
+            // queryAllDoorCardJump();
+            findDoorCardByCondition();
         }
     });
 }
@@ -577,7 +590,8 @@ function sendCard(){
                 $("#entrance_card-modal-sendcard").modal('hide');
                 doorControllerIdArray = "";
                 msgTips(data.msg);
-                queryAllDoorCardJump();
+                // queryAllDoorCardJump();
+                findDoorCardByCondition();
             }
         });
     }
@@ -590,35 +604,6 @@ function getZoneCodeByToken(permit){
     if(!code.endsWith("N"))
         return code.substring(0,code.indexOf("d")+1);
 }
-//重置
-function resetAddDoorCard(){
-    $("#allDoorcontrollerInfo").empty();
-    $("#doorcard-identity").val("");
-    $("#doorcard-cardid").val("");
-    $("#doorcard-roomid").show();
-    $("#doorcard-type option:first").prop("selected", 'selected');
-}
-
-//删除
-/*function delDoorCard(cardid){
-    if (!confirm("确认要删除？")) {
-        window.event.returnValue = false;//取消返回
-    }else{
-        $.ajax({
-            type: "post",
-            url: zoneServerIp+"/ucotSmart/doorCardAction!delDoorcard.action",
-            data: {
-                'token': permit,
-                'cardidList':cardidList
-            },
-            dataType: "json",
-            success: function (data) {
-                queryAllDoorCardJump();
-            }
-        });
-    }
-}*/
-
 //查看权限
 function queryDoorCardAuthorityJump(doorcontrollerId){
     $('#entrance_card_tableList2').show();

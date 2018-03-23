@@ -111,6 +111,7 @@ function repairStatisticsSearch(){
  *给报事保修统计分页插件绑定ajax请求，根据页码任务数据
  */
 function queryRepairStaticTicsListByPage(pageNum,totalNum,totalPages,type,status,followP,startTime,endTime){
+    var pageStatic = 0;
     var pageShow=5;//默认分页栏显示5
     if(totalPages>1&&totalPages<6){//如果是5页以内一页以上加载插件，显示多少页
         pageShow=totalPages;
@@ -126,30 +127,32 @@ function queryRepairStaticTicsListByPage(pageNum,totalNum,totalPages,type,status
         //给分页插件绑定点击事件，page是点击选中的页码
         onPageClick: function (event, page) {
             repairPage=page;
-        }
-    });
-    $('#repair_pagination_static_tics').on('click', 'a', function(){
-        $.ajax({
-            type: "post",
-            url: zoneServerIp+"/ucotSmart/reportRepairAction!findComplaintOld.action",
-            dataType:"json",
-            data:{
-                "token":permit,
-                "pager.pages":repairPage,
-                "pager.pagesize":pageSize,
-                "c.type":type,
-                "c.status":status,
-                "c.followP":followP,
-                "createtime":startTime,
-                "endtime":endTime
-            },
-            success: function (data) {
-                var list=eval(data.obj.data);
-                pageRepairStaticTicsServiceLoadInformationList(list);
-                $('#repair_tips_static_tics').empty();
-                $('#repair_tips_static_tics').html("当前页面共"+list.length+"条数据 总共"+totalNum+"条数据");
+            if(pageStatic==0){
+                pageStatic++;
+            }else{
+                $.ajax({
+                    type: "post",
+                    url: zoneServerIp+"/ucotSmart/reportRepairAction!findComplaintOld.action",
+                    dataType:"json",
+                    data:{
+                        "token":permit,
+                        "pager.pages":repairPage,
+                        "pager.pagesize":pageSize,
+                        "c.type":type,
+                        "c.status":status,
+                        "c.followP":followP,
+                        "createtime":startTime,
+                        "endtime":endTime
+                    },
+                    success: function (data) {
+                        var list=eval(data.obj.data);
+                        pageRepairStaticTicsServiceLoadInformationList(list);
+                        $('#repair_tips_static_tics').empty();
+                        $('#repair_tips_static_tics').html("当前页面共"+list.length+"条数据 总共"+totalNum+"条数据");
+                    }
+                });
             }
-        });
+        }
     });
 }
 

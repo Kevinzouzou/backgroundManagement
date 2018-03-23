@@ -1,0 +1,383 @@
+<!--Created by along on 2018/3/13 自动抄表-->
+<!--业户抄表-->
+<div class="tablist_third">
+    <ul class="nav clearfix" role="tablist_third">
+        <li class="publicArea_waterMeter active"><a href="#tab_publicArea_waterMeter" role="tab" data-toggle="tab" onclick="PcArInitialize('water')">水表</a></li>
+        <li class="publicArea_etyMeter"><a href="#tab_publicArea_etyMeter" role="tab" data-toggle="tab" onclick="PcArInitialize('electricity')">电表</a></li>
+        <li class="publicArea_fuelGas"><a href="#tab_publicArea_fuelGas" role="tab" data-toggle="tab" onclick="PcArInitialize('fuelGas')">燃气表</a></li>
+        <li class="publicArea_heat"><a href="#tab_publicArea_heat" role="tab" data-toggle="tab" onclick="PcArInitialize('heat')">热量表</a></li>
+        <li class="publicArea_cold"><a href="#tab_publicArea_cold" role="tab" data-toggle="tab" onclick="PcArInitialize('cold')">冷量表</a></li>
+    </ul>
+</div>
+<div class="tab-content">
+    <!--水表-->
+    <div class="tab-pane active" id="tab_publicArea_waterMeter">
+        <div class="btns">
+            <button class="addPcAr btn btn-warning"  type="PcArWater"><i></i>添加</button>
+            <button class="btn btn-primary lead_in" data-toggle="modal" data-target="#importPersonnel"><i></i>导入</button>
+            <button class="btn btn-primary lead_out text-center" onclick="maintenanceExportData(1,2)"><i></i>导出</button>
+            <button class="btn btn-primary print text-center" onclick="maintenancePrintData('toDo',1)"><i></i>打印</button>
+        </div>
+        <div class="btns menuBox" id="PcArWaterAds" type="charge">
+            <span>地址筛选：</span>
+            <div class="chargingAds dropdown areaZone" ids="chargingAds" optionid="">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+            </div>
+            <div class="unitAds dropdown areaZone" ids="unitAds" optionid="">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部 单元</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+            </div>
+            <div class="doorplateAds dropdown areaZone" ids="doorplateAds">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部 房间号</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+            </div>
+            <div class="startToEnd">
+                从
+                <input type="text" class="reactive_height calendar property_start_time">
+                到
+                <input type="text" class="reactive_height calendar property_end_time">
+            </div>
+            <button class="btn btn-primary btn_search btnSearch" type="PcArWater" type="button"><i></i>查询</button>
+        </div>
+        <!--列表-->
+        <div class="tab-pane tables">
+            <table class="table table-striped table-hover table-responsive">
+                <thead>
+                <tr>
+                    <th>水表名称</th>
+                    <th>业户地址</th>
+                    <th>水表编号</th>
+                    <th>接口协议名称</th>
+                    <th>抄表时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="PcArWaterList">
+                <tr>
+                    <td>天</td>
+                    <td>1期1区1栋1单元1层101室</td>
+                    <td>0</td>
+                    <td>dsf02</td>
+                    <td><a class="meterReadTime" ids="1" type="PcArWater">详情</a></td>
+                    <td><a class="modifyBut" ids="1" type="PcArWater">修改</a>| <a class="deleteBut" ids="1" type="PcArWater">删除</a> </td>
+                </tr>
+                </tbody>
+            </table>
+            <!--分页-->
+            <div class="pagingImplement tab-pane inner clearfix">
+                <div class="pageList pull-right"></div>
+                <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
+            </div>
+            <!--end homeList-paging-->
+        </div>
+    </div>
+    <!--电表-->
+    <div class="tab-pane" id="tab_publicArea_etyMeter">
+        <div class="btns">
+            <button class="addPcAr btn btn-warning" type="PcArEty"><i></i>添加</button>
+            <button class="btn btn-primary lead_in" data-toggle="modal" data-target="#importPersonnel"><i></i>导入</button>
+            <button class="btn btn-primary lead_out text-center" onclick="maintenanceExportData(1,2)"><i></i>导出</button>
+            <button class="btn btn-primary print text-center" onclick="maintenancePrintData('toDo',1)"><i></i>打印</button>
+        </div>
+        <div class="btns menuBox" id="PcArEtyAds" type="charge">
+            <span>地址筛选：</span>
+            <div class="chargingAds dropdown areaZone" ids="chargingAds" optionid="">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+            </div>
+            <div class="unitAds dropdown areaZone" ids="unitAds" optionid="">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部 单元</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+            </div>
+            <div class="doorplateAds dropdown areaZone" ids="doorplateAds">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部 房间号</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+            </div>
+            <div class="startToEnd">
+                从
+                <input type="text" class="reactive_height calendar property_start_time">
+                到
+                <input type="text" class="reactive_height calendar property_end_time">
+            </div>
+            <button class="btn btn-primary btn_search btnSearch" type="PcArEty" type="button"><i></i>查询</button>
+        </div>
+        <!--列表-->
+        <div class="tab-pane tables">
+            <table class="table table-striped table-hover table-responsive">
+                <thead>
+                <tr>
+                    <th>水表名称</th>
+                    <th>业户地址</th>
+                    <th>水表编号</th>
+                    <th>接口协议名称</th>
+                    <th>抄表时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="PcArEtyLest">
+                <tr>
+                    <td>天</td>
+                    <td>1期1区1栋1单元1层101室</td>
+                    <td>0</td>
+                    <td>dsf02</td>
+                    <td><a class="meterReadTime" ids="1" type="PcArEty">详情</a></td>
+                    <td><a class="modifyBut" ids="1" type="PcArEty">修改</a>| <a class="deleteBut" ids="1" type="PcArEty">删除</a> </td>
+                </tr>
+                </tbody>
+            </table>
+            <!--分页-->
+            <div class="pagingImplement tab-pane inner clearfix">
+                <div class="pageList pull-right"></div>
+                <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
+            </div>
+            <!--end homeList-paging-->
+        </div>
+    </div>
+    <!--燃气表-->
+    <div class="tab-pane" id="tab_publicArea_fuelGas">
+        <div class="btns">
+            <button class="addPcAr btn btn-warning" type="PcArFuel"><i></i>添加</button>
+            <button class="btn btn-primary lead_in" data-toggle="modal" data-target="#importPersonnel"><i></i>导入</button>
+            <button class="btn btn-primary lead_out text-center" onclick="maintenanceExportData(1,2)"><i></i>导出</button>
+            <button class="btn btn-primary print text-center" onclick="maintenancePrintData('toDo',1)"><i></i>打印</button>
+        </div>
+        <div class="btns menuBox" id="PcArFuelAds" type="charge">
+            <span>地址筛选：</span>
+            <div class="chargingAds dropdown areaZone" ids="chargingAds" optionid="">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+            </div>
+            <div class="unitAds dropdown areaZone" ids="unitAds" optionid="">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部 单元</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+            </div>
+            <div class="doorplateAds dropdown areaZone" ids="doorplateAds">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部 房间号</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+            </div>
+            <div class="startToEnd">
+                从
+                <input type="text" class="reactive_height calendar property_start_time">
+                到
+                <input type="text" class="reactive_height calendar property_end_time">
+            </div>
+            <button class="btn btn-primary btn_search btnSearch" type="PcArFuel" type="button"><i></i>查询</button>
+        </div>
+        <!--列表-->
+        <div class="tab-pane tables">
+            <table class="table table-striped table-hover table-responsive">
+                <thead>
+                <tr>
+                    <th>水表名称</th>
+                    <th>业户地址</th>
+                    <th>水表编号</th>
+                    <th>接口协议名称</th>
+                    <th>抄表时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="PcArFuelLest">
+                <tr>
+                    <td>天</td>
+                    <td>1期1区1栋1单元1层101室</td>
+                    <td>0</td>
+                    <td>dsf02</td>
+                    <td><a class="meterReadTime" ids="1" type="PcArFuel">详情</a></td>
+                    <td><a class="modifyBut" ids="1" type="PcArFuel">修改</a>| <a class="deleteBut" ids="1" type="PcArFuel">删除</a> </td>
+                </tr>
+                </tbody>
+            </table>
+            <!--分页-->
+            <div class="pagingImplement tab-pane inner clearfix">
+                <div class="pageList pull-right"></div>
+                <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
+            </div>
+            <!--end homeList-paging-->
+        </div>
+    </div>
+    <!--热量表-->
+    <div class="tab-pane" id="tab_publicArea_heat">
+        <div class="btns">
+            <button class="addPcAr btn btn-warning" type="PcArHeat"><i></i>添加</button>
+            <button class="btn btn-primary lead_in" data-toggle="modal" data-target="#importPersonnel"><i></i>导入</button>
+            <button class="btn btn-primary lead_out text-center" onclick="maintenanceExportData(1,2)"><i></i>导出</button>
+            <button class="btn btn-primary print text-center" onclick="maintenancePrintData('toDo',1)"><i></i>打印</button>
+        </div>
+        <div class="btns menuBox" id="PcArHeatAds" type="charge">
+            <span>地址筛选：</span>
+            <div class="chargingAds dropdown areaZone" ids="chargingAds" optionid="">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+            </div>
+            <div class="unitAds dropdown areaZone" ids="unitAds" optionid="">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部 单元</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+            </div>
+            <div class="doorplateAds dropdown areaZone" ids="doorplateAds">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部 房间号</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+            </div>
+            <div class="startToEnd">
+                从
+                <input type="text" class="reactive_height calendar property_start_time">
+                到
+                <input type="text" class="reactive_height calendar property_end_time">
+            </div>
+            <button class="btn btn-primary btn_search btnSearch" type="PcArHeat" type="button"><i></i>查询</button>
+        </div>
+        <!--列表-->
+        <div class="tab-pane tables">
+            <table class="table table-striped table-hover table-responsive">
+                <thead>
+                <tr>
+                    <th>水表名称</th>
+                    <th>业户地址</th>
+                    <th>水表编号</th>
+                    <th>接口协议名称</th>
+                    <th>抄表时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="PcArHeatLest">
+                <tr>
+                    <td>天</td>
+                    <td>1期1区1栋1单元1层101室</td>
+                    <td>0</td>
+                    <td>dsf02</td>
+                    <td><a class="meterReadTime" ids="1" type="PcArHeat">详情</a></td>
+                    <td><a class="modifyBut" ids="1" type="PcArHeat">修改</a>| <a class="deleteBut" ids="1" type="PcArHeat">删除</a> </td>
+                </tr>
+                </tbody>
+            </table>
+            <!--分页-->
+            <div class="pagingImplement tab-pane inner clearfix">
+                <div class="pageList pull-right"></div>
+                <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
+            </div>
+            <!--end homeList-paging-->
+        </div>
+    </div>
+    <!--冷量表-->
+    <div class="tab-pane" id="tab_publicArea_cold">
+        <div class="btns">
+            <button class="addPcAr btn btn-warning" type="PcArCold"><i></i>添加</button>
+            <button class="btn btn-primary lead_in" data-toggle="modal" data-target="#importPersonnel"><i></i>导入</button>
+            <button class="btn btn-primary lead_out text-center" onclick="maintenanceExportData(1,2)"><i></i>导出</button>
+            <button class="btn btn-primary print text-center" onclick="maintenancePrintData('toDo',1)"><i></i>打印</button>
+        </div>
+        <div class="btns menuBox" id="PcArColdAds" type="charge">
+            <span>地址筛选：</span>
+            <div class="chargingAds dropdown areaZone" ids="chargingAds" optionid="">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+            </div>
+            <div class="unitAds dropdown areaZone" ids="unitAds" optionid="">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部 单元</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+            </div>
+            <div class="doorplateAds dropdown areaZone" ids="doorplateAds">
+                <a class="dropdown-toggle areaZoneList reactive_height" data-toggle="dropdown"><span class="option_type">全部 房间号</span><b class="caret"></b></a>
+                <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+            </div>
+            <div class="startToEnd">
+                从
+                <input type="text" class="reactive_height calendar property_start_time">
+                到
+                <input type="text" class="reactive_height calendar property_end_time">
+            </div>
+            <button class="btn btn-primary btn_search btnSearch" type="PcArCold" type="button"><i></i>查询</button>
+        </div>
+        <!--列表-->
+        <div class="tab-pane tables">
+            <table class="table table-striped table-hover table-responsive">
+                <thead>
+                <tr>
+                    <th>水表名称</th>
+                    <th>业户地址</th>
+                    <th>水表编号</th>
+                    <th>接口协议名称</th>
+                    <th>抄表时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="PcArColdLest">
+                <tr>
+                    <td>天</td>
+                    <td>1期1区1栋1单元1层101室</td>
+                    <td>0</td>
+                    <td>dsf02</td>
+                    <td><a class="meterReadTime" ids="1" type="PcArCold">详情</a></td>
+                    <td><a class="modifyBut" ids="1" type="PcArCold">修改</a>| <a class="deleteBut" ids="1" type="PcArCold">删除</a> </td>
+                </tr>
+                </tbody>
+            </table>
+            <!--分页-->
+            <div class="pagingImplement tab-pane inner clearfix">
+                <div class="pageList pull-right"></div>
+                <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
+            </div>
+            <!--end homeList-paging-->
+        </div>
+    </div>
+</div>
+<!--modal-->
+<!--添加/修改抄表-->
+<div class="modal fade" id="addPublicAreaModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">添加水表</h4>
+            </div>
+            <div class="modal-body" id="publicAreaForm">
+                <ul class="list-unstyled clearfix large-half">
+                    <li class="menuBox totalLength modalAddress" id="publicAreaAdsModal" ids="modalAddress" type="charge">
+                        <span class="pull-left">房屋地址</span>
+                        <div class="chargingAds dropdown areaZone" ids="chargingAds" optionid="" style="margin-left: 0.2rem;">
+                            <a class="dropdown-toggle areaZoneList" data-toggle="dropdown" aria-expanded="false"><span class="option_type"></span><b class="caret"></b></a>
+                            <ul class="dropdown-menu areaZoneList-menu" role="menu"><li><a codelist="201702d1p1z1b" modename="1期1区1栋">1期1区1栋</a></li><li><a codelist="201702d1p1z2b" modename="1期1区2栋">1期1区2栋</a></li></ul>
+                        </div>
+                        <div class="unitAds dropdown areaZone" ids="unitAds" optionid="" style="display: block;">
+                            <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                            <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+                        </div>
+                        <div class="doorplateAds dropdown areaZone" ids="doorplateAds" optionid="" style="display: block;">
+                            <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                            <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+                        </div>
+                    </li>
+                    <li class="totalLength">
+                        <span>水表名称</span>
+                        <input type="text" id="waterName">
+                    </li>
+                    <li class="menuBox">
+                        <span class="pull-left">水表编号</span>
+                        <div class="waterNub dropdown areaZone" ids="waterNub" optionid="">
+                            <a class="dropdown-toggle areaZoneList" data-toggle="dropdown" aria-expanded="false"><span class="option_type"></span><b class="caret"></b></a>
+                            <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                <li><a codelist="001" modename="001">001</a></li>
+                                <li><a codelist="002" modename="002">002</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="menuBox text-right">
+                        <span>接口协议</span>
+                        <div class="protocol dropdown areaZone" ids="protocol" optionid="">
+                            <a class="dropdown-toggle areaZoneList" data-toggle="dropdown" aria-expanded="false"><span class="option_type"></span><b class="caret"></b></a>
+                            <ul class="dropdown-menu areaZoneList-menu" role="menu">
+                                <li><a codelist="001" modename="001">001</a></li>
+                                <li><a codelist="002" modename="002">002</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning" id="publicAreaModalBut">确认</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/meter_reading/publicArea_meterReading.js"></script>

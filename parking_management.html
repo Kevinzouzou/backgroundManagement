@@ -38,9 +38,9 @@
                 <li class="parking_management active"><a role="tab" data-toggle="tab" href="#tab_parking_management"><b></b>车位管理</a></li>
                 <li class="owner_management"><a role="tab" data-toggle="tab" href="#tab_owner_management"><b></b>车主管理</a></li>
                 <li class="temporary_charge"><a role="tab" data-toggle="tab" href="#tab_temporary_charge"><b></b>临时收费管理</a></li>
-                <li class="rent_at_leisure"><a role="tab" data-toggle="tab" href="#tab_rent_at_leisure"><b></b>车位闲时出租</a></li>
+                <!--<li class="rent_at_leisure"><a role="tab" data-toggle="tab" href="#tab_rent_at_leisure"><b></b>车位闲时出租</a></li>-->
                 <li class="vehicle_monitoring"><a role="tab" data-toggle="tab" href="#tab_vehicle_monitoring"><b></b>车辆监控</a></li>
-                <li class="reverse_unusual"><a role="tab" data-toggle="tab" href="#tab_reverse_unusual"><b></b>反向寻常</a></li>
+                <li class="reverse_unusual"><a role="tab" data-toggle="tab" href="#tab_reverse_unusual"><b></b>反向寻车</a></li>
                 <li class="vehicle_analysis"><a role="tab" data-toggle="tab" href="#tab_vehicle_analysis"><b></b>车辆分析</a></li>
                 <li class="blacklist_management"><a role="tab" data-toggle="tab" href="#tab_blacklist_management"><b></b>黑名单管理</a></li>
             </ul>
@@ -64,7 +64,7 @@
                     <div class="tablist_third">
                         <ul class="nav clearfix">
                             <li class="digital_map active"><a href="#tab_digital_map" role="tab" data-toggle="tab">数字地图</a></li>
-                            <li class="list"><a href="#tab_list" role="tab" data-toggle="tab">列表</a></li>
+                            <!--<li class="list"><a href="#tab_list" role="tab" data-toggle="tab">列表</a></li>-->
                         </ul>
                     </div>
                     <div class="tab-content">
@@ -290,132 +290,132 @@
                             </div>
                         </div>
                         <!--列表-->
-                        <div class="tab-pane" id="tab_list">
-                            <div class="btns">
-                                <button class='btn btn-primary lead_in text-center'><i></i>导入</button>
-                                <button class='btn btn-primary lead_out text-center'><i></i>导出<a href="" download="停车场管理》车位管理》列表.xlsx" id="parkingList" style="display: none"></a></button>
-                                <div class="pull-right">
-                                    <span>区域名称</span>
-                                    <input type="text" class="reactive_height" placeholder="输入区域名称"/>
-                                    <span>车位号</span>
-                                    <input type="text" class="reactive_height" placeholder="输入车位号"/>
-                                    <button class='btn btn-primary btn_search text-center'><i></i>查询</button>
-                                </div>
-                            </div>
-                            <div class="tab-pane tables">
-                                <table class="table table-striped table-hover table-responsive">
-                                    <thead>
-                                        <tr>
-                                            <th>区域名称</th>
-                                            <th>车位号</th>
-                                            <th>属性</th>
-                                            <th>车主姓名</th>
-                                            <th>联系电话</th>
-                                            <th>操作</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>地下一层A区</td>
-                                            <td>01</td>
-                                            <td>私家车位</td>
-                                            <td>张三</td>
-                                            <td>13812345678</td>
-                                            <td>
-                                                <a  data-toggle="modal" data-target="#listModify">修改</a>|
-                                                <a  data-toggle="modal" data-target="#listDelete">删除</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>地下一层A区</td>
-                                            <td>02</td>
-                                            <td>公共车位</td>
-                                            <td>张三</td>
-                                            <td>13812345678</td>
-                                            <td>
-                                                <a  data-toggle="modal" data-target="#listModify">修改</a>|
-                                                <a  data-toggle="modal" data-target="#listDelete">删除</a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!--修改-->
-                            <div class="modal fade" id="listModify" aria-hidden="false">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
-                                            <h4 class="modal-title text-center">修改</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <ul class="list-unstyled clearfix large-half">
-                                                <li>
-                                                    <span>车&nbsp;&nbsp;位&nbsp;&nbsp;号</span>
-                                                    <input type="text" class="parkingNum" placeholder="输入车位号">
-                                                </li>
-                                                <li class="text-right">
-                                                    <span>属&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;性</span>
-                                                    <div class="dropdown areaZone attribute">
-                                                        <a class="dropdown-toggle areaZoneList attribute-list text-center" data-toggle="dropdown" ids="0"><span>请选择</span><b class="caret"></b></a>
-                                                        <ul class="dropdown-menu areaZoneList-menu attribute-menu" role="menu">
-                                                            <li><a ids="1">公共车位</a></li>
-                                                            <li><a ids="2">私家车位</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <span>车主名称</span>
-                                                    <input type="text" class="ownerName" placeholder="输入车主名称">
-                                                </li>
-                                                <li class="text-right">
-                                                    <span>联系电话</span>
-                                                    <input type="text" class="ownerPhone" placeholder="输入联系电话">
-                                                </li>
-                                                <li>
-                                                    <span>摄&nbsp;&nbsp;像&nbsp;&nbsp;机</span>
-                                                    <input type="text" class="cameraName" placeholder="输入摄像机名称">
-                                                </li>
-                                                <li class="text-right">
-                                                    <span>摄像机ID</span>
-                                                    <input type="text" class="cameraId" placeholder="输入摄像机ID">
-                                                </li>
-                                                <li>
-                                                    <span>传&nbsp;&nbsp;感&nbsp;&nbsp;器</span>
-                                                    <input type="text" class="sensorName" placeholder="输入传感器名称">
-                                                </li>
-                                                <li class="text-right">
-                                                    <span>传感器ID</span>
-                                                    <input type="text" class="sensorId" placeholder="输入传感器ID">
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="modal-footer text-center">
-                                            <button type="button" class="btn btn-warning btn-lg toResure" data-dismiss="modal">确定</button>
-                                            <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--删除 -->
-                            <div class="modal fade" id="listDelete" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
-                                            <h4 class="modal-title text-center">提示</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form class="form-inline mBody_title text-center">确定删除该消息?</form>
-                                        </div>
-                                        <div class="modal-footer text-center">
-                                            <button type="button" class="btn btn-warning btn-lg to_delete" data-dismiss="modal">删除</button>
-                                            <button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <!--<div class="tab-pane" id="tab_list">-->
+                            <!--<div class="btns">-->
+                                <!--<button class='btn btn-primary lead_in text-center'><i></i>导入</button>-->
+                                <!--<button class='btn btn-primary lead_out text-center'><i></i>导出<a href="" download="停车场管理》车位管理》列表.xlsx" id="parkingList" style="display: none"></a></button>-->
+                                <!--<div class="pull-right">-->
+                                    <!--<span>区域名称</span>-->
+                                    <!--<input type="text" class="reactive_height" placeholder="输入区域名称"/>-->
+                                    <!--<span>车位号</span>-->
+                                    <!--<input type="text" class="reactive_height" placeholder="输入车位号"/>-->
+                                    <!--<button class='btn btn-primary btn_search text-center'><i></i>查询</button>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="tab-pane tables">-->
+                                <!--<table class="table table-striped table-hover table-responsive">-->
+                                    <!--<thead>-->
+                                        <!--<tr>-->
+                                            <!--<th>区域名称</th>-->
+                                            <!--<th>车位号</th>-->
+                                            <!--<th>属性</th>-->
+                                            <!--<th>车主姓名</th>-->
+                                            <!--<th>联系电话</th>-->
+                                            <!--<th>操作</th>-->
+                                        <!--</tr>-->
+                                    <!--</thead>-->
+                                    <!--<tbody>-->
+                                        <!--<tr>-->
+                                            <!--<td>地下一层A区</td>-->
+                                            <!--<td>01</td>-->
+                                            <!--<td>私家车位</td>-->
+                                            <!--<td>张三</td>-->
+                                            <!--<td>13812345678</td>-->
+                                            <!--<td>-->
+                                                <!--<a  data-toggle="modal" data-target="#listModify">修改</a>|-->
+                                                <!--<a  data-toggle="modal" data-target="#listDelete">删除</a>-->
+                                            <!--</td>-->
+                                        <!--</tr>-->
+                                        <!--<tr>-->
+                                            <!--<td>地下一层A区</td>-->
+                                            <!--<td>02</td>-->
+                                            <!--<td>公共车位</td>-->
+                                            <!--<td>张三</td>-->
+                                            <!--<td>13812345678</td>-->
+                                            <!--<td>-->
+                                                <!--<a  data-toggle="modal" data-target="#listModify">修改</a>|-->
+                                                <!--<a  data-toggle="modal" data-target="#listDelete">删除</a>-->
+                                            <!--</td>-->
+                                        <!--</tr>-->
+                                    <!--</tbody>-->
+                                <!--</table>-->
+                            <!--</div>-->
+                            <!--&lt;!&ndash;修改&ndash;&gt;-->
+                            <!--<div class="modal fade" id="listModify" aria-hidden="false">-->
+                                <!--<div class="modal-dialog">-->
+                                    <!--<div class="modal-content">-->
+                                        <!--<div class="modal-header">-->
+                                            <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>-->
+                                            <!--<h4 class="modal-title text-center">修改</h4>-->
+                                        <!--</div>-->
+                                        <!--<div class="modal-body">-->
+                                            <!--<ul class="list-unstyled clearfix large-half">-->
+                                                <!--<li>-->
+                                                    <!--<span>车&nbsp;&nbsp;位&nbsp;&nbsp;号</span>-->
+                                                    <!--<input type="text" class="parkingNum" placeholder="输入车位号">-->
+                                                <!--</li>-->
+                                                <!--<li class="text-right">-->
+                                                    <!--<span>属&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;性</span>-->
+                                                    <!--<div class="dropdown areaZone attribute">-->
+                                                        <!--<a class="dropdown-toggle areaZoneList attribute-list text-center" data-toggle="dropdown" ids="0"><span>请选择</span><b class="caret"></b></a>-->
+                                                        <!--<ul class="dropdown-menu areaZoneList-menu attribute-menu" role="menu">-->
+                                                            <!--<li><a ids="1">公共车位</a></li>-->
+                                                            <!--<li><a ids="2">私家车位</a></li>-->
+                                                        <!--</ul>-->
+                                                    <!--</div>-->
+                                                <!--</li>-->
+                                                <!--<li>-->
+                                                    <!--<span>车主名称</span>-->
+                                                    <!--<input type="text" class="ownerName" placeholder="输入车主名称">-->
+                                                <!--</li>-->
+                                                <!--<li class="text-right">-->
+                                                    <!--<span>联系电话</span>-->
+                                                    <!--<input type="text" class="ownerPhone" placeholder="输入联系电话">-->
+                                                <!--</li>-->
+                                                <!--<li>-->
+                                                    <!--<span>摄&nbsp;&nbsp;像&nbsp;&nbsp;机</span>-->
+                                                    <!--<input type="text" class="cameraName" placeholder="输入摄像机名称">-->
+                                                <!--</li>-->
+                                                <!--<li class="text-right">-->
+                                                    <!--<span>摄像机ID</span>-->
+                                                    <!--<input type="text" class="cameraId" placeholder="输入摄像机ID">-->
+                                                <!--</li>-->
+                                                <!--<li>-->
+                                                    <!--<span>传&nbsp;&nbsp;感&nbsp;&nbsp;器</span>-->
+                                                    <!--<input type="text" class="sensorName" placeholder="输入传感器名称">-->
+                                                <!--</li>-->
+                                                <!--<li class="text-right">-->
+                                                    <!--<span>传感器ID</span>-->
+                                                    <!--<input type="text" class="sensorId" placeholder="输入传感器ID">-->
+                                                <!--</li>-->
+                                            <!--</ul>-->
+                                        <!--</div>-->
+                                        <!--<div class="modal-footer text-center">-->
+                                            <!--<button type="button" class="btn btn-warning btn-lg toResure" data-dismiss="modal">确定</button>-->
+                                            <!--<button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--&lt;!&ndash;删除 &ndash;&gt;-->
+                            <!--<div class="modal fade" id="listDelete" aria-hidden="true">-->
+                                <!--<div class="modal-dialog">-->
+                                    <!--<div class="modal-content">-->
+                                        <!--<div class="modal-header">-->
+                                            <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>-->
+                                            <!--<h4 class="modal-title text-center">提示</h4>-->
+                                        <!--</div>-->
+                                        <!--<div class="modal-body">-->
+                                            <!--<form class="form-inline mBody_title text-center">确定删除该消息?</form>-->
+                                        <!--</div>-->
+                                        <!--<div class="modal-footer text-center">-->
+                                            <!--<button type="button" class="btn btn-warning btn-lg to_delete" data-dismiss="modal">删除</button>-->
+                                            <!--<button type="button" class="btn btn-default btn-lg to_cancel" data-dismiss="modal">取消</button>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
                     </div>
                 </div>
                 <!--车主管理-->
@@ -436,7 +436,7 @@
                             <div class="btns">
                                 <span>地址</span>
                                 <div class="dropdown areaZone periodType">
-                                    <a class="dropdown-toggle areaZoneList periodTypeList reactive_height text-center" data-toggle="dropdown"><span>全部 期</span><b class="caret"></b></a>
+                                    <a class="dropdown-toggle areaZoneList periodTypeList reactive_height text-center" data-toggle="dropdown"><span></span><b class="caret"></b></a>
                                     <ul class="dropdown-menu areaZoneList-menu periodTypeList-menu" role="menu">
                                         <li><a>全部 期</a></li>
                                         <li><a>1期</a></li>
@@ -444,7 +444,7 @@
                                     </ul>
                                 </div>
                                 <div class="dropdown areaZone zoneType">
-                                    <a class="dropdown-toggle areaZoneList zoneTypeList reactive_height text-center" data-toggle="dropdown"><span>全部 区</span><b class="caret"></b></a>
+                                    <a class="dropdown-toggle areaZoneList zoneTypeList reactive_height text-center" data-toggle="dropdown"><span></span><b class="caret"></b></a>
                                     <ul class="dropdown-menu areaZoneList-menu zoneTypeList-menu" role="menu">
                                         <li><a>全部 区</a></li>
                                         <li><a>1区</a></li>
@@ -453,7 +453,7 @@
                                     </ul>
                                 </div>
                                 <div class="dropdown areaZone buildingType">
-                                    <a class="dropdown-toggle areaZoneList buildingTypeList reactive_height text-center" data-toggle="dropdown"><span>全部 栋</span><b class="caret"></b></a>
+                                    <a class="dropdown-toggle areaZoneList buildingTypeList reactive_height text-center" data-toggle="dropdown"><span></span><b class="caret"></b></a>
                                     <ul class="dropdown-menu areaZoneList-menu buildingTypeList-menu" role="menu">
                                         <li><a>全部 栋</a></li>
                                         <li><a>1栋</a></li>
@@ -461,7 +461,7 @@
                                     </ul>
                                 </div>
                                 <div class="dropdown areaZone unitType">
-                                    <a class="dropdown-toggle areaZoneList unitTypeList reactive_height text-center" data-toggle="dropdown"><span>全部 单元</span><b class="caret"></b></a>
+                                    <a class="dropdown-toggle areaZoneList unitTypeList reactive_height text-center" data-toggle="dropdown"><span></span><b class="caret"></b></a>
                                     <ul class="dropdown-menu areaZoneList-menu unitTypeList-menu" role="menu">
                                         <li><a>全部 单元</a></li>
                                         <li><a>1单元</a></li>
@@ -469,7 +469,7 @@
                                     </ul>
                                 </div>
                                 <div class="dropdown areaZone layer">
-                                    <a class="dropdown-toggle areaZoneList layerList reactive_height text-center" data-toggle="dropdown"><span>全部 层</span><b class="caret"></b></a>
+                                    <a class="dropdown-toggle areaZoneList layerList reactive_height text-center" data-toggle="dropdown"><span></span><b class="caret"></b></a>
                                     <ul class="dropdown-menu areaZoneList-menu layerList-menu" role="menu">
                                         <li><a>全部 层</a></li>
                                         <li><a>1层</a></li>
@@ -477,13 +477,14 @@
                                     </ul>
                                 </div>
                                 <div class="dropdown areaZone ventricle">
-                                    <a class="dropdown-toggle areaZoneList roomNumList reactive_height text-center" data-toggle="dropdown"><span>全部 室</span><b class="caret"></b></a>
+                                    <a class="dropdown-toggle areaZoneList roomNumList reactive_height text-center" data-toggle="dropdown"><span></span><b class="caret"></b></a>
                                     <ul class="dropdown-menu areaZoneList-menu roomNumList-menu" role="menu">
                                         <li><a>全部 室</a></li>
                                         <li><a>101室</a></li>
                                         <li><a>201室</a></li>
                                     </ul>
                                 </div>
+                                <button class="btn btn-primary btn_search text-center"><i></i>查询</button>
                             </div>
                             <div class="tab-pane tables">
                                 <table class="table table-striped table-hover table-responsive">
@@ -771,7 +772,7 @@
                     <div class="tablist_third">
                         <ul class="nav clearfix">
                             <li class="chargeSetting active"><a href="#tab_chargeSetting" role="tab" data-toggle="tab">临时收费设置</a></li>
-                            <li class="chargeDetails"><a href="#tab_chargeDetails" role="tab" data-toggle="tab">临时收费详情</a></li>
+                            <!--<li class="chargeDetails"><a href="#tab_chargeDetails" role="tab" data-toggle="tab">临时收费详情</a></li>-->
                         </ul>
                     </div>
                     <div class="tab-content">
@@ -799,7 +800,7 @@
                                             <td>小</td>
                                             <td>按次收费</td>
                                             <td>
-                                                <a class="detail" data-toggle="modal" data-target="#chargeSettingDetails_tip">详情</a>
+                                                <a class="detail" data-toggle="modal" data-target="#chargeSettingDetails1">详情</a>
                                             </td>
                                             <td>
                                                 <a class="modify" data-toggle="modal" data-target="#chargeSettingModify">修改</a>|
@@ -810,9 +811,9 @@
                                             <td>######</td>
                                             <td>001</td>
                                             <td>小</td>
-                                            <td>按次收费</td>
+                                            <td>按时收费</td>
                                             <td>
-                                                <a class="detail" data-toggle="modal" data-target="#chargeSettingDetails_time">详情</a>
+                                                <a class="detail" data-toggle="modal" data-target="#chargeSettingDetails2">详情</a>
                                             </td>
                                             <td>
                                                 <a class="modify" data-toggle="modal" data-target="#chargeSettingModify">修改</a>|
@@ -823,9 +824,9 @@
                                             <td>######</td>
                                             <td>001</td>
                                             <td>小</td>
-                                            <td>按次收费</td>
+                                            <td>按时段收费</td>
                                             <td>
-                                                <a class="detail" data-toggle="modal" data-target="#chargeSettingDetails_times">详情</a>
+                                                <a class="detail" data-toggle="modal" data-target="#chargeSettingDetails3">详情</a>
                                             </td>
                                             <td>
                                                 <a class="modify" data-toggle="modal" data-target="#chargeSettingModify">修改</a>|
@@ -856,11 +857,11 @@
                                                 <li>
                                                     <span>车型大小</span>
                                                     <div class="dropdown areaZone modelSize">
-                                                        <a class="dropdown-toggle areaZoneList modelSizeList text-center" data-toggle="dropdown" ids="0"><span>请选择</span><b class="caret"></b></a>
+                                                        <a class="dropdown-toggle areaZoneList modelSizeList text-center" data-toggle="dropdown" ids="3"><span>请选择</span><b class="caret"></b></a>
                                                         <ul class="dropdown-menu areaZoneList-menu modelSizeList-menu" role="menu">
-                                                            <li><a ids="1">大</a></li>
-                                                            <li><a ids="2">中</a></li>
-                                                            <li><a ids="3">小</a></li>
+                                                            <li><a ids="0">小</a></li>
+                                                            <li><a ids="1">中</a></li>
+                                                            <li><a ids="2">大</a></li>
                                                         </ul>
                                                     </div>
                                                 </li>
@@ -877,22 +878,22 @@
                                                 </li>
                                                 <li class="totalLength per-time">
                                                     <span>每&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次</span>
-                                                    <input type="number" class="midWidth">
+                                                    <input type="number" class="midWidth freeTime">
                                                     <span class="sInline">分钟内免费</span>
                                                     <span>每次</span>
-                                                    <input type="text" class="midWidth"/>
+                                                    <input type="text" class="midWidth perPrice"/>
                                                     <span class="sInline">元</span>
                                                 </li>
                                                 <li class="totalLength times times-both">
                                                     <span>范&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;围</span>
-                                                    <input type="text" class="midWidth"/>
+                                                    <input type="text" class="midWidth freeTime"/>
                                                     <span class="sInline">分钟内免费</span>
                                                 </li>
                                                 <li class="totalLength times a-time">
                                                     <span></span>
                                                     <ul class="chargeTime list-unstyled">
                                                         <li>
-                                                            <input type="text" class="startTo"/><span class="toTime">小时内</span><span>收费</span><input type="text" class="endTo"/><span>元</span><a class="add">添加</a>
+                                                            <input type="text" class="startTo"/><span class="toTime">小时内</span><span>收费</span><input type="text" class="pay"/><span>元</span><a class="add">添加</a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -900,31 +901,31 @@
                                                     <span></span>
                                                     <ul class="list-unstyled">
                                                         <li>
-                                                            <span>以24小时为单位算一天，每天最多收费</span>
-                                                            <input type="text" class="midWidth"/>
+                                                            <span>最大收费金额</span>
+                                                            <input type="text" class="midWidth maxPrice"/>
                                                             <span>元</span>
                                                         </li>
                                                     </ul>
                                                 </li>
                                                 <li class="totalLength times period-time">
                                                     <span></span>
-                                                    <ul class="chargeTime list-unstyled">
+                                                    <ul class="chargeTime list-unstyled dayTime">
                                                         <li>
                                                             <span>白天（8:00~20:00）</span>
                                                         </li>
                                                         <li>
-                                                            <input type="text" class="startTo"/><span class="toTime">小时内</span><span>收费</span><input type="text" class="endTo"/><span>元</span><a class="add">添加</a>
+                                                            <input type="text" class="startTo"/><span class="toTime">小时内</span><span>收费</span><input type="text" class="pay"/><span>元</span><a class="add">添加</a>
                                                         </li>
                                                     </ul>
                                                 </li>
                                                 <li class="totalLength times period-time">
                                                     <span></span>
-                                                    <ul class="chargeTime list-unstyled">
+                                                    <ul class="chargeTime list-unstyled nightTime">
                                                         <li>
                                                             <span>晚上（20:00~08:00）</span>
                                                         </li>
                                                         <li>
-                                                            <input type="text" class="startTo"/><span class="toTime">小时内</span><span>收费</span><input type="text" class="endTo"/><span>元</span><a class="add">添加</a>
+                                                            <input type="text" class="startTo"/><span class="toTime">小时内</span><span>收费</span><input type="text" class="pay"/><span>元</span><a class="add">添加</a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -932,8 +933,8 @@
                                                     <span></span>
                                                     <ul class="list-unstyled">
                                                         <li>
-                                                            <span>以24小时为单位算一天，每天最多收费</span>
-                                                            <input type="text" class="midWidth"/>
+                                                            <span>最大收费金额</span>
+                                                            <input type="text" class="midWidth maxPrice"/>
                                                             <span>元</span>
                                                         </li>
                                                     </ul>
@@ -948,7 +949,7 @@
                                 </div>
                             </div>
                             <!--详情 按次收费-->
-                            <div class="modal fade detailTime" id="chargeSettingDetails_tip" aria-hidden="true">
+                            <div class="modal fade detailTime" id="chargeSettingDetails1" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -958,7 +959,7 @@
                                         <div class="modal-body">
                                             <ul class="list-unstyled text-center">
                                                 <li>
-                                                    <p>每次15分钟内免收费，每次收费20元</p>
+                                                    <p>每次<span class="freeTime">15</span>分钟内免收费，每次收费<span class="perPrice">20</span>元</p>
                                                 </li>
                                             </ul>
                                         </div>
@@ -966,7 +967,7 @@
                                 </div>
                             </div>
                             <!--详情 按时收费-->
-                            <div class="modal fade detailTime" id="chargeSettingDetails_time" aria-hidden="true">
+                            <div class="modal fade detailTime" id="chargeSettingDetails2" aria-hidden="true">
                                 <div class="modal-dialog" style="margin-top: 7rem;">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -976,19 +977,19 @@
                                         <div class="modal-body">
                                             <ul class="list-unstyled text-center">
                                                 <li>
-                                                    <p>每次15分钟内免收费</p>
+                                                    <p>每次<span class="freeTime">15</span>分钟内免收费</p>
                                                 </li>
                                                 <li>
-                                                    <p>15分钟到5小时收费15元</p>
+                                                    <p><span class="startTo">1</span>小时内 收费<span class="pay">15</span>元</p>
                                                 </li>
                                                 <li>
-                                                    <p>5小时到8小时收费50元</p>
+                                                    <p><span class="startTo">1</span>小时内 收费<span class="pay">15</span>元</p>
                                                 </li>
                                                 <li>
-                                                    <p>8小时到12小时收费80元</p>
+                                                    <p><span class="startTo">1</span>小时内 收费<span class="pay">15</span>元</p>
                                                 </li>
                                                 <li>
-                                                    <p>以24小时为单位算一天，每天最多收费200元</p>
+                                                    <p>最大收费金额 <span class="maxPrice">200</span>元</p>
                                                 </li>
                                             </ul>
                                         </div>
@@ -996,7 +997,7 @@
                                 </div>
                             </div>
                             <!--详情 按时段收费-->
-                            <div class="modal fade detailTime" id="chargeSettingDetails_times" aria-hidden="true">
+                            <div class="modal fade detailTime" id="chargeSettingDetails3" aria-hidden="true">
                                 <div class="modal-dialog" style="margin-top: 4rem;">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -1005,37 +1006,37 @@
                                         </div>
                                         <div class="modal-body">
                                             <ul class="list-unstyled text-center clearfix">
-                                                <li>
-                                                    <p>每次15分钟内免收费，每次收费20元</p>
+                                                <li class="free">
+                                                    <p>每次<span class="freeTime">15</span>分钟内免收费</p>
                                                 </li>
-                                                <li class="second_time">
-                                                    <div class="pull-left">
+                                                <li class="second_time dayTime">
+                                                    <div class="pull-left title">
                                                         <p>白天（8:00~20:00）</p>
                                                     </div>
-                                                    <ul class="pull-left list-unstyled clearfix">
+                                                    <ul class="pull-left list-unstyled clearfix cont">
                                                         <li>
-                                                            <p>15分钟到3小时收费25元</p>
+                                                            <p><span class="startTo">1</span>小时内 收费<span class="pay">15</span>元</p>
                                                         </li>
                                                         <li>
-                                                            <p>3小时到8小时收费60元</p>
+                                                            <p><span class="startTo">1</span>小时内 收费<span class="pay">15</span>元</p>
                                                         </li>
                                                     </ul>
                                                 </li>
-                                                <li class="second_time">
-                                                    <div class="pull-left">
-                                                        <p>晚上（21:00~07:00）</p>
+                                                <li class="second_time nightTime">
+                                                    <div class="pull-left title">
+                                                        <p>晚上（20:00~08:00）</p>
                                                     </div>
-                                                    <ul class="pull-left list-unstyled clearfix">
+                                                    <ul class="pull-left list-unstyled clearfix cont">
                                                         <li>
-                                                            <p>15分钟到3小时收费15元</p>
+                                                            <p><span class="startTo">1</span>小时内 收费<span class="pay">15</span>元</p>
                                                         </li>
                                                         <li>
-                                                            <p>3小时到8小时收费50元</p>
+                                                            <p><span class="startTo">1</span>小时内 收费<span class="pay">15</span>元</p>
                                                         </li>
                                                     </ul>
                                                 </li>
                                                 <li>
-                                                    <p>以24小时为单位算一天，每天最多收费200元</p>
+                                                    <p>最大收费金额 <span class="maxPrice">200</span>元</p>
                                                 </li>
                                             </ul>
                                         </div>
@@ -1064,11 +1065,11 @@
                                                 <li>
                                                     <span>车型大小</span>
                                                     <div class="dropdown areaZone modelSize">
-                                                        <a class="dropdown-toggle areaZoneList modelSizeList text-center" data-toggle="dropdown" ids="0"><span>请选择</span><b class="caret"></b></a>
+                                                        <a class="dropdown-toggle areaZoneList modelSizeList text-center" data-toggle="dropdown" ids="3"><span>请选择</span><b class="caret"></b></a>
                                                         <ul class="dropdown-menu areaZoneList-menu modelSizeList-menu" role="menu">
-                                                            <li><a ids="1">大</a></li>
-                                                            <li><a ids="2">中</a></li>
-                                                            <li><a ids="3">小</a></li>
+                                                            <li><a ids="0">小</a></li>
+                                                            <li><a ids="1">中</a></li>
+                                                            <li><a ids="2">大</a></li>
                                                         </ul>
                                                     </div>
                                                 </li>
@@ -1085,22 +1086,22 @@
                                                 </li>
                                                 <li class="totalLength per-time">
                                                     <span>每&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次</span>
-                                                    <input type="number" class="midWidth">
+                                                    <input type="number" class="midWidth freeTime">
                                                     <span class="sInline">分钟内免费</span>
                                                     <span>每次</span>
-                                                    <input type="text" class="midWidth"/>
+                                                    <input type="text" class="midWidth perPrice"/>
                                                     <span class="sInline">元</span>
                                                 </li>
                                                 <li class="totalLength times times-both">
                                                     <span>范&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;围</span>
-                                                    <input type="text" class="midWidth"/>
+                                                    <input type="text" class="midWidth freeTime"/>
                                                     <span class="sInline">分钟内免费</span>
                                                 </li>
                                                 <li class="totalLength times a-time">
                                                     <span></span>
                                                     <ul class="chargeTime list-unstyled">
                                                         <li>
-                                                            <input type="text" class="startTo"/><span class="toTime">小时内</span><span>收费</span><input type="text" class="endTo"/><span>元</span><a class="add">添加</a>
+                                                            <input type="text" class="startTo"/><span class="toTime">小时内</span><span>收费</span><input type="text" class="pay"/><span>元</span><a class="add">添加</a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -1108,31 +1109,31 @@
                                                     <span></span>
                                                     <ul class="list-unstyled">
                                                         <li>
-                                                            <span>以24小时为单位算一天，每天最多收费</span>
-                                                            <input type="text" class="midWidth"/>
+                                                            <span>最大收费金额</span>
+                                                            <input type="text" class="midWidth maxPrice"/>
                                                             <span>元</span>
                                                         </li>
                                                     </ul>
                                                 </li>
                                                 <li class="totalLength times period-time">
                                                     <span></span>
-                                                    <ul class="chargeTime list-unstyled">
+                                                    <ul class="chargeTime list-unstyled dayTime">
                                                         <li>
                                                             <span>白天（8:00~20:00）</span>
                                                         </li>
                                                         <li>
-                                                            <input type="text" class="startTo"/><span class="toTime">小时内</span><span>收费</span><input type="text" class="endTo"/><span>元</span><a class="add">添加</a>
+                                                            <input type="text" class="startTo"/><span class="toTime">小时内</span><span>收费</span><input type="text" class="pay"/><span>元</span><a class="add">添加</a>
                                                         </li>
                                                     </ul>
                                                 </li>
                                                 <li class="totalLength times period-time">
                                                     <span></span>
-                                                    <ul class="chargeTime list-unstyled">
+                                                    <ul class="chargeTime list-unstyled nightTime">
                                                         <li>
                                                             <span>晚上（20:00~08:00）</span>
                                                         </li>
                                                         <li>
-                                                            <input type="text" class="startTo"/><span class="toTime">小时内</span><span>收费</span><input type="text" class="endTo"/><span>元</span><a class="add">添加</a>
+                                                            <input type="text" class="startTo"/><span class="toTime">小时内</span><span>收费</span><input type="text" class="pay"/><span>元</span><a class="add">添加</a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -1140,8 +1141,8 @@
                                                     <span></span>
                                                     <ul class="list-unstyled">
                                                         <li>
-                                                            <span>以24小时为单位算一天，每天最多收费</span>
-                                                            <input type="text" class="midWidth"/>
+                                                            <span>最大收费金额</span>
+                                                            <input type="text" class="midWidth maxPrice"/>
                                                             <span>元</span>
                                                         </li>
                                                     </ul>
@@ -1175,345 +1176,345 @@
                             </div>
                         </div>
                         <!--临时收费详情-->
-                        <div class="tab-pane" id="tab_chargeDetails">
-                            <div class="btns">
-                                <button class="btn btn-primary lead_out text-center"><i></i>导出<a href="" download="临时收费详情.xlsx" id="chargeSetDetailDowExl" style="display: none"></a></button>
-                                <button class="btn btn-primary print text-center"><i></i>打印</button>
-                                <button class="btn btn-primary btn_search text-center pull-right"><i></i>查询</button>
-                                <div class="startToEnd pull-right">
-                                    从
-                                    <input type="text" class="reactive_height calendar startTime" placeholder="起止时间">
-                                    到
-                                    <input type="text" class="reactive_height calendar endTime" placeholder="结束时间">
-                                </div>
-                            </div>
-                            <div class="btns btns_chargeDetails">
-                                <span>车位属性</span>
-                                <div class="dropdown areaZone parkingAttribute">
-                                    <a class="dropdown-toggle areaZoneList parkingAttributeList reactive_height text-center" data-toggle="dropdown"><span>请选择</span><b class="caret"></b></a>
-                                    <ul class="dropdown-menu areaZoneList-menu parkingAttributeList-menu" role="menu">
-                                        <li><a>全部</a></li>
-                                        <li><a>公共车位</a></li>
-                                        <li><a>私家车位</a></li>
-                                    </ul>
-                                </div>
-                                <span>车位</span>
-                                <div class="dropdown areaZone parkingSpace">
-                                    <a class="dropdown-toggle areaZoneList parkingSpaceList reactive_height text-center" data-toggle="dropdown"><span>请选择</span><b class="caret"></b></a>
-                                    <ul class="dropdown-menu areaZoneList-menu parkingSpaceList-menu" role="menu">
-                                        <li><a>全部</a></li>
-                                        <li><a>01车位</a></li>
-                                        <li><a>02车位</a></li>
-                                    </ul>
-                                </div>
-                                <span>区域</span>
-                                <input type="text" class="reactive_height" placeholder="输入区域"/>
-                                <span>车位号</span>
-                                <input type="text" class="reactive_height" placeholder="输入车位号"/>
-                                <span>电话</span>
-                                <input type="text" class="reactive_height" placeholder="输入电话"/>
-                            </div>
-                            <div class="tab-pane tables">
-                                <table class="table table-striped table-hover table-responsive">
-                                    <thead>
-                                    <tr>
-                                        <th>车牌号</th>
-                                        <th>车型大小</th>
-                                        <th>收费类型</th>
-                                        <th>区域</th>
-                                        <th>停车位号</th>
-                                        <th>入场时间</th>
-                                        <th>出场时间</th>
-                                        <th>停车时长</th>
-                                        <th>收费金额(￥)</th>
-                                        <th>应返业户金额(￥)</th>
-                                        <th>实收金额(￥)</th>
-                                        <th>合计</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>粤B GH089</td>
-                                            <td>小</td>
-                                            <td>按次收费</td>
-                                            <td>地下一层A区</td>
-                                            <td>A-01</td>
-                                            <td>2017-12-12 08:00</td>
-                                            <td>2017-12-12 18:00</td>
-                                            <td>10小时</td>
-                                            <td>30元</td>
-                                            <td>30元</td>
-                                            <td>30元</td>
-                                            <td>30元</td>
-                                        </tr>
-                                        <tr>
-                                            <td>粤B GH089</td>
-                                            <td>小</td>
-                                            <td>按时收费</td>
-                                            <td>地下一层A区</td>
-                                            <td>A-01</td>
-                                            <td>2017-12-12 08:00</td>
-                                            <td>2017-12-12 18:00</td>
-                                            <td>10小时</td>
-                                            <td>30元</td>
-                                            <td>30元</td>
-                                            <td>30元</td>
-                                            <td>30元</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                        <!--<div class="tab-pane" id="tab_chargeDetails">-->
+                            <!--<div class="btns">-->
+                                <!--<button class="btn btn-primary lead_out text-center"><i></i>导出<a href="" download="临时收费详情.xlsx" id="chargeSetDetailDowExl" style="display: none"></a></button>-->
+                                <!--<button class="btn btn-primary print text-center"><i></i>打印</button>-->
+                                <!--<button class="btn btn-primary btn_search text-center pull-right"><i></i>查询</button>-->
+                                <!--<div class="startToEnd pull-right">-->
+                                    <!--从-->
+                                    <!--<input type="text" class="reactive_height calendar startTime" placeholder="起止时间">-->
+                                    <!--到-->
+                                    <!--<input type="text" class="reactive_height calendar endTime" placeholder="结束时间">-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="btns btns_chargeDetails">-->
+                                <!--<span>车位属性</span>-->
+                                <!--<div class="dropdown areaZone parkingAttribute">-->
+                                    <!--<a class="dropdown-toggle areaZoneList parkingAttributeList reactive_height text-center" data-toggle="dropdown"><span>请选择</span><b class="caret"></b></a>-->
+                                    <!--<ul class="dropdown-menu areaZoneList-menu parkingAttributeList-menu" role="menu">-->
+                                        <!--<li><a>全部</a></li>-->
+                                        <!--<li><a>公共车位</a></li>-->
+                                        <!--<li><a>私家车位</a></li>-->
+                                    <!--</ul>-->
+                                <!--</div>-->
+                                <!--<span>车位</span>-->
+                                <!--<div class="dropdown areaZone parkingSpace">-->
+                                    <!--<a class="dropdown-toggle areaZoneList parkingSpaceList reactive_height text-center" data-toggle="dropdown"><span>请选择</span><b class="caret"></b></a>-->
+                                    <!--<ul class="dropdown-menu areaZoneList-menu parkingSpaceList-menu" role="menu">-->
+                                        <!--<li><a>全部</a></li>-->
+                                        <!--<li><a>01车位</a></li>-->
+                                        <!--<li><a>02车位</a></li>-->
+                                    <!--</ul>-->
+                                <!--</div>-->
+                                <!--<span>区域</span>-->
+                                <!--<input type="text" class="reactive_height" placeholder="输入区域"/>-->
+                                <!--<span>车位号</span>-->
+                                <!--<input type="text" class="reactive_height" placeholder="输入车位号"/>-->
+                                <!--<span>电话</span>-->
+                                <!--<input type="text" class="reactive_height" placeholder="输入电话"/>-->
+                            <!--</div>-->
+                            <!--<div class="tab-pane tables">-->
+                                <!--<table class="table table-striped table-hover table-responsive">-->
+                                    <!--<thead>-->
+                                    <!--<tr>-->
+                                        <!--<th>车牌号</th>-->
+                                        <!--<th>车型大小</th>-->
+                                        <!--<th>收费类型</th>-->
+                                        <!--<th>区域</th>-->
+                                        <!--<th>停车位号</th>-->
+                                        <!--<th>入场时间</th>-->
+                                        <!--<th>出场时间</th>-->
+                                        <!--<th>停车时长</th>-->
+                                        <!--<th>收费金额(￥)</th>-->
+                                        <!--<th>应返业户金额(￥)</th>-->
+                                        <!--<th>实收金额(￥)</th>-->
+                                        <!--<th>合计</th>-->
+                                    <!--</tr>-->
+                                    <!--</thead>-->
+                                    <!--<tbody>-->
+                                        <!--<tr>-->
+                                            <!--<td>粤B GH089</td>-->
+                                            <!--<td>小</td>-->
+                                            <!--<td>按次收费</td>-->
+                                            <!--<td>地下一层A区</td>-->
+                                            <!--<td>A-01</td>-->
+                                            <!--<td>2017-12-12 08:00</td>-->
+                                            <!--<td>2017-12-12 18:00</td>-->
+                                            <!--<td>10小时</td>-->
+                                            <!--<td>30元</td>-->
+                                            <!--<td>30元</td>-->
+                                            <!--<td>30元</td>-->
+                                            <!--<td>30元</td>-->
+                                        <!--</tr>-->
+                                        <!--<tr>-->
+                                            <!--<td>粤B GH089</td>-->
+                                            <!--<td>小</td>-->
+                                            <!--<td>按时收费</td>-->
+                                            <!--<td>地下一层A区</td>-->
+                                            <!--<td>A-01</td>-->
+                                            <!--<td>2017-12-12 08:00</td>-->
+                                            <!--<td>2017-12-12 18:00</td>-->
+                                            <!--<td>10小时</td>-->
+                                            <!--<td>30元</td>-->
+                                            <!--<td>30元</td>-->
+                                            <!--<td>30元</td>-->
+                                            <!--<td>30元</td>-->
+                                        <!--</tr>-->
+                                    <!--</tbody>-->
+                                <!--</table>-->
+                            <!--</div>-->
+                        <!--</div>-->
                     </div>
                 </div>
                 <!--车位闲时出租-->
-                <div class="tab-pane" id="tab_rent_at_leisure">
-                    <div class="tablist_third">
-                        <ul class="nav clearfix">
-                            <li class="hire_set active"><a href="#tab_hire_set" role="tab" data-toggle="tab">车位闲时出租设置</a></li>
-                            <li class="hire_management"><a href="#tab_hire_management" role="tab" data-toggle="tab">车位闲时出租管理</a></li>
-                        </ul>
-                    </div>
-                    <div class="tab-content">
-                        <!--车位闲时出租设置-->
-                        <div class="tab-pane active" id="tab_hire_set">
-                            <div class="btns">
-                                <button class='btn btn-primary modify text-center'><i></i>修改</button>
-                            </div>
-                            <div class="tables b_set sys_info">
-                                <h4></h4>
-                                <div class="box">
-                                    <div class="b_contain sys_contain">
-                                        <ul class="list-unstyled large-half text-center" style="margin-top: 2rem;">
-                                            <li class="title text-left">
-                                                <span>车位闲时出租设置</span>
-                                            </li>
-                                            <li class="commission">
-                                                <span>提&nbsp;&nbsp;成&nbsp;&nbsp;比：</span>
-                                                <input type="text" ids="0" placeholder="请输入物管提成比"/>
-                                                <b>10%</b>
-                                            </li>
-                                            <li class="returnTime">
-                                                <span>返款时间：</span>
-                                                <input class="calendar" type="text"/>
-                                                <b>2017-10-10</b>
-                                            </li>
-                                            <li class="returnWay">
-                                                <span>返款方式：</span>
-                                                <div class="dropdown areaZone refundWay">
-                                                    <a class="dropdown-toggle areaZoneList refundWayList reactive_height text-center" data-toggle="dropdown" ids=""><span>请选择</span><b class="caret"></b></a>
-                                                    <ul class="dropdown-menu areaZoneList-menu refundWayList-menu" role="menu">
-                                                        <li><a ids="1">现金</a></li>
-                                                        <li><a ids="2">微信</a></li>
-                                                        <li><a ids="3">支付宝</a></li>
-                                                        <li><a ids="4">冲销</a></li>
-                                                    </ul>
-                                                </div>
-                                                <b>现金</b>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="text-center b_footer">
-                                        <button class="btn btn-warning btn-lg determine">确认</button>
-                                        <button class="btn btn-default btn-lg cancel">取消</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--车位闲时出租管理-->
-                        <div class="tab-pane" id="tab_hire_management">
-                            <div class="btns">
-                                <button class='btn btn-warning adding text-center' data-toggle="modal" data-target="#addHireManagement"><i></i>添加</button>
-                                <button class="btn btn-primary lead_out text-center"><i></i>导出<a href="" download="车位闲时出租管理.xlsx" id="hireManagementDowExl" style="display: none"></a></button>
-                                <button class="btn btn-primary print text-center"><i></i>打印</button>
-                            </div>
-                            <div class="btns btns_chargeDetails">
-                                <span>区域名称</span>
-                                <input type="text" class="reactive_height" placeholder="输入区域名称"/>
-                                <span>车位号</span>
-                                <input type="text" class="reactive_height" placeholder="输入车位号"/>
-                                <span>电话</span>
-                                <input type="text" class="reactive_height" placeholder="输入电话"/>
-                                <button class="btn btn-primary btn_search text-center pull-right"><i></i>查询</button>
-                                <div class="startToEnd pull-right">
-                                    从
-                                    <input type="text" class="reactive_height calendar startTime" placeholder="起止时间">
-                                    到
-                                    <input type="text" class="reactive_height calendar endTime" placeholder="结束时间">
-                                </div>
-                            </div>
-                            <div class="tab-pane tables">
-                                <table class="table table-striped table-hover table-responsive">
-                                    <thead>
-                                        <tr>
-                                            <th>区域名称</th>
-                                            <th>车位号</th>
-                                            <th>车牌号</th>
-                                            <th>车型大小</th>
-                                            <th>收费类型</th>
-                                            <th>入场时间</th>
-                                            <th>出场时间</th>
-                                            <th>停车时长</th>
-                                            <th>应返业户金额(￥)</th>
-                                            <th>应返金额详情</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>地下一层A区</td>
-                                            <td>A-01</td>
-                                            <td>粤B GH089</td>
-                                            <td>小</td>
-                                            <td>按次收费</td>
-                                            <td>2017-12-12 08:00</td>
-                                            <td>2017-12-12 18:00</td>
-                                            <td>10小时</td>
-                                            <td>30元</td>
-                                            <td>
-                                                <a data-toggle="modal" data-target="#hireManagementDetails_tip">详情</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>地下一层A区</td>
-                                            <td>A-01</td>
-                                            <td>粤B GH089</td>
-                                            <td>小</td>
-                                            <td>按时收费</td>
-                                            <td>2017-12-12 08:00</td>
-                                            <td>2017-12-12 18:00</td>
-                                            <td>10小时</td>
-                                            <td>30元</td>
-                                            <td>
-                                                <a data-toggle="modal" data-target="#hireManagementDetails_tip">详情</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>地下一层A区</td>
-                                            <td>A-01</td>
-                                            <td>粤B GH089</td>
-                                            <td>小</td>
-                                            <td>按时段收费</td>
-                                            <td>2017-12-12 08:00</td>
-                                            <td>2017-12-12 18:00</td>
-                                            <td>10小时</td>
-                                            <td>30元</td>
-                                            <td>
-                                                <a data-toggle="modal" data-target="#hireManagementDetails_tip">详情</a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!--添加-->
-                            <div class="modal fade addDoorMac" id="addHireManagement" aria-hidden="false">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
-                                            <h4 class="modal-title text-center">添加</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <ul class="list-unstyled clearfix large-half">
-                                                <li>
-                                                    <span>车主姓名</span>
-                                                    <input type="text" class="ownerName" placeholder="输入车主姓名">
-                                                </li>
-                                                <li class="text-right">
-                                                    <span>联系电话</span>
-                                                    <input type="text" class="ownerPhone" placeholder="输入联系电话">
-                                                </li>
-                                                <li>
-                                                    <span>区域名称</span>
-                                                    <input type="text" class="areasname" placeholder="输入区域名称">
-                                                </li>
-                                                <li class="text-right">
-                                                    <span>车&nbsp;&nbsp;位&nbsp;&nbsp;号</span>
-                                                    <input type="text" class="parkingNum" placeholder="输入车位号">
-                                                </li>
-                                                <li>
-                                                    <span>起租时间</span>
-                                                    <input type="text" class="calendar rentTimer">
-                                                </li>
-                                                <li class="text-right">
-                                                    <span>止租时间</span>
-                                                    <input type="text" class="calendar rentTimer">
-                                                </li>
-                                                <li>
-                                                    <span>周&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;期</span>
-                                                    <div class="dropdown areaZone cycleHire">
-                                                        <a class="dropdown-toggle areaZoneList cycleHireList text-center" data-toggle="dropdown"><span>请选择</span><b class="caret"></b></a>
-                                                        <ul class="dropdown-menu areaZoneList-menu cycleHireList-menu" role="menu">
-                                                            <li><a ids="1">仅此一次</a></li>
-                                                            <li><a ids="2">周期</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </li>
-                                                <li class="totalLength cycle-items">
-                                                    <span></span>
-                                                    <div class="hireMgCycle">
-                                                        <input type="radio" name="hireCycle" id="Monday" value="1">
-                                                        <label class="Monday" for="Monday">周一</label>
-                                                        <input type="radio" name="hireCycle" id="Tuesday" value="2">
-                                                        <label class="Tuesday" for="Tuesday">周二</label>
-                                                        <input type="radio" name="hireCycle" id="Wednesday" value="3">
-                                                        <label class="Wednesday" for="Wednesday">周三</label>
-                                                        <input type="radio" name="hireCycle" id="Thursday" value="4">
-                                                        <label class="Thursday" for="Thursday">周四</label>
-                                                        <input type="radio" name="hireCycle" id="Friday" value="5">
-                                                        <label class="Friday" for="Friday">周五</label>
-                                                        <input type="radio" name="hireCycle" id="Saturday" value="4">
-                                                        <label class="Saturday" for="Saturday">周六</label>
-                                                        <input type="radio" name="hireCycle" id="Sunday" value="5">
-                                                        <label class="Sunday" for="Sunday">周天</label>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="modal-footer text-center">
-                                            <button type="button" class="btn btn-warning btn-lg determine" data-dismiss="modal">确定</button>
-                                            <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--详情-->
-                            <div class="modal fade addDoorMac" id="hireManagementDetails_tip" aria-hidden="false">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
-                                            <h4 class="modal-title text-center">详情</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <table class="table table-bordered hireMgTable">
-                                                <thead>
-                                                    <tr>
-                                                        <th>应返金额总计</th>
-                                                        <th>已返业户金额</th>
-                                                        <th>剩余金额</th>
-                                                        <th>返款方式</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>1500元</td>
-                                                        <td>700元</td>
-                                                        <td>800元</td>
-                                                        <td>支付宝</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="modal-footer text-center">
-                                            <button type="button" class="btn btn-warning btn-lg determine" data-dismiss="modal">确定</button>
-                                            <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!--<div class="tab-pane" id="tab_rent_at_leisure">-->
+                    <!--<div class="tablist_third">-->
+                        <!--<ul class="nav clearfix">-->
+                            <!--<li class="hire_set active"><a href="#tab_hire_set" role="tab" data-toggle="tab">车位闲时出租设置</a></li>-->
+                            <!--<li class="hire_management"><a href="#tab_hire_management" role="tab" data-toggle="tab">车位闲时出租管理</a></li>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+                    <!--<div class="tab-content">-->
+                        <!--&lt;!&ndash;车位闲时出租设置&ndash;&gt;-->
+                        <!--<div class="tab-pane active" id="tab_hire_set">-->
+                            <!--<div class="btns">-->
+                                <!--<button class='btn btn-primary modify text-center'><i></i>修改</button>-->
+                            <!--</div>-->
+                            <!--<div class="tables b_set sys_info">-->
+                                <!--<h4></h4>-->
+                                <!--<div class="box">-->
+                                    <!--<div class="b_contain sys_contain">-->
+                                        <!--<ul class="list-unstyled large-half text-center" style="margin-top: 2rem;">-->
+                                            <!--<li class="title text-left">-->
+                                                <!--<span>车位闲时出租设置</span>-->
+                                            <!--</li>-->
+                                            <!--<li class="commission">-->
+                                                <!--<span>提&nbsp;&nbsp;成&nbsp;&nbsp;比：</span>-->
+                                                <!--<input type="text" ids="0" placeholder="请输入物管提成比"/>-->
+                                                <!--<b>10%</b>-->
+                                            <!--</li>-->
+                                            <!--<li class="returnTime">-->
+                                                <!--<span>返款时间：</span>-->
+                                                <!--<input class="calendar" type="text"/>-->
+                                                <!--<b>2017-10-10</b>-->
+                                            <!--</li>-->
+                                            <!--<li class="returnWay">-->
+                                                <!--<span>返款方式：</span>-->
+                                                <!--<div class="dropdown areaZone refundWay">-->
+                                                    <!--<a class="dropdown-toggle areaZoneList refundWayList reactive_height text-center" data-toggle="dropdown" ids=""><span>请选择</span><b class="caret"></b></a>-->
+                                                    <!--<ul class="dropdown-menu areaZoneList-menu refundWayList-menu" role="menu">-->
+                                                        <!--<li><a ids="1">现金</a></li>-->
+                                                        <!--<li><a ids="2">微信</a></li>-->
+                                                        <!--<li><a ids="3">支付宝</a></li>-->
+                                                        <!--<li><a ids="4">冲销</a></li>-->
+                                                    <!--</ul>-->
+                                                <!--</div>-->
+                                                <!--<b>现金</b>-->
+                                            <!--</li>-->
+                                        <!--</ul>-->
+                                    <!--</div>-->
+                                    <!--<div class="text-center b_footer">-->
+                                        <!--<button class="btn btn-warning btn-lg determine">确认</button>-->
+                                        <!--<button class="btn btn-default btn-lg cancel">取消</button>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash;车位闲时出租管理&ndash;&gt;-->
+                        <!--<div class="tab-pane" id="tab_hire_management">-->
+                            <!--<div class="btns">-->
+                                <!--<button class='btn btn-warning adding text-center' data-toggle="modal" data-target="#addHireManagement"><i></i>添加</button>-->
+                                <!--<button class="btn btn-primary lead_out text-center"><i></i>导出<a href="" download="车位闲时出租管理.xlsx" id="hireManagementDowExl" style="display: none"></a></button>-->
+                                <!--<button class="btn btn-primary print text-center"><i></i>打印</button>-->
+                            <!--</div>-->
+                            <!--<div class="btns btns_chargeDetails">-->
+                                <!--<span>区域名称</span>-->
+                                <!--<input type="text" class="reactive_height" placeholder="输入区域名称"/>-->
+                                <!--<span>车位号</span>-->
+                                <!--<input type="text" class="reactive_height" placeholder="输入车位号"/>-->
+                                <!--<span>电话</span>-->
+                                <!--<input type="text" class="reactive_height" placeholder="输入电话"/>-->
+                                <!--<button class="btn btn-primary btn_search text-center pull-right"><i></i>查询</button>-->
+                                <!--<div class="startToEnd pull-right">-->
+                                    <!--从-->
+                                    <!--<input type="text" class="reactive_height calendar startTime" placeholder="起止时间">-->
+                                    <!--到-->
+                                    <!--<input type="text" class="reactive_height calendar endTime" placeholder="结束时间">-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="tab-pane tables">-->
+                                <!--<table class="table table-striped table-hover table-responsive">-->
+                                    <!--<thead>-->
+                                        <!--<tr>-->
+                                            <!--<th>区域名称</th>-->
+                                            <!--<th>车位号</th>-->
+                                            <!--<th>车牌号</th>-->
+                                            <!--<th>车型大小</th>-->
+                                            <!--<th>收费类型</th>-->
+                                            <!--<th>入场时间</th>-->
+                                            <!--<th>出场时间</th>-->
+                                            <!--<th>停车时长</th>-->
+                                            <!--<th>应返业户金额(￥)</th>-->
+                                            <!--<th>应返金额详情</th>-->
+                                        <!--</tr>-->
+                                    <!--</thead>-->
+                                    <!--<tbody>-->
+                                        <!--<tr>-->
+                                            <!--<td>地下一层A区</td>-->
+                                            <!--<td>A-01</td>-->
+                                            <!--<td>粤B GH089</td>-->
+                                            <!--<td>小</td>-->
+                                            <!--<td>按次收费</td>-->
+                                            <!--<td>2017-12-12 08:00</td>-->
+                                            <!--<td>2017-12-12 18:00</td>-->
+                                            <!--<td>10小时</td>-->
+                                            <!--<td>30元</td>-->
+                                            <!--<td>-->
+                                                <!--<a data-toggle="modal" data-target="#hireManagementDetails_tip">详情</a>-->
+                                            <!--</td>-->
+                                        <!--</tr>-->
+                                        <!--<tr>-->
+                                            <!--<td>地下一层A区</td>-->
+                                            <!--<td>A-01</td>-->
+                                            <!--<td>粤B GH089</td>-->
+                                            <!--<td>小</td>-->
+                                            <!--<td>按时收费</td>-->
+                                            <!--<td>2017-12-12 08:00</td>-->
+                                            <!--<td>2017-12-12 18:00</td>-->
+                                            <!--<td>10小时</td>-->
+                                            <!--<td>30元</td>-->
+                                            <!--<td>-->
+                                                <!--<a data-toggle="modal" data-target="#hireManagementDetails_tip">详情</a>-->
+                                            <!--</td>-->
+                                        <!--</tr>-->
+                                        <!--<tr>-->
+                                            <!--<td>地下一层A区</td>-->
+                                            <!--<td>A-01</td>-->
+                                            <!--<td>粤B GH089</td>-->
+                                            <!--<td>小</td>-->
+                                            <!--<td>按时段收费</td>-->
+                                            <!--<td>2017-12-12 08:00</td>-->
+                                            <!--<td>2017-12-12 18:00</td>-->
+                                            <!--<td>10小时</td>-->
+                                            <!--<td>30元</td>-->
+                                            <!--<td>-->
+                                                <!--<a data-toggle="modal" data-target="#hireManagementDetails_tip">详情</a>-->
+                                            <!--</td>-->
+                                        <!--</tr>-->
+                                    <!--</tbody>-->
+                                <!--</table>-->
+                            <!--</div>-->
+                            <!--&lt;!&ndash;添加&ndash;&gt;-->
+                            <!--<div class="modal fade addDoorMac" id="addHireManagement" aria-hidden="false">-->
+                                <!--<div class="modal-dialog">-->
+                                    <!--<div class="modal-content">-->
+                                        <!--<div class="modal-header">-->
+                                            <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>-->
+                                            <!--<h4 class="modal-title text-center">添加</h4>-->
+                                        <!--</div>-->
+                                        <!--<div class="modal-body">-->
+                                            <!--<ul class="list-unstyled clearfix large-half">-->
+                                                <!--<li>-->
+                                                    <!--<span>车主姓名</span>-->
+                                                    <!--<input type="text" class="ownerName" placeholder="输入车主姓名">-->
+                                                <!--</li>-->
+                                                <!--<li class="text-right">-->
+                                                    <!--<span>联系电话</span>-->
+                                                    <!--<input type="text" class="ownerPhone" placeholder="输入联系电话">-->
+                                                <!--</li>-->
+                                                <!--<li>-->
+                                                    <!--<span>区域名称</span>-->
+                                                    <!--<input type="text" class="areasname" placeholder="输入区域名称">-->
+                                                <!--</li>-->
+                                                <!--<li class="text-right">-->
+                                                    <!--<span>车&nbsp;&nbsp;位&nbsp;&nbsp;号</span>-->
+                                                    <!--<input type="text" class="parkingNum" placeholder="输入车位号">-->
+                                                <!--</li>-->
+                                                <!--<li>-->
+                                                    <!--<span>起租时间</span>-->
+                                                    <!--<input type="text" class="calendar rentTimer">-->
+                                                <!--</li>-->
+                                                <!--<li class="text-right">-->
+                                                    <!--<span>止租时间</span>-->
+                                                    <!--<input type="text" class="calendar rentTimer">-->
+                                                <!--</li>-->
+                                                <!--<li>-->
+                                                    <!--<span>周&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;期</span>-->
+                                                    <!--<div class="dropdown areaZone cycleHire">-->
+                                                        <!--<a class="dropdown-toggle areaZoneList cycleHireList text-center" data-toggle="dropdown"><span>请选择</span><b class="caret"></b></a>-->
+                                                        <!--<ul class="dropdown-menu areaZoneList-menu cycleHireList-menu" role="menu">-->
+                                                            <!--<li><a ids="1">仅此一次</a></li>-->
+                                                            <!--<li><a ids="2">周期</a></li>-->
+                                                        <!--</ul>-->
+                                                    <!--</div>-->
+                                                <!--</li>-->
+                                                <!--<li class="totalLength cycle-items">-->
+                                                    <!--<span></span>-->
+                                                    <!--<div class="hireMgCycle">-->
+                                                        <!--<input type="radio" name="hireCycle" id="Monday" value="1">-->
+                                                        <!--<label class="Monday" for="Monday">周一</label>-->
+                                                        <!--<input type="radio" name="hireCycle" id="Tuesday" value="2">-->
+                                                        <!--<label class="Tuesday" for="Tuesday">周二</label>-->
+                                                        <!--<input type="radio" name="hireCycle" id="Wednesday" value="3">-->
+                                                        <!--<label class="Wednesday" for="Wednesday">周三</label>-->
+                                                        <!--<input type="radio" name="hireCycle" id="Thursday" value="4">-->
+                                                        <!--<label class="Thursday" for="Thursday">周四</label>-->
+                                                        <!--<input type="radio" name="hireCycle" id="Friday" value="5">-->
+                                                        <!--<label class="Friday" for="Friday">周五</label>-->
+                                                        <!--<input type="radio" name="hireCycle" id="Saturday" value="4">-->
+                                                        <!--<label class="Saturday" for="Saturday">周六</label>-->
+                                                        <!--<input type="radio" name="hireCycle" id="Sunday" value="5">-->
+                                                        <!--<label class="Sunday" for="Sunday">周天</label>-->
+                                                    <!--</div>-->
+                                                <!--</li>-->
+                                            <!--</ul>-->
+                                        <!--</div>-->
+                                        <!--<div class="modal-footer text-center">-->
+                                            <!--<button type="button" class="btn btn-warning btn-lg determine" data-dismiss="modal">确定</button>-->
+                                            <!--<button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--&lt;!&ndash;详情&ndash;&gt;-->
+                            <!--<div class="modal fade addDoorMac" id="hireManagementDetails_tip" aria-hidden="false">-->
+                                <!--<div class="modal-dialog">-->
+                                    <!--<div class="modal-content">-->
+                                        <!--<div class="modal-header">-->
+                                            <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>-->
+                                            <!--<h4 class="modal-title text-center">详情</h4>-->
+                                        <!--</div>-->
+                                        <!--<div class="modal-body">-->
+                                            <!--<table class="table table-bordered hireMgTable">-->
+                                                <!--<thead>-->
+                                                    <!--<tr>-->
+                                                        <!--<th>应返金额总计</th>-->
+                                                        <!--<th>已返业户金额</th>-->
+                                                        <!--<th>剩余金额</th>-->
+                                                        <!--<th>返款方式</th>-->
+                                                    <!--</tr>-->
+                                                <!--</thead>-->
+                                                <!--<tbody>-->
+                                                    <!--<tr>-->
+                                                        <!--<td>1500元</td>-->
+                                                        <!--<td>700元</td>-->
+                                                        <!--<td>800元</td>-->
+                                                        <!--<td>支付宝</td>-->
+                                                    <!--</tr>-->
+                                                <!--</tbody>-->
+                                            <!--</table>-->
+                                        <!--</div>-->
+                                        <!--<div class="modal-footer text-center">-->
+                                            <!--<button type="button" class="btn btn-warning btn-lg determine" data-dismiss="modal">确定</button>-->
+                                            <!--<button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
                 <!--车辆监控-->
                 <div class="tab-pane" id="tab_vehicle_monitoring">
                     <div class="tablist_third">
@@ -2272,8 +2273,6 @@
                                 <div class="pull-right">
                                     <span>车牌号</span>
                                     <input type="text" class="reactive_height" placeholder="输入车牌号"/>
-                                    <span>时间</span>
-                                    <input type="text" class="calendar reactive_height" value="2017-12-25"/>
                                     <button class="btn btn-primary btn_search text-center"><i></i>查询</button>
                                 </div>
                             </div>
@@ -2281,7 +2280,6 @@
                                 <table class="table table-striped table-hover table-responsive">
                                     <thead>
                                         <tr>
-                                            <th>时间</th>
                                             <th>车牌号</th>
                                             <th>区域名称</th>
                                             <th>车位号</th>
@@ -2289,16 +2287,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>2017-12-12 08:00</td>
                                             <td>粤B GH089</td>
                                             <td>地下一层A区</td>
                                             <td>01</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2017-12-12 08:00</td>
-                                            <td>粤B GH089</td>
-                                            <td>地下一层A区</td>
-                                            <td>02</td>
                                         </tr>
                                     </tbody>
                                 </table>

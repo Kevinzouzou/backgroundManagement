@@ -454,5 +454,3 @@ $("body").on('click',"#tab_room_set .btns .lead_out",function(){
     }
 });
 
-
-

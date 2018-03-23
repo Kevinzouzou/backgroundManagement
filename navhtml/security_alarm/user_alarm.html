@@ -1,14 +1,215 @@
 <!--Created by along on 2018/1/24 安防报警-->
+<style>
+    .mapContent p.topTitle {
+        width: 100%;
+        height:50px;
+        background: #59A294;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        margin:0;
+    }
+    .mapContent .mapBox {
+        height: 660px;
+        padding: 20px 26px;
+        background: #fff;
+        overflow: hidden;
+    border-left: 1px solid #ABABAC;
+        border-right: 1px solid #ABABAC;
+        border-bottom: 1px solid #ABABAC;
+    }
+    .mapContent .mapBox .menu{
+        width:30%;
+        height:100%;
+        overflow:hidden;
+        float:left;
+        color:#000;
+        border-left: 1px solid #CCCCCC;
+        border-right: 1px solid #CCCCCC;
+        border-bottom: 1px solid #CCCCCC;
+    }
+    .mapContent .mapBox .doorBox{width:70%;height:100%;float:left;padding-left:15px;overflow-y:auto;}
+    /*menu*/
+    .mapContent .mapBox .menu p.title {
+        height: 26px;
+        line-height: 26px;
+        padding: 0 10px;
+        margin: 0;
+        background: #333333;
+        color:#fff;
+    }
+    .mapContent .menu .manuBox{
+        width:100%;
+        padding:15px 0 0 15px;
+        overflow-y:auto;
+        color:#333333;
+    }
+    .mapContent .videoList .manuPadding strong span i {border: 1px solid #CCCCCC;color:#CCCCCC;}
+    .mapContent .videoList .manuPadding strong span em {border-top: 1px dotted #CCCCCC;}
+    .mapContent .videoList .manuPadding .linellae {border-left: 1px dotted #CCCCCC;}
+    .mapContent .videoList .districtManu {
+        margin: -6px 0 -6px 32px;
+        position:relative;
+    }
+    .mapContent .videoList .buildingManu {
+        margin: -6px 0 -6px 32px;
+        position:relative;
+    }
+    .mapContent .unitManu{margin:-6px 0 -6px 32px;}
+    .mapContent .mainManu>li:last-child>.unitManu>li:last-child>.linellae{height:20px;}
+    .mapContent .unitManu li{height:40px;line-height:40px;margin-top:1px;position:relative;padding-left:40px;}
+    .mapContent .unitManu em{width:40px;height:0;border-top:1px dotted #CCCCCC;;position:absolute;top:20px;left:0;}
+    /*door*/
+    .doorBox table{width:100%;background:#D2F0E8;}
+    .doorBox table td{
+        width:16.6666%;
+        height: 178px;
+        border:1px solid #CCCCCC;
+        vertical-align:middle;
+        text-align:center;
+        position:relative;
+    }
+    .doorBox table td span.door strong{width:20px;height:20px;line-height:20px;text-align:center;border-radius:100%;position:absolute;right:-8px;top:-8px;color:#ffffff;background:#FF0000;}
+    .doorBox table td em{position:absolute;right:8px;bottom:8px;color:#5CA496;font-style:normal;}
+    /*modal*/
+    #addMapModal .modalAddress .dropdown{width:12rem;}
+    #detailsMapModal .table thead tr{
+        font-size: 0.83rem;
+        background: #fff;
+        color: #333;
+        border:1px solid #ccc;
+    }
+    #detailsMapModal .table tr {height: 2.2rem;}
+    #detailsMapModal .table td,#detailsMapModal .table th{border:1px solid #ccc;}
+    #detailsMapModal .modal-body{max-height: 500px;overflow-y: auto;}
+    #detailsMapModal .userInfor{width:100%;height:30px;line-height:30px;margin-bottom:10px;}
+    #detailsMapModal .userInfor li{width:20%;height:100%;float:left;list-style:none;text-align:center;font-weight:bold;}
+    #detailsMapModal .userInfor li:nth-child(3){width:40%;}
+</style>
 <!--用户报警-->
 <div class="tablist_third">
     <ul class="nav clearfix" role="tablist_third">
-        <li class="users_alarm active"><a href="#tab_users_alarm" role="tab" data-toggle="tab" onclick="userAlarmInitialize('alarm')">用户报警</a></li>
-        <li class="number_map"><a href="#tab_number_map" role="tab" data-toggle="tab" onclick="userAlarmInitialize('map')">数字地图</a></li>
+        <li class="number_map active"><a href="#tab_number_map" role="tab" data-toggle="tab" onclick="userAlarmInitialize('map')">数字地图</a></li>
+        <li class="users_alarm"><a href="#tab_users_alarm" role="tab" data-toggle="tab" onclick="userAlarmInitialize('alarm')">报警列表</a></li>
     </ul>
 </div>
 <div class="tab-content">
-    <!--用户报警-->
-    <div class="tab-pane active" id="tab_users_alarm">
+    <!--数字地图-->
+    <div class="tab-pane active" id="tab_number_map">
+        <div class="btns">
+            <button class="btn btn-warning" id="addMapBut"><i></i>添加</button>
+        </div>
+        <div class="mapContent">
+            <p class="topTitle"></p>
+            <div class="mapBox">
+                <div class="menu">
+                    <p class="title">设备列表</p>
+                    <div class="manuBox videoList">
+                        <div class="manuPadding">
+                            <strong class="menuAll"><span><i>+</i><em></em></span>全部</strong>
+                            <ul class="mainManu">
+                                <li>
+                                    <p class="linellae"></p>
+                                    <strong><span><em></em><i>+</i></span>&nbsp;&nbsp;&nbsp;&nbsp;n期</strong>
+                                    <ul class="districtManu">
+                                        <li>
+                                            <p class="linellae"></p>
+                                            <strong><span><em></em><i>+</i></span>&nbsp;&nbsp;&nbsp;&nbsp;n区</strong>
+                                            <ul class="buildingManu">
+                                                <li>
+                                                    <p class="linellae"></p>
+                                                    <strong><span><em></em><i>+</i></span>&nbsp;&nbsp;&nbsp;&nbsp;n栋</strong>
+                                                    <ul class="unitManu">
+                                                        <li><p class="linellae"></p><em></em><span>n单元</span></li>
+                                                        <li><p class="linellae"></p><em></em><span>n单元</span></li>
+                                                        <li><p class="linellae"></p><em></em><span>n单元</span></li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <p class="linellae"></p>
+                                                    <strong><span><em></em><i>+</i></span>&nbsp;&nbsp;&nbsp;&nbsp;n栋</strong>
+                                                    <ul class="unitManu"></ul>
+                                                </li>
+                                                <li>
+                                                    <p class="linellae"></p>
+                                                    <strong><span><em></em><i>+</i></span>&nbsp;&nbsp;&nbsp;&nbsp;n栋</strong>
+                                                    <ul class="unitManu"></ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <p class="linellae"></p>
+                                            <strong><span><em></em><i>+</i></span>&nbsp;&nbsp;&nbsp;&nbsp;n区</strong>
+                                        </li>
+                                        <li>
+                                            <p class="linellae"></p>
+                                            <strong><span><em></em><i>+</i></span>&nbsp;&nbsp;&nbsp;&nbsp;n区</strong>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <p class="linellae"></p>
+                                    <strong><span><em></em><i>+</i></span>&nbsp;&nbsp;&nbsp;&nbsp;n期</strong>
+                                    <ul class="districtManu">
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <p class="linellae"></p>
+                                    <strong><span><em></em><i>+</i></span>&nbsp;&nbsp;&nbsp;&nbsp;n期</strong>
+                                    <ul class="districtManu">
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="doorBox">
+                    <table>
+                        <tr>
+                            <td><span class="door"><strong class="tips">2</strong></span><em class="nub">01</em></td>
+                            <td><span class="door"><strong class="tips">6</strong></span><em class="nub">02</em></td>
+                            <td><span class="door"><strong class="tips">5</strong></span><em class="nub">03</em></td>
+                            <td><span class="door"></span><em class="nub">04</em></td>
+                            <td><span class="door"></span><em class="nub">05</em></td>
+                            <td><span class="door"></span><em class="nub">06</em></td>
+                        </tr>
+                        <tr>
+                            <td><span class="door"></span><em class="nub">01</em></td>
+                            <td><span class="door"></span><em class="nub">02</em></td>
+                            <td><span class="door"></span><em class="nub">03</em></td>
+                            <td><span class="door"></span><em class="nub">04</em></td>
+                            <td><span class="door"></span><em class="nub">05</em></td>
+                            <td><span class="door"></span><em class="nub">06</em></td>
+                        </tr>
+                        <tr>
+                            <td><span class="door"></span><em class="nub">01</em></td>
+                            <td><span class="door"></span><em class="nub">02</em></td>
+                            <td><span class="door"></span><em class="nub">03</em></td>
+                            <td><span class="door"></span><em class="nub">04</em></td>
+                            <td><span class="door"></span><em class="nub">05</em></td>
+                            <td><span class="door"></span><em class="nub">06</em></td>
+                        </tr>
+                        <tr>
+                            <td><span class="door"></span><em class="nub">01</em></td>
+                            <td><span class="door"></span><em class="nub">02</em></td>
+                            <td><span class="door"></span><em class="nub">03</em></td>
+                            <td><span class="door"></span><em class="nub">04</em></td>
+                            <td><span class="door"></span><em class="nub">05</em></td>
+                            <td><span class="door"></span><em class="nub">06</em></td>
+                        </tr>
+                    </table>
+                    <!--<div class="door"></div><div class="door"></div><div class="door"></div><div class="door"></div><div class="door"></div><div class="door"></div><div class="door"></div><div class="door"></div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--报警列表-->
+    <div class="tab-pane" id="tab_users_alarm">
         <div class="btns menuBox" id="logoutAddress" type="charge">
             <span>地址筛选：</span>
             <div class="chargingAds dropdown areaZone" ids="chargingAds" optionid="">
@@ -70,39 +271,6 @@
             <!--end homeList-paging-->
         </div>
     </div>
-    <!--数字地图-->
-    <div class="tab-pane" id="tab_number_map">
-        <div class="btns">
-            <button class="btn btn-warning SetAlarmBut" ids="alarmMap"><i></i>添加</button>
-        </div>
-        <!--table-->
-        <div class="tables">
-            <table class="table table-striped text-center">
-                <thead>
-                <tr>
-                    <th>房屋地址</th>
-                    <th>房号</th>
-                    <th>报警数量</th>
-                    <th>报警详情</th>
-                </tr>
-                </thead>
-                <tbody id="mapList">
-                    <tr>
-                        <td>1期1区2栋1单元5层4室</td>
-                        <td>0215</td>
-                        <td>2</td>
-                        <td><span class="blue">详情</span></td>
-                    </tr>
-                </tbody>
-            </table>
-            <!--分页-->
-            <div class="pagingImplement tab-pane inner clearfix">
-                <div class="pageList pull-right"></div>
-                <div class="pageTips pull-right">当前页面共0条数据 总共0条数据</div>
-            </div>
-            <!--end homeList-paging-->
-        </div>
-    </div>
 </div>
 <!--modal-->
 <!--家电状态详情-->
@@ -116,6 +284,78 @@
             <div class="modal-body" id="equDetailsForm">
                 <p class="form-inline mBody_title text-center">暂无数据...</p>
             </div>
+        </div>
+    </div>
+</div>
+<!--数字地图-->
+<!--添加-->
+<div class="modal fade" id="addMapModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">添加</h4>
+            </div>
+            <div class="modal-body" id="mapForm">
+                <ul class="list-unstyled large" id="housekeepingServeForm" style="display: block;">
+                    <li>
+                        <div class="menuBox totalLength modalAddress" id="serve_roomcode" ids="modalAddress" type="charge">
+                            <span class="pull-left">期区栋</span>
+                            <div class="chargingAds dropdown areaZone" ids="chargingAds" optionid="" style="margin-left: 0.2rem;">
+                                <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                                <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+                            </div>
+                            <span class="pull-left">单元</span>
+                            <div class="unitAds dropdown areaZone" ids="unitAds" optionid="" style="display:block">
+                                <a class="dropdown-toggle areaZoneList" data-toggle="dropdown"><span class="option_type"></span><b class="caret"></b></a>
+                                <ul class="dropdown-menu areaZoneList-menu" role="menu"></ul>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning" id="mapModalBut">确认</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--详情-->
+<div class="modal fade" id="detailsMapModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title text-center">详情</h4>
+            </div>
+            <div class="modal-body" id="detailsMapForm">
+                <ul class="userInfor"><li>房号：001</li><li>住户姓名：张三</li><li>住户电话：15886862235</li><li>房屋状态：自住</li></ul>
+                <table class="table text-center">
+                    <thead>
+                        <tr>
+                            <th>报警类型</th>
+                            <th>报警设备</th>
+                            <th>报警时间</th>
+                            <th>报警级别</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>防盗报警</td>
+                            <td>报警器</td>
+                            <td>2017-1-22 06:00</td>
+                            <td>一般</td>
+                            <td><a class="deleteBut" ids="181">响应</a>| <a class="deleteBut" ids="181">删除</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--<div class="modal-footer text-center">-->
+                <!--<button type="button" class="btn btn-warning" id="detailsMapModalBut">确认</button>-->
+                <!--<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>-->
+            <!--</div>-->
         </div>
     </div>
 </div>

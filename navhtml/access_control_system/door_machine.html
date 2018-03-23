@@ -7,6 +7,7 @@
             <button class='btn btn-primary lead_out text-center' id="machine_export_D" onclick="exportPublicData('D')"><i></i>导出</button>
             <button class="btn btn-primary" id="machine_synchronous_data_D" onclick="synchronousData()">同步数据</button>
             <button class="btn btn-primary" id="machine_check_all_D" onclick="selectAllMachineData()">选择所有</button>
+            <button class="btn btn-primary pull-right" onclick="updateMachineStatus()">更新机器状态</button>
         </div>
         <div class="form-inline btns">
             <form class="form-inline">
@@ -66,9 +67,10 @@
             <div class="modal-body">
                 <form class="form-horizontal" role="form" id="machineFormId_D">
                     <ul class="list-unstyled clearfix large-half">
-                        <li class="totalLength">
+                        <li class="totalLength inquireMacli">
                             <span>机&nbsp;&nbsp;器&nbsp;&nbsp;码</span>
-                            <input type="text" id="mac_D" placeholder="格式为:811043c205904c0a0be并且不能重复">
+                            <input type="text" class="inquireMac" macType="D" id="mac_D" placeholder="格式为:811043c205904c0a0be并且不能重复" autocomplete="off">
+                            <div class="inquireMacbox"></div>
                         </li>
                         <li class="totalLength">
                             <span>安装位置</span>

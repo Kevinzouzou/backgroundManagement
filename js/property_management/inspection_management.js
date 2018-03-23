@@ -23,7 +23,7 @@ function echoEchoInsName(prefixId,this_){
     $("#"+prefixId+" .insmark").val($(this_).parents("tr").find("td").eq(5).attr("remark"));//备注
 };
 function echoEchoInsPlaneModal(prefixId,this_){
-    $("#"+prefixId+" .workMonth").val($(this_).parents("tr").find("td").eq(2).text()).attr("disabled","disabled");//排班月份
+    $("#"+prefixId+" .workMonth").val($(this_).parents("tr").find("td").eq(2).text()).attr("disabled","disabled");//巡检月份
     let optionid=$(this_).parents("tr").find("td").eq(0).attr("deptid");
     let deptname=$(this_).parents("tr").find("td").eq(0).text();
     $("#"+prefixId+" .insPlanDeptnameMenu").attr({"optionid":optionid,"modename":deptname}).css("overflow","hidden").find("a.dropdown-toggle span").text(deptname);//部门名称
@@ -33,7 +33,7 @@ function echoEchoInsPlaneModal(prefixId,this_){
     $("#"+prefixId+" .pitch-on").html(emptext).attr({"ids":empid+":"+empname,"empid":empid});//姓名
     let cycle=$(this_).parents("tr").find("td").eq(3).attr("cycle");
     let cyclename=$(this_).parents("tr").find("td").eq(3).text();
-    $("#"+prefixId+" .workCycle").attr({"optionid":cycle,"modename":cyclename}).find("a.dropdown-toggle span").text(cyclename);//排班周期
+    $("#"+prefixId+" .workCycle").attr({"optionid":cycle,"modename":cyclename}).find("a.dropdown-toggle span").text(cyclename);//巡检周期
 };
 //--表单验证--
 function verifyInsName(prefixId){
@@ -98,11 +98,12 @@ function pageDataIns(insType){
     }else if(insType=="inquire"){
         departmentMenu("inquireInsDepartmentMenu");
         insPlanSelect();
-        let Month;
-        if(nowMonth<10){
-            Month="0"+nowMonth;
-        }else{Month=nowMonth;}
-        $("#insDateTimes").text(nowYear+"-"+Month).attr({"year":nowYear,"month":Month});
+        $("#insInquiretitBox span.namebox").text("全部部门-巡检管理日程");
+        // let Month;
+        // if(nowMonth<10){
+        //     Month="0"+nowMonth;
+        // }else{Month=nowMonth;}
+        $("#insDateTimes").text(nowYear+"-"+nowMonthstr).attr({"year":nowYear,"month":nowMonthstr});
         $("#inquireInsDepartmentMenu .inquireInsDepartmentMenu").attr({"optionid":"","modename":"全部部门"}).find("a.dropdown-toggle span").text("全部部门");
         $("#inquireInsStaffMenu .inquireInsStaffMenu").attr({"optionid":"","modename":"全部员工"}).find("a.dropdown-toggle span").text("全部员工");
         $("#inquireInsStaffMenu .inquireInsStaffMenu .dropdown-menu").empty();
@@ -1025,7 +1026,7 @@ $("#addInsPlanBut").click(function(){
     insPlanModal();
     $("#insPlanForm .workMonth").removeAttr("disabled");
     $("#insPlanForm .insPlanDeptnameMenu").removeAttr("style");
-    $("#insPlanForm .workMonth").val(nowYear+"-"+nowMonth);
+    $("#insPlanForm .workMonth").val(nowYear+"-"+nowMonthstr);
     $("#insEmploModal").show();
 });
 function insPlanModal(){
@@ -1654,6 +1655,13 @@ $("#insInquireSearch").click(function(){
     let empname=$("#inquireInsStaffMenu .inquireInsStaffMenu").attr("modename");
     $("#insDateTimes").attr("deptid",department);
     insMonthtab("inquire");
+    let departmentNm=$("#inquireInsDepartmentMenu .inquireInsDepartmentMenu").attr("modename");
+    let StaffNm=$("#inquireInsStaffMenu .inquireInsStaffMenu").attr("modename");
+    if(StaffNm=="全部员工"||!StaffNm){
+        $("#insInquiretitBox span.namebox").text(departmentNm+"-巡检管理日程");
+    }else{
+        $("#insInquiretitBox span.namebox").text(StaffNm+"-巡检管理日程");
+    };
     if(Staff){
         //查员工
         $("#insDateTimes").attr({"empid":Staff,"empname":empname});

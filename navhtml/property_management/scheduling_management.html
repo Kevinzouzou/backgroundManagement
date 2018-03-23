@@ -1,9 +1,9 @@
 <!--排班管理-->
 <div class="tablist_third">
     <ul id="schedulingType" class="nav clearfix" role="tablist_third">
-        <li class="scheduling_set active"><a href="#tab_scheduling_set" role="tab" data-toggle="tab" onclick="schedulingManagementInitialize('set')">排班设置</a></li>
-        <li class="scheduling_schedule"><a href="#tab_scheduling_schedule" role="tab" data-toggle="tab" onclick="schedulingManagementInitialize('schedule')">排班日程</a></li>
-        <li class="scheduling_inquire"><a href="#tab_scheduling_inquire" role="tab" data-toggle="tab" onclick="schedulingManagementInitialize('inquire')">排班查询</a></li>
+        <li class="scheduling_set active"><a href="#tab_scheduling_set" role="tab" data-toggle="tab" onclick="schedulingInitialize('set')">排班设置</a></li>
+        <li class="scheduling_schedule"><a href="#tab_scheduling_schedule" role="tab" data-toggle="tab" onclick="schedulingInitialize('schedule')">排班日程</a></li>
+        <li class="scheduling_inquire"><a href="#tab_scheduling_inquire" role="tab" data-toggle="tab" onclick="schedulingInitialize('inquire')">排班查询</a></li>
     </ul>
 </div>
 <div class="tab-content">
@@ -170,7 +170,7 @@
         <!--table-->
         <div class="tab-content" id="inquireBox">
             <div class="date">
-                <div class="title" id="inquiretitBox"><div class="date"><span class="arrowsleft"></span><span class="content" id="dateTimes"></span><span class="arrowsright"></span></div></div>
+                <div class="title" id="inquiretitBox"><span class="namebox"></span><div class="date"><span class="arrowsleft"></span><span class="content" id="dateTimes"></span><span class="arrowsright"></span></div></div>
                 <div class="monthbox" id="inquireMonthbox">
                     <table>
                         <thead>
